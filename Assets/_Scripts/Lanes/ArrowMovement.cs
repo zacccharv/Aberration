@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum Direction
@@ -17,8 +16,22 @@ public class ArrowMovement : MonoBehaviour
 {
     public Direction direction;
     public Vector2 VectorDirection { get { return GetDirection(direction); } set { } }
-    public float moveInterval;
-    [SerializeField] float _timer;
+    [SerializeField] float _physicalDistance = 0.5f;
+
+
+    void OnEnable()
+    {
+        GameManager.MoveArrows += Move;
+    }
+    void OnDisable()
+    {
+        GameManager.MoveArrows -= Move;
+    }
+
+    public void Move()
+    {
+        transform.position += (Vector3)VectorDirection * _physicalDistance;
+    }
 
     public static Vector2 GetDirection(Direction direction) => direction switch
     {
