@@ -15,7 +15,7 @@ public enum Direction
 public class ArrowMovement : MonoBehaviour
 {
     public Direction direction;
-    public Vector2 VectorDirection { get { return GetDirection(direction); } set { } }
+    public Vector2 VectorDirection { get; set; }
     public Vector2 _vecDirTest;
     [SerializeField] float _physicalDistance = 0.5f;
 
@@ -35,7 +35,7 @@ public class ArrowMovement : MonoBehaviour
     }
     public void Move()
     {
-        transform.position += (Vector3)_vecDirTest * _physicalDistance;
+        transform.position += (Vector3)VectorDirection * _physicalDistance;
 
         if (InBounds(transform.position, Tower.Instance.bounds))
         {

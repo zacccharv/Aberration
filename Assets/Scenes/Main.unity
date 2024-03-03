@@ -2926,13 +2926,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0bb8ee0ecad345a1a834827a5bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aberration: {fileID: 2890981843342685558, guid: 5079da2da83b96146a2784fc6cc164aa, type: 3}
   arrows:
     DownArrow: {fileID: 3733136322246655374, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
     LeftArrow: {fileID: 7394451724533681272, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
     UpArrow: {fileID: 8949647402317675866, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
     RightArrow: {fileID: 253947882051529777, guid: 865b591150248b24688e682e3f88a757, type: 3}
-  moveThreshold: 1.25
-  spawnStart: {x: 5, y: 5}
+  aberrationSprites:
+  - {fileID: 1481560804, guid: 8869a3c87d01d0943b969d431dd9cfc6, type: 3}
+  - {fileID: -1289362737, guid: 8869a3c87d01d0943b969d431dd9cfc6, type: 3}
+  - {fileID: 198183851, guid: 8869a3c87d01d0943b969d431dd9cfc6, type: 3}
+  - {fileID: -2078033272, guid: 8869a3c87d01d0943b969d431dd9cfc6, type: 3}
+  arrowColors:
+  - {r: 0.97647065, g: 0.6666667, b: 0.69803923, a: 1}
+  - {r: 0.97647065, g: 0.90196085, b: 0.6666667, a: 1}
+  - {r: 0.6666667, g: 0.9333334, b: 0.96470594, a: 1}
+  - {r: 0.7490196, g: 0.9803922, b: 0.6666667, a: 1}
+  moveThreshold: 1.5
+  spawnStart: {x: 5.5, y: 5.5}
 --- !u!4 &1266761054
 Transform:
   m_ObjectHideFlags: 0
@@ -3215,7 +3226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: fdbbcd999a9e88247a697616354fbfdd, type: 3}
   m_Color: {r: 0.7960785, g: 0.8588236, b: 0.98823535, a: 1}
   m_FlipX: 0
@@ -3651,7 +3662,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: fdbbcd999a9e88247a697616354fbfdd, type: 3}
   m_Color: {r: 1, g: 0, b: 0.09759998, a: 0.2901961}
   m_FlipX: 0

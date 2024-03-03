@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2435870449670184808, guid: 8d927e1232ed4104c982c3dd63002ca0, type: 3}
+      propertyPath: direction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5553957065976462228, guid: 8d927e1232ed4104c982c3dd63002ca0, type: 3}
       propertyPath: m_Name
       value: UpArrow

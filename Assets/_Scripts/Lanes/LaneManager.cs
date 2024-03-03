@@ -12,24 +12,16 @@ public struct Arrows
     public GameObject RightArrow;
 }
 
-[Serializable]
-public struct Aberrations
-{
-    public GameObject DownAbberation;
-    public GameObject LeftAbberation;
-    public GameObject UpAbberation;
-    public GameObject RightAbberation;
-}
-
 public class LaneManager : MonoBehaviour
 {
     public static LaneManager Instance;
 
     public static event Action MoveArrows;
 
+    public GameObject aberration;
     public Arrows arrows;
-    public Aberrations aberrations;
     public List<Sprite> aberrationSprites;
+    public List<Color> arrowColors;
 
     public float moveThreshold;
     public Vector2 spawnStart;
@@ -67,113 +59,99 @@ public class LaneManager : MonoBehaviour
 
     public void SpawnArrow()
     {
+        GameObject obj = default;
+
+        int aberrationIndex = -1;
         int lane = UnityEngine.Random.Range(0, 4);
-        Vector2 direction = Vector2.zero;
-        Vector2 laneDir;
+
+        int arrowIndex = GetArrowIndex(lane);
+
+        Vector2 laneDir = Vector2.zero;
+        Vector2 moveDirection = Vector2.zero;
 
         if (lane == 0)
         {
-            direction = Vector2.down;
-            GameObject gameObject = PickArrow(Vector2.down, out laneDir);
-            Instantiate(gameObject, laneDir, arrows.DownArrow.transform.rotation);
+            laneDir = Vector2.up;
+            moveDirection = Vector2.down;
         }
         else if (lane == 1)
         {
-            direction = Vector2.right;
-            GameObject gameObject = PickArrow(Vector2.right, out laneDir);
-            Instantiate(gameObject, laneDir, arrows.LeftArrow.transform.rotation);
+            laneDir = Vector2.right;
+            moveDirection = Vector2.left;
         }
         else if (lane == 2)
         {
-            direction = Vector2.up;
-            GameObject gameObject = PickArrow(Vector2.up, out laneDir);
-            Instantiate(gameObject, laneDir, arrows.UpArrow.transform.rotation);
+            laneDir = Vector2.down;
+            moveDirection = Vector2.up;
         }
         else if (lane == 3)
         {
-            direction = Vector2.left;
-            GameObject gameObject = PickArrow(Vector2.left, out laneDir);
-            Instantiate(gameObject, laneDir, arrows.RightArrow.transform.rotation);
+            laneDir = Vector2.left;
+            moveDirection = Vector2.right;
         }
 
-        Debug.Log($"{lane}, {direction}");
-
-        GameObject PickArrow(Vector2 direction, out Vector2 lanePos)
+        if (arrowIndex < 4)
         {
-            GameObject obj = default;
-            int index = UnityEngine.Random.Range(0, 5);
-            int aberrationIndex;
-            lanePos = default;
-
-            if (index < 4)
+            if (arrowIndex == 0)
             {
-                if (index == 0)
-                {
-                    obj = arrows.DownArrow;
-                }
-                else if (index == 1)
-                {
-                    obj = arrows.LeftArrow;
-                }
-                else if (index == 2)
-                {
-                    obj = arrows.UpArrow;
-                }
-                else if (index == 3)
-                {
-                    obj = arrows.RightArrow;
-                }
-
-                PrefabUtility.UnpackPrefabInstance(obj, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
+                obj = Instantiate(arrows.DownArrow, laneDir * spawnStart, arrows.DownArrow.transform.rotation, transform);
             }
-            else if (index == 4)
+            else if (arrowIndex == 1)
             {
-                aberrationIndex = UnityEngine.Random.Range(0, 4);
-
-                if (aberrationIndex == 0)
-                {
-                    obj = aberrations.DownAbberation;
-                }
-                else if (aberrationIndex == 1)
-                {
-                    obj = aberrations.LeftAbberation;
-                }
-                else if (aberrationIndex == 2)
-                {
-                    obj = aberrations.UpAbberation;
-                }
-                else if (aberrationIndex == 3)
-                {
-                    obj = aberrations.RightAbberation;
-                }
-
-                PrefabUtility.UnpackPrefabInstance(obj, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
-
-
-                obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, 4)];
+                obj = Instantiate(arrows.LeftArrow, laneDir * spawnStart, arrows.LeftArrow.transform.rotation, transform);
             }
-
-            obj.GetComponent<ArrowMovement>().VectorDirection = direction;
-            obj.GetComponent<ArrowMovement>()._vecDirTest = direction;
-
-            if (direction == Vector2.down)
+            else if (arrowIndex == 2)
             {
-                lanePos = new(0, 5);
+                obj = Instantiate(arrows.UpArrow, laneDir * spawnStart, arrows.UpArrow.transform.rotation, transform);
             }
-            else if (direction == Vector2.left)
+            else if (arrowIndex == 3)
             {
-                lanePos = new(5, 0);
+                obj = Instantiate(arrows.RightArrow, laneDir * spawnStart, arrows.RightArrow.transform.rotation, transform);
             }
-            else if (direction == Vector2.up)
-            {
-                lanePos = new(0, -5);
-            }
-            else if (direction == Vector2.right)
-            {
-                lanePos = new(-5, 0);
-            }
+        }
+        else if (arrowIndex == 4)
+        {
+            aberrationIndex = UnityEngine.Random.Range(0, 4);
+            GameObject m_abberation = aberration;
 
-            return obj;
+            if (aberrationIndex == 0)
+            {
+                obj = Instantiate(m_abberation, laneDir * spawnStart, arrows.DownArrow.transform.rotation, transform);
+            }
+            else if (aberrationIndex == 1)
+            {
+                obj = Instantiate(m_abberation, laneDir * spawnStart, arrows.LeftArrow.transform.rotation, transform);
+            }
+            else if (aberrationIndex == 2)
+            {
+                obj = Instantiate(m_abberation, laneDir * spawnStart, arrows.UpArrow.transform.rotation, transform);
+            }
+            else if (aberrationIndex == 3)
+            {
+                obj = Instantiate(m_abberation, laneDir * spawnStart, arrows.RightArrow.transform.rotation, transform);
+            }
+        }
+
+        obj.GetComponent<ArrowMovement>().VectorDirection = moveDirection;
+
+        if (aberrationIndex > -1)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count - 1)];
+            obj.GetComponent<SpriteRenderer>().color = arrowColors[UnityEngine.Random.Range(0, aberrationSprites.Count - 1)];
+        }
+    }
+
+    int GetArrowIndex(int lane)
+    {
+        int randomizeTrigger = UnityEngine.Random.Range(0, 100);
+
+        if (randomizeTrigger > 74)
+        {
+            return UnityEngine.Random.Range(0, 5);
+        }
+        else
+        {
+            return lane;
         }
     }
 }
