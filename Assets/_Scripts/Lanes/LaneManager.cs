@@ -108,6 +108,8 @@ public class LaneManager : MonoBehaviour
             {
                 obj = Instantiate(arrows.RightArrow, laneDir * spawnStart, arrows.RightArrow.transform.rotation, transform);
             }
+
+            obj.GetComponent<SpriteRenderer>().color = arrowColors[arrowIndex];
         }
         else if (arrowIndex == 4)
         {
@@ -130,6 +132,7 @@ public class LaneManager : MonoBehaviour
             {
                 obj = Instantiate(m_abberation, laneDir * spawnStart, arrows.RightArrow.transform.rotation, transform);
             }
+            Debug.Log("Aberration");
         }
 
         obj.GetComponent<ArrowMovement>().VectorDirection = moveDirection;
