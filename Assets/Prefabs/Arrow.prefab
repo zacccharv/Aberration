@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1264677298158527782}
   - component: {fileID: 2735769044811857191}
   - component: {fileID: 1489758593638682393}
+  - component: {fileID: 5173096601081363070}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 544158960822703125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2952090434849226621}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -304428200, guid: efa0d11b2f0dd864d867bc1461cea659, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,9 +99,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6daab608241172438f81ced214ced20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vectorDirection: {x: 0, y: 0}
+  _physicalDistance: 1
+--- !u!114 &5173096601081363070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544158960822703125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d54ed4dd43ebe44f8d159b84a5e5466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   direction: 0
-  _vecDirTest: {x: 0, y: 0}
-  _physicalDistance: 0.5
+  inBounds: 0
 --- !u!1 &3493522218486586097
 GameObject:
   m_ObjectHideFlags: 0

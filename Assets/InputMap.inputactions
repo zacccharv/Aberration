@@ -1,0 +1,56 @@
+{
+    "name": "InputMap",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "f4299403-ddbf-42f5-bdfa-acf4b619e3f5",
+            "actions": [
+                {
+                    "name": "Up",
+                    "type": "Button",
+                    "id": "c8c24b98-e670-4247-a084-9afc600c3241",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": []
+        },
+        {
+            "name": "UI",
+            "id": "e1a0291c-7541-443c-8464-8274d5489dd7",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "81fb0c2e-9cf0-42a6-ae61-4daa1664177a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2ea599fa-12d4-47e1-a983-b8697f227518",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Main",
+            "bindingGroup": "Main",
+            "devices": []
+        }
+    ]
+}

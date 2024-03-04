@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public static Tower Instance;
+    public Direction inputDirection;
     public Bounds bounds;
     void Awake()
     {
@@ -17,4 +18,17 @@ public class Tower : MonoBehaviour
             Instance = this;
         }
     }
+
+    public void CheckInput(Direction directionPressed)
+    {
+        if (inputDirection == directionPressed)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
 }
