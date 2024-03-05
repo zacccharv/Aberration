@@ -20,7 +20,7 @@ public class LaneManager : MonoBehaviour
     public GameObject aberration;
     public Arrows arrows;
     public List<Sprite> aberrationSprites;
-    public List<Color> arrowColors;
+    public List<Color> arrowColors = new(), arrowHighlightColor = new();
 
     public float moveThreshold;
     public Vector2 spawnStart;
@@ -148,7 +148,6 @@ public class LaneManager : MonoBehaviour
             obj = Instantiate(aberration, laneDirection * spawnStart, arrow.transform.rotation, transform);
 
             obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count - 1)];
-            obj.GetComponent<SpriteRenderer>().color = arrowColors[UnityEngine.Random.Range(0, aberrationSprites.Count - 1)];
         }
 
         obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;

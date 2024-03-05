@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 544158960822703125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2952090434849226621}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vectorDirection: {x: 0, y: 0}
-  _physicalDistance: 1
+  _physicalDistance: 0.88333
 --- !u!114 &5173096601081363070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 3493522218486586097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1264677298158527782}

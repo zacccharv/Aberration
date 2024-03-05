@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Arrow))]
 public class ArrowMovement : MonoBehaviour
 {
+    public static event DirectionPress CurrentDirectionSet;
     private Arrow _arrow;
     public Vector2 vectorDirection;
     [SerializeField] float _physicalDistance = 1;
@@ -25,9 +26,18 @@ public class ArrowMovement : MonoBehaviour
     {
         transform.position += (Vector3)vectorDirection * _physicalDistance;
 
-        if (IsInBounds(transform.position, Tower.Instance.bounds))
+
+        if (IsInBounds(transform.position, Tower.Instance.destroyBounds))
         {
             Destroy(gameObject);
+        }
+        else if (IsInBounds(transform.position, Tower.Instance.inputBounds))
+        {
+            // Slightly change color
+            CurrentDirectionSet?.Invoke(_arrow.direction);
+
+            int num = (int)_arrow.direction;
+            GetComponent<SpriteRenderer>().color = LaneManager.Instance.arrowHighlightColor[num];
         }
     }
 
