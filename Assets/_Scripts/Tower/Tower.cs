@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     public static Tower Instance;
     public Direction inputDirection;
     public Bounds destroyBounds, inputBounds;
+    private bool _inputPressed;
 
     void OnEnable()
     {
@@ -36,10 +37,16 @@ public class Tower : MonoBehaviour
     private void OnDirectionSet(Direction direction)
     {
         inputDirection = direction;
+        _inputPressed = false;
     }
 
     public void OnDirectionPressed(Direction directionPressed)
     {
+        if (!_inputPressed)
+        {
+            return;
+        }
+
         if (inputDirection == directionPressed)
         {
             Debug.Log($"<color=#4fb094>Succesful Input {directionPressed}!</color>");
@@ -48,5 +55,7 @@ public class Tower : MonoBehaviour
         {
             Debug.Log($"<color=#ff647d>Unsuccesful Input {directionPressed}.</color>");
         }
+
+        _inputPressed = true;
     }
 }

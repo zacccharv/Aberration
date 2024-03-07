@@ -15,7 +15,8 @@ public class LaneManager : MonoBehaviour
 {
     public static LaneManager Instance;
 
-    public static event Action MoveArrows;
+    public delegate void ArrowMoveDelegate(float time);
+    public static event ArrowMoveDelegate MoveArrows;
 
     public GameObject aberration;
     public Arrows arrows;
@@ -52,7 +53,7 @@ public class LaneManager : MonoBehaviour
 
         if (_timer > moveThreshold)
         {
-            MoveArrows?.Invoke();
+            MoveArrows?.Invoke(moveThreshold);
             SpawnArrow();
             _timer = 0;
         }

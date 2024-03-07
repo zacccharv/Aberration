@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Arrow))]
 public class ArrowMovement : MonoBehaviour
@@ -22,10 +24,9 @@ public class ArrowMovement : MonoBehaviour
         _arrow = GetComponent<Arrow>();
     }
 
-    public void Move()
+    public void Move(float time)
     {
-        transform.position += (Vector3)vectorDirection * _physicalDistance;
-
+        transform.DOMove(transform.position + ((Vector3)vectorDirection * _physicalDistance), time / 2).SetEase(Ease.InOutSine);
 
         if (IsInBounds(transform.position, Tower.Instance.destroyBounds))
         {
@@ -37,7 +38,7 @@ public class ArrowMovement : MonoBehaviour
             CurrentDirectionSet?.Invoke(_arrow.direction);
 
             int num = (int)_arrow.direction;
-            GetComponent<SpriteRenderer>().color = LaneManager.Instance.arrowHighlightColor[num];
+            GetComponent<SpriteRenderer>().DOColor(LaneManager.Instance.arrowHighlightColor[num], time / 3).SetEase(Ease.InSine);
         }
     }
 
