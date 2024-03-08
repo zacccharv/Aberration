@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour
 
     public static Tower Instance;
     public Direction inputDirection;
-    public Bounds destroyBounds, inputBounds, successFailBounds;
+    public Bounds destroyBounds, animationBounds, successBounds, failBounds;
     public bool inputPressed;
 
     void OnEnable()
