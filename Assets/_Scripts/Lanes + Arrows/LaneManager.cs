@@ -22,6 +22,7 @@ public class LaneManager : MonoBehaviour
     public Arrows arrows;
     public List<Sprite> aberrationSprites;
     public List<Color> arrowColors = new(), arrowHighlightColor = new();
+    public Color SuccessColor, FailColor;
 
     public float moveThreshold;
     public Vector2 spawnStart;
@@ -29,6 +30,7 @@ public class LaneManager : MonoBehaviour
     private float _timer;
     [SerializeField] private List<int> _previousLanes = new();
     [SerializeField] private int _randomArrowThreshold;
+    public float initialMoveThreshold;
 
     void Awake()
     {

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
@@ -13,10 +12,14 @@ public class ArrowMovement : MonoBehaviour
     void OnEnable()
     {
         LaneManager.MoveArrows += Move;
+        Tower.SuccesfulInput += Success;
+        Tower.FailedInput += Fail;
     }
     void OnDisable()
     {
         LaneManager.MoveArrows -= Move;
+        Tower.SuccesfulInput -= Success;
+        Tower.FailedInput -= Fail;
     }
 
     void Awake()
@@ -24,12 +27,41 @@ public class ArrowMovement : MonoBehaviour
         _arrow = GetComponent<Arrow>();
     }
 
+    private void Success()
+    {
+        if (!IsInBounds(transform.position, Tower.Instance.successFailBounds)) return;
+        GetComponent<SpriteRenderer>().DOColor(LaneManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
+        transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine);
+    }
+    private void Fail()
+    {
+        if (!IsInBounds(transform.position, Tower.Instance.successFailBounds)) return;
+        GetComponent<SpriteRenderer>().color = LaneManager.Instance.FailColor;
+    }
+    private void CheckNotPressed()
+    {
+        if (!IsInBounds(transform.position, Tower.Instance.successFailBounds)) return;
+
+        if (_arrow.direction == Direction.None)
+        {
+            Tower.Instance.OnDirectionPressed(_arrow.direction);
+        }
+        else if (_arrow.direction != Direction.None && !Tower.Instance.inputPressed)
+        {
+            Tower.Instance.OnDirectionPressed(Direction.None);
+        }
+    }
+
+
     public void Move(float time)
     {
         transform.DOMove(transform.position + ((Vector3)vectorDirection * _physicalDistance), time / 2).SetEase(Ease.InOutSine);
 
         if (IsInBounds(transform.position, Tower.Instance.destroyBounds))
         {
+            CheckNotPressed();
+
+            DOTween.KillAll();
             Destroy(gameObject);
         }
         else if (IsInBounds(transform.position, Tower.Instance.inputBounds))
