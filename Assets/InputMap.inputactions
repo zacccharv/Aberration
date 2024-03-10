@@ -67,6 +67,17 @@
                 },
                 {
                     "name": "",
+                    "id": "340472ae-2887-4d45-86b9-766949b4de5d",
+                    "path": "<DualShockGamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3f87abb8-e2d4-4bee-baa4-f03701f82c64",
                     "path": "<Gamepad>/dpad/right",
                     "interactions": "",
@@ -80,6 +91,17 @@
                     "name": "",
                     "id": "1072c7b3-72b0-438b-a8c3-5787eff59163",
                     "path": "<DualShockGamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f336989e-178a-4a88-b502-b317f1708048",
+                    "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "FixedScheme",
@@ -111,6 +133,17 @@
                 },
                 {
                     "name": "",
+                    "id": "343bbeab-b80e-4101-99f3-4256f4170aaa",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3e1f88d0-ff03-4006-a457-19a84e71764e",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
@@ -127,6 +160,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "FixedScheme",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96b763df-93f6-41ef-8358-117a6241afde",
+                    "path": "<DualShockGamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false

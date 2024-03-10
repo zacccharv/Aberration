@@ -3,6 +3,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum ScoreType
+{
+    Direction,
+    Empty
+}
+
 public class Scoring : MonoBehaviour
 {
     public static Scoring Instance;
@@ -14,12 +20,12 @@ public class Scoring : MonoBehaviour
 
     void OnEnable()
     {
-        Tower.SuccesfulInput += AddScore;
+        Tower.SuccessfulInput += AddScore;
         Tower.FailedInput += SubtractScore;
     }
     void OnDisable()
     {
-        Tower.SuccesfulInput -= AddScore;
+        Tower.SuccessfulInput -= AddScore;
         Tower.FailedInput -= SubtractScore;
     }
 
@@ -54,8 +60,14 @@ public class Scoring : MonoBehaviour
 
     }
 
-    void AddScore()
+    void AddScore(ScoreType scoreType)
     {
+        if (scoreType == ScoreType.Empty || Tower.Instance.inputPressed)
+        {
+            Debug.Log("No Score but success");
+            return;
+        }
+
         comboCount++;
 
         if (comboCount >= 60)

@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public static event Action SuccesfulInput, FailedInput;
+    public delegate void SuccessDelegate(ScoreType scoreType);
+    public static event SuccessDelegate SuccessfulInput;
+    public static event Action FailedInput;
 
     public static Tower Instance;
     public Direction inputDirection;
+    public GameObject arrow;
     public Bounds destroyBounds, animationBounds, successBounds, failBounds;
     public bool inputPressed;
 
@@ -46,17 +49,52 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        if (inputDirection == directionPressed)
+        if (inputDirection == directionPressed && InSuccessBounds())
         {
-            SuccesfulInput?.Invoke();
+            // TODO fix early press (mostly fixed)
+            if (directionPressed == Direction.None)
+            {
+                SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+                SuccessfulInput?.Invoke(ScoreType.Empty);
+            }
+            else
+            {
+                SFXCollection.Instance.PlaySound(SFXType.Success);
+                SuccessfulInput?.Invoke(ScoreType.Direction);
+
+            }
+
+            inputPressed = true;
             Debug.Log($"<color=#4fb094>Succesful Input {directionPressed}!</color>");
         }
         else
         {
             FailedInput?.Invoke();
+            SFXCollection.Instance.PlaySound(SFXType.Fail);
+
             Debug.Log($"<color=#ff647d>Unsuccesful Input {directionPressed}.</color>");
+            inputPressed = true;
         }
 
-        inputPressed = true;
+
+    }
+
+    private bool InSuccessBounds()
+    {
+        bool value = false;
+
+        if (arrow != null)
+        {
+            value = arrow.GetComponent<Arrow>().inSuccessBounds;
+        }
+
+        if (!value || arrow == null)
+        {
+            FailedInput?.Invoke();
+            SFXCollection.Instance.PlaySound(SFXType.Fail);
+            return value;
+        }
+
+        return value;
     }
 }
