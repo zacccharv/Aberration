@@ -41,7 +41,7 @@ public class ArrowMovement : MonoBehaviour
         scoreType1 = scoreType;
         if (!IsInBounds(transform.position, Tower.Instance.successBounds) || Tower.Instance.inputPressed) return;
 
-        GameObject popup = Instantiate(Scoring.Instance.popUp, transform.position, Quaternion.identity);
+        GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
 
         if (scoreType == ScoreType.Empty)
         {
@@ -62,7 +62,7 @@ public class ArrowMovement : MonoBehaviour
     {
         if (!IsInBounds(transform.position, Tower.Instance.failBounds)) return;
 
-        GameObject popup = Instantiate(Scoring.Instance.popUp, transform.position, Quaternion.identity);
+        GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
         popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{Scoring.Instance.subtraction}");
         popup.GetComponentInChildren<TextMeshProUGUI>().color = LaneManager.Instance.FailNumberColor;
 

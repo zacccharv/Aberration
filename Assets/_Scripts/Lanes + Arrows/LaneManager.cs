@@ -149,7 +149,7 @@ public class LaneManager : MonoBehaviour
                     break;
             }
 
-            obj = Instantiate(aberration, laneDirection * spawnStart, arrow.transform.rotation, transform);
+            obj = Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
 
             obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count - 1)];
         }

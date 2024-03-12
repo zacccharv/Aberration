@@ -15,7 +15,7 @@ public class Scoring : MonoBehaviour
     [SerializeField] TextMeshProUGUI _scoreText;
     public int score = 0, comboCount = 0, comboMultiplier = 1, stage = 1;
     public int _secondsPerStage;
-    public GameObject popUp;
+    public GameObject scoreNumberPopup;
     public int subtraction;
 
     void OnEnable()
@@ -43,6 +43,9 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
+        // TODO stage change popup
+        // Blinks onto screen centered in top half of screen before fade out
+
         stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
 
         if (stage == 4 && LaneManager.Instance.moveThreshold != LaneManager.Instance.initialMoveThreshold)
@@ -69,18 +72,20 @@ public class Scoring : MonoBehaviour
         }
 
         comboCount++;
+        // TODO Combo Multiplier Popup
+        // Animate scaling from 0 to a bit more than full size in center before fade
 
         if (comboCount >= 60)
         {
-            comboMultiplier = 20;
+            comboMultiplier = 8;
         }
         else if (comboCount >= 30)
         {
-            comboMultiplier = 10;
+            comboMultiplier = 6;
         }
         else if (comboCount >= 15)
         {
-            comboMultiplier = 5;
+            comboMultiplier = 4;
         }
         else if (comboCount >= 5)
         {
