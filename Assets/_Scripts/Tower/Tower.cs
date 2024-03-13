@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -36,10 +37,39 @@ public class Tower : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        transform.DOScaleX(transform.localScale.x * 1.15f, .45f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+        transform.DOScaleY(transform.localScale.y * 1.15f, .5f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+    }
+
     private void OnDirectionSet(Direction direction)
     {
         inputDirection = direction;
         inputPressed = false;
+
+        Color color = LaneManager.Instance.arrowColors[4];
+
+        if (direction == Direction.Up)
+        {
+            color = LaneManager.Instance.arrowColors[0];
+        }
+        else if (direction == Direction.Right)
+        {
+            color = LaneManager.Instance.arrowColors[1];
+        }
+        else if (direction == Direction.Down)
+        {
+            color = LaneManager.Instance.arrowColors[2];
+        }
+        else if (direction == Direction.Left)
+        {
+            color = LaneManager.Instance.arrowColors[3];
+        }
+
+        color.a = .7f;
+
+        GetComponent<SpriteRenderer>().DOColor(color, .25f);
     }
 
     public void OnDirectionPressed(Direction directionPressed)
