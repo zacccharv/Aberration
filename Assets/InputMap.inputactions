@@ -45,11 +45,11 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c7f3449c-b962-4f54-b5ba-946ace27cf1e",
-                    "path": "<Gamepad>/dpad/up",
+                    "id": "f01b50ad-2b46-467d-aff5-ac5f86296bb0",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Main",
+                    "groups": "FixedScheme",
                     "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -78,11 +78,22 @@
                 },
                 {
                     "name": "",
-                    "id": "3f87abb8-e2d4-4bee-baa4-f03701f82c64",
-                    "path": "<Gamepad>/dpad/right",
+                    "id": "26792635-171e-465b-b664-b701fb060dfd",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Main",
+                    "groups": "FixedScheme",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68322b79-2f2e-4a12-bb3c-708bcf22cff4",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
                     "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -111,11 +122,22 @@
                 },
                 {
                     "name": "",
-                    "id": "5d830626-da51-425b-bb5e-262a402004e6",
-                    "path": "<Gamepad>/dpad/down",
+                    "id": "a64cbb9b-d2b9-4072-a13a-facafe6cb949",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Main",
+                    "groups": "FixedScheme",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75cc044b-dd2f-4c09-b9e8-aefd7af597bc",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -144,11 +166,22 @@
                 },
                 {
                     "name": "",
-                    "id": "3e1f88d0-ff03-4006-a457-19a84e71764e",
-                    "path": "<Gamepad>/dpad/left",
+                    "id": "43b30387-08f0-460b-b0ce-e73507ebbc79",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Main",
+                    "groups": "FixedScheme",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b384cca7-9b98-4486-97f0-10b06f8b32b0",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -170,7 +203,18 @@
                     "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "397d0c3d-5c1b-4509-8699-5d38bddf876c",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -180,38 +224,11 @@
         {
             "name": "UI",
             "id": "e1a0291c-7541-443c-8464-8274d5489dd7",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "81fb0c2e-9cf0-42a6-ae61-4daa1664177a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "2ea599fa-12d4-47e1-a983-b8697f227518",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [
-        {
-            "name": "Main",
-            "bindingGroup": "Main",
-            "devices": []
-        },
         {
             "name": "FixedScheme",
             "bindingGroup": "FixedScheme",
@@ -223,6 +240,11 @@
                 },
                 {
                     "devicePath": "<DualShockGamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
                     "isOptional": true,
                     "isOR": false
                 }

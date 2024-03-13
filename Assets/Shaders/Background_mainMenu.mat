@@ -58,13 +58,14 @@ Material:
     - _Initial_X_add: 1000
     - _Initial_Y_Add: 1000
     - _Initial_add: 736.4
+    - _Intensity: 0.14
     - _Range: 20
     - _X_Range: 30
-    - _X_Speed: 11.99
+    - _X_Speed: 2
     - _Y_Range: 30
-    - _Y_Speed: 5
+    - _Y_Speed: 2
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

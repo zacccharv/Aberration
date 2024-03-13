@@ -46,6 +46,6 @@ public class SFXCollection : MonoBehaviour
             clips = FailSounds;
         }
 
-        _audioSource.PlayOneShot(clips[Random.Range(0, clips.Count - 1)]);
+        _audioSource.PlayOneShot(clips[Random.Range(0, clips.Count)]);
     }
 }

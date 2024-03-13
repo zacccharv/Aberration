@@ -14,7 +14,7 @@ public class ArrowMovement : MonoBehaviour
     private SpriteRenderer _renderer;
     public bool _canPress, _pressed;
     public ScoreType scoreType1;
-    private Tween tween_0, tween_1, tween_2, tween_3, tween_4;
+    private Tween tween_0, tween_1, tween_2, tween_3, tween_4, tween_5;
 
     void OnEnable()
     {
@@ -92,8 +92,11 @@ public class ArrowMovement : MonoBehaviour
             _canPress = true;
             tween_2 = transform.DOScale(transform.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo);
 
+            int num = (int)_arrow.direction;
+            tween_4 = _renderer.DOColor(LaneManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
+
             _arrow.inSuccessBounds = true;
-            Tower.Instance.arrow = gameObject;// TODO fix early press
+            Tower.Instance.arrow = gameObject;
 
         }
         if (IsInBounds(transform.position, Tower.Instance.failBounds))
@@ -130,7 +133,6 @@ public class ArrowMovement : MonoBehaviour
             _arrow.inAnimationBounds = true;
 
             int num = (int)_arrow.direction;
-            tween_4 = _renderer.DOColor(LaneManager.Instance.arrowHighlightColor[num], time / 3).SetEase(Ease.InSine);
         }
     }
 

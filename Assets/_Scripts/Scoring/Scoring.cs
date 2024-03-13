@@ -13,7 +13,7 @@ public class Scoring : MonoBehaviour
 {
     public static Scoring Instance;
     [SerializeField] TextMeshProUGUI _scoreText;
-    public int score = 0, comboCount = 0, comboMultiplier = 1, stage = 1;
+    public int score = 0, comboCount = 0, comboMultiplier = 1, stage = 0;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
     public int subtraction;
@@ -48,18 +48,7 @@ public class Scoring : MonoBehaviour
 
         stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
 
-        if (stage == 4 && LaneManager.Instance.moveThreshold != LaneManager.Instance.initialMoveThreshold)
-        {
-            LaneManager.Instance.moveThreshold = .55f;
-        }
-        if (stage == 3 && LaneManager.Instance.moveThreshold != LaneManager.Instance.initialMoveThreshold)
-        {
-            LaneManager.Instance.moveThreshold = .7f;
-        }
-        else if (stage == 2 && LaneManager.Instance.moveThreshold != LaneManager.Instance.initialMoveThreshold)
-        {
-            LaneManager.Instance.moveThreshold = .85f;
-        }
+        LaneManager.Instance.moveThreshold = 1 - (.05f * stage);
 
     }
 
@@ -106,22 +95,7 @@ public class Scoring : MonoBehaviour
         // NOTE exponential score loss
         subtraction = 0;
 
-        if (GameManager.Instance.gameTime >= _secondsPerStage * 3)
-        {
-            subtraction = 200;
-        }
-        else if (GameManager.Instance.gameTime >= _secondsPerStage * 2)
-        {
-            subtraction = 100;
-        }
-        else if (GameManager.Instance.gameTime >= _secondsPerStage * 1)
-        {
-            subtraction = 50;
-        }
-        else if (GameManager.Instance.gameTime >= 0)
-        {
-            subtraction = 5;
-        }
+        subtraction = (int)Mathf.Pow(2, stage + 1);
 
         if (comboCount >= 60)
         {

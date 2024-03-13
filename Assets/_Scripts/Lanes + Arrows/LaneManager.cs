@@ -52,6 +52,11 @@ public class LaneManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.gameState == GameState.Ended)
+        {
+            return;
+        }
+
         _timer += Time.deltaTime;
 
         if (_timer > moveThreshold)
@@ -151,7 +156,7 @@ public class LaneManager : MonoBehaviour
 
             obj = Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
 
-            obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count - 1)];
+            obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count)];
         }
 
         obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;

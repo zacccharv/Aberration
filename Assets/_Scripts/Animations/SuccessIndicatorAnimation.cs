@@ -6,6 +6,10 @@ using UnityEngine;
 public class SuccessIndicatorAnimation : MonoBehaviour
 {
     [SerializeField, Range(0, 1)] float _flickerAlpha;
+    [SerializeField] private Color _successColor;
+    private bool _success;
+    private Tween tween;
+
     void Start()
     {
         transform.DOScaleX(transform.localScale.x * 1.1f, .65f).SetEase(Ease.InOutSine).SetDelay(0).SetLoops(-1, LoopType.Yoyo);

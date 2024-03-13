@@ -5,8 +5,8 @@ public delegate void DirectionPress(Direction direction);
 
 public class InputMan : MonoBehaviour
 {
-    // TODO Create testing script to press inputs for me
     public static event DirectionPress DirectionPressed;
+    public static event UIInputPress UIInputPressed;
 
     public void UpPressed(InputAction.CallbackContext context)
     {
@@ -37,6 +37,14 @@ public class InputMan : MonoBehaviour
         if (context.started)
         {
             DirectionPressed?.Invoke(Direction.Left);
+        }
+    }
+
+    public void ConfirmPressed(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            UIInputPressed?.Invoke(InputType.Confirm);
         }
     }
 }
