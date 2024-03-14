@@ -7,14 +7,15 @@ using DG.Tweening.Plugins.Options;
 [RequireComponent(typeof(Arrow))]
 public class ArrowMovement : MonoBehaviour
 {
-    public static event DirectionPress CurrentDirectionSet;
+    public static event DirectionPress CurrentDirectionSet, TowerColorChange;
     public Vector2 vectorDirection;
     private Arrow _arrow;
     [SerializeField] float _physicalDistance = 1;
     private SpriteRenderer _renderer;
     public bool _canPress, _pressed;
     public ScoreType scoreType1;
-    private Tween tween_0, tween_1, tween_2, tween_3, tween_4, tween_5;
+    private Tween tween_0, tween_1, tween_2, tween_3, tween_4;
+    private bool _towerColorChanged;
 
     void OnEnable()
     {
@@ -38,8 +39,9 @@ public class ArrowMovement : MonoBehaviour
 
     private void Success(ScoreType scoreType)
     {
+        if (!IsInBounds(transform.position, Tower.Instance.successBounds) || Tower.Instance.inputPressed || GameManager.Instance.gameState == GameState.Ended) return;
+
         scoreType1 = scoreType;
-        if (!IsInBounds(transform.position, Tower.Instance.successBounds) || Tower.Instance.inputPressed) return;
 
         GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
 
@@ -60,7 +62,7 @@ public class ArrowMovement : MonoBehaviour
     }
     private void Fail()
     {
-        if (!IsInBounds(transform.position, Tower.Instance.failBounds)) return;
+        if (!IsInBounds(transform.position, Tower.Instance.failBounds) || GameManager.Instance.gameState == GameState.Ended) return;
 
         GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
         popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{Scoring.Instance.subtraction}");
@@ -73,7 +75,7 @@ public class ArrowMovement : MonoBehaviour
     }
     private void CheckNotPressed()
     {
-        if (!IsInBounds(transform.position, Tower.Instance.successBounds)) return;
+        if (!IsInBounds(transform.position, Tower.Instance.successBounds) || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (_arrow.direction == Direction.None)
         {
@@ -96,6 +98,13 @@ public class ArrowMovement : MonoBehaviour
             tween_4 = _renderer.DOColor(LaneManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
 
             _arrow.inSuccessBounds = true;
+
+            if (!_towerColorChanged)
+            {
+                _towerColorChanged = true;
+                TowerColorChange?.Invoke(_arrow.direction);
+            }
+
             Tower.Instance.arrow = gameObject;
 
         }
@@ -131,8 +140,6 @@ public class ArrowMovement : MonoBehaviour
             CurrentDirectionSet?.Invoke(_arrow.direction);
             _canPress = false;
             _arrow.inAnimationBounds = true;
-
-            int num = (int)_arrow.direction;
         }
     }
 

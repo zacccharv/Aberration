@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.39}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3897264198572559971
@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 1752149999255031559}
   - component: {fileID: 1752149999255031556}
   - component: {fileID: 1752149999255031557}
-  - component: {fileID: -640443580561896582}
+  - component: {fileID: 5957457798936506842}
   m_Layer: 5
-  m_Name: PopUpCanvas1
+  m_Name: ComboMultiplierPopup x2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,16 +105,16 @@ RectTransform:
   m_GameObject: {fileID: 1752149999255031554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.075, y: 0.075, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1344647216066866861}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1752149999255031559
@@ -136,7 +136,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 8
   m_TargetDisplay: 0
 --- !u!114 &1752149999255031556
 MonoBehaviour:
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1752149999255031557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &-640443580561896582
+--- !u!114 &5957457798936506842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,7 +187,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752149999255031554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895ee1a5bbc6ceb4a947b15fe70322b2, type: 3}
+  m_Script: {fileID: 11500000, guid: ea04f85808de49142b83e7f39162e321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textMesh: {fileID: 0}
+  image: {fileID: 872946374773478514}
+  color: {r: 0, g: 0, b: 0, a: 1}

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1752149999255031559}
   - component: {fileID: 1752149999255031556}
   - component: {fileID: 1752149999255031557}
-  - component: {fileID: -640443580561896582}
+  - component: {fileID: 7263635178205380753}
   m_Layer: 5
-  m_Name: PopUpCanvas
+  m_Name: StagePop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 1752149999255031554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.075, y: 0.075, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1752150000553887678}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &-640443580561896582
+--- !u!114 &7263635178205380753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752149999255031554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895ee1a5bbc6ceb4a947b15fe70322b2, type: 3}
+  m_Script: {fileID: 11500000, guid: a0046025e758f8e44ba2587735dd5fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _textMesh: {fileID: 1752150000553887665}
@@ -151,7 +151,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 14.86, y: 10}
+  m_SizeDelta: {x: 28.19, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1752150000553887664
 CanvasRenderer:
@@ -181,17 +181,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +10
+  m_text: Stage 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f00bc67c56028cd4ba8aa7bfc0368c68, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: da0a56d116a0a134ba6140dd01980649, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: ccecd4e858a8cc9439c833f301c4410e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

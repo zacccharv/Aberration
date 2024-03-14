@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,10 +14,13 @@ public class Scoring : MonoBehaviour
 {
     public static Scoring Instance;
     [SerializeField] TextMeshProUGUI _scoreText;
-    public int score = 0, comboCount = 0, comboMultiplier = 1, stage = 0;
+    public int score = 100, comboCount = 0, comboMultiplier = 1, stage = 0;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
+    public List<GameObject> comboMultiplierPopups = new();
+    public GameObject stagePopup;
     public int subtraction;
+    private int previousStage = 0;
 
     void OnEnable()
     {
@@ -50,13 +54,19 @@ public class Scoring : MonoBehaviour
 
         LaneManager.Instance.moveThreshold = 1 - (.05f * stage);
 
+        if (previousStage != stage)
+        {
+            StagePopUp(stage);
+        }
+
+        previousStage = stage;
     }
+
 
     void AddScore(ScoreType scoreType)
     {
-        if (scoreType == ScoreType.Empty || Tower.Instance.inputPressed)
+        if (scoreType == ScoreType.Empty || Tower.Instance.inputPressed || GameManager.Instance.gameState == GameState.Ended)
         {
-            Debug.Log("No Score but success");
             return;
         }
 
@@ -67,18 +77,38 @@ public class Scoring : MonoBehaviour
         if (comboCount >= 60)
         {
             comboMultiplier = 8;
+
+            if (comboCount == 60)
+            {
+                SpawnMultiplierIndicator(3);
+            }
         }
         else if (comboCount >= 30)
         {
             comboMultiplier = 6;
+
+            if (comboCount == 6)
+            {
+                SpawnMultiplierIndicator(2);
+            }
         }
         else if (comboCount >= 15)
         {
             comboMultiplier = 4;
+
+            if (comboCount == 15)
+            {
+                SpawnMultiplierIndicator(1);
+            }
         }
         else if (comboCount >= 5)
         {
             comboMultiplier = 2;
+
+            if (comboCount == 5)
+            {
+                SpawnMultiplierIndicator(0);
+            }
         }
         else if (comboCount >= 0)
         {
@@ -111,6 +141,26 @@ public class Scoring : MonoBehaviour
         comboCount = 0;
         comboMultiplier = 1;
 
+        if (score == 0)
+        {
+            GameManager.Instance.OnGameStateChange(GameState.Ended);
+        }
+
         _scoreText.text = score.ToString();
+    }
+
+    private void SpawnMultiplierIndicator(int index)
+    {
+        Instantiate(comboMultiplierPopups[index], new(0, 0, 0), Quaternion.identity);
+    }
+    private void StagePopUp(int stage)
+    {
+        if (GameManager.Instance.gameState == GameState.Ended)
+        {
+            return;
+        }
+
+        GameObject obj = Instantiate(stagePopup, new(0, 3.5f, 0), Quaternion.identity);
+        obj.GetComponentInChildren<TextMeshProUGUI>().text = $"Stage {stage + 1}";
     }
 }

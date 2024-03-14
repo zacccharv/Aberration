@@ -132,28 +132,6 @@ public class LaneManager : MonoBehaviour
         }
         else if (arrowIndex >= 4)
         {
-            int aberrationIndex = UnityEngine.Random.Range(0, 4);
-            GameObject arrow = default;
-
-            // Pick aberration for lane picked
-            switch (aberrationIndex)
-            {
-                case 0:
-                    arrow = arrows.UpArrow;
-                    break;
-                case 1:
-                    arrow = arrows.RightArrow;
-                    break;
-                case 2:
-                    arrow = arrows.DownArrow;
-                    break;
-                case 3:
-                    arrow = arrows.LeftArrow;
-                    break;
-                default:
-                    break;
-            }
-
             obj = Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
 
             obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count)];
@@ -191,22 +169,18 @@ public class LaneManager : MonoBehaviour
                     if (!has_0 && has_1 && has_2 && has_3)
                     {
                         nextLane = 0;
-                        Debug.Log($"next lane {nextLane}");
                     }
                     else if (has_0 && !has_1 && has_2 && has_3)
                     {
                         nextLane = 1;
-                        Debug.Log($"next lane {nextLane}");
                     }
                     else if (has_0 && has_1 && !has_2 && has_3)
                     {
                         nextLane = 2;
-                        Debug.Log($"next lane {nextLane}");
                     }
                     else if (has_0 && has_1 && has_2 && !has_3)
                     {
                         nextLane = 3;
-                        Debug.Log($"next lane {nextLane}");
                     }
 
                     previousLanes.Clear();

@@ -1,7 +1,8 @@
 public enum InputType
 {
     Confirm,
-    Back
+    Back,
+    Esc
 }
 
 public delegate void UIInputPress(InputType inputType);

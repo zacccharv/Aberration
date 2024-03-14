@@ -80,7 +80,7 @@ public class ButtonNavigation : MonoBehaviour
 
             if (_buttonIndex == -1)
             {
-                _buttonIndex = 3;
+                _buttonIndex = buttons.Count - 1;
             }
         }
         else if (direction == Direction.Down)
