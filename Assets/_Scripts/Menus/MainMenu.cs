@@ -20,7 +20,6 @@ public class MainMenu : MonoBehaviour
 
     public void PressAudio(Slider slider)
     {
-
         if (_audioSelected)
         {
             _audioSelected = false;

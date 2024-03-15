@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [Serializable]
@@ -135,6 +136,7 @@ public class LaneManager : MonoBehaviour
             obj = Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
 
             obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count)];
+            obj.GetComponent<SpriteRenderer>().DOFade(.5f, .33f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         }
 
         obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;

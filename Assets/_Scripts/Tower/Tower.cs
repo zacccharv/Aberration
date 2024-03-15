@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour
     public static Tower Instance;
     public Direction inputDirection;
     public GameObject arrow, towerBase;
-    public Bounds destroyBounds, animationBounds, successBounds, failBounds;
+    public Bounds destroyBounds, animationBounds, successBounds;
     public bool inputPressed;
 
     void OnEnable()

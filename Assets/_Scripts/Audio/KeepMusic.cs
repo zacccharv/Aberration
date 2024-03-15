@@ -9,21 +9,12 @@ public class KeepMusic : MonoBehaviour
     public static KeepMusic Instance;
     private AudioSource _audioSource;
     [SerializeField] private List<AudioClip> Songs = new();
+    public float musicVolume = 0, SFXVolume = 0;
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-
-    }
     void Awake()
     {
         SingletonCheck();
     }
-
 
     private void Start()
     {
@@ -66,7 +57,6 @@ public class KeepMusic : MonoBehaviour
 
     public void StopMusic()
     {
-
         _audioSource.Stop();
     }
 }

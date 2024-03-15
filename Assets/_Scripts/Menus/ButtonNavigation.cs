@@ -39,18 +39,20 @@ public class ButtonNavigation : MonoBehaviour
                 ChangeSelected(direction);
             }
         }
-        else if (_buttonIndex == 1 || _buttonIndex == 2 && _selected)
+        else if (_buttonIndex == 1 || _buttonIndex == 2)
         {
+            _selected = true;
+
             if (direction == Direction.Right || direction == Direction.Left)
             {
                 if (direction == Direction.Right)
                 {
-                    sliders[_buttonIndex - 1].value += .05f;
+                    sliders[_buttonIndex - 1].value += 1f;
 
                 }
                 else if (direction == Direction.Left)
                 {
-                    sliders[_buttonIndex - 1].value -= .05f;
+                    sliders[_buttonIndex - 1].value -= 1f;
                 }
 
                 if (_buttonIndex - 1 == 1)
@@ -58,7 +60,11 @@ public class ButtonNavigation : MonoBehaviour
                     SFXCollection.Instance.PlaySound(SFXType.Success);
                 }
             }
-            else if (direction == Direction.Up || direction == Direction.Down)
+            else if ((direction == Direction.Down && _buttonIndex == 1) || (direction == Direction.Up && _buttonIndex == 2))
+            {
+                ChangeSelected(direction);
+            }
+            else if ((direction == Direction.Up && _buttonIndex == 1) || (direction == Direction.Down && _buttonIndex == 2))
             {
                 mainMenu._audioSelected = false;
                 _selected = false;

@@ -7,21 +7,29 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private string _mixerName;
+    void Start()
+    {
+        if (_mixerName == "Music")
+        {
+            _slider.value = KeepMusic.Instance.musicVolume;
+        }
+        else if (_mixerName == "SFX")
+        {
+            _slider.value = KeepMusic.Instance.SFXVolume;
+        }
+    }
 
     private void Update()
     {
-        _mixer.SetFloat(_mixerName, GetVolume(_slider.value));
-    }
+        _mixer.SetFloat(_mixerName, _slider.value);
 
-    private float GetVolume(float value)
-    {
-        if (value == 0)
+        if (_mixerName == "Music")
         {
-            return -80;
+            KeepMusic.Instance.musicVolume = _slider.value;
         }
-        else
+        else if (_mixerName == "SFX")
         {
-            return -15 + (value * 15);
+            KeepMusic.Instance.SFXVolume = _slider.value;
         }
     }
 }

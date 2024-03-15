@@ -47,7 +47,7 @@ public class ArrowMovement : MonoBehaviour
 
         if (scoreType == ScoreType.Empty)
         {
-            popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"NO");
+            popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"YES");
         }
         else if (scoreType == ScoreType.Direction)
         {
@@ -62,7 +62,7 @@ public class ArrowMovement : MonoBehaviour
     }
     private void Fail()
     {
-        if (!IsInBounds(transform.position, Tower.Instance.failBounds) || GameManager.Instance.gameState == GameState.Ended) return;
+        if (!IsInBounds(transform.position, Tower.Instance.successBounds) || GameManager.Instance.gameState == GameState.Ended) return;
 
         GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
         popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{Scoring.Instance.subtraction}");
@@ -106,11 +106,6 @@ public class ArrowMovement : MonoBehaviour
             }
 
             Tower.Instance.arrow = gameObject;
-
-        }
-        if (IsInBounds(transform.position, Tower.Instance.failBounds))
-        {
-            _arrow.inFailBounds = true;
         }
         if (IsInBounds(transform.position, Tower.Instance.animationBounds))
         {

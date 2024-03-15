@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Mouse",
+                    "type": "Value",
+                    "id": "da660f67-762c-45cf-85ac-67448a54aabe",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -117,6 +126,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "FixedScheme",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58e7115a-cc69-4f5e-8c92-3ce31a4e71d2",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -156,6 +176,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e2c2650f-fd43-429c-988d-15c3d1fa98f1",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4ef60a98-1072-442f-ba08-8224620d805f",
                     "path": "<DualShockGamepad>/dpad/down",
                     "interactions": "",
@@ -189,6 +220,17 @@
                 },
                 {
                     "name": "",
+                    "id": "329923e0-7b11-4156-91a9-ba7cd4865fc5",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "54f69e87-9cfb-44e8-9d02-59d7fb1ed2f2",
                     "path": "<DualShockGamepad>/dpad/left",
                     "interactions": "",
@@ -216,6 +258,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "FixedScheme",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b0e77bb-3d28-449f-bf67-aa28da49d835",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -340,6 +393,17 @@
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbf3b9c5-3e1a-4bbd-907f-e67076666153",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -390,6 +454,17 @@
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ae6dbf4-679e-4e55-98ec-694a81daa796",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -411,6 +486,11 @@
                 },
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": true,
                     "isOR": false
                 }
