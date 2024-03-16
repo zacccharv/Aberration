@@ -84,6 +84,8 @@ public class ArrowMovement : MonoBehaviour
         else if (_arrow.direction != Direction.None && _canPress)
         {
             Tower.Instance.OnDirectionPressed(Direction.None);
+            SFXCollection.Instance.PlaySound(SFXType.Fail);
+            Tower.TriggerFail();
         }
     }
 

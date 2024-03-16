@@ -14,7 +14,7 @@ public class Scoring : MonoBehaviour
 {
     public static Scoring Instance;
     [SerializeField] TextMeshProUGUI _scoreText;
-    public int score = 100, comboCount = 0, comboMultiplier = 1, stage = 0;
+    public int score = 6, comboCount = 0, comboMultiplier = 1, stage = 0;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
     public List<GameObject> comboMultiplierPopups = new();
@@ -52,7 +52,8 @@ public class Scoring : MonoBehaviour
 
         stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
 
-        LaneManager.Instance.moveThreshold = 1 - (.05f * stage);
+        LaneManager.Instance.moveThreshold = 1 - (.1f * stage);
+        LaneManager.Instance.moveThreshold = Mathf.Max(.2f, LaneManager.Instance.moveThreshold);
 
         if (previousStage != stage)
         {
@@ -123,7 +124,7 @@ public class Scoring : MonoBehaviour
     void SubtractScore()
     {
         // NOTE exponential score loss
-        subtraction = 0;
+        subtraction = 2;
 
         subtraction = (int)Mathf.Pow(2, stage + 1);
 

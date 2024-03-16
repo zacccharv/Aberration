@@ -10,8 +10,9 @@ public class StagePopUp : MonoBehaviour
 
     void Start()
     {
-        _textMesh.DOFade(1, 2);
-        transform.DOScale(transform.localScale * 1.25f, 2f);
-        transform.DOMoveY(transform.position.y + .15f, 3f).SetEase(Ease.OutSine).OnComplete(() => Destroy(gameObject));
+        transform.position = new(0, 0);
+        _textMesh.DOFade(1, 1);
+        transform.DOScale(transform.localScale * 1.5f, 2f);
+        transform.DOMoveY(1f, 2f).SetEase(Ease.OutSine).OnComplete(() => Destroy(gameObject));
     }
 }

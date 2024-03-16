@@ -92,14 +92,13 @@ public class Tower : MonoBehaviour
 
     public void OnDirectionPressed(Direction directionPressed)
     {
-        if (inputPressed && GameManager.Instance.gameState != GameState.Started)
+        if ((inputPressed && directionPressed != Direction.None) || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
 
         if (inputDirection == directionPressed && InSuccessBounds())
         {
-            // TODO fix early press (mostly fixed)
             if (directionPressed == Direction.None)
             {
                 SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
@@ -114,7 +113,7 @@ public class Tower : MonoBehaviour
 
             inputPressed = true;
         }
-        else
+        else if (inputDirection != directionPressed || !InSuccessBounds())
         {
             FailedInput?.Invoke();
             SFXCollection.Instance.PlaySound(SFXType.Fail);
@@ -165,5 +164,10 @@ public class Tower : MonoBehaviour
         }
 
         return value;
+    }
+
+    public static void TriggerFail()
+    {
+        FailedInput?.Invoke();
     }
 }

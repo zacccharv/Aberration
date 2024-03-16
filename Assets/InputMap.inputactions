@@ -85,15 +85,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Mouse",
-                    "type": "Value",
-                    "id": "da660f67-762c-45cf-85ac-67448a54aabe",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -393,17 +384,6 @@
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cbf3b9c5-3e1a-4bbd-907f-e67076666153",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -448,17 +428,6 @@
                     "name": "",
                     "id": "9efee538-38ca-450f-9ada-90ec8fa4b2c1",
                     "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ae6dbf4-679e-4e55-98ec-694a81daa796",
-                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

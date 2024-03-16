@@ -8,9 +8,11 @@ public class ButtonNavigation : MonoBehaviour
 {
     public List<Button> buttons;
     public List<Slider> sliders;
+    public List<Image> sliderFills;
     public MainMenu mainMenu;
     public int _buttonIndex = 0;
     public bool _selected;
+    [SerializeField] private Color _sliderFillColor, _highlightedFillColor;
 
     void OnEnable()
     {
@@ -31,12 +33,12 @@ public class ButtonNavigation : MonoBehaviour
 
     private void OnDirectionPressed(Direction direction)
     {
-        if (_buttonIndex == 3 && _selected)
+        if (_buttonIndex == 3)
         {
             if (direction == Direction.Up || direction == Direction.Down)
             {
-                TriggerSelected(InputType.Confirm);
                 ChangeSelected(direction);
+                CheckSlider();
             }
         }
         else if (_buttonIndex == 1 || _buttonIndex == 2)
@@ -63,17 +65,48 @@ public class ButtonNavigation : MonoBehaviour
             else if ((direction == Direction.Down && _buttonIndex == 1) || (direction == Direction.Up && _buttonIndex == 2))
             {
                 ChangeSelected(direction);
+                CheckSlider();
+
             }
             else if ((direction == Direction.Up && _buttonIndex == 1) || (direction == Direction.Down && _buttonIndex == 2))
             {
                 mainMenu._audioSelected = false;
                 _selected = false;
                 ChangeSelected(direction);
+                CheckSlider();
             }
+
         }
         else
         {
             ChangeSelected(direction);
+            CheckSlider();
+        }
+
+    }
+
+    private void CheckSlider()
+    {
+        if (_buttonIndex != 1)
+        {
+            sliderFills[0].color = _sliderFillColor;
+        }
+        else if (_buttonIndex != 2)
+        {
+            sliderFills[1].color = _sliderFillColor;
+        }
+
+        if (_buttonIndex == 1)
+        {
+            sliderFills[0].color = _highlightedFillColor;
+        }
+        else if (_buttonIndex == 2)
+        {
+            sliderFills[1].color = _highlightedFillColor;
+        }
+        else if (_buttonIndex == 3)
+        {
+            sliderFills[1].color = _sliderFillColor;
         }
     }
 
@@ -104,17 +137,10 @@ public class ButtonNavigation : MonoBehaviour
     {
         if (inputType == InputType.Confirm)
         {
-            if (!_selected)
+            if (_buttonIndex != 1 && _buttonIndex != 2)
             {
-                _selected = true;
-                SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
                 buttons[_buttonIndex].onClick.Invoke();
             }
-            else
-            {
-                _selected = false;
-                buttons[_buttonIndex].Select();
-            };
         }
     }
 }
