@@ -3071,19 +3071,67 @@ MonoBehaviour:
     m_ActionId: f74e7f8e-02d5-4acd-aa9b-60ec00fcac8d
     m_ActionName: Game/Left[/DualShock4GamepadHID/dpad/left,/Keyboard/a]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017413198}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: UpPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4612dfa6-422e-453b-8e17-6fb09d2059ce
     m_ActionName: Game/GamePad North[/DualShock4GamepadHID/buttonNorth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017413198}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: RightPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5fe5c29a-c554-4944-b22d-1ca671fbc5b3
     m_ActionName: Game/GamePad East[/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017413198}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: DownPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5ed9b6a4-7565-4910-923e-3ed8e0640a92
     m_ActionName: Game/GamePad South[/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017413198}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: LeftPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 62368a20-322f-4d71-a6a6-a21a6a35d723
     m_ActionName: Game/GamePad West[/DualShock4GamepadHID/buttonWest]
   - m_PersistentCalls:
@@ -3103,7 +3151,19 @@ MonoBehaviour:
     m_ActionId: a1b9b80d-ecda-4b24-ae02-b9b1e9e0f409
     m_ActionName: UI/Confirm[/Keyboard/enter,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017413198}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: EscPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 70bc0c83-ae01-4a12-91fc-3caa40317945
     m_ActionName: Game/Escape[/Keyboard/escape,/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 0

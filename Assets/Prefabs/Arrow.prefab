@@ -102,7 +102,7 @@ MonoBehaviour:
   _physicalDistance: 0.88333
   _canPress: 0
   _pressed: 0
-  scoreType1: 1
+  scoreType1: 0
 --- !u!114 &5173096601081363070
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -270,7 +270,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad North",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -281,7 +281,7 @@
                     "path": "<DualShockGamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad North",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -292,7 +292,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad East",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -303,7 +303,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad South",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -314,7 +314,7 @@
                     "path": "<DualShockGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad South",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -325,7 +325,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad West",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -336,7 +336,7 @@
                     "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad West",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -347,7 +347,7 @@
                     "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "GamePad East",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -408,29 +408,29 @@
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "dfc8a024-8a0e-4e3a-9130-de607b8c4b89",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "2374ef75-5f21-40de-b988-26a152df7f14",
+                    "path": "<DualShockGamepad>/touchpadButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "9efee538-38ca-450f-9ada-90ec8fa4b2c1",
-                    "path": "<DualShockGamepad>/buttonSouth",
+                    "id": "a6fc0ce2-c872-49eb-ada9-9522593583a5",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -455,11 +455,6 @@
                 },
                 {
                     "devicePath": "<Keyboard>",
-                    "isOptional": true,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Mouse>",
                     "isOptional": true,
                     "isOR": false
                 }

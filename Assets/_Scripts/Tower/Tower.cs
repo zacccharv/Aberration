@@ -10,22 +10,22 @@ public class Tower : MonoBehaviour
 
     public static Tower Instance;
     public Direction inputDirection;
-    public GameObject arrow, towerBase;
+    public GameObject towerBase;
     public Bounds destroyBounds, animationBounds, successBounds;
-    public bool inputPressed;
+    public Arrow _arrow_0;
 
     void OnEnable()
     {
-        InputMan.DirectionPressed += OnDirectionPressed;
         InputMan.GamePadButtonPressed += OnGamePadPressed;
+        InputMan.DirectionPressed += OnDirectionPressed;
         ArrowMovement.CurrentDirectionSet += OnDirectionSet;
         ArrowMovement.TowerColorChange += ChangeTower;
     }
 
     void OnDisable()
     {
-        InputMan.DirectionPressed -= OnDirectionPressed;
         InputMan.GamePadButtonPressed -= OnGamePadPressed;
+        InputMan.DirectionPressed -= OnDirectionPressed;
         ArrowMovement.CurrentDirectionSet -= OnDirectionSet;
         ArrowMovement.TowerColorChange -= ChangeTower;
     }
@@ -53,14 +53,18 @@ public class Tower : MonoBehaviour
 
     private void OnGamePadPressed(Direction directionPressed)
     {
-        if (inputPressed)
+        if (Instance._arrow_0 == null)
         {
             return;
         }
 
-        if (inputDirection == directionPressed && InSuccessBounds() || GameManager.Instance.gameState != GameState.Ended)
+        if (GameManager.Instance.gameState != GameState.Started)
         {
-            // TODO fix early press (mostly fixed)
+            return;
+        }
+
+        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        {
             if (directionPressed == Direction.None)
             {
                 SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
@@ -70,56 +74,60 @@ public class Tower : MonoBehaviour
             {
                 SFXCollection.Instance.PlaySound(SFXType.Success);
                 SuccessfulInput?.Invoke(ScoreType.Direction);
-
             }
-
-            inputPressed = true;
         }
-        else
+        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
         {
-            FailedInput?.Invoke();
             SFXCollection.Instance.PlaySound(SFXType.Fail);
+            FailedInput?.Invoke();
+        }
+        else if (Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed && directionPressed != Direction.None)
+        {
+            SFXCollection.Instance.PlaySound(SFXType.Fail);
+            FailedInput?.Invoke();
+        }
+    }
 
-            inputPressed = true;
+    public void OnDirectionPressed(Direction directionPressed)
+    {
+        if (Instance._arrow_0 == null)
+        {
+            return;
+        }
+
+        if (GameManager.Instance.gameState != GameState.Started)
+        {
+            return;
+        }
+
+        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        {
+            if (directionPressed == Direction.None)
+            {
+                SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+                SuccessfulInput?.Invoke(ScoreType.Empty);
+            }
+            else
+            {
+                SFXCollection.Instance.PlaySound(SFXType.Success);
+                SuccessfulInput?.Invoke(ScoreType.Direction);
+            }
+        }
+        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        {
+            SFXCollection.Instance.PlaySound(SFXType.Fail);
+            FailedInput?.Invoke();
+        }
+        else if (Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed && directionPressed != Direction.None)
+        {
+            SFXCollection.Instance.PlaySound(SFXType.Fail);
+            FailedInput?.Invoke();
         }
     }
 
     private void OnDirectionSet(Direction direction)
     {
         inputDirection = direction;
-        inputPressed = false;
-    }
-
-    public void OnDirectionPressed(Direction directionPressed)
-    {
-        if ((inputPressed && directionPressed != Direction.None) || GameManager.Instance.gameState != GameState.Started)
-        {
-            return;
-        }
-
-        if (inputDirection == directionPressed && InSuccessBounds())
-        {
-            if (directionPressed == Direction.None)
-            {
-                SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
-                SuccessfulInput?.Invoke(ScoreType.Empty);
-            }
-            else
-            {
-                SFXCollection.Instance.PlaySound(SFXType.Success);
-                SuccessfulInput?.Invoke(ScoreType.Direction);
-
-            }
-
-            inputPressed = true;
-        }
-        else if (inputDirection != directionPressed || !InSuccessBounds())
-        {
-            FailedInput?.Invoke();
-            SFXCollection.Instance.PlaySound(SFXType.Fail);
-
-            inputPressed = true;
-        }
     }
 
     private void ChangeTower(Direction direction)
@@ -146,28 +154,18 @@ public class Tower : MonoBehaviour
         GetComponent<SpriteRenderer>().DOColor(color, .25f);
         towerBase.GetComponent<SpriteRenderer>().DOColor(color, .25f);
     }
-
-    private bool InSuccessBounds()
+    public static bool IsInBounds(Vector2 position, Bounds bounds)
     {
-        bool value = false;
-
-        if (arrow != null)
+        if (position.x < (bounds.center.x + bounds.extents.x)
+            && position.x > (bounds.center.x - bounds.extents.x)
+            && position.y < (bounds.center.y + bounds.extents.y)
+            && position.y > (bounds.center.y - bounds.extents.y))
         {
-            value = arrow.GetComponent<Arrow>().inSuccessBounds;
+            return true;
         }
-
-        if (!value || arrow == null)
+        else
         {
-            FailedInput?.Invoke();
-            SFXCollection.Instance.PlaySound(SFXType.Fail);
-            return value;
+            return false;
         }
-
-        return value;
-    }
-
-    public static void TriggerFail()
-    {
-        FailedInput?.Invoke();
     }
 }

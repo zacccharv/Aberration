@@ -344,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -25.400017, y: 145.12515}
+  m_AnchoredPosition: {x: -25.400017, y: 145.12512}
   m_SizeDelta: {x: 767.6, y: -1053.1505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281554118
@@ -793,7 +793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -78.400024, y: 177.14993}
+  m_AnchoredPosition: {x: -78.400024, y: 177.1499}
   m_SizeDelta: {x: 382.40002, y: -1024.7001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560711256
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   comboCount: 0
   comboMultiplier: 1
   stage: 0
-  _secondsPerStage: 30
+  _secondsPerStage: 60
   scoreNumberPopup: {fileID: 1752149999255031554, guid: d42deedb7675e8f439420dc91980e5e1, type: 3}
   comboMultiplierPopups:
   - {fileID: 1752149999255031554, guid: a295f9474d46e694a8280ce8175704c8, type: 3}
@@ -1455,7 +1455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -196.1, y: 177.9}
+  m_AnchoredPosition: {x: -196.1, y: 177.90002}
   m_SizeDelta: {x: 428, y: -1024.2002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665192208
@@ -2633,19 +2633,67 @@ MonoBehaviour:
     m_ActionId: f74e7f8e-02d5-4acd-aa9b-60ec00fcac8d
     m_ActionName: Game/Left[/Keyboard/a]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1094241804}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: GamePadNorthPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4612dfa6-422e-453b-8e17-6fb09d2059ce
     m_ActionName: Game/GamePad North[/DualShock4GamepadHID/buttonNorth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1094241804}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: GamePadEastPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5fe5c29a-c554-4944-b22d-1ca671fbc5b3
     m_ActionName: Game/GamePad East[/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1094241804}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: GamePadSouthPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5ed9b6a4-7565-4910-923e-3ed8e0640a92
     m_ActionName: Game/GamePad South[/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1094241804}
+        m_TargetAssemblyTypeName: InputMan, Assembly-CSharp
+        m_MethodName: GamePadWestPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 62368a20-322f-4d71-a6a6-a21a6a35d723
     m_ActionName: Game/GamePad West[/DualShock4GamepadHID/buttonWest]
   - m_PersistentCalls:
@@ -2852,8 +2900,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0bb8ee0ecad345a1a834827a5bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableArrows: []
   aberration: {fileID: 4353220158386678166, guid: 94cd57d6ec469d24eb4b32cc8a03554d, type: 3}
-  arrows:
+  arrowTypes:
     DownArrow: {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
     LeftArrow: {fileID: 6992165776807219851, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
     UpArrow: {fileID: 7815790118697378759, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
@@ -2875,14 +2924,16 @@ MonoBehaviour:
   - {r: 0.965, g: 0.97900003, b: 1, a: 1}
   - {r: 1, g: 0.94295746, b: 0.8820755, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
-  SuccessColor: {r: 1, g: 1, b: 1, a: 0}
-  FailColor: {r: 1, g: 0.43867922, b: 0.43867922, a: 0.6431373}
+  SuccessColor: {r: 0.514151, g: 1, b: 0.52079016, a: 0}
+  FailColor: {r: 1, g: 0.17699999, b: 0.17699999, a: 0}
   FailNumberColor: {r: 1, g: 0.28975743, b: 0.2783019, a: 1}
-  moveThreshold: 1
+  moveThresholdFast: 1
+  moveThresholdMedium: 2
+  moveThresholdLong: 3
   spawnStart: {x: 5.3, y: 5.3}
+  _timer: 0
   _previousLanes: 
   _randomArrowThreshold: 50
-  initialMoveThreshold: 0
 --- !u!4 &1266761054
 Transform:
   m_ObjectHideFlags: 0
@@ -3209,18 +3260,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputDirection: 0
-  arrow: {fileID: 0}
   towerBase: {fileID: 1901165180}
   destroyBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1, y: 1, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
   animationBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1.8, y: 1.8, z: 0}
+    m_Extent: {x: 2, y: 2, z: 0}
   successBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
-  inputPressed: 0
+  _arrow_0: {fileID: 0}
 --- !u!1 &1562546716
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,8 +3421,8 @@ MonoBehaviour:
   SuccessNoneSounds:
   - {fileID: 8300000, guid: c7a3ad71ed7f8304a8bb12c06d616c6f, type: 3}
   - {fileID: 8300000, guid: aba5cc4ac325aa04ca5d50ff1d1c316e, type: 3}
+  - {fileID: 8300000, guid: 00f661a9cb19fac43a20dea8a20d1efb, type: 3}
   - {fileID: 8300000, guid: f236da278f67e5646b93207975b63c55, type: 3}
-  - {fileID: 8300000, guid: 58718692dab743f45b3f8f176c8bd624, type: 3}
   FailSounds:
   - {fileID: 8300000, guid: 0801c8b83a6cd3d4eb4286dca92e18bc, type: 3}
   - {fileID: 8300000, guid: 21de4fbeb25ae914083056549724876a, type: 3}
@@ -3909,7 +3959,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901165180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1

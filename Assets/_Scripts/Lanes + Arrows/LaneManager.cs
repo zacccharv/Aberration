@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [Serializable]
@@ -19,20 +20,23 @@ public class LaneManager : MonoBehaviour
     public delegate void ArrowMoveDelegate(float time);
     public static event ArrowMoveDelegate MoveArrows;
 
+    public List<Arrow> interactableArrows = new();
     public GameObject aberration;
-    public Arrows arrows;
+    public Arrows arrowTypes;
     public List<Sprite> aberrationSprites;
     public List<Color> arrowColors = new(), arrowHighlightColor = new();
     public Color SuccessColor, FailColor, FailNumberColor;
 
-    public float moveThreshold;
+    public float moveThresholdFast;
+    public float moveThresholdMedium;
+    public float moveThresholdLong;
     public Vector2 spawnStart;
+    private int _moveCount = 0;
 
-    private float _timer;
+    public float _timer;
     [SerializeField] private List<int> _previousLanes = new();
     [SerializeField] private int _randomArrowThreshold;
-    public float initialMoveThreshold;
-
+    private float _speed;
 
     void Awake()
     {
@@ -49,6 +53,7 @@ public class LaneManager : MonoBehaviour
     void Start()
     {
         SpawnArrow();
+        Tower.Instance._arrow_0 = interactableArrows[0];
     }
 
     void Update()
@@ -58,14 +63,55 @@ public class LaneManager : MonoBehaviour
             return;
         }
 
-        _timer += Time.deltaTime;
+        Instance._timer += Time.deltaTime;
 
-        if (_timer > moveThreshold)
+        if (Instance.interactableArrows.Count > 0 && Instance.interactableArrows[0] == null)
         {
-            MoveArrows?.Invoke(moveThreshold);
+            Instance.interactableArrows.RemoveAt(0);
+            Tower.Instance._arrow_0 = interactableArrows[0];
+        }
+
+        if (_timer > _speed)
+        {
+            MoveArrows?.Invoke(_speed);
             SpawnArrow();
+            _speed = MoveSpeed();
+            _moveCount++;
             _timer = 0;
         }
+    }
+
+    private float MoveSpeed()
+    {
+        float value = moveThresholdFast;
+
+        if (_moveCount % 16 == 0)
+        {
+            value = moveThresholdFast;
+        }
+        else if (_moveCount % 16 == 11)
+        {
+            value = moveThresholdMedium;
+        }
+        else if (_moveCount % 16 == 7 || _moveCount % 16 == 3)
+        {
+            switch (UnityEngine.Random.Range(0, 3))
+            {
+                case 0:
+                    value = moveThresholdLong;
+                    break;
+                case 1:
+                    value = moveThresholdFast;
+                    break;
+                case 2:
+                    value = moveThresholdMedium;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return value;
     }
 
     public void SpawnArrow()
@@ -112,16 +158,16 @@ public class LaneManager : MonoBehaviour
             switch (arrowIndex)
             {
                 case 0:
-                    arrow = arrows.UpArrow;
+                    arrow = arrowTypes.UpArrow;
                     break;
                 case 1:
-                    arrow = arrows.RightArrow;
+                    arrow = arrowTypes.RightArrow;
                     break;
                 case 2:
-                    arrow = arrows.DownArrow;
+                    arrow = arrowTypes.DownArrow;
                     break;
                 case 3:
-                    arrow = arrows.LeftArrow;
+                    arrow = arrowTypes.LeftArrow;
                     break;
                 default:
                     break;
@@ -140,6 +186,7 @@ public class LaneManager : MonoBehaviour
         }
 
         obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;
+        LaneManager.Instance.interactableArrows.Add(obj.GetComponent<Arrow>());
 
         static int GetArrowIndex(int lane, int maxRandRangeExclusive, int randArrowTriggerThreshold)
         {

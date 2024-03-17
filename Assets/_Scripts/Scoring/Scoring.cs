@@ -52,8 +52,8 @@ public class Scoring : MonoBehaviour
 
         stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
 
-        LaneManager.Instance.moveThreshold = 1 - (.1f * stage);
-        LaneManager.Instance.moveThreshold = Mathf.Max(.2f, LaneManager.Instance.moveThreshold);
+        // LaneManager.Instance.moveThresholdFast = 1 - (.1f * stage);
+        // LaneManager.Instance.moveThresholdFast = Mathf.Max(.2f, LaneManager.Instance.moveThresholdFast);
 
         if (previousStage != stage)
         {
@@ -66,7 +66,7 @@ public class Scoring : MonoBehaviour
 
     void AddScore(ScoreType scoreType)
     {
-        if (scoreType == ScoreType.Empty || Tower.Instance.inputPressed || GameManager.Instance.gameState == GameState.Ended)
+        if (scoreType == ScoreType.Empty || LaneManager.Instance.interactableArrows[0].isPressed || GameManager.Instance.gameState == GameState.Ended)
         {
             return;
         }
