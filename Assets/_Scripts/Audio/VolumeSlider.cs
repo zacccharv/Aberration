@@ -11,11 +11,11 @@ public class VolumeSlider : MonoBehaviour
     {
         if (_mixerName == "Music")
         {
-            _slider.value = KeepMusic.Instance.musicVolume;
+            _slider.value = MusicManager.Instance.musicVolume;
         }
         else if (_mixerName == "SFX")
         {
-            _slider.value = KeepMusic.Instance.SFXVolume;
+            _slider.value = MusicManager.Instance.SFXVolume;
         }
     }
 
@@ -25,11 +25,11 @@ public class VolumeSlider : MonoBehaviour
 
         if (_mixerName == "Music")
         {
-            KeepMusic.Instance.musicVolume = _slider.value;
+            MusicManager.Instance.musicVolume = _slider.value;
         }
         else if (_mixerName == "SFX")
         {
-            KeepMusic.Instance.SFXVolume = _slider.value;
+            MusicManager.Instance.SFXVolume = _slider.value;
         }
     }
 }

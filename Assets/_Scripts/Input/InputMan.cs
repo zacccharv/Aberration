@@ -1,9 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public delegate void DirectionPress(Direction direction);
 public delegate void GamePadButtonPress(Direction direction);
+public delegate void UIInputPress(InputType inputType);
 
 public class InputMan : MonoBehaviour
 {

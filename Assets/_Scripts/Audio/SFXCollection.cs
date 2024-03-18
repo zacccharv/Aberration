@@ -9,6 +9,7 @@ public enum SFXType
     Fail
 }
 
+[RequireComponent(typeof(DontDestroy))]
 public class SFXCollection : MonoBehaviour
 {
     public static SFXCollection Instance;
@@ -17,16 +18,9 @@ public class SFXCollection : MonoBehaviour
     public List<AudioClip> SuccessNoneSounds = new();
     public List<AudioClip> FailSounds = new();
 
-    void Awake()
+    void Start()
     {
-        if (Instance != this && Instance != null)
-        {
-            Destroy(Instance);
-        }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
     }
 
     public void PlaySound(SFXType sound)

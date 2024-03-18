@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name != "MainMenu")
             {
-                GameObject.FindGameObjectWithTag("Music").GetComponent<KeepMusic>().StopMusic();
-                GameObject.FindGameObjectWithTag("Music").GetComponent<KeepMusic>().PlayMusic(0);
+                GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().StopMusic();
+                GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().PlayMusic(0);
             }
 
             SceneManager.LoadScene("Assets/Scenes/MainMenu.unity");
