@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [Serializable]
@@ -186,7 +185,7 @@ public class LaneManager : MonoBehaviour
         }
 
         obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;
-        LaneManager.Instance.interactableArrows.Add(obj.GetComponent<Arrow>());
+        Instance.interactableArrows.Add(obj.GetComponent<Arrow>());
 
         static int GetArrowIndex(int lane, int maxRandRangeExclusive, int randArrowTriggerThreshold)
         {

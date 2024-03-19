@@ -18,16 +18,16 @@ public class Tower : MonoBehaviour
     {
         InputMan.GamePadButtonPressed += OnGamePadPressed;
         InputMan.DirectionPressed += OnDirectionPressed;
-        ArrowMovement.CurrentDirectionSet += OnDirectionSet;
-        ArrowMovement.TowerColorChange += ChangeTower;
+        ArrowStateMachines.CurrentDirectionSet += OnDirectionSet;
+        ArrowStateMachines.TowerColorChange += ChangeTower;
     }
 
     void OnDisable()
     {
         InputMan.GamePadButtonPressed -= OnGamePadPressed;
         InputMan.DirectionPressed -= OnDirectionPressed;
-        ArrowMovement.CurrentDirectionSet -= OnDirectionSet;
-        ArrowMovement.TowerColorChange -= ChangeTower;
+        ArrowStateMachines.CurrentDirectionSet -= OnDirectionSet;
+        ArrowStateMachines.TowerColorChange -= ChangeTower;
     }
 
     void Awake()
