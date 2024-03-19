@@ -12,9 +12,9 @@ public struct Arrows
     public GameObject RightArrow;
 }
 
-public class LaneManager : MonoBehaviour
+public class ArrowManager : MonoBehaviour
 {
-    public static LaneManager Instance;
+    public static ArrowManager Instance;
 
     public delegate void ArrowMoveDelegate(float time);
     public static event ArrowMoveDelegate MoveArrows;
@@ -53,6 +53,7 @@ public class LaneManager : MonoBehaviour
     {
         SpawnArrow();
         Tower.Instance._arrow_0 = interactableArrows[0];
+        _speed = MoveSpeed();
     }
 
     void Update()
@@ -186,6 +187,8 @@ public class LaneManager : MonoBehaviour
 
         obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;
         Instance.interactableArrows.Add(obj.GetComponent<Arrow>());
+
+        Debug.Log("Arrow Spawned");
 
         static int GetArrowIndex(int lane, int maxRandRangeExclusive, int randArrowTriggerThreshold)
         {

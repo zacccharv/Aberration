@@ -16,16 +16,16 @@ public class Tower : MonoBehaviour
 
     void OnEnable()
     {
-        InputMan.GamePadButtonPressed += OnGamePadPressed;
-        InputMan.DirectionPressed += OnDirectionPressed;
+        InputManager_Z.GamePadButtonPressed += OnGamePadPressed;
+        InputManager_Z.DirectionPressed += OnDirectionPressed;
         ArrowStateMachines.CurrentDirectionSet += OnDirectionSet;
         ArrowStateMachines.TowerColorChange += ChangeTower;
     }
 
     void OnDisable()
     {
-        InputMan.GamePadButtonPressed -= OnGamePadPressed;
-        InputMan.DirectionPressed -= OnDirectionPressed;
+        InputManager_Z.GamePadButtonPressed -= OnGamePadPressed;
+        InputManager_Z.DirectionPressed -= OnDirectionPressed;
         ArrowStateMachines.CurrentDirectionSet -= OnDirectionSet;
         ArrowStateMachines.TowerColorChange -= ChangeTower;
     }
@@ -73,7 +73,7 @@ public class Tower : MonoBehaviour
             else
             {
                 SFXCollection.Instance.PlaySound(SFXType.Success);
-                SuccessfulInput?.Invoke(ScoreType.Direction);
+                SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
         else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
@@ -81,7 +81,7 @@ public class Tower : MonoBehaviour
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
-        else if (Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed && directionPressed != Direction.None)
+        else if (directionPressed == Direction.None && Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
@@ -110,7 +110,7 @@ public class Tower : MonoBehaviour
             else
             {
                 SFXCollection.Instance.PlaySound(SFXType.Success);
-                SuccessfulInput?.Invoke(ScoreType.Direction);
+                SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
         else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
@@ -132,23 +132,23 @@ public class Tower : MonoBehaviour
 
     private void ChangeTower(Direction direction)
     {
-        Color color = LaneManager.Instance.arrowColors[4];
+        Color color = ArrowManager.Instance.arrowColors[4];
 
         if (direction == Direction.Up)
         {
-            color = LaneManager.Instance.arrowColors[0];
+            color = ArrowManager.Instance.arrowColors[0];
         }
         else if (direction == Direction.Right)
         {
-            color = LaneManager.Instance.arrowColors[1];
+            color = ArrowManager.Instance.arrowColors[1];
         }
         else if (direction == Direction.Down)
         {
-            color = LaneManager.Instance.arrowColors[2];
+            color = ArrowManager.Instance.arrowColors[2];
         }
         else if (direction == Direction.Left)
         {
-            color = LaneManager.Instance.arrowColors[3];
+            color = ArrowManager.Instance.arrowColors[3];
         }
 
         GetComponent<SpriteRenderer>().DOColor(color, .25f);

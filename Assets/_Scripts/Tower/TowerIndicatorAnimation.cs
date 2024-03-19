@@ -1,10 +1,9 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class SuccessIndicatorAnimation : MonoBehaviour
+public class TowerIndicatorAnimation : MonoBehaviour
 {
     [SerializeField, Range(0, 1)] float _flickerAlpha;
-    [SerializeField] private Color _successColor;
 
     void Start()
     {

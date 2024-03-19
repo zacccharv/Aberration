@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public enum GameState
@@ -25,12 +20,12 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
-        InputMan.UIInputPressed += EscCheck;
+        InputManager_Z.UIInputPressed += EscCheck;
     }
 
     void OnDrawGizmos()
     {
-        InputMan.UIInputPressed -= EscCheck;
+        InputManager_Z.UIInputPressed -= EscCheck;
     }
 
     private void EscCheck(InputType inputType)

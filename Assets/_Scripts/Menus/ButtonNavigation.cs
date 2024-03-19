@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +14,14 @@ public class ButtonNavigation : MonoBehaviour
 
     void OnEnable()
     {
-        InputMan.DirectionPressed += OnDirectionPressed;
-        InputMan.UIInputPressed += TriggerSelected;
+        InputManager_Z.DirectionPressed += OnDirectionPressed;
+        InputManager_Z.UIInputPressed += TriggerSelected;
     }
 
     void OnDisable()
     {
-        InputMan.DirectionPressed -= OnDirectionPressed;
-        InputMan.UIInputPressed -= TriggerSelected;
+        InputManager_Z.DirectionPressed -= OnDirectionPressed;
+        InputManager_Z.UIInputPressed -= TriggerSelected;
     }
 
     void Start()

@@ -7,7 +7,7 @@ using System;
 public class ArrowStateMachines : MonoBehaviour
 {
     public static event DirectionPress CurrentDirectionSet, TowerColorChange;
-    public static event Action KillTweens;
+    public event Action KillTweens;
     private Arrow _arrow;
     private SpriteRenderer _renderer;
     public ScoreType _scoreType;
@@ -50,7 +50,7 @@ public class ArrowStateMachines : MonoBehaviour
             int num = (int)_arrow.direction;
 
             tween_2 = transform.DOScale(transform.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo);
-            tween_4 = _renderer.DOColor(LaneManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
+            tween_4 = _renderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
 
             if (!_towerColorChanged)
             {
@@ -71,18 +71,18 @@ public class ArrowStateMachines : MonoBehaviour
         _scoreType = scoreType;
         _arrow.isPressed = true;
 
-        GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
 
         if (scoreType == ScoreType.Empty)
         {
             popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"YES");
         }
-        else if (scoreType == ScoreType.Direction)
+        else if (scoreType == ScoreType.SinglePress)
         {
-            popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * Scoring.Instance.comboMultiplier}");
+            popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
         }
 
-        tween_0 = _renderer.DOColor(LaneManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
+        tween_0 = _renderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
         tween_1 = transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillTweens?.Invoke();
@@ -96,9 +96,9 @@ public class ArrowStateMachines : MonoBehaviour
         {
             if (_arrow.isPressed && _arrow.boundsIndex == 2)
             {
-                GameObject popup_0 = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
-                popup_0.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{Scoring.Instance.subtraction}");
-                popup_0.GetComponentInChildren<TextMeshProUGUI>().color = LaneManager.Instance.FailNumberColor;
+                GameObject popup_0 = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+                popup_0.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
+                popup_0.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
 
                 return;
             }
@@ -108,11 +108,11 @@ public class ArrowStateMachines : MonoBehaviour
 
         _arrow.isPressed = true;
 
-        GameObject popup = Instantiate(Scoring.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
-        popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{Scoring.Instance.subtraction}");
-        popup.GetComponentInChildren<TextMeshProUGUI>().color = LaneManager.Instance.FailNumberColor;
+        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
+        popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
 
-        tween_0 = _renderer.DOColor(LaneManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
+        tween_0 = _renderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
         tween_1 = transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillTweens?.Invoke();

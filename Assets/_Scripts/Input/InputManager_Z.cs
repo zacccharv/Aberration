@@ -5,7 +5,7 @@ public delegate void DirectionPress(Direction direction);
 public delegate void GamePadButtonPress(Direction direction);
 public delegate void UIInputPress(InputType inputType);
 
-public class InputMan : MonoBehaviour
+public class InputManager_Z : MonoBehaviour
 {
     [SerializeField] private float _inputDelay;
 

@@ -1,18 +1,18 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum ScoreType
 {
-    Direction,
+    SinglePress,
+    DoublePress,
+    LongPress,
     Empty
 }
 
-public class Scoring : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
-    public static Scoring Instance;
+    public static ScoreManager Instance;
     [SerializeField] TextMeshProUGUI _scoreText;
     public int score = 6, comboCount = 0, comboMultiplier = 1, stage = 0;
     public int _secondsPerStage;
@@ -66,7 +66,7 @@ public class Scoring : MonoBehaviour
 
     void AddScore(ScoreType scoreType)
     {
-        if (scoreType == ScoreType.Empty || LaneManager.Instance.interactableArrows[0].isPressed || GameManager.Instance.gameState == GameState.Ended)
+        if (scoreType == ScoreType.Empty || ArrowManager.Instance.interactableArrows[0].isPressed || GameManager.Instance.gameState == GameState.Ended)
         {
             return;
         }

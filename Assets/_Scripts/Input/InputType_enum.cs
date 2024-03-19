@@ -2,5 +2,6 @@ public enum InputType
 {
     Confirm,
     Back,
-    Esc
+    Esc,
+    Arrow
 }

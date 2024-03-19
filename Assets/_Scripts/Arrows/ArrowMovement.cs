@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,16 +6,22 @@ public class ArrowMovement : MonoBehaviour
     private Tween tween;
     [SerializeField] float _physicalDistance = 1;
     public Vector2 vectorDirection;
+    private ArrowStateMachines _arrowStateMachine;
 
     void OnEnable()
     {
-        LaneManager.MoveArrows += Move;
-        ArrowStateMachines.KillTweens += KillAllTweens;
+        ArrowManager.MoveArrows += Move;
+        _arrowStateMachine.KillTweens += KillAllTweens;
     }
     void OnDisable()
     {
-        LaneManager.MoveArrows -= Move;
-        ArrowStateMachines.KillTweens -= KillAllTweens;
+        ArrowManager.MoveArrows -= Move;
+        _arrowStateMachine.KillTweens -= KillAllTweens;
+    }
+
+    void Awake()
+    {
+        _arrowStateMachine = GetComponent<ArrowStateMachines>();
     }
 
     private void Move(float time)
