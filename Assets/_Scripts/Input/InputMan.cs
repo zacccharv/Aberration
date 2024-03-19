@@ -7,7 +7,6 @@ public delegate void UIInputPress(InputType inputType);
 
 public class InputMan : MonoBehaviour
 {
-    private bool _cantTouchThis;
     [SerializeField] private float _inputDelay;
 
     public static event DirectionPress DirectionPressed;
