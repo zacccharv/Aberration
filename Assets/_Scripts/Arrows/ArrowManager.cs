@@ -175,6 +175,8 @@ public class ArrowManager : MonoBehaviour
 
             obj = Instantiate(arrow, laneDirection * spawnStart, arrow.transform.rotation, transform);
 
+            // TODO give Abberratiom Container color holder
+            // NOTE or have aberration auto choose colors
             obj.GetComponent<SpriteRenderer>().color = arrowColors[arrowIndex];
         }
         else if (arrowIndex >= 4)
