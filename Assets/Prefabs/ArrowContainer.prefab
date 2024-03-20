@@ -28,8 +28,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5570669727189720418}
   - {fileID: 5714957276492975435}
+  - {fileID: 5570669727189720418}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,7 +63,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1264677298158527782}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6859791688991600200
 SpriteRenderer:
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 813239109, guid: 4a37ef9c282934a4e913121ffdf309ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 807548525037607785}
   - component: {fileID: 6420499829829822101}
   - component: {fileID: 5036325723011056272}
-  - component: {fileID: 5635075479367122176}
+  - component: {fileID: 7255338244004462780}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -150,7 +150,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1264677298158527782}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &807548525037607785
 SpriteRenderer:
@@ -232,7 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreType: 0
---- !u!114 &5635075479367122176
+  parentGameObject: {fileID: 544158960822703125}
+--- !u!114 &7255338244004462780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,5 +245,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f1bb242b4c96a49adb3020eee3cebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _physicalDistance: 1
   vectorDirection: {x: 0, y: 0}
+  _physicalDistance: 1

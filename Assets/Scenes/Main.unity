@@ -3305,7 +3305,7 @@ MonoBehaviour:
   towerBase: {fileID: 1901165180}
   destroyBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.6, y: 0.6, z: 0}
+    m_Extent: {x: 0.7, y: 0.7, z: 0}
   animationBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 2, y: 2, z: 0}

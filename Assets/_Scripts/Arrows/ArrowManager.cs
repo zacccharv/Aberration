@@ -75,7 +75,7 @@ public class ArrowManager : MonoBehaviour
         {
             MoveArrows?.Invoke(_speed);
             SpawnArrow();
-            _speed = MoveSpeed();
+            _speed = moveThresholdMedium;
             _moveCount++;
             _timer = 0;
         }
@@ -83,6 +83,7 @@ public class ArrowManager : MonoBehaviour
 
     private float MoveSpeed()
     {
+        // TODO don't use different speeds yet
         float value = moveThresholdFast;
 
         if (_moveCount % 16 == 0)
@@ -116,34 +117,27 @@ public class ArrowManager : MonoBehaviour
 
     public void SpawnArrow()
     {
-        GameObject obj = default;
-
         int lane = GetLaneIndex(_previousLanes);
         _previousLanes.Add(lane);
 
         int arrowIndex = GetArrowIndex(lane, 6, _randomArrowThreshold);
 
         Vector2 laneDirection = Vector2.zero;
-        Vector2 moveDirection = Vector2.zero;
 
         // Change directions depending on lane index
         switch (lane)
         {
             case 0:
                 laneDirection = Vector2.up;
-                moveDirection = Vector2.down;
                 break;
             case 1:
                 laneDirection = Vector2.right;
-                moveDirection = Vector2.left;
                 break;
             case 2:
                 laneDirection = Vector2.down;
-                moveDirection = Vector2.up;
                 break;
             case 3:
                 laneDirection = Vector2.left;
-                moveDirection = Vector2.right;
                 break;
             default:
                 break;
@@ -173,24 +167,12 @@ public class ArrowManager : MonoBehaviour
                     break;
             }
 
-            obj = Instantiate(arrow, laneDirection * spawnStart, arrow.transform.rotation, transform);
-
-            // TODO give Abberratiom Container color holder
-            // NOTE or have aberration auto choose colors
-            obj.GetComponent<SpriteRenderer>().color = arrowColors[arrowIndex];
+            Instantiate(arrow, laneDirection * spawnStart, arrow.transform.rotation, transform);
         }
         else if (arrowIndex >= 4)
         {
-            obj = Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
-
-            obj.GetComponent<SpriteRenderer>().sprite = aberrationSprites[UnityEngine.Random.Range(0, aberrationSprites.Count)];
-            obj.GetComponent<SpriteRenderer>().DOFade(.5f, .33f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
         }
-
-        obj.GetComponent<ArrowMovement>().vectorDirection = moveDirection;
-        Instance.interactableArrows.Add(obj.GetComponent<Arrow>());
-
-        Debug.Log("Arrow Spawned");
 
         static int GetArrowIndex(int lane, int maxRandRangeExclusive, int randArrowTriggerThreshold)
         {

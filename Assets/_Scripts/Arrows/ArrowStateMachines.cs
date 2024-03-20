@@ -35,21 +35,20 @@ public class ArrowStateMachines : MonoBehaviour
 
     void Update()
     {
-        if (Tower.IsInBounds(transform.position, Tower.Instance.destroyBounds) && _arrow.boundsIndex == 2)
+        if (Tower.IsInBounds(transform.parent.position, Tower.Instance.destroyBounds) && _arrow.boundsIndex == 2)
         {
             CheckNotPressed();
             KillTweens?.Invoke();
-
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
-        else if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds) && _arrow.boundsIndex == 1)
+        else if (Tower.IsInBounds(transform.parent.position, Tower.Instance.successBounds) && _arrow.boundsIndex == 1)
         {
             CurrentDirectionSet?.Invoke(_arrow.direction);
             _arrow.boundsIndex = 2;
 
             int num = (int)_arrow.direction;
 
-            tween_2 = transform.DOScale(transform.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo);
+            tween_2 = transform.parent.DOScale(transform.parent.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo);
             tween_4 = _renderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
 
             if (!_towerColorChanged)
@@ -58,7 +57,7 @@ public class ArrowStateMachines : MonoBehaviour
                 TowerColorChange?.Invoke(_arrow.direction);
             }
         }
-        else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && _arrow.boundsIndex == 0)
+        else if (Tower.IsInBounds(transform.parent.position, Tower.Instance.animationBounds) && _arrow.boundsIndex == 0)
         {
             _arrow.boundsIndex = 1;
         }
@@ -71,7 +70,7 @@ public class ArrowStateMachines : MonoBehaviour
         _scoreType = scoreType;
         _arrow.isPressed = true;
 
-        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.parent.position, Quaternion.identity);
 
         if (scoreType == ScoreType.Empty)
         {
@@ -83,10 +82,10 @@ public class ArrowStateMachines : MonoBehaviour
         }
 
         tween_0 = _renderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
-        tween_1 = transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
+        tween_1 = transform.parent.DOScale(transform.parent.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillTweens?.Invoke();
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
         );
     }
@@ -96,7 +95,7 @@ public class ArrowStateMachines : MonoBehaviour
         {
             if (_arrow.isPressed && _arrow.boundsIndex == 2)
             {
-                GameObject popup_0 = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+                GameObject popup_0 = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.parent.position, Quaternion.identity);
                 popup_0.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
                 popup_0.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
 
@@ -108,15 +107,15 @@ public class ArrowStateMachines : MonoBehaviour
 
         _arrow.isPressed = true;
 
-        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.parent.position, Quaternion.identity);
         popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
         popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
 
         tween_0 = _renderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
-        tween_1 = transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
+        tween_1 = transform.parent.DOScale(transform.parent.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillTweens?.Invoke();
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
         );
     }
