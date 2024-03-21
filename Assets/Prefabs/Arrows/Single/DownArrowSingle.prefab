@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 544158960822703125, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: m_Name
-      value: DownArrow
+      value: DownArrowSingle
       objectReference: {fileID: 0}
     - target: {fileID: 1264677298158527782, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: m_RootOrder
@@ -76,6 +76,10 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6420499829829822101, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: direction
       value: 2
       objectReference: {fileID: 0}

@@ -27,10 +27,10 @@ public class ArrowMovement : MonoBehaviour
     {
         float x, y;
 
-        if (transform.parent.position.x != 0) x = transform.parent.position.x / -Mathf.Abs(transform.parent.position.x);
+        if (transform.position.x != 0) x = transform.position.x / -Mathf.Abs(transform.position.x);
         else x = 0;
 
-        if (transform.parent.position.y != 0) y = transform.parent.position.y / -Mathf.Abs(transform.parent.position.y);
+        if (transform.position.y != 0) y = transform.position.y / -Mathf.Abs(transform.position.y);
         else y = 0;
 
         vectorDirection = new(x, y);
@@ -38,7 +38,7 @@ public class ArrowMovement : MonoBehaviour
 
     private void Move(float time)
     {
-        tween = transform.parent.DOMove(transform.parent.position + ((Vector3)vectorDirection * _physicalDistance), time / 2).SetEase(Ease.InOutSine);
+        tween = transform.DOMove(transform.position + ((Vector3)vectorDirection * _physicalDistance), time / 2).SetEase(Ease.InOutSine);
     }
 
     private void KillAllTweens()

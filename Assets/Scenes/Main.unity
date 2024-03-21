@@ -1073,7 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 571945704}
   m_Layer: 0
-  m_Name: CodeOnly
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2953,13 +2953,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0bb8ee0ecad345a1a834827a5bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrows:
+    Empty: {fileID: 4353220158386678166, guid: 94cd57d6ec469d24eb4b32cc8a03554d, type: 3}
+    Single:
+      UpArrow: {fileID: 7815790118697378759, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
+      RightArrow: {fileID: 2673823803041022346, guid: 865b591150248b24688e682e3f88a757, type: 3}
+      DownArrow: {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+      LeftArrow: {fileID: 6992165776807219851, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+    Double:
+      UpArrow: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+      RightArrow: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+      DownArrow: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+      LeftArrow: {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
+    Hold:
+      UpArrow: {fileID: 0}
+      RightArrow: {fileID: 0}
+      DownArrow: {fileID: 0}
+      LeftArrow: {fileID: 0}
   interactableArrows: []
-  aberration: {fileID: 4353220158386678166, guid: 94cd57d6ec469d24eb4b32cc8a03554d, type: 3}
-  arrowTypes:
-    DownArrow: {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-    LeftArrow: {fileID: 6992165776807219851, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
-    UpArrow: {fileID: 7815790118697378759, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
-    RightArrow: {fileID: 2673823803041022346, guid: 865b591150248b24688e682e3f88a757, type: 3}
   aberrationSprites:
   - {fileID: -1667364186, guid: 183e5937c830dc54f8ab386150ef635b, type: 3}
   - {fileID: 753263197, guid: 183e5937c830dc54f8ab386150ef635b, type: 3}
@@ -2980,13 +2991,12 @@ MonoBehaviour:
   SuccessColor: {r: 0.514151, g: 1, b: 0.52079016, a: 0}
   FailColor: {r: 1, g: 0.17699999, b: 0.17699999, a: 0}
   FailNumberColor: {r: 1, g: 0.28975743, b: 0.2783019, a: 1}
-  moveThresholdFast: 1
-  moveThresholdMedium: 2
-  moveThresholdLong: 3
-  spawnStart: {x: 5, y: 5}
-  _timer: 0
   _previousLanes: 
   _randomArrowThreshold: 50
+  moveThresholdFast: 1
+  moveThresholdLong: 3
+  moveThresholdMedium: 2
+  spawnStart: {x: 5, y: 5}
 --- !u!4 &1266761054
 Transform:
   m_ObjectHideFlags: 0

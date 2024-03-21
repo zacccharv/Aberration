@@ -1,15 +1,23 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
+
+[Serializable]
+public struct ArrowPrefabs
+{
+    public GameObject UpArrow;
+    public GameObject RightArrow;
+    public GameObject DownArrow;
+    public GameObject LeftArrow;
+}
 
 [Serializable]
 public struct Arrows
 {
-    public GameObject DownArrow;
-    public GameObject LeftArrow;
-    public GameObject UpArrow;
-    public GameObject RightArrow;
+    public GameObject Empty;
+    public ArrowPrefabs Single;
+    public ArrowPrefabs Double;
+    public ArrowPrefabs Hold;
 }
 
 public class ArrowManager : MonoBehaviour
@@ -19,23 +27,24 @@ public class ArrowManager : MonoBehaviour
     public delegate void ArrowMoveDelegate(float time);
     public static event ArrowMoveDelegate MoveArrows;
 
+    private int _moveCount = 0;
+    private float _speed, _timer;
+
+    public Arrows arrows;
     public List<Arrow> interactableArrows = new();
-    public GameObject aberration;
-    public Arrows arrowTypes;
     public List<Sprite> aberrationSprites;
     public List<Color> arrowColors = new(), arrowHighlightColor = new();
     public Color SuccessColor, FailColor, FailNumberColor;
 
-    public float moveThresholdFast;
-    public float moveThresholdMedium;
-    public float moveThresholdLong;
-    public Vector2 spawnStart;
-    private int _moveCount = 0;
-
-    public float _timer;
     [SerializeField] private List<int> _previousLanes = new();
     [SerializeField] private int _randomArrowThreshold;
-    private float _speed;
+
+    [HideInInspector] public float moveThresholdFast, moveThresholdLong;
+
+
+    public float moveThresholdMedium;
+    public Vector2 spawnStart;
+
 
     void Awake()
     {
@@ -83,7 +92,7 @@ public class ArrowManager : MonoBehaviour
 
     private float MoveSpeed()
     {
-        // TODO don't use different speeds yet
+        // NOTE don't use different speeds yet
         float value = moveThresholdFast;
 
         if (_moveCount % 16 == 0)
@@ -152,16 +161,16 @@ public class ArrowManager : MonoBehaviour
             switch (arrowIndex)
             {
                 case 0:
-                    arrow = arrowTypes.UpArrow;
+                    arrow = arrows.Single.UpArrow;
                     break;
                 case 1:
-                    arrow = arrowTypes.RightArrow;
+                    arrow = arrows.Single.RightArrow;
                     break;
                 case 2:
-                    arrow = arrowTypes.DownArrow;
+                    arrow = arrows.Single.DownArrow;
                     break;
                 case 3:
-                    arrow = arrowTypes.LeftArrow;
+                    arrow = arrows.Single.LeftArrow;
                     break;
                 default:
                     break;
@@ -171,11 +180,12 @@ public class ArrowManager : MonoBehaviour
         }
         else if (arrowIndex >= 4)
         {
-            Instantiate(aberration, laneDirection * spawnStart, Quaternion.identity, transform);
+            Instantiate(arrows.Empty, laneDirection * spawnStart, Quaternion.identity, transform);
         }
 
         static int GetArrowIndex(int lane, int maxRandRangeExclusive, int randArrowTriggerThreshold)
         {
+            // TODO 2 dimensional index
             int randomizeTrigger = UnityEngine.Random.Range(1, 100);
 
             if (randomizeTrigger > randArrowTriggerThreshold)

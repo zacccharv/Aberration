@@ -53,18 +53,14 @@ public class Tower : MonoBehaviour
 
     private void OnGamePadPressed(Direction directionPressed)
     {
-        if (Instance._arrow_0 == null)
-        {
-            return;
-        }
-
-        if (GameManager.Instance.gameState != GameState.Started)
+        if (Instance._arrow_0 == null || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
 
         if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
         {
+            // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
                 SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
@@ -76,12 +72,12 @@ public class Tower : MonoBehaviour
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
-        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
-        else if (directionPressed == Direction.None && Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed)
+        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
@@ -90,18 +86,14 @@ public class Tower : MonoBehaviour
 
     public void OnDirectionPressed(Direction directionPressed)
     {
-        if (Instance._arrow_0 == null)
-        {
-            return;
-        }
-
-        if (GameManager.Instance.gameState != GameState.Started)
+        if (Instance._arrow_0 == null || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
 
         if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
         {
+            // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
                 SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
@@ -113,12 +105,12 @@ public class Tower : MonoBehaviour
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
-        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
-        else if (Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed && directionPressed != Direction.None)
+        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();

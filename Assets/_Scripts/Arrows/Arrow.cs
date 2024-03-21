@@ -17,9 +17,12 @@ public class Arrow : MonoBehaviour
     /// </summary>
     public bool isPressed;
 
+    public SpriteRenderer arrowSpriteRenderer, numberSpriteRenderer;
+
     void Awake()
     {
-        GetComponent<SpriteRenderer>().color = ArrowManager.Instance.arrowColors[(int)direction];
+        arrowSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
+        numberSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
         ArrowManager.Instance.interactableArrows.Add(this);
     }
 }
