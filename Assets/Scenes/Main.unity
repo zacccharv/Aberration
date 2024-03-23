@@ -2803,6 +2803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputDelay: 0
+  _pressCount: 0
 --- !u!1 &1205363727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,11 +2966,26 @@ MonoBehaviour:
       RightArrow: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
       DownArrow: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
       LeftArrow: {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
-    Hold:
-      UpArrow: {fileID: 0}
-      RightArrow: {fileID: 0}
-      DownArrow: {fileID: 0}
-      LeftArrow: {fileID: 0}
+    HoldRight:
+      UpArrow: {fileID: 465987272505331894, guid: 867173383b5009347941ec8642ce4c5e, type: 3}
+      RightArrow: {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
+      DownArrow: {fileID: 465987272505331894, guid: 2718769c0be303441ab59030a62f63d3, type: 3}
+      LeftArrow: {fileID: 465987272505331894, guid: 0343d59bee95c094f8f38c4485425cb4, type: 3}
+    HoldUp:
+      UpArrow: {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
+      RightArrow: {fileID: 8431670982146939622, guid: d913951a50244ab4aa851dcf6f5c4402, type: 3}
+      DownArrow: {fileID: 8431670982146939622, guid: 12f9710aa410fe8429b462a56021462c, type: 3}
+      LeftArrow: {fileID: 8431670982146939622, guid: 3cdc9323d52efa64ca356b7976977cf6, type: 3}
+    HoldLeft:
+      UpArrow: {fileID: 465987272505331894, guid: a975b0cf57ce46746bcb68cc99e640f3, type: 3}
+      RightArrow: {fileID: 465987272505331894, guid: fa1ffef59dba045408dadb9f64db4f01, type: 3}
+      DownArrow: {fileID: 465987272505331894, guid: 52c14ab01e1f9dd43941f420ff366e77, type: 3}
+      LeftArrow: {fileID: 465987272505331894, guid: 74de2298ba9dbb5408d1457fa0d95794, type: 3}
+    HoldDown:
+      UpArrow: {fileID: 8431670982146939622, guid: 0725eaf0b23058e4a897585d99f9f2e3, type: 3}
+      RightArrow: {fileID: 8431670982146939622, guid: 8e4ea7b6b97d3fe42a7eecede4a9057c, type: 3}
+      DownArrow: {fileID: 8431670982146939622, guid: 9765adcb27ccb5842b99b91f8fd33266, type: 3}
+      LeftArrow: {fileID: 8431670982146939622, guid: 587f68e8e93ca1a4ab3cc0244372d375, type: 3}
   interactableArrows: []
   aberrationSprites:
   - {fileID: -1667364186, guid: 183e5937c830dc54f8ab386150ef635b, type: 3}

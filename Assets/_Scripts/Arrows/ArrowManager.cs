@@ -17,7 +17,10 @@ public struct Arrows
     public GameObject Empty;
     public ArrowPrefabs Single;
     public ArrowPrefabs Double;
-    public ArrowPrefabs Hold;
+    public ArrowPrefabs HoldRight;
+    public ArrowPrefabs HoldUp;
+    public ArrowPrefabs HoldLeft;
+    public ArrowPrefabs HoldDown;
 }
 
 public class ArrowManager : MonoBehaviour
@@ -41,10 +44,8 @@ public class ArrowManager : MonoBehaviour
 
     [HideInInspector] public float moveThresholdFast, moveThresholdLong;
 
-
     public float moveThresholdMedium;
     public Vector2 spawnStart;
-
 
     void Awake()
     {
@@ -157,20 +158,39 @@ public class ArrowManager : MonoBehaviour
         {
             GameObject arrow = default;
 
+            // NOTE commented out for testing
             // Pick arrow for lane picked
+            // switch (arrowIndex)
+            // {
+            //     case 0:
+            //         arrow = arrows.Single.UpArrow;
+            //         break;
+            //     case 1:
+            //         arrow = arrows.Single.RightArrow;
+            //         break;
+            //     case 2:
+            //         arrow = arrows.Single.DownArrow;
+            //         break;
+            //     case 3:
+            //         arrow = arrows.Single.LeftArrow;
+            //         break;
+            //     default:
+            //         break;
+            // }
+
             switch (arrowIndex)
             {
                 case 0:
-                    arrow = arrows.Single.UpArrow;
+                    arrow = arrows.Double.UpArrow;
                     break;
                 case 1:
-                    arrow = arrows.Single.RightArrow;
+                    arrow = arrows.Double.RightArrow;
                     break;
                 case 2:
-                    arrow = arrows.Single.DownArrow;
+                    arrow = arrows.Double.DownArrow;
                     break;
                 case 3:
-                    arrow = arrows.Single.LeftArrow;
+                    arrow = arrows.Double.LeftArrow;
                     break;
                 default:
                     break;

@@ -87,5 +87,13 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1878790625, guid: 4a37ef9c282934a4e913121ffdf309ce, type: 3}
+    - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: interactionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797532535108689239, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: _doublePressResetTime
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}

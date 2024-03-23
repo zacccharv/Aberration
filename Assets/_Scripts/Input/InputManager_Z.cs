@@ -1,5 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public enum InteractionType
+{
+    Single,
+    Double,
+    Long
+}
 
 public delegate void DirectionPress(Direction direction);
 public delegate void GamePadButtonPress(Direction direction);
@@ -8,6 +16,7 @@ public delegate void UIInputPress(InputType inputType);
 public class InputManager_Z : MonoBehaviour
 {
     [SerializeField] private float _inputDelay;
+    [SerializeField] private int _pressCount;
 
     public static event DirectionPress DirectionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
@@ -17,6 +26,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.interaction);
             DirectionPressed?.Invoke(Direction.Up);
         }
     }
@@ -25,6 +35,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             GamePadButtonPressed?.Invoke(Direction.Up);
         }
     }
@@ -32,6 +43,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             DirectionPressed?.Invoke(Direction.Right);
         }
     }
@@ -40,6 +52,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             GamePadButtonPressed?.Invoke(Direction.Right);
         }
     }
@@ -48,6 +61,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             DirectionPressed?.Invoke(Direction.Down);
         }
     }
@@ -56,6 +70,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             GamePadButtonPressed?.Invoke(Direction.Down);
         }
     }
@@ -64,6 +79,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             DirectionPressed?.Invoke(Direction.Left);
         }
     }
@@ -72,6 +88,7 @@ public class InputManager_Z : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log(context.control);
             GamePadButtonPressed?.Invoke(Direction.Left);
         }
     }

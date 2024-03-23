@@ -3,6 +3,11 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     /// <summary>
+    /// Interaction type of arrow 
+    /// </summary>
+    public InteractionType interactionType;
+
+    /// <summary>
     /// Direction arrow is facing
     /// </summary>
     public Direction direction;
@@ -17,12 +22,14 @@ public class Arrow : MonoBehaviour
     /// </summary>
     public bool isPressed;
 
+    public int pressCount;
+
     public SpriteRenderer arrowSpriteRenderer, numberSpriteRenderer;
 
     void Awake()
     {
         arrowSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
-        numberSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
+        if (numberSpriteRenderer) numberSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
         ArrowManager.Instance.interactableArrows.Add(this);
     }
 }

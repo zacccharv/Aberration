@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Aberration.sln"
+    "dotnet.defaultSolution": "Aberration.sln",
+    "todo-tree.tree.scanMode": "workspace only"
 }

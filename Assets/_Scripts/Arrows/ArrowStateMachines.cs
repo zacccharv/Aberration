@@ -8,9 +8,11 @@ public class ArrowStateMachines : MonoBehaviour
 {
     public static event DirectionPress CurrentDirectionSet, TowerColorChange;
     public event Action KillTweens;
-    private Arrow _arrow;
+    [SerializeField] private float _doublePressResetTime = .5f;
+    private float _inputTimer;
     public SpriteRenderer m_renderer, numberRenderer;
     public ScoreType _scoreType;
+    private Arrow _arrow;
     private Tween tween_0, tween_1, tween_2, tween_4, tween_5;
 
     void OnEnable()
@@ -45,7 +47,7 @@ public class ArrowStateMachines : MonoBehaviour
 
             tween_2 = transform.DOScale(transform.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo);
             tween_4 = m_renderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
-            tween_5 = numberRenderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
+            if (numberRenderer != null) tween_5 = numberRenderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine);
 
             _arrow.boundsIndex = 2;
 
@@ -56,23 +58,53 @@ public class ArrowStateMachines : MonoBehaviour
         {
             _arrow.boundsIndex = 1;
         }
+
+        if (_arrow.pressCount == 1)
+        {
+            _inputTimer += Time.deltaTime;
+        }
     }
 
     private void Success(ScoreType scoreType)
     {
         if (Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
+        _scoreType = scoreType;
+
+        if (_arrow.interactionType == InteractionType.Double)
+        {
+            _arrow.pressCount++;
+
+            if (_arrow.pressCount == 2 && _inputTimer > _doublePressResetTime)
+            {
+                Tower.TriggerFailedInput();
+                SFXCollection.Instance.PlaySound(SFXType.Fail);
+                return;
+            }
+            else if (_arrow.pressCount == 2 && _inputTimer < _doublePressResetTime)
+            {
+                _arrow.isPressed = true;
+            }
+            else
+            {
+                return;
+            }
+        }
+        else if (_arrow.interactionType == InteractionType.Single)
+        {
+            _arrow.isPressed = true;
+        }
+
+        SFXCollection.Instance.PlaySound(SFXType.Success);
+
         tween_0 = m_renderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
-        tween_5 = numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
+        if (numberRenderer != null) tween_5 = numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
         tween_1 = transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillTweens?.Invoke();
                 Destroy(gameObject);
             }
         );
-
-        _scoreType = scoreType;
-        _arrow.isPressed = true;
 
         GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
 
@@ -99,7 +131,9 @@ public class ArrowStateMachines : MonoBehaviour
             _arrow.isPressed = true;
 
             tween_0 = m_renderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
-            tween_5 = numberRenderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
+
+            if (numberRenderer != null) tween_5 = numberRenderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
+
             tween_1 = transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
                     {
                         KillTweens?.Invoke();

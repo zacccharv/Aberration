@@ -101,7 +101,6 @@ public class Tower : MonoBehaviour
             }
             else
             {
-                SFXCollection.Instance.PlaySound(SFXType.Success);
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
@@ -145,6 +144,11 @@ public class Tower : MonoBehaviour
 
         GetComponent<SpriteRenderer>().DOColor(color, .25f);
         towerBase.GetComponent<SpriteRenderer>().DOColor(color, .25f);
+    }
+
+    public static void TriggerFailedInput()
+    {
+        FailedInput?.Invoke();
     }
     public static bool IsInBounds(Vector2 position, Bounds bounds)
     {

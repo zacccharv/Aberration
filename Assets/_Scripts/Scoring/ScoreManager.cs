@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        // TODO stage change popup
+        // Stage change popup
         // Blinks onto screen centered in top half of screen before fade out
 
         stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
@@ -63,10 +63,12 @@ public class ScoreManager : MonoBehaviour
         previousStage = stage;
     }
 
-
     void AddScore(ScoreType scoreType)
     {
-        if (scoreType == ScoreType.Empty || ArrowManager.Instance.interactableArrows[0].isPressed || GameManager.Instance.gameState == GameState.Ended)
+        if (scoreType == ScoreType.Empty
+            || ArrowManager.Instance.interactableArrows[0].isPressed
+            || ArrowManager.Instance.interactableArrows[0].pressCount == 1
+            || GameManager.Instance.gameState == GameState.Ended)
         {
             return;
         }
@@ -123,8 +125,7 @@ public class ScoreManager : MonoBehaviour
 
     void SubtractScore()
     {
-        // NOTE exponential score loss
-        subtraction = 2;
+        subtraction = 3;
 
         subtraction = (int)Mathf.Pow(2, stage + 1);
 
