@@ -58,7 +58,7 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
@@ -68,16 +68,15 @@ public class Tower : MonoBehaviour
             }
             else
             {
-                SFXCollection.Instance.PlaySound(SFXType.Success);
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
-        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed)
+        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
-        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
@@ -91,7 +90,7 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
@@ -104,12 +103,12 @@ public class Tower : MonoBehaviour
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
-        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.isPressed)
+        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
-        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.isPressed)
+        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
             SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();

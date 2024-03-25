@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour
     void AddScore(ScoreType scoreType)
     {
         if (scoreType == ScoreType.Empty
-            || ArrowManager.Instance.interactableArrows[0].isPressed
+            || ArrowManager.Instance.interactableArrows[0].inputTriggered
             || ArrowManager.Instance.interactableArrows[0].pressCount == 1
             || GameManager.Instance.gameState == GameState.Ended)
         {

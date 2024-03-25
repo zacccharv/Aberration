@@ -67,10 +67,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 8145468528440475131, guid: eaab18358debed24d8d5f9e5d5a75b0c, type: 3}
-      propertyPath: _doublePressResetTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8228484006753370034, guid: eaab18358debed24d8d5f9e5d5a75b0c, type: 3}
       propertyPath: direction
       value: 3

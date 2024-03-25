@@ -83,16 +83,17 @@ public class ArrowStateMachines : MonoBehaviour
             }
             else if (_arrow.pressCount == 2 && _inputTimer < _doublePressResetTime)
             {
-                _arrow.isPressed = true;
+                _arrow.inputTriggered = true;
             }
             else
             {
+                SFXCollection.Instance.PlaySound(SFXType.Noise);
                 return;
             }
         }
         else if (_arrow.interactionType == InteractionType.Single)
         {
-            _arrow.isPressed = true;
+            _arrow.inputTriggered = true;
         }
 
         SFXCollection.Instance.PlaySound(SFXType.Success);
@@ -126,9 +127,9 @@ public class ArrowStateMachines : MonoBehaviour
         popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
         popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
 
-        if (!_arrow.isPressed)
+        if (!_arrow.inputTriggered)
         {
-            _arrow.isPressed = true;
+            _arrow.inputTriggered = true;
 
             tween_0 = m_renderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine);
 
@@ -144,7 +145,7 @@ public class ArrowStateMachines : MonoBehaviour
     }
     private void CheckNotPressed()
     {
-        if (_arrow.boundsIndex != 2 || _arrow.isPressed || Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (_arrow.boundsIndex != 2 || _arrow.inputTriggered || Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         Tower.Instance.OnDirectionPressed(Direction.None);
     }

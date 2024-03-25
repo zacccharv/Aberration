@@ -12,6 +12,8 @@ public class Arrow : MonoBehaviour
     /// </summary>
     public Direction direction;
 
+    public float spawnTime;
+
     /// <summary>
     /// 0 not in any bounds, 1 in animation bounds, 2 in success bounds
     /// </summary>
@@ -20,7 +22,7 @@ public class Arrow : MonoBehaviour
     /// <summary>
     /// True if in success bounds and input pressed once at index 0 in list
     /// </summary>
-    public bool isPressed;
+    public bool inputTriggered;
 
     public int pressCount;
 
@@ -28,8 +30,9 @@ public class Arrow : MonoBehaviour
 
     void Awake()
     {
+        ArrowManager.Instance.interactableArrows.Add(this);
+
         arrowSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
         if (numberSpriteRenderer) numberSpriteRenderer.color = ArrowManager.Instance.arrowColors[(int)direction];
-        ArrowManager.Instance.interactableArrows.Add(this);
     }
 }

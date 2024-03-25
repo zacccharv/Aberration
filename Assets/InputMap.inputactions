@@ -127,7 +127,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -171,7 +171,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -215,7 +215,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -259,7 +259,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "FixedScheme",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false

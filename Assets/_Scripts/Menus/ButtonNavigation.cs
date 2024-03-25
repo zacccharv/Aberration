@@ -31,6 +31,8 @@ public class ButtonNavigation : MonoBehaviour
 
     private void OnDirectionPressed(Direction direction)
     {
+        if (GameManager.Instance.gameState == GameState.Started) return;
+
         if (_buttonIndex == 3)
         {
             if (direction == Direction.Up || direction == Direction.Down)
