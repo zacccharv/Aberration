@@ -58,20 +58,15 @@ public class ArrowManager : MonoBehaviour
         InstanceAwake?.Invoke();
     }
 
-    void Start()
-    {
-        Tower.Instance._arrow_0 = interactableArrows[0];
-        _moveSpeed = MoveSpeed(interactableArrows[0]);
-    }
-
     void Update()
     {
-        if (GameManager.Instance.gameState == GameState.Ended)
+        if (GameManager.Instance.gameState == GameState.Ended || Instance.interactableArrows.Count < 1)
         {
             return;
         }
 
         Instance._moveTimer += Time.deltaTime;
+
 
         if (Instance.interactableArrows.Count > 0 && Instance.interactableArrows[0] == null)
         {
@@ -85,44 +80,12 @@ public class ArrowManager : MonoBehaviour
             Instance._moveTimer = 0;
 
             _moveSpeed = MoveSpeed(interactableArrows[0]);
-
-            // _moveSpeed = moveThresholdMedium;
-            // _moveCount++;
         }
     }
 
     private float MoveSpeed(Arrow arrow)
     {
         float value = arrow.spawnTime;
-
-        // NOTE don't use different speeds yet
-        // float value = moveThresholdFast;
-
-        // if (_moveCount % 16 == 0)
-        // {
-        //     value = moveThresholdFast;
-        // }
-        // else if (_moveCount % 16 == 11)
-        // {
-        //     value = moveThresholdMedium;
-        // }
-        // else if (_moveCount % 16 == 7 || _moveCount % 16 == 3)
-        // {
-        //     switch (UnityEngine.Random.Range(0, 3))
-        //     {
-        //         case 0:
-        //             value = moveThresholdLong;
-        //             break;
-        //         case 1:
-        //             value = moveThresholdFast;
-        //             break;
-        //         case 2:
-        //             value = moveThresholdMedium;
-        //             break;
-        //         default:
-        //             break;
-        //     }
-        // }
 
         return value;
     }

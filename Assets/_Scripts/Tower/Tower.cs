@@ -51,6 +51,11 @@ public class Tower : MonoBehaviour
         towerBase.transform.DOScaleX(towerBase.transform.localScale.x * 1.15f, .45f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
+    private void OnDirectionSet(Direction direction)
+    {
+        inputDirection = direction;
+    }
+
     private void OnGamePadPressed(Direction directionPressed)
     {
         if (Instance._arrow_0 == null || GameManager.Instance.gameState != GameState.Started)
@@ -60,25 +65,14 @@ public class Tower : MonoBehaviour
 
         if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
-            // Success if not pressed and correct direction
-            if (directionPressed == Direction.None)
-            {
-                SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
-                SuccessfulInput?.Invoke(ScoreType.Empty);
-            }
-            else
-            {
-                SuccessfulInput?.Invoke(ScoreType.SinglePress);
-            }
+            SuccessfulInput?.Invoke(ScoreType.SinglePress);
         }
         else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
         {
-            SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
         else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
-            SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
     }
@@ -95,7 +89,6 @@ public class Tower : MonoBehaviour
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
-                SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
                 SuccessfulInput?.Invoke(ScoreType.Empty);
             }
             else
@@ -105,19 +98,12 @@ public class Tower : MonoBehaviour
         }
         else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
         {
-            SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
         else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
-            SFXCollection.Instance.PlaySound(SFXType.Fail);
             FailedInput?.Invoke();
         }
-    }
-
-    private void OnDirectionSet(Direction direction)
-    {
-        inputDirection = direction;
     }
 
     private void ChangeTower(Direction direction)

@@ -11,9 +11,9 @@ public class SpawnSequencing : MonoBehaviour
 {
     public Queue<GameObject> arrowsToSpawn = new(100);
     public Vector2 spawnStart;
+    [SerializeField] private float _spawnInterval;
     [SerializeField] private Sequence[] _sequences;
-    [SerializeField] private List<int> _previousLanes = new();
-    private float _spawnInterval, _spawnTimer;
+    private float _spawnTimer;
     void OnEnable()
     {
         ArrowManager.InstanceAwake += OnAwake;
@@ -25,7 +25,7 @@ public class SpawnSequencing : MonoBehaviour
 
     void OnAwake()
     {
-        SpawnArrow();
+        //SpawnArrow();
     }
 
     void Update()
@@ -97,7 +97,6 @@ public class SpawnSequencing : MonoBehaviour
             default:
                 break;
         }
-
 
         Instantiate(go, laneDirection, go.transform.localRotation, transform);
 

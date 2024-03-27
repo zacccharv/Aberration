@@ -85,6 +85,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UpLong",
+                    "type": "Button",
+                    "id": "d06a1cad-c2bb-46cf-87a6-b12318a36bf9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightLong",
+                    "type": "Button",
+                    "id": "827dc2bf-f3f5-45b7-99b0-f7339f0eaa85",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DownLong",
+                    "type": "Button",
+                    "id": "fdcec7c0-cdf5-4ee5-89dc-9f5438244a5b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftLong",
+                    "type": "Button",
+                    "id": "11fa230b-cc23-4b6a-ab64-9d92fbaece30",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -382,6 +418,182 @@
                     "processors": "",
                     "groups": "FixedScheme",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14ae615c-d0f9-451f-a625-369fe6d166b7",
+                    "path": "<DualShockGamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "RightLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ceed3670-c351-4bb4-92d4-04d200dd68a6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "RightLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acbb73ca-2ed6-41d8-91f5-9d2d7adf3773",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "RightLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9616307d-128c-42c3-8e97-919924af297d",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "RightLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b21c4df-6654-4bef-a83b-cf2956a39f3c",
+                    "path": "<DualShockGamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "DownLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4445c81-6a0b-4c1d-af95-020148c9f5fd",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "DownLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "230f65f5-4d60-45de-9117-9481d9c7febe",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "DownLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "401d1ec0-8df0-4498-8194-abb1e9a5e98c",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "DownLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b600391-491d-4daf-ae31-1da595ec162e",
+                    "path": "<DualShockGamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "LeftLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "399878cf-8be1-42cd-90d4-88402febdc25",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "LeftLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ec5edba-c052-4385-be11-dc01dfec67c6",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "LeftLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6605529c-db62-426d-94b7-d5b68d5db93a",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "LeftLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6c7ff8b-3089-42b2-8e23-e6602d1d1a2f",
+                    "path": "<DualShockGamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "UpLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ddb94dc-5d44-4dc4-8848-0c6022affc11",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "UpLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a54b398f-f8eb-4aaa-9815-19847e22a34d",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "UpLong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4908035-6170-44bb-a995-992a88e7da72",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FixedScheme",
+                    "action": "UpLong",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

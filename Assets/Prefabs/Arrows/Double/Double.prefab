@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8797532535108689239, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: _doublePressResetTime
-      value: 0.4
+      value: 0.333
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}

@@ -601,7 +601,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a29484a1f281c97468d437de6226c9bb, type: 3}
   Noise: {fileID: 8300000, guid: 5fade3624467b21488282df904bd0487, type: 3}
   initialVolume: 0.45
-  lowerVolume: 0.2
+  lowerVolume: 0.15
 --- !u!4 &283112775
 Transform:
   m_ObjectHideFlags: 0
@@ -2958,8 +2958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0bb8ee0ecad345a1a834827a5bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1
-  _moveTimer: 0
+  _moveSpeed: 0.8
+  _moveTimer: 0.8
   arrows:
     Empty: {fileID: 4353220158386678166, guid: 94cd57d6ec469d24eb4b32cc8a03554d, type: 3}
     Single:
@@ -3044,6 +3044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnStart: {x: 5, y: 5}
+  _spawnInterval: 0.8
   _sequences:
   - ArrowGameObjs:
     - {fileID: 7815790118697378759, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
@@ -3068,7 +3069,6 @@ MonoBehaviour:
     - {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
     - {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
     - {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
-  _previousLanes: 
 --- !u!1 &1396608171
 GameObject:
   m_ObjectHideFlags: 0

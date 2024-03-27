@@ -6,7 +6,7 @@ public enum SFXType
     Success,
     SuccessNone,
     Fail,
-    Noise
+    QuietSuccess
 }
 
 [RequireComponent(typeof(DontDestroy))]
@@ -43,7 +43,7 @@ public class SFXCollection : MonoBehaviour
         {
             clips = FailSounds;
         }
-        else if (sound == SFXType.Noise)
+        else if (sound == SFXType.QuietSuccess)
         {
             _audioSource.volume = lowerVolume;
             clips = SuccessSounds;

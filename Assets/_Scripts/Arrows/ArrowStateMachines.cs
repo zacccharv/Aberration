@@ -78,25 +78,29 @@ public class ArrowStateMachines : MonoBehaviour
             if (_arrow.pressCount == 2 && _inputTimer > _doublePressResetTime)
             {
                 Tower.TriggerFailedInput();
-                SFXCollection.Instance.PlaySound(SFXType.Fail);
                 return;
             }
             else if (_arrow.pressCount == 2 && _inputTimer < _doublePressResetTime)
             {
                 _arrow.inputTriggered = true;
+                SFXCollection.Instance.PlaySound(SFXType.Success);
             }
             else
             {
-                SFXCollection.Instance.PlaySound(SFXType.Noise);
+                SFXCollection.Instance.PlaySound(SFXType.QuietSuccess);
                 return;
             }
         }
         else if (_arrow.interactionType == InteractionType.Single)
         {
             _arrow.inputTriggered = true;
+            SFXCollection.Instance.PlaySound(SFXType.Success);
         }
-
-        SFXCollection.Instance.PlaySound(SFXType.Success);
+        else if (_arrow.interactionType == InteractionType.NoPress)
+        {
+            _arrow.inputTriggered = true;
+            SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+        }
 
         tween_0 = m_renderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
         if (numberRenderer != null) tween_5 = numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine);
@@ -117,15 +121,10 @@ public class ArrowStateMachines : MonoBehaviour
         {
             popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
         }
-
     }
     private void Fail()
     {
         if (Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
-
-        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
-        popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
-        popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
 
         if (!_arrow.inputTriggered)
         {
@@ -142,6 +141,13 @@ public class ArrowStateMachines : MonoBehaviour
                     }
                 );
         }
+
+        SFXCollection.Instance.PlaySound(SFXType.Fail);
+
+        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
+        popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
+
     }
     private void CheckNotPressed()
     {

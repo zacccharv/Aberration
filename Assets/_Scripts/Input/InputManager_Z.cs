@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public enum InteractionType
 {
     Single,
     Double,
-    Long
+    Long,
+    NoPress
 }
 
 public delegate void DirectionPress(Direction direction);
@@ -21,6 +23,14 @@ public class InputManager_Z : MonoBehaviour
     public static event DirectionPress DirectionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
     public static event UIInputPress UIInputPressed;
+
+    public void LongTest(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log($"{context.interaction} I held you! {context.action.name}");
+        }
+    }
 
     public void UpPressed(InputAction.CallbackContext context)
     {
