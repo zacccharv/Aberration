@@ -11,6 +11,8 @@ public class SpawnSequencing : MonoBehaviour
 {
     public Queue<GameObject> arrowsToSpawn = new(100);
     public Vector2 spawnStart;
+    [SerializeField] private bool _test;
+    [SerializeField] private int _testSequenceIndex;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private Sequence[] _sequences;
     private float _spawnTimer;
@@ -41,7 +43,7 @@ public class SpawnSequencing : MonoBehaviour
 
     public void AddSequence()
     {
-        int seqInd = UnityEngine.Random.Range(0, _sequences.Length);
+        int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, _sequences.Length);
         int count = _sequences[seqInd].ArrowGameObjs.Count;
 
         for (int i = 0; i < count; i++)
@@ -100,6 +102,7 @@ public class SpawnSequencing : MonoBehaviour
 
         Instantiate(go, laneDirection, go.transform.localRotation, transform);
 
+#pragma warning disable CS8321 // Local function is declared but never used
         static int GetLaneIndex(List<int> previousLanes)
         {
             int nextLane = UnityEngine.Random.Range(0, 4);
@@ -136,5 +139,6 @@ public class SpawnSequencing : MonoBehaviour
 
             return nextLane;
         }
+#pragma warning restore CS8321 // Local function is declared but never used
     }
 }

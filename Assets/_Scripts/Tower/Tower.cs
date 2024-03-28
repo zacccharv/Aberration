@@ -18,16 +18,12 @@ public class Tower : MonoBehaviour
     {
         InputManager_Z.GamePadButtonPressed += OnGamePadPressed;
         InputManager_Z.DirectionPressed += OnDirectionPressed;
-        ArrowStateMachines.CurrentDirectionSet += OnDirectionSet;
-        ArrowStateMachines.TowerColorChange += ChangeTower;
     }
 
     void OnDisable()
     {
         InputManager_Z.GamePadButtonPressed -= OnGamePadPressed;
         InputManager_Z.DirectionPressed -= OnDirectionPressed;
-        ArrowStateMachines.CurrentDirectionSet -= OnDirectionSet;
-        ArrowStateMachines.TowerColorChange -= ChangeTower;
     }
 
     void Awake()
@@ -51,10 +47,6 @@ public class Tower : MonoBehaviour
         towerBase.transform.DOScaleX(towerBase.transform.localScale.x * 1.15f, .45f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
-    private void OnDirectionSet(Direction direction)
-    {
-        inputDirection = direction;
-    }
 
     private void OnGamePadPressed(Direction directionPressed)
     {
@@ -65,7 +57,15 @@ public class Tower : MonoBehaviour
 
         if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
         {
-            SuccessfulInput?.Invoke(ScoreType.SinglePress);
+            // Success if not pressed and correct direction
+            if (directionPressed == Direction.None)
+            {
+                SuccessfulInput?.Invoke(ScoreType.Empty);
+            }
+            else
+            {
+                SuccessfulInput?.Invoke(ScoreType.SinglePress);
+            }
         }
         else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
         {
@@ -106,7 +106,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void ChangeTower(Direction direction)
+    public void ChangeTower(Direction direction)
     {
         Color color = ArrowManager.Instance.arrowColors[4];
 
@@ -131,10 +131,20 @@ public class Tower : MonoBehaviour
         towerBase.GetComponent<SpriteRenderer>().DOColor(color, .25f);
     }
 
+    public static void SetDirection(Direction direction, Tower tower)
+    {
+        tower.inputDirection = direction;
+    }
+    public static void TriggerTowerChange(Direction direction, Tower tower)
+    {
+        tower.ChangeTower(direction);
+    }
+
     public static void TriggerFailedInput()
     {
         FailedInput?.Invoke();
     }
+
     public static bool IsInBounds(Vector2 position, Bounds bounds)
     {
         if (position.x < (bounds.center.x + bounds.extents.x)
@@ -148,5 +158,11 @@ public class Tower : MonoBehaviour
         {
             return false;
         }
+    }
+    public static void CheckNotPressed(Arrow arrow, Tower tower)
+    {
+        if (arrow.boundsIndex != 2 || arrow.inputTriggered || Instance._arrow_0 != arrow || GameManager.Instance.gameState == GameState.Ended) return;
+
+        tower.OnDirectionPressed(Direction.None);
     }
 }

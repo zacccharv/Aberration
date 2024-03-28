@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 560711256}
-  score: 6
+  score: 1000
   comboCount: 0
   comboMultiplier: 1
   stage: 0
@@ -2773,6 +2773,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 70bc0c83-ae01-4a12-91fc-3caa40317945
     m_ActionName: Game/Escape[/Keyboard/escape,/DualShock4GamepadHID/select]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1094241806}
+        m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
+        m_MethodName: LongTest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d06a1cad-c2bb-46cf-87a6-b12318a36bf9
+    m_ActionName: Game/UpLong[/DualShock4GamepadHID/dpad/up,/Keyboard/w,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1094241806}
+        m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
+        m_MethodName: LongTest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 827dc2bf-f3f5-45b7-99b0-f7339f0eaa85
+    m_ActionName: Game/RightLong[/DualShock4GamepadHID/dpad/right,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1094241806}
+        m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
+        m_MethodName: LongTest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fdcec7c0-cdf5-4ee5-89dc-9f5438244a5b
+    m_ActionName: Game/DownLong[/DualShock4GamepadHID/dpad/down,/Keyboard/s,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1094241806}
+        m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
+        m_MethodName: LongTest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 11fa230b-cc23-4b6a-ab64-9d92fbaece30
+    m_ActionName: Game/LeftLong[/DualShock4GamepadHID/dpad/left,/Keyboard/a,/Keyboard/leftArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: FixedScheme
   m_DefaultActionMap: Game
@@ -2958,8 +3022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0bb8ee0ecad345a1a834827a5bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0.8
-  _moveTimer: 0.8
   arrows:
     Empty: {fileID: 4353220158386678166, guid: 94cd57d6ec469d24eb4b32cc8a03554d, type: 3}
     Single:
@@ -3044,6 +3106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnStart: {x: 5, y: 5}
+  _test: 1
+  _testSequenceIndex: 1
   _spawnInterval: 0.8
   _sequences:
   - ArrowGameObjs:
@@ -3056,10 +3120,10 @@ MonoBehaviour:
     - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
     - {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
   - ArrowGameObjs:
-    - {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
-    - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
-    - {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
-    - {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+    - {fileID: 8431670982146939622, guid: 9765adcb27ccb5842b99b91f8fd33266, type: 3}
+    - {fileID: 465987272505331894, guid: 74de2298ba9dbb5408d1457fa0d95794, type: 3}
+    - {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
+    - {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
   - ArrowGameObjs:
     - {fileID: 2673823803041022346, guid: 865b591150248b24688e682e3f88a757, type: 3}
     - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}

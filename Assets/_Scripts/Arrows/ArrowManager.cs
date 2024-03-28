@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+
+public delegate void KillTweens(List<Tween> tweens);
 
 [Serializable]
 public struct ArrowPrefabs
@@ -32,7 +35,7 @@ public class ArrowManager : MonoBehaviour
     public static event Action InstanceAwake;
 
     // private int _moveCount = 0;
-    public float _moveSpeed, _moveTimer;
+    private float _moveSpeed, _moveTimer;
 
     public Arrows arrows;
     public List<Arrow> interactableArrows = new();
@@ -76,10 +79,10 @@ public class ArrowManager : MonoBehaviour
 
         if (Instance._moveTimer > _moveSpeed)
         {
+            _moveSpeed = MoveSpeed(interactableArrows[0]);
+
             MoveArrows?.Invoke(_moveSpeed);
             Instance._moveTimer = 0;
-
-            _moveSpeed = MoveSpeed(interactableArrows[0]);
         }
     }
 
@@ -90,4 +93,11 @@ public class ArrowManager : MonoBehaviour
         return value;
     }
 
+    public static void KillAllTweens(List<Tween> tweens)
+    {
+        foreach (var item in tweens)
+        {
+            item.Kill();
+        }
+    }
 }

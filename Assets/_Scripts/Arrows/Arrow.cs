@@ -11,6 +11,7 @@ public class Arrow : MonoBehaviour
     /// Direction arrow is facing
     /// </summary>
     public Direction direction;
+    public Vector2 vectorDirection;
 
     public float spawnTime;
 
