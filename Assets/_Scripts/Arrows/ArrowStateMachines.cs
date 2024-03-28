@@ -54,7 +54,6 @@ public class ArrowStateMachines : MonoBehaviour
                 Destroy(gameObject);
             }
 
-            // TODO arrow animation to fold arrow in instead
             static Vector2 CollisionPosition(Vector2 vectorDirection, Vector2 position)
             {
                 Vector2 vector2 = default;
