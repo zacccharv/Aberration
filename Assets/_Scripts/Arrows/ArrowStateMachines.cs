@@ -1,18 +1,15 @@
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using System;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Arrow))]
-public class ArrowStateMachines : MonoBehaviour
+public class ArrowStateMachines : BaseArrow
 {
-    public event KillTweens KillAllTweens;
     [SerializeField] private List<Tween> _tweens = new();
     [SerializeField] private float _doublePressResetTime = .5f;
     private float _inputTimer;
     public SpriteRenderer m_renderer, numberRenderer;
-    public ScoreType _scoreType;
     private Arrow _arrow;
     [SerializeField] private Vector2 position;
 
@@ -20,13 +17,11 @@ public class ArrowStateMachines : MonoBehaviour
     {
         Tower.SuccessfulInput += Success;
         Tower.FailedInput += Fail;
-        KillAllTweens += ArrowManager.KillAllTweens;
     }
     void OnDisable()
     {
         Tower.SuccessfulInput -= Success;
         Tower.FailedInput -= Fail;
-        KillAllTweens -= ArrowManager.KillAllTweens;
     }
 
     void Start()
@@ -40,7 +35,7 @@ public class ArrowStateMachines : MonoBehaviour
         {
             Tower.CheckNotPressed(_arrow, Tower.Instance);
 
-            KillAllTweens?.Invoke(_tweens);
+            KillAllTweens(_tweens);
             Destroy(gameObject);
         }
         else if (_arrow.interactionType == InteractionType.Long && _arrow.boundsIndex == 2)
@@ -50,7 +45,7 @@ public class ArrowStateMachines : MonoBehaviour
             if (Tower.IsInBounds(position, Tower.Instance.destroyBounds))
             {
                 Tower.CheckNotPressed(_arrow, Tower.Instance);
-                KillAllTweens?.Invoke(_tweens);
+                KillAllTweens(_tweens);
                 Destroy(gameObject);
             }
 
@@ -89,7 +84,6 @@ public class ArrowStateMachines : MonoBehaviour
 
             _arrow.boundsIndex = 2;
 
-            Tower.SetDirection(_arrow.direction, Tower.Instance);
             Tower.TriggerTowerChange(_arrow.direction, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && _arrow.boundsIndex == 0)
@@ -106,8 +100,6 @@ public class ArrowStateMachines : MonoBehaviour
     private void Success(ScoreType scoreType)
     {
         if (Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
-
-        _scoreType = scoreType;
 
         if (_arrow.interactionType == InteractionType.Double)
         {
@@ -144,45 +136,16 @@ public class ArrowStateMachines : MonoBehaviour
         if (numberRenderer != null) _tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
         _tweens.Add(transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
             {
-                KillAllTweens?.Invoke(_tweens);
+                KillAllTweens(_tweens);
                 Destroy(gameObject);
             }
         ));
 
-        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        SpawnPopUp(scoreType, true);
 
-        if (scoreType == ScoreType.Empty)
-        {
-            popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"YES");
-        }
-        else if (scoreType == ScoreType.SinglePress)
-        {
-            popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
-        }
     }
     private void Fail()
     {
-        if (Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
-
-        if (!_arrow.inputTriggered)
-        {
-            _arrow.inputTriggered = true;
-
-            _tweens.Add(m_renderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine));
-            if (numberRenderer != null) _tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.FailColor, 1).SetEase(Ease.OutSine));
-
-            _tweens.Add(transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
-                    {
-                        KillAllTweens?.Invoke(_tweens);
-                        Destroy(gameObject);
-                    }
-                ));
-        }
-
-        SFXCollection.Instance.PlaySound(SFXType.Fail);
-
-        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
-        popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
-        popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
+        FailState(_arrow, m_renderer, _tweens);
     }
 }

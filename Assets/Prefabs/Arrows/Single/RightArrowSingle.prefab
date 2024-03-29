@@ -87,5 +87,35 @@ PrefabInstance:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8797532535108689239, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+--- !u!1 &2673823803041022346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 544158960822703125, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+  m_PrefabInstance: {fileID: 2492295047355061663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7080517992161447027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2673823803041022346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c62b3f472832c46a8f90265fb5ec38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_renderer: {fileID: 3000123299294449398}
+  numberRenderer: {fileID: 9053511879755119575}
+--- !u!212 &3000123299294449398 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 807548525037607785, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+  m_PrefabInstance: {fileID: 2492295047355061663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &9053511879755119575 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6859791688991600200, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+  m_PrefabInstance: {fileID: 2492295047355061663}
+  m_PrefabAsset: {fileID: 0}

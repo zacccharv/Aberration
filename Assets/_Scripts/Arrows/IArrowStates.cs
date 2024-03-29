@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using DG.Tweening;
 
-interface IArrowStates
+public interface IArrowStates
 {
-    public static event DirectionPress CurrentDirectionSet, TowerColorChange;
-
-    public event KillTweens KillAllTweens;
-
     public Arrow Arrow { get; set; }
     public List<Tween> Tweens { get; set; }
 
-    public void Success(ScoreType scoreType);
-    public void Fail();
+    public void UpdateBounds();
+    public void SuccessState(ScoreType scoreType);
+    public void FailState();
 }

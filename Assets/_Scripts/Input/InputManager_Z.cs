@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 public enum InteractionType
 {
@@ -12,6 +10,7 @@ public enum InteractionType
 }
 
 public delegate void DirectionPress(Direction direction);
+public delegate void DirectionInteractionPress(Direction direction, InteractionType interactionType);
 public delegate void GamePadButtonPress(Direction direction);
 public delegate void UIInputPress(InputType inputType);
 
@@ -21,16 +20,12 @@ public class InputManager_Z : MonoBehaviour
     [SerializeField] private int _pressCount;
 
     public static event DirectionPress DirectionPressed;
+
+    // TODO finish adding interaction to press events
+    public static event DirectionInteractionPress DirInteractionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
     public static event UIInputPress UIInputPressed;
 
-    public void LongTest(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Debug.Log($"{context.interaction} I held you! {context.action.name}");
-        }
-    }
 
     public void UpPressed(InputAction.CallbackContext context)
     {

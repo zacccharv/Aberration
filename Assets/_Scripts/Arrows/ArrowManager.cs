@@ -93,11 +93,4 @@ public class ArrowManager : MonoBehaviour
         return value;
     }
 
-    public static void KillAllTweens(List<Tween> tweens)
-    {
-        foreach (var item in tweens)
-        {
-            item.Kill();
-        }
-    }
 }

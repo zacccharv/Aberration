@@ -9,7 +9,6 @@ public class Tower : MonoBehaviour
     public static event Action FailedInput;
 
     public static Tower Instance;
-    public Direction inputDirection;
     public GameObject towerBase;
     public Bounds destroyBounds, animationBounds, successBounds;
     public Arrow _arrow_0;
@@ -126,15 +125,15 @@ public class Tower : MonoBehaviour
         {
             color = ArrowManager.Instance.arrowColors[3];
         }
+        else if (direction == Direction.None)
+        {
+            color = ArrowManager.Instance.arrowColors[4];
+        }
 
         GetComponent<SpriteRenderer>().DOColor(color, .25f);
         towerBase.GetComponent<SpriteRenderer>().DOColor(color, .25f);
     }
 
-    public static void SetDirection(Direction direction, Tower tower)
-    {
-        tower.inputDirection = direction;
-    }
     public static void TriggerTowerChange(Direction direction, Tower tower)
     {
         tower.ChangeTower(direction);

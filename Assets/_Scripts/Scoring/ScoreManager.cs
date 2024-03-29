@@ -7,7 +7,8 @@ public enum ScoreType
     SinglePress,
     DoublePress,
     LongPress,
-    Empty
+    Empty,
+    Fail
 }
 
 public class ScoreManager : MonoBehaviour

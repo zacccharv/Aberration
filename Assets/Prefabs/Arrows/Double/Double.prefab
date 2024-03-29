@@ -99,5 +99,36 @@ PrefabInstance:
       propertyPath: _doublePressResetTime
       value: 0.333
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8797532535108689239, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+--- !u!212 &11650804172258245 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 807548525037607785, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+  m_PrefabInstance: {fileID: 800964821276762284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &905404892861428921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 544158960822703125, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+  m_PrefabInstance: {fileID: 800964821276762284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-629512300442117297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905404892861428921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f24b44165b0fdc4098359b08af761d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _doublePressResetTime: 0.333
+  m_renderer: {fileID: 11650804172258245}
+  numberRenderer: {fileID: 6066200747824664292}
+--- !u!212 &6066200747824664292 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6859791688991600200, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+  m_PrefabInstance: {fileID: 800964821276762284}
+  m_PrefabAsset: {fileID: 0}
