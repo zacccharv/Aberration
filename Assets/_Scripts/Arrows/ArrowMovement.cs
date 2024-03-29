@@ -39,13 +39,16 @@ public class ArrowMovement : MonoBehaviour
 
     private void Move(float time)
     {
+        // TODO animation glitch
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds) && _arrow.interactionType == InteractionType.Long && !folded)
         {
             _arrowStates.Tweens.Add(_otherTransform.DOMove(transform.position, time / 2).SetEase(Ease.InOutSine));
             folded = true;
         }
         else
+        {
             _arrowStates.Tweens.Add(transform.DOMove(transform.position + ((Vector3)_arrow.vectorDirection * _physicalDistance), time / 2).SetEase(Ease.InOutSine));
+        }
     }
 
 }

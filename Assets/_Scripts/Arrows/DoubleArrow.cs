@@ -68,7 +68,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
     public void SuccessState(ScoreType scoreType)
     {
-        if (Tower.Instance._arrow_0 != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         Arrow.pressCount++;
 

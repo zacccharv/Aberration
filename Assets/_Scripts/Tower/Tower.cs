@@ -11,7 +11,6 @@ public class Tower : MonoBehaviour
     public static Tower Instance;
     public GameObject towerBase;
     public Bounds destroyBounds, animationBounds, successBounds;
-    public Arrow _arrow_0;
 
     void OnEnable()
     {
@@ -24,6 +23,7 @@ public class Tower : MonoBehaviour
         InputManager_Z.GamePadButtonPressed -= OnGamePadPressed;
         InputManager_Z.DirectionPressed -= OnDirectionPressed;
     }
+
 
     void Awake()
     {
@@ -46,15 +46,14 @@ public class Tower : MonoBehaviour
         towerBase.transform.DOScaleX(towerBase.transform.localScale.x * 1.15f, .45f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
-
     private void OnGamePadPressed(Direction directionPressed)
     {
-        if (Instance._arrow_0 == null || GameManager.Instance.gameState != GameState.Started)
+        if (ArrowManager.Instance.interactableArrows[0] == null || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
 
-        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
+        if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
@@ -66,24 +65,24 @@ public class Tower : MonoBehaviour
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
-        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
+        else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             FailedInput?.Invoke();
         }
-        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
+        else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             FailedInput?.Invoke();
         }
     }
 
-    public void OnDirectionPressed(Direction directionPressed)
+    public void OnDirectionPressed(Direction directionPressed, InteractionType interactionType)
     {
-        if (Instance._arrow_0 == null || GameManager.Instance.gameState != GameState.Started)
+        if (ArrowManager.Instance.interactableArrows[0] == null || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
 
-        if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
+        if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
@@ -95,11 +94,11 @@ public class Tower : MonoBehaviour
                 SuccessfulInput?.Invoke(ScoreType.SinglePress);
             }
         }
-        else if (_arrow_0.direction == directionPressed && Instance._arrow_0.boundsIndex == 2 && _arrow_0.inputTriggered)
+        else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             FailedInput?.Invoke();
         }
-        else if (_arrow_0.direction != directionPressed && Instance._arrow_0.boundsIndex == 2 && !_arrow_0.inputTriggered)
+        else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             FailedInput?.Invoke();
         }
@@ -160,8 +159,8 @@ public class Tower : MonoBehaviour
     }
     public static void CheckNotPressed(Arrow arrow, Tower tower)
     {
-        if (arrow.boundsIndex != 2 || arrow.inputTriggered || Instance._arrow_0 != arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (arrow.boundsIndex != 2 || arrow.inputTriggered || ArrowManager.Instance.interactableArrows[0] != arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        tower.OnDirectionPressed(Direction.None);
+        tower.OnDirectionPressed(Direction.None, InteractionType.NoPress);
     }
 }

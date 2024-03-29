@@ -74,7 +74,6 @@ public class ArrowManager : MonoBehaviour
         if (Instance.interactableArrows.Count > 0 && Instance.interactableArrows[0] == null)
         {
             Instance.interactableArrows.RemoveAt(0);
-            Tower.Instance._arrow_0 = interactableArrows[0];
         }
 
         if (Instance._moveTimer > _moveSpeed)

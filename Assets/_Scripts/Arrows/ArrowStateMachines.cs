@@ -99,7 +99,7 @@ public class ArrowStateMachines : BaseArrow
 
     private void Success(ScoreType scoreType)
     {
-        if (Tower.Instance._arrow_0 != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (_arrow.interactionType == InteractionType.Double)
         {

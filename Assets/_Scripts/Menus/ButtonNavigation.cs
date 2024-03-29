@@ -29,7 +29,7 @@ public class ButtonNavigation : MonoBehaviour
         buttons[0].Select();
     }
 
-    private void OnDirectionPressed(Direction direction)
+    private void OnDirectionPressed(Direction direction, InteractionType _)
     {
         if (GameManager.Instance.gameState == GameState.Started) return;
 

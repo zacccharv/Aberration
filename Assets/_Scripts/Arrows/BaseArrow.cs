@@ -7,7 +7,7 @@ public class BaseArrow : MonoBehaviour
 {
     public void FailState(Arrow arrow, SpriteRenderer spriteRenderer, List<Tween> tweens)
     {
-        if (Tower.Instance._arrow_0 != arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (!arrow.inputTriggered)
         {
@@ -28,7 +28,7 @@ public class BaseArrow : MonoBehaviour
     }
     public void FailState(Arrow arrow, List<SpriteRenderer> spriteRenderers, List<Tween> tweens)
     {
-        if (Tower.Instance._arrow_0 != arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (!arrow.inputTriggered)
         {

@@ -66,7 +66,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
     public void SuccessState(ScoreType scoreType)
     {
-        if (Tower.Instance._arrow_0 != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         foreach (var item in renderers)
         {
@@ -80,6 +80,7 @@ public class LongArrow : BaseArrow, IArrowStates
             }
         ));
 
+        SFXCollection.Instance.PlaySound(SFXType.Success);
         SpawnPopUp(scoreType, true);
     }
 
