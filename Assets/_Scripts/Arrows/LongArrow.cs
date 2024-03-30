@@ -36,10 +36,10 @@ public class LongArrow : BaseArrow, IArrowStates
 
     public void UpdateBounds()
     {
-
         if (Tower.IsInBounds(transform.position, Tower.Instance.destroyBounds))
         {
             Tower.CheckNotPressed(Arrow, Tower.Instance);
+
             KillAllTweens(Tweens);
             Destroy(gameObject);
         }
@@ -64,9 +64,15 @@ public class LongArrow : BaseArrow, IArrowStates
         }
     }
 
-    public void SuccessState(ScoreType scoreType)
+    public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
-        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended || scoreType == ScoreType.Empty) return;
+
+        if (interactionType == InteractionType.Single || interactionType == InteractionType.Double || interactionType == InteractionType.FailedDouble)
+        {
+            Tower.TriggerFailedInput(interactionType);
+            return;
+        }
 
         foreach (var item in renderers)
         {
@@ -84,7 +90,7 @@ public class LongArrow : BaseArrow, IArrowStates
         SpawnPopUp(scoreType, true);
     }
 
-    public void FailState()
+    public void FailState(InteractionType interactionType)
     {
         FailState(Arrow, renderers, Tweens);
     }

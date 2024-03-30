@@ -37,7 +37,6 @@ public class SpawnSequencing : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Debug.Log(i);
             arrowsToSpawn.Enqueue(_sequences[seqInd].ArrowGameObjs[i]);
         }
     }

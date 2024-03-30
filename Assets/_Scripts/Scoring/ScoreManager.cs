@@ -64,7 +64,7 @@ public class ScoreManager : MonoBehaviour
         previousStage = stage;
     }
 
-    void AddScore(ScoreType scoreType)
+    void AddScore(ScoreType scoreType, InteractionType _)
     {
         if (scoreType == ScoreType.Empty
             || ArrowManager.Instance.interactableArrows[0].inputTriggered
@@ -124,7 +124,7 @@ public class ScoreManager : MonoBehaviour
         _scoreText.text = score.ToString();
     }
 
-    void SubtractScore()
+    void SubtractScore(InteractionType interactionType)
     {
         subtraction = 3;
 

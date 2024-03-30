@@ -7,12 +7,12 @@ public enum InteractionType
     Single,
     Double,
     Long,
-    NoPress
+    NoPress,
+    FailedDouble
 }
 
 public delegate void DirectionPress(Direction direction, InteractionType interactionType);
-public delegate void LongDirectionPress(Direction direction, bool canceled, double duration, float defaultDuration);
-public delegate void GamePadButtonPress(Direction direction);
+public delegate void GamePadButtonPress(Direction direction, InteractionType interactionType);
 public delegate void UIInputPress(InputType inputType);
 
 public class InputManager_Z : MonoBehaviour
@@ -26,114 +26,109 @@ public class InputManager_Z : MonoBehaviour
     public static event GamePadButtonPress GamePadButtonPressed;
     public static event UIInputPress UIInputPressed;
 
-    public void UpPressed(InputAction.CallbackContext context)
+    public void ArrowPressed(InputAction.CallbackContext context)
     {
+        Direction direction = Direction.None;
+        InteractionType interactionType = InteractionType.NoPress;
+
+        if (context.action.name.Contains("Up"))
+        {
+            direction = Direction.Up;
+        }
+        else if (context.action.name.Contains("Right"))
+        {
+            direction = Direction.Right;
+        }
+        else if (context.action.name.Contains("Down"))
+        {
+            direction = Direction.Down;
+        }
+        else if (context.action.name.Contains("Left"))
+        {
+            direction = Direction.Left;
+        }
+
         if (context.interaction is HoldInteraction)
         {
             if (context.performed)
             {
-                DirectionPressed?.Invoke(Direction.Up, InteractionType.Long);
+                DirectionPressed?.Invoke(direction, InteractionType.Long);
+                interactionType = InteractionType.Long;
             }
         }
-        else if (context.interaction is TapInteraction)
+        else if (context.interaction is MultiTapInteraction)
+        {
+            if (context.started)
+            {
+                DirectionPressed?.Invoke(direction, InteractionType.Single);
+                interactionType = InteractionType.Single;
+            }
+            else if (context.performed)
+            {
+                DirectionPressed?.Invoke(direction, InteractionType.Double);
+                interactionType = InteractionType.Double;
+            }
+            else if (context.canceled && !context.performed)
+            {
+                interactionType = InteractionType.FailedDouble;
+            }
+        }
+        else if (context.interaction is PressInteraction)
         {
             if (context.performed)
             {
-                Debug.Log(context.interaction);
-                DirectionPressed?.Invoke(Direction.Up, InteractionType.Single);
+                DirectionPressed?.Invoke(direction, InteractionType.Single);
+                Debug.Log(interactionType);
+                interactionType = InteractionType.Single;
             }
         }
-    }
-    public void GamePadNorthPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+
+        if (interactionType != InteractionType.NoPress)
         {
-            Debug.Log(context.control);
-            GamePadButtonPressed?.Invoke(Direction.Up);
         }
     }
-
-    public void RightPressed(InputAction.CallbackContext context)
+    public void GamePadPressed(InputAction.CallbackContext context)
     {
+        Direction direction = Direction.None;
+
+        if (context.control.name.Contains("Up"))
+        {
+            direction = Direction.Up;
+        }
+        else if (context.control.name.Contains("Right"))
+        {
+            direction = Direction.Right;
+        }
+        else if (context.control.name.Contains("Down"))
+        {
+            direction = Direction.Down;
+        }
+        else if (context.control.name.Contains("Left"))
+        {
+            direction = Direction.Left;
+        }
+
         if (context.interaction is HoldInteraction)
         {
             if (context.performed)
             {
-                DirectionPressed?.Invoke(Direction.Right, InteractionType.Long);
+                GamePadButtonPressed?.Invoke(direction, InteractionType.Long);
             }
         }
-        else if (context.interaction is TapInteraction)
+        else if (context.interaction is MultiTapInteraction)
         {
             if (context.performed)
             {
-                Debug.Log(context.interaction);
-                DirectionPressed?.Invoke(Direction.Right, InteractionType.Single);
+                GamePadButtonPressed?.Invoke(direction, InteractionType.Double);
             }
-        }
-    }
-
-    public void GamePadEastPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log(context.control);
-            GamePadButtonPressed?.Invoke(Direction.Right);
-        }
-    }
-
-    public void DownPressed(InputAction.CallbackContext context)
-    {
-        if (context.interaction is HoldInteraction)
-        {
-            if (context.performed)
+            if (context.canceled)
             {
-                DirectionPressed?.Invoke(Direction.Down, InteractionType.Long);
+                GamePadButtonPressed?.Invoke(direction, InteractionType.FailedDouble);
             }
-        }
-        else if (context.interaction is TapInteraction)
-        {
-            if (context.performed)
+            else if (context.started)
             {
-                Debug.Log(context.interaction);
-                DirectionPressed?.Invoke(Direction.Down, InteractionType.Single);
+                GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
             }
-        }
-    }
-
-    public void GamePadSouthPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log(context.control);
-            GamePadButtonPressed?.Invoke(Direction.Down);
-        }
-    }
-
-    public void LeftPressed(InputAction.CallbackContext context)
-    {
-        if (context.interaction is HoldInteraction)
-        {
-            if (context.performed)
-            {
-                DirectionPressed?.Invoke(Direction.Left, InteractionType.Long);
-            }
-        }
-        else if (context.interaction is TapInteraction)
-        {
-            if (context.performed)
-            {
-                Debug.Log(context.interaction);
-                DirectionPressed?.Invoke(Direction.Left, InteractionType.Single);
-            }
-        }
-    }
-
-    public void GamePadWestPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log(context.control);
-            GamePadButtonPressed?.Invoke(Direction.Left);
         }
     }
 
@@ -151,15 +146,4 @@ public class InputManager_Z : MonoBehaviour
             UIInputPressed?.Invoke(InputType.Esc);
         }
     }
-
-    // public IEnumerator CantTouchThis(float delay)
-    // {
-    //     _cantTouchThis = true;
-
-    //     yield return new WaitForSeconds(delay);
-
-    //     _cantTouchThis = false;
-
-    //     yield return null;
-    // }
 }

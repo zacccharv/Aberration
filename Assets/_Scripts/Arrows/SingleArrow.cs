@@ -6,7 +6,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
 
-    public List<Tween> Tweens { get; set; }
+    public List<Tween> Tweens { get; set; } = new();
 
     public SpriteRenderer spriteRenderer, numberRenderer;
 
@@ -58,7 +58,7 @@ public class SingleArrow : BaseArrow, IArrowStates
             Arrow.boundsIndex = 1;
         }
     }
-    public void SuccessState(ScoreType scoreType)
+    public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
@@ -76,9 +76,8 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         SpawnPopUp(scoreType, true);
     }
-    public void FailState()
+    public void FailState(InteractionType interactionType)
     {
         FailState(Arrow, spriteRenderer, Tweens);
     }
-
 }

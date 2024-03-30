@@ -5,7 +5,9 @@ using UnityEngine;
 public class NoArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
-    [field: SerializeField] public List<Tween> Tweens { get; set; }
+
+    public List<Tween> Tweens { get; set; } = new();
+
     public SpriteRenderer m_renderer;
 
     void OnEnable()
@@ -60,7 +62,7 @@ public class NoArrow : BaseArrow, IArrowStates
         }
     }
 
-    public void SuccessState(ScoreType scoreType)
+    public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
@@ -68,7 +70,7 @@ public class NoArrow : BaseArrow, IArrowStates
         SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
     }
 
-    public void FailState()
+    public void FailState(InteractionType interactionType)
     {
         FailState(Arrow, m_renderer, Tweens);
     }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using TMPro;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Arrow))]
@@ -97,7 +96,7 @@ public class ArrowStateMachines : BaseArrow
         }
     }
 
-    private void Success(ScoreType scoreType)
+    private void Success(ScoreType scoreType, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] != _arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
@@ -107,7 +106,7 @@ public class ArrowStateMachines : BaseArrow
 
             if (_arrow.pressCount == 2 && _inputTimer > _doublePressResetTime)
             {
-                Tower.TriggerFailedInput();
+                Tower.TriggerFailedInput(interactionType);
                 return;
             }
             else if (_arrow.pressCount == 2 && _inputTimer < _doublePressResetTime)
@@ -144,7 +143,7 @@ public class ArrowStateMachines : BaseArrow
         SpawnPopUp(scoreType, true);
 
     }
-    private void Fail()
+    private void Fail(InteractionType interactionType)
     {
         FailState(_arrow, m_renderer, _tweens);
     }

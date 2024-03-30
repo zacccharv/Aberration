@@ -1,16 +1,16 @@
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
 public class DoubleArrow : BaseArrow, IArrowStates
 {
-    private float _inputTimer;
-    [SerializeField] private float _doublePressResetTime = .5f;
-
     public Arrow Arrow { get; set; }
-    public List<Tween> Tweens { get; set; }
+    public List<Tween> Tweens { get; set; } = new();
 
     public SpriteRenderer spriteRenderer, numberRenderer;
+    [SerializeField] private int _pressCount;
+    private bool _noPress;
 
     void OnEnable()
     {
@@ -59,30 +59,28 @@ public class DoubleArrow : BaseArrow, IArrowStates
         {
             Arrow.boundsIndex = 1;
         }
-
-        if (Arrow.pressCount == 1)
-        {
-            _inputTimer += Time.deltaTime;
-        }
     }
 
-    public void SuccessState(ScoreType scoreType)
+    public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
-        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended || scoreType == ScoreType.Empty) return;
 
-        Arrow.pressCount++;
-
-        if (Arrow.pressCount == 2 && _inputTimer > _doublePressResetTime)
-        {
-            Tower.TriggerFailedInput();
-            return;
-        }
-        else if (Arrow.pressCount == 2 && _inputTimer < _doublePressResetTime)
+        if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
             Arrow.inputTriggered = true;
-            SFXCollection.Instance.PlaySound(SFXType.Success);
+            StartCoroutine(PressTimeOut());
         }
-        else
+        else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered && !_noPress)
+        {
+            Tower.TriggerFailedInput(interactionType);
+            return;
+        }
+        else if (interactionType == InteractionType.Single && Arrow.inputTriggered && !_noPress)
+        {
+            Tower.TriggerFailedInput(interactionType);
+            return;
+        }
+        else if (interactionType == InteractionType.Single && !Arrow.inputTriggered)
         {
             SFXCollection.Instance.PlaySound(SFXType.QuietSuccess);
             return;
@@ -100,9 +98,16 @@ public class DoubleArrow : BaseArrow, IArrowStates
         SpawnPopUp(scoreType, true);
     }
 
-    public void FailState()
+    public void FailState(InteractionType interactionType)
     {
         FailState(Arrow, spriteRenderer, Tweens);
     }
+    public IEnumerator PressTimeOut()
+    {
+        _noPress = true;
+        yield return new WaitForSeconds(.15f);
 
+        _noPress = false;
+        yield return null;
+    }
 }

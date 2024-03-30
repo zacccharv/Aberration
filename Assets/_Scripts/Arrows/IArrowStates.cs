@@ -7,6 +7,6 @@ public interface IArrowStates
     public List<Tween> Tweens { get; set; }
 
     public void UpdateBounds();
-    public void SuccessState(ScoreType scoreType);
-    public void FailState();
+    public void SuccessState(ScoreType scoreType, InteractionType interactionType);
+    public void FailState(InteractionType interactionType);
 }

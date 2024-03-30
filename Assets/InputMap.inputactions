@@ -11,7 +11,7 @@
                     "id": "c8c24b98-e670-4247-a084-9afc600c3241",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,Tap",
+                    "interactions": "Hold,MultiTap,Press",
                     "initialStateCheck": false
                 },
                 {
@@ -20,7 +20,7 @@
                     "id": "49827077-c855-4f47-ba21-beee30379238",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,Tap",
+                    "interactions": "Hold,MultiTap,Press",
                     "initialStateCheck": false
                 },
                 {
@@ -29,7 +29,7 @@
                     "id": "04242683-f529-4ffc-b79d-b4ac18c2448f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,Tap",
+                    "interactions": "Hold,MultiTap,Press",
                     "initialStateCheck": false
                 },
                 {
@@ -38,7 +38,7 @@
                     "id": "f74e7f8e-02d5-4acd-aa9b-60ec00fcac8d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,Tap",
+                    "interactions": "Hold,MultiTap,Press",
                     "initialStateCheck": false
                 },
                 {
@@ -47,7 +47,7 @@
                     "id": "4612dfa6-422e-453b-8e17-6fb09d2059ce",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold,MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -56,7 +56,7 @@
                     "id": "5fe5c29a-c554-4944-b22d-1ca671fbc5b3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold,MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -65,7 +65,7 @@
                     "id": "5ed9b6a4-7565-4910-923e-3ed8e0640a92",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold,MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -74,7 +74,7 @@
                     "id": "62368a20-322f-4d71-a6a6-a21a6a35d723",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold,MultiTap",
                     "initialStateCheck": false
                 },
                 {

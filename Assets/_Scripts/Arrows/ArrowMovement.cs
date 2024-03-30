@@ -4,8 +4,8 @@ using UnityEngine;
 public class ArrowMovement : MonoBehaviour
 {
     [SerializeField] private float _physicalDistance = 1;
+    public IArrowStates _arrowStates;
     [SerializeField] private Transform _otherTransform;
-    private IArrowStates _arrowStates;
     private Arrow _arrow;
     private bool folded;
 
@@ -20,9 +20,8 @@ public class ArrowMovement : MonoBehaviour
 
     void Awake()
     {
-        _arrowStates = GetComponent<IArrowStates>();
-        Debug.Log(_arrowStates);
         _arrow = GetComponent<Arrow>();
+        _arrowStates = GetComponent<IArrowStates>();
     }
     void Start()
     {
@@ -39,7 +38,7 @@ public class ArrowMovement : MonoBehaviour
 
     private void Move(float time)
     {
-        if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds) && _arrow.interactionType == InteractionType.Long && !folded)
+        if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds) && _arrow.interactionType == InteractionType.Long && !folded && _otherTransform != null)
         {
             _arrowStates.Tweens.Add(_otherTransform.DOMove(transform.position, time / 2).SetEase(Ease.InOutSine));
             folded = true;
