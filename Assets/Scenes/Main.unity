@@ -3134,6 +3134,7 @@ MonoBehaviour:
     - {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
     - {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
     - {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+  _spawnCount: 0
 --- !u!1 &1396608171
 GameObject:
   m_ObjectHideFlags: 0

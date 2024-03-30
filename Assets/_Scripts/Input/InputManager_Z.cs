@@ -23,7 +23,6 @@ public class InputManager_Z : MonoBehaviour
 
     // TODO make clear current long arrow when 2 in bounds
     public static event DirectionPress DirectionPressed;
-    public static event LongDirectionPress LongDirectionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
     public static event UIInputPress UIInputPressed;
 
