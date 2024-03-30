@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [Serializable]
 public struct Sequence
@@ -16,19 +17,7 @@ public class SpawnSequencing : MonoBehaviour
     [SerializeField] private float _spawnInterval;
     [SerializeField] private Sequence[] _sequences;
     private float _spawnTimer;
-    void OnEnable()
-    {
-        ArrowManager.InstanceAwake += OnAwake;
-    }
-    void OnDisable()
-    {
-        ArrowManager.InstanceAwake += OnAwake;
-    }
-
-    void OnAwake()
-    {
-        //SpawnArrow();
-    }
+    [SerializeField] int _spawnCount;
 
     void Update()
     {
@@ -72,13 +61,14 @@ public class SpawnSequencing : MonoBehaviour
     public void SpawnArrow()
     {
         if (arrowsToSpawn.Count < 1) AddSequence();
+        _spawnCount++;
 
         // NOTE add random lanes after all arrows introduced
         // int lane = GetLaneIndex(_previousLanes);
         // _previousLanes.Add(lane);
 
         GameObject go = DequeuePrefab(out _spawnInterval, out int lane);
-
+        go.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
         Vector2 laneDirection = Vector2.zero;
 
         // Change position depending on lane index

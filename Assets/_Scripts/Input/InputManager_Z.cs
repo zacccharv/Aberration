@@ -21,10 +21,9 @@ public class InputManager_Z : MonoBehaviour
     [SerializeField] private int _pressCount;
     [SerializeField] private float defaultHoldTime;
 
+    // TODO make clear current long arrow when 2 in bounds
     public static event DirectionPress DirectionPressed;
     public static event LongDirectionPress LongDirectionPressed;
-
-    // TODO finish adding interaction to press events
     public static event GamePadButtonPress GamePadButtonPressed;
     public static event UIInputPress UIInputPressed;
 

@@ -2777,7 +2777,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: LongTest
+        m_MethodName: LongUpPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2793,7 +2793,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: LongTest
+        m_MethodName: LongRightPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2809,7 +2809,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: LongTest
+        m_MethodName: LongDownPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2825,7 +2825,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: LongTest
+        m_MethodName: LongLeftPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2871,6 +2871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputDelay: 0
   _pressCount: 0
+  defaultHoldTime: 1
 --- !u!1 &1205363727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3432,7 +3433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960a1bf3c28b5af4faa1ff72290a215a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputDirection: 0
   towerBase: {fileID: 1901165180}
   destroyBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -3443,7 +3443,6 @@ MonoBehaviour:
   successBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
-  _arrow_0: {fileID: 0}
 --- !u!1 &1600339505
 GameObject:
   m_ObjectHideFlags: 0
