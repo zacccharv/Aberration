@@ -62,6 +62,12 @@ public class SingleArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
+        if (interactionType == InteractionType.Double || interactionType == InteractionType.NoPress)
+        {
+            Tower.TriggerFailedInput(interactionType);
+            return;
+        }
+
         Arrow.inputTriggered = true;
         SFXCollection.Instance.PlaySound(SFXType.Success);
 

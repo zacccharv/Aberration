@@ -65,10 +65,14 @@ public class DoubleArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended || scoreType == ScoreType.Empty) return;
 
+        if (interactionType != InteractionType.NoPress || interactionType == InteractionType.Long)
+        {
+            Tower.TriggerFailedInput(interactionType);
+        }
+
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
             Arrow.inputTriggered = true;
-            StartCoroutine(PressTimeOut());
         }
         else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered && !_noPress)
         {
@@ -101,13 +105,5 @@ public class DoubleArrow : BaseArrow, IArrowStates
     public void FailState(InteractionType interactionType)
     {
         FailState(Arrow, spriteRenderer, Tweens);
-    }
-    public IEnumerator PressTimeOut()
-    {
-        _noPress = true;
-        yield return new WaitForSeconds(.15f);
-
-        _noPress = false;
-        yield return null;
     }
 }

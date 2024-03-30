@@ -66,6 +66,11 @@ public class NoArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
+        if (interactionType != InteractionType.NoPress)
+        {
+            Tower.TriggerFailedInput(interactionType);
+        }
+
         Arrow.inputTriggered = true;
         SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
     }

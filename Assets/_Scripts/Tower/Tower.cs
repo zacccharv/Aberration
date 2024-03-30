@@ -94,7 +94,6 @@ public class Tower : MonoBehaviour
             else
             {
                 SuccessfulInput?.Invoke(ScoreType.SinglePress, interactionType);
-
                 StartCoroutine(PressTimeOut());
             }
         }
