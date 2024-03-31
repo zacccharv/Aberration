@@ -53,21 +53,24 @@ public class BaseArrow : MonoBehaviour
 
     public void SpawnPopUp(ScoreType scoreType, bool success)
     {
-        GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
+        int popUpNum = ScoreManager.Instance.comboMultiplier == 1 ? 0 : ScoreManager.Instance.comboMultiplier / 2;
 
         if (success)
         {
             if (scoreType == ScoreType.Empty)
             {
+                GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
                 popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"YES");
             }
             else if (scoreType == ScoreType.SinglePress)
             {
-                popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
+                Instantiate(ScoreManager.Instance.succesfulNumberPopup[popUpNum], transform.position, Quaternion.identity);
+                // popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
             }
         }
         else if (!success)
         {
+            GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
             popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"-{ScoreManager.Instance.subtraction}");
             popup.GetComponentInChildren<TextMeshProUGUI>().color = ArrowManager.Instance.FailNumberColor;
         }

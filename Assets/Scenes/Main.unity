@@ -1221,6 +1221,11 @@ MonoBehaviour:
   - {fileID: 5365534107789368871, guid: b8b13d0c3060fc74bbbbfc6d9ddf5970, type: 3}
   stagePopup: {fileID: 1752149999255031554, guid: 58eb38f000f5fcd41a3dc4c07348ce13, type: 3}
   subtraction: 0
+  succesfulNumberPopup:
+  - {fileID: 1752149999255031554, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
+  - {fileID: 5358461779933278859, guid: 2a9a0c685c730d247b3fc92951e04e51, type: 3}
+  - {fileID: 6303000459816313705, guid: c56c49f777d9cff47a001d9182f16c02, type: 3}
+  - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
@@ -3043,15 +3048,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnStart: {x: 5, y: 5}
-  _test: 1
-  _testSequenceIndex: 2
+  _test: 0
+  _testSequenceIndex: 1
   _spawnInterval: 0.8
   _sequences:
   - ArrowGameObjs:
-    - {fileID: 7815790118697378759, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
-    - {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-    - {fileID: 7815790118697378759, guid: d2a84e8c507644e4abf23dd8cf4e3d25, type: 3}
-    - {fileID: 5666269582284890956, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+    - {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+    - {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+    - {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+    - {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
     - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
     - {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
     - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}

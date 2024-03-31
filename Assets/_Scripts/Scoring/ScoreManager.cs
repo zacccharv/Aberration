@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject stagePopup;
     public int subtraction;
     private int previousStage = 0;
+    public List<GameObject> succesfulNumberPopup = new();
 
     void OnEnable()
     {
@@ -84,7 +85,7 @@ public class ScoreManager : MonoBehaviour
 
             if (comboCount == 60)
             {
-                SpawnMultiplierIndicator(3);
+                //SpawnMultiplierIndicator(3);
             }
         }
         else if (comboCount >= 30)
@@ -93,7 +94,7 @@ public class ScoreManager : MonoBehaviour
 
             if (comboCount == 6)
             {
-                SpawnMultiplierIndicator(2);
+                //SpawnMultiplierIndicator(2);
             }
         }
         else if (comboCount >= 15)
@@ -102,7 +103,7 @@ public class ScoreManager : MonoBehaviour
 
             if (comboCount == 15)
             {
-                SpawnMultiplierIndicator(1);
+                //SpawnMultiplierIndicator(1);
             }
         }
         else if (comboCount >= 5)
@@ -111,7 +112,7 @@ public class ScoreManager : MonoBehaviour
 
             if (comboCount == 5)
             {
-                SpawnMultiplierIndicator(0);
+                //SpawnMultiplierIndicator(0);
             }
         }
         else if (comboCount >= 0)

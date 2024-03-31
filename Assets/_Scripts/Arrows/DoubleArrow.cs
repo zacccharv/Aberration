@@ -10,7 +10,6 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private int _pressCount;
-    private bool _noPress;
 
     void OnEnable()
     {
@@ -65,7 +64,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended || scoreType == ScoreType.Empty) return;
 
-        if (interactionType != InteractionType.NoPress || interactionType == InteractionType.Long)
+        if (interactionType == InteractionType.NoPress || interactionType == InteractionType.Long)
         {
             Tower.TriggerFailedInput(interactionType);
         }
@@ -73,13 +72,14 @@ public class DoubleArrow : BaseArrow, IArrowStates
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
             Arrow.inputTriggered = true;
+            SFXCollection.Instance.PlaySound(SFXType.Success);
         }
-        else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered && !_noPress)
+        else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered)
         {
             Tower.TriggerFailedInput(interactionType);
             return;
         }
-        else if (interactionType == InteractionType.Single && Arrow.inputTriggered && !_noPress)
+        else if (interactionType == InteractionType.Single && Arrow.inputTriggered)
         {
             Tower.TriggerFailedInput(interactionType);
             return;

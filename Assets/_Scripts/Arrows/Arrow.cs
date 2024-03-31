@@ -14,6 +14,7 @@ public class Arrow : MonoBehaviour
     public Vector2 vectorDirection;
 
     public float spawnTime;
+    public float moveSpeed;
 
     /// <summary>
     /// 0 not in any bounds, 1 in animation bounds, 2 in success bounds

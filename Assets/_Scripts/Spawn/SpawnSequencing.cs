@@ -15,6 +15,8 @@ public class SpawnSequencing : MonoBehaviour
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
     [SerializeField] private float _spawnInterval;
+
+    // TODO different sequences for each stage
     [SerializeField] private Sequence[] _sequences;
     private float _spawnTimer;
     [SerializeField] int _spawnCount;
@@ -53,6 +55,8 @@ public class SpawnSequencing : MonoBehaviour
 
         result = arrowsToSpawn.Dequeue();
         spawnInterval = result.GetComponent<Arrow>().spawnTime;
+
+        // TODO pick lane from lane var on Arrow instead
         lane = (int)result.GetComponent<Arrow>().direction;
 
         return result;

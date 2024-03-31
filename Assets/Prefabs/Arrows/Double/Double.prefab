@@ -88,6 +88,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1878790625, guid: 4a37ef9c282934a4e913121ffdf309ce, type: 3}
     - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: spawnTime
       value: 1
       objectReference: {fileID: 0}
@@ -126,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 11650804172258245}
   numberRenderer: {fileID: 6066200747824664292}
+  _pressCount: 0
 --- !u!212 &6066200747824664292 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6859791688991600200, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}

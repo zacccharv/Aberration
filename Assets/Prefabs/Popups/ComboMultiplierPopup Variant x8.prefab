@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComboMultiplierPopup Variant x8
       objectReference: {fileID: 0}
+    - target: {fileID: 1752149999255031556, guid: a295f9474d46e694a8280ce8175704c8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1752149999255031558, guid: a295f9474d46e694a8280ce8175704c8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -68,6 +68,8 @@ public class LongArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended || scoreType == ScoreType.Empty) return;
 
+        Arrow.inputTriggered = true;
+
         if (interactionType == InteractionType.Single || interactionType == InteractionType.Double || interactionType == InteractionType.NoPress)
         {
             Tower.TriggerFailedInput(interactionType);

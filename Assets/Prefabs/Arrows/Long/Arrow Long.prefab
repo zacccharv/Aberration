@@ -147,7 +147,8 @@ MonoBehaviour:
   interactionType: 2
   direction: 0
   vectorDirection: {x: 0, y: 0}
-  spawnTime: 2
+  spawnTime: 1.6
+  moveSpeed: 0.8
   boundsIndex: 0
   inputTriggered: 0
   pressCount: 0
