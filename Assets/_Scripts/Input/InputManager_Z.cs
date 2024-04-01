@@ -21,7 +21,6 @@ public class InputManager_Z : MonoBehaviour
     [SerializeField] private int _pressCount;
     [SerializeField] private float defaultHoldTime;
 
-    // TODO make clear current long arrow when 2 in bounds
     public static event DirectionPress DirectionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
     public static event UIInputPress UIInputPressed;
@@ -53,7 +52,6 @@ public class InputManager_Z : MonoBehaviour
             if (context.performed)
             {
                 DirectionPressed?.Invoke(direction, InteractionType.Long);
-                interactionType = InteractionType.Long;
             }
         }
         else if (context.interaction is MultiTapInteraction)
@@ -61,16 +59,10 @@ public class InputManager_Z : MonoBehaviour
             if (context.started)
             {
                 DirectionPressed?.Invoke(direction, InteractionType.Single);
-                interactionType = InteractionType.Single;
             }
             else if (context.performed)
             {
                 DirectionPressed?.Invoke(direction, InteractionType.Double);
-                interactionType = InteractionType.Double;
-            }
-            else if (context.canceled && !context.performed)
-            {
-                interactionType = InteractionType.FailedDouble;
             }
         }
         else if (context.interaction is PressInteraction)
@@ -79,31 +71,27 @@ public class InputManager_Z : MonoBehaviour
             {
                 DirectionPressed?.Invoke(direction, InteractionType.Single);
                 Debug.Log(interactionType);
-                interactionType = InteractionType.Single;
             }
         }
-
-        if (interactionType != InteractionType.NoPress)
-        {
-        }
     }
+
     public void GamePadPressed(InputAction.CallbackContext context)
     {
         Direction direction = Direction.None;
 
-        if (context.control.name.Contains("Up"))
+        if (context.action.name.Contains("North"))
         {
             direction = Direction.Up;
         }
-        else if (context.control.name.Contains("Right"))
+        else if (context.action.name.Contains("East"))
         {
             direction = Direction.Right;
         }
-        else if (context.control.name.Contains("Down"))
+        else if (context.action.name.Contains("South"))
         {
             direction = Direction.Down;
         }
-        else if (context.control.name.Contains("Left"))
+        else if (context.action.name.Contains("West"))
         {
             direction = Direction.Left;
         }
@@ -117,15 +105,18 @@ public class InputManager_Z : MonoBehaviour
         }
         else if (context.interaction is MultiTapInteraction)
         {
-            if (context.performed)
+            if (context.started)
+            {
+                GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
+            }
+            else if (context.performed)
             {
                 GamePadButtonPressed?.Invoke(direction, InteractionType.Double);
             }
-            if (context.canceled)
-            {
-                GamePadButtonPressed?.Invoke(direction, InteractionType.FailedDouble);
-            }
-            else if (context.started)
+        }
+        else if (context.interaction is PressInteraction)
+        {
+            if (context.performed)
             {
                 GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
             }

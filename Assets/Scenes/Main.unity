@@ -2698,7 +2698,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: GamePadNorthPressed
+        m_MethodName: GamePadPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2714,7 +2714,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: GamePadEastPressed
+        m_MethodName: GamePadPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2730,7 +2730,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: GamePadSouthPressed
+        m_MethodName: GamePadPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2746,7 +2746,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: GamePadWestPressed
+        m_MethodName: GamePadPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2766,7 +2766,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1094241806}
         m_TargetAssemblyTypeName: InputManager_Z, Assembly-CSharp
-        m_MethodName: EscPressed
+        m_MethodName: GamePadPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3048,33 +3048,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnStart: {x: 5, y: 5}
-  _test: 0
+  _test: 1
   _testSequenceIndex: 1
   _spawnInterval: 0.8
   _sequences:
-  - ArrowGameObjs:
-    - {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
-    - {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-    - {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
-    - {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-    - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
-    - {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
-    - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
-    - {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
-  - ArrowGameObjs:
-    - {fileID: 8431670982146939622, guid: 9765adcb27ccb5842b99b91f8fd33266, type: 3}
-    - {fileID: 465987272505331894, guid: 74de2298ba9dbb5408d1457fa0d95794, type: 3}
-    - {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
-    - {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
-  - ArrowGameObjs:
-    - {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
-    - {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
-    - {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-    - {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
-    - {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
-    - {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
-    - {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
-    - {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+  - SequenceItems:
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+  - SequenceItems:
+    - Lane: 3
+      ArrowPrefab: {fileID: 465987272505331894, guid: fa1ffef59dba045408dadb9f64db4f01, type: 3}
+    - Lane: 2
+      ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+    - Lane: 1
+      ArrowPrefab: {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
+    - Lane: 0
+      ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+    - Lane: 2
+      ArrowPrefab: {fileID: 8431670982146939622, guid: 587f68e8e93ca1a4ab3cc0244372d375, type: 3}
+    - Lane: 0
+      ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+    - Lane: 2
+      ArrowPrefab: {fileID: 8431670982146939622, guid: 8e4ea7b6b97d3fe42a7eecede4a9057c, type: 3}
+  - SequenceItems:
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
+    - Lane: 0
+      ArrowPrefab: {fileID: 0}
   _spawnCount: 0
 --- !u!1 &1396608171
 GameObject:

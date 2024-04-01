@@ -47,7 +47,7 @@
                     "id": "4612dfa6-422e-453b-8e17-6fb09d2059ce",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,MultiTap",
+                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
                     "initialStateCheck": false
                 },
                 {
@@ -56,7 +56,7 @@
                     "id": "5fe5c29a-c554-4944-b22d-1ca671fbc5b3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,MultiTap",
+                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
                     "initialStateCheck": false
                 },
                 {
@@ -65,7 +65,7 @@
                     "id": "5ed9b6a4-7565-4910-923e-3ed8e0640a92",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,MultiTap",
+                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
                     "initialStateCheck": false
                 },
                 {
@@ -74,7 +74,7 @@
                     "id": "62368a20-322f-4d71-a6a6-a21a6a35d723",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,MultiTap",
+                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
                     "initialStateCheck": false
                 },
                 {

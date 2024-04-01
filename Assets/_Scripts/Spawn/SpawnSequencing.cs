@@ -4,19 +4,38 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [Serializable]
+public struct SequenceItem
+{
+    public Direction Lane;
+    public GameObject ArrowPrefab;
+}
+
+[Serializable]
 public struct Sequence
 {
-    public List<GameObject> ArrowGameObjs;
+    public List<SequenceItem> SequenceItems;
 }
+
 public class SpawnSequencing : MonoBehaviour
 {
-    public Queue<GameObject> arrowsToSpawn = new(100);
+    public Queue<SequenceItem> arrowsToSpawn = new(100);
     public Vector2 spawnStart;
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
     [SerializeField] private float _spawnInterval;
 
     // TODO different sequences for each stage
+
+    // NOTE (Stages) 1st stage single arrows only
+    // 2rd stage single arrows + double arrows + mixup directions
+    // 3rd stage single arrows + double arrows
+    // 4th stage single arrows + double arrows + mixup directions + Aberrations
+    // 5th stage single arrows + double arrows + Long Arrows
+    // 6th stage single arrows + double arrows + Long Arrows + mixup directions
+    // 7th stage single arrows + double arrows + Long Arrows + mixup directions + Aberrations
+    // after this stage repeat 7th stage each time with a chaos stage here and there
+
+
     [SerializeField] private Sequence[] _sequences;
     private float _spawnTimer;
     [SerializeField] int _spawnCount;
@@ -35,16 +54,16 @@ public class SpawnSequencing : MonoBehaviour
     public void AddSequence()
     {
         int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, _sequences.Length);
-        int count = _sequences[seqInd].ArrowGameObjs.Count;
+        int count = _sequences[seqInd].SequenceItems.Count;
 
         for (int i = 0; i < count; i++)
         {
-            arrowsToSpawn.Enqueue(_sequences[seqInd].ArrowGameObjs[i]);
+            arrowsToSpawn.Enqueue(_sequences[seqInd].SequenceItems[i]);
         }
     }
-    public GameObject DequeuePrefab(out float spawnInterval, out int lane)
+    public GameObject DequeuePrefab(out float spawnInterval, out Direction lane)
     {
-        GameObject result;
+        SequenceItem result;
 
         if (arrowsToSpawn.Count < 1)
         {
@@ -54,39 +73,38 @@ public class SpawnSequencing : MonoBehaviour
         }
 
         result = arrowsToSpawn.Dequeue();
-        spawnInterval = result.GetComponent<Arrow>().spawnTime;
+        lane = result.Lane;
 
-        // TODO pick lane from lane var on Arrow instead
-        lane = (int)result.GetComponent<Arrow>().direction;
+        spawnInterval = result.ArrowPrefab.GetComponent<Arrow>().spawnTime;
 
-        return result;
+        return result.ArrowPrefab;
     }
     public void SpawnArrow()
     {
         if (arrowsToSpawn.Count < 1) AddSequence();
         _spawnCount++;
 
-        // NOTE add random lanes after all arrows introduced
         // int lane = GetLaneIndex(_previousLanes);
         // _previousLanes.Add(lane);
 
-        GameObject go = DequeuePrefab(out _spawnInterval, out int lane);
+        GameObject go = DequeuePrefab(out _spawnInterval, out Direction lane);
+
         go.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
         Vector2 laneDirection = Vector2.zero;
 
         // Change position depending on lane index
         switch (lane)
         {
-            case 0:
+            case Direction.Up:
                 laneDirection = Vector2.up * spawnStart;
                 break;
-            case 1:
+            case Direction.Right:
                 laneDirection = Vector2.right * spawnStart;
                 break;
-            case 2:
+            case Direction.Down:
                 laneDirection = Vector2.down * spawnStart;
                 break;
-            case 3:
+            case Direction.Left:
                 laneDirection = Vector2.left * spawnStart;
                 break;
             default:

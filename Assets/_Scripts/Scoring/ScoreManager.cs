@@ -76,7 +76,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         comboCount++;
-        // TODO Combo Multiplier Popup
         // Animate scaling from 0 to a bit more than full size in center before fade
 
         if (comboCount >= 60)

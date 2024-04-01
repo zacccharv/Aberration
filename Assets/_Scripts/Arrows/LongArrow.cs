@@ -36,6 +36,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
     public void UpdateBounds()
     {
+        // TODO make clear current long arrow when 2 in bounds
         if (Tower.IsInBounds(transform.position, Tower.Instance.destroyBounds))
         {
             Tower.CheckNotPressed(Arrow, Tower.Instance);

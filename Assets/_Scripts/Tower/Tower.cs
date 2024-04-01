@@ -55,23 +55,24 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
+        if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
-                SuccessfulInput?.Invoke(ScoreType.Empty, InteractionType.NoPress);
+                SuccessfulInput?.Invoke(ScoreType.Empty, interactionType);
             }
             else
             {
                 SuccessfulInput?.Invoke(ScoreType.SinglePress, interactionType);
+                StartCoroutine(PressTimeOut());
             }
         }
-        else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered)
+        else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             FailedInput?.Invoke(interactionType);
         }
-        else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
+        else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             FailedInput?.Invoke(interactionType);
         }
