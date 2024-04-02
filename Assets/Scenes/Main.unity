@@ -3048,44 +3048,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnStart: {x: 5, y: 5}
+  _sequencedSequences:
+    Sequences:
+    - SequenceItems: []
+    - SequenceItems: []
+    - SequenceItems: []
+    - SequenceItems: []
+  _spawnCount: 0
   _test: 1
   _testSequenceIndex: 1
   _spawnInterval: 0.8
-  _sequences:
-  - SequenceItems:
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-  - SequenceItems:
-    - Lane: 3
-      ArrowPrefab: {fileID: 465987272505331894, guid: fa1ffef59dba045408dadb9f64db4f01, type: 3}
-    - Lane: 2
-      ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
-    - Lane: 1
-      ArrowPrefab: {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
-    - Lane: 0
-      ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
-    - Lane: 2
-      ArrowPrefab: {fileID: 8431670982146939622, guid: 587f68e8e93ca1a4ab3cc0244372d375, type: 3}
-    - Lane: 0
-      ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
-    - Lane: 2
-      ArrowPrefab: {fileID: 8431670982146939622, guid: 8e4ea7b6b97d3fe42a7eecede4a9057c, type: 3}
-  - SequenceItems:
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-    - Lane: 0
-      ArrowPrefab: {fileID: 0}
-  _spawnCount: 0
 --- !u!1 &1396608171
 GameObject:
   m_ObjectHideFlags: 0

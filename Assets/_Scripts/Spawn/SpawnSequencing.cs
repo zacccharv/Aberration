@@ -16,29 +16,47 @@ public struct Sequence
     public List<SequenceItem> SequenceItems;
 }
 
+[Serializable]
+public struct SequencedSequences
+{
+    public List<Sequence> Sequences;
+}
+
 public class SpawnSequencing : MonoBehaviour
 {
     public Queue<SequenceItem> arrowsToSpawn = new(100);
     public Vector2 spawnStart;
+    public static int _stage;
+
+    [SerializeField] private SequencedSequences _sequencedSequences;
+    [SerializeField] private int _spawnCount;
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
     [SerializeField] private float _spawnInterval;
 
+    private float _spawnTimer;
+
     // TODO different sequences for each stage
 
-    // NOTE (Stages) 1st stage single arrows only
-    // 2rd stage single arrows + double arrows + mixup directions
-    // 3rd stage single arrows + double arrows
-    // 4th stage single arrows + double arrows + mixup directions + Aberrations
-    // 5th stage single arrows + double arrows + Long Arrows
-    // 6th stage single arrows + double arrows + Long Arrows + mixup directions
-    // 7th stage single arrows + double arrows + Long Arrows + mixup directions + Aberrations
-    // after this stage repeat 7th stage each time with a chaos stage here and there
+    #region Section 0
+    // NOTE (Stages) 1st  stage single arrows only
+    //  2rd  stage single arrows + double arrows + mixup direction lanes
+    #endregion
 
+    #region Section 1
+    //  3rd stage single arrows + double arrows
+    //  4th stage single arrows + double arrows + mixup lanes + Aberrations
+    #endregion
 
-    [SerializeField] private Sequence[] _sequences;
-    private float _spawnTimer;
-    [SerializeField] int _spawnCount;
+    #region Section 2
+    //  5th stage single arrows + double arrows + Long Arrows
+    //  6th stage single arrows + double arrows + Long Arrows + mixuplanes 
+    #endregion
+
+    #region Section 3
+    //  7th stage single arrows + double arrows + Long Arrows + mixup lanes + Aberrations
+    //  after this stage repeat 7th stage each time with a chaos stage here and there
+    #endregion
 
     void Update()
     {
@@ -51,16 +69,19 @@ public class SpawnSequencing : MonoBehaviour
         }
     }
 
-    public void AddSequence()
+    public void AddSequence(int section)
     {
-        int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, _sequences.Length);
-        int count = _sequences[seqInd].SequenceItems.Count;
+        Sequence sequence = _sequencedSequences.Sequences[section];
+
+        int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, sequence.SequenceItems.Count);
+        int count = sequence.SequenceItems.Count;
 
         for (int i = 0; i < count; i++)
         {
-            arrowsToSpawn.Enqueue(_sequences[seqInd].SequenceItems[i]);
+            arrowsToSpawn.Enqueue(sequence.SequenceItems[seqInd]);
         }
     }
+
     public GameObject DequeuePrefab(out float spawnInterval, out Direction lane)
     {
         SequenceItem result;
@@ -79,13 +100,13 @@ public class SpawnSequencing : MonoBehaviour
 
         return result.ArrowPrefab;
     }
+
     public void SpawnArrow()
     {
-        if (arrowsToSpawn.Count < 1) AddSequence();
-        _spawnCount++;
+        _stage = Mathf.Min(_stage, _sequencedSequences.Sequences.Count - 1);
 
-        // int lane = GetLaneIndex(_previousLanes);
-        // _previousLanes.Add(lane);
+        if (arrowsToSpawn.Count < 1) AddSequence(_stage);
+        _spawnCount++;
 
         GameObject go = DequeuePrefab(out _spawnInterval, out Direction lane);
 

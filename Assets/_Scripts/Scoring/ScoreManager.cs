@@ -60,6 +60,7 @@ public class ScoreManager : MonoBehaviour
         if (previousStage != stage)
         {
             StagePopUp(stage);
+            SpawnSequencing._stage = (int)Mathf.Floor(stage / 2);
         }
 
         previousStage = stage;
@@ -152,10 +153,10 @@ public class ScoreManager : MonoBehaviour
         _scoreText.text = score.ToString();
     }
 
-    private void SpawnMultiplierIndicator(int index)
-    {
-        Instantiate(comboMultiplierPopups[index], new(0, 0, 0), Quaternion.identity);
-    }
+    // private void SpawnMultiplierIndicator(int index)
+    // {
+    //     Instantiate(comboMultiplierPopups[index], new(0, 0, 0), Quaternion.identity);
+    // }
     private void StagePopUp(int stage)
     {
         if (GameManager.Instance.gameState == GameState.Ended)
