@@ -2945,6 +2945,7 @@ GameObject:
   - component: {fileID: 1266761054}
   - component: {fileID: 1266761053}
   - component: {fileID: 1266761055}
+  - component: {fileID: 1266761056}
   m_Layer: 0
   m_Name: ArrowManager
   m_TagString: Untagged
@@ -3048,16 +3049,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnStart: {x: 5, y: 5}
-  _sequencedSequences:
-    Sequences:
-    - SequenceItems: []
-    - SequenceItems: []
-    - SequenceItems: []
-    - SequenceItems: []
+  _sectionContainers:
+    Sections:
+    - Sequences:
+      - SequenceItems:
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+      - SequenceItems:
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+      - SequenceItems:
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+      - SequenceItems:
+        - Lane: 2
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+      - SequenceItems:
+        - Lane: 3
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+    - Sequences:
+      - SequenceItems: []
+    - Sequences:
+      - SequenceItems: []
   _spawnCount: 0
   _test: 1
   _testSequenceIndex: 1
   _spawnInterval: 0.8
+--- !u!114 &1266761056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266761052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba290e4c44e0e6c489dd6b0d0582783c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 1234
+  BaseItems: 
 --- !u!1 &1396608171
 GameObject:
   m_ObjectHideFlags: 0

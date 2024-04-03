@@ -17,9 +17,15 @@ public struct Sequence
 }
 
 [Serializable]
-public struct SequencedSequences
+public struct SequencesContainer
 {
     public List<Sequence> Sequences;
+}
+
+[Serializable]
+public struct SectionsContainer
+{
+    public List<SequencesContainer> Sections;
 }
 
 public class SpawnSequencing : MonoBehaviour
@@ -28,7 +34,7 @@ public class SpawnSequencing : MonoBehaviour
     public Vector2 spawnStart;
     public static int _stage;
 
-    [SerializeField] private SequencedSequences _sequencedSequences;
+    [SerializeField] private SectionsContainer _sectionContainers;
     [SerializeField] private int _spawnCount;
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
@@ -58,6 +64,11 @@ public class SpawnSequencing : MonoBehaviour
     //  after this stage repeat 7th stage each time with a chaos stage here and there
     #endregion
 
+    void Start()
+    {
+        FirstSection(new List<int>());
+    }
+
     void Update()
     {
         _spawnTimer += Time.deltaTime;
@@ -71,14 +82,14 @@ public class SpawnSequencing : MonoBehaviour
 
     public void AddSequence(int section)
     {
-        Sequence sequence = _sequencedSequences.Sequences[section];
+        SequencesContainer sequence = _sectionContainers.Sections[section];
 
-        int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, sequence.SequenceItems.Count);
-        int count = sequence.SequenceItems.Count;
+        int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, sequence.Sequences.Count);
+        int count = sequence.Sequences[seqInd].SequenceItems.Count;
 
         for (int i = 0; i < count; i++)
         {
-            arrowsToSpawn.Enqueue(sequence.SequenceItems[seqInd]);
+            arrowsToSpawn.Enqueue(sequence.Sequences[seqInd].SequenceItems[i]);
         }
     }
 
@@ -103,7 +114,7 @@ public class SpawnSequencing : MonoBehaviour
 
     public void SpawnArrow()
     {
-        _stage = Mathf.Min(_stage, _sequencedSequences.Sequences.Count - 1);
+        _stage = Mathf.Min(_stage, _sectionContainers.Sections.Count - 1);
 
         if (arrowsToSpawn.Count < 1) AddSequence(_stage);
         _spawnCount++;
@@ -172,5 +183,40 @@ public class SpawnSequencing : MonoBehaviour
             return nextLane;
         }
 #pragma warning restore CS8321 // Local function is declared but never used
+    }
+
+    public void FirstSection(List<int> ints)
+    {
+        int length = 4;
+        int totalCombinations = 1;
+
+        List<int> combination = new() { 1, 2, 3, 4 };
+        List<List<int>> combos = new();
+
+        for (int i = 0; i < length; i++)
+        {
+            totalCombinations *= i + 1;
+        }
+
+        // void GenerateCombination(List<int> ints)
+        // {
+        //     ints.Add()
+        // }
+
+        // for (int i = 0; i < combination.Count; i++)
+        // {
+        //     combos.Add(combination);
+        //     Debug.Log(string.Join(", ", combination));
+        // }
+
+        // BuildPossibleCombination(0, ints);
+
+        // void BuildPossibleCombination(int level, int current, List<int> output)
+        // {
+
+        //     BuildPossibleCombination(level, output[level], resultList);
+
+
+        // }
     }
 }
