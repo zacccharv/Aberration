@@ -23,7 +23,10 @@ public class OneDemensionalObject : MonoBehaviour
                 CurrentInts.Add(0);
             }
         }
+
         HeapsAlgo(originalInts.Count, originalChars);
+        permutations.Sort();
+
         // total = TotalPermutations();
     }
 
@@ -53,12 +56,11 @@ public class OneDemensionalObject : MonoBehaviour
         return (int)Mathf.Pow(ints.Count, ints.Count);
     }
 
-    public void HeapsAlgo(int k, List<char> items)
+    public void HeapsAlgo<T>(int k, List<T> items)
     {
         if (k == 1)
         {
             permutations.Add(string.Join(", ", items));
-            Debug.Log(string.Join(", ", items));
             return;
         }
         else
@@ -66,21 +68,26 @@ public class OneDemensionalObject : MonoBehaviour
             for (int i = 0; i < k; i++)
             {
                 HeapsAlgo(k - 1, items);
-                char a, b;
 
                 if (k % 2 == 0)
                 {
-                    a = items[i]; b = items[k - 1];
-                    items[k - 1] = a;
-                    items[i] = b;
+                    items = Swap(items, i, k - 1);
                 }
                 else
                 {
-                    a = items[0]; b = items[k - 1];
-                    items[k - 1] = a;
-                    items[0] = b;
+                    items = Swap(items, 0, k - 1);
                 }
             }
         }
+    }
+    public List<T> Swap<T>(List<T> items, int index_1, int index_2)
+    {
+        T a = items[index_1];
+        T b = items[index_2];
+
+        items[index_2] = a;
+        items[index_1] = b;
+
+        return items;
     }
 }
