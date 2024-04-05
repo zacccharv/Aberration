@@ -43,15 +43,20 @@ public class SpawnSequencing : MonoBehaviour
     private float _spawnTimer;
 
     // TODO different sequences for each stage
+    // NOTE Randomly rotate sequences each time
 
     #region Section 0
     // NOTE (Stages) 1st  stage single arrows only
-    //  2rd  stage single arrows + double arrows + mixup direction lanes
+    //  2rd  stage single arrows + mixup direction lanes
     #endregion
 
     #region Section 1
     //  3rd stage single arrows + double arrows
-    //  4th stage single arrows + double arrows + mixup lanes + Aberrations
+    //  4th stage single arrows + double arrows + mixup lanes
+    #endregion
+
+    #region Section 1.5
+    //  4.5th stage single arrows + double arrows + mixup lanes + Aberrations
     #endregion
 
     #region Section 2

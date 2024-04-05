@@ -3062,32 +3062,14 @@ MonoBehaviour:
         - Lane: 0
           ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
       - SequenceItems:
-        - Lane: 3
-          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
-        - Lane: 2
-          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
         - Lane: 1
           ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
         - Lane: 0
           ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
-      - SequenceItems:
-        - Lane: 1
-          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
         - Lane: 3
           ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
-        - Lane: 0
-          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
         - Lane: 2
           ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-      - SequenceItems:
-        - Lane: 0
-          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
-        - Lane: 2
-          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
-        - Lane: 1
-          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
-        - Lane: 3
-          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
       - SequenceItems:
         - Lane: 2
           ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
@@ -3107,9 +3089,138 @@ MonoBehaviour:
         - Lane: 0
           ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
     - Sequences:
-      - SequenceItems: []
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
     - Sequences:
-      - SequenceItems: []
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8431670982146939622, guid: 9765adcb27ccb5842b99b91f8fd33266, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 465987272505331894, guid: 74de2298ba9dbb5408d1457fa0d95794, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 161241654363218253, guid: 9daf24b52f9947f4c909fb0e9c42e8e5, type: 3}
+        - Lane: 3
+          ArrowPrefab: {fileID: 8409159185784893150, guid: afa4d5b4db7c1e1458bdfc3b9a8f37b5, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 465987272505331894, guid: 300214e102374ad4ca33835a8d261e71, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 1609538178392910206, guid: c6d21a4ebbecded48ba5c6ed4dedead0, type: 3}
+        - Lane: 1
+          ArrowPrefab: {fileID: 2074198491293875811, guid: aaff643f520518640935ae7c8edf5c43, type: 3}
+      - SequenceItems:
+        - Lane: 0
+          ArrowPrefab: {fileID: 8431670982146939622, guid: fe2f361f5a055304baae6b719382e3df, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 48123272710933132, guid: fea40617971390e4f9e2230839e23811, type: 3}
+        - Lane: 0
+          ArrowPrefab: {fileID: 391661466240120225, guid: 7a27988810cdc5947922b900bfaa454c, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8431670982146939622, guid: 9765adcb27ccb5842b99b91f8fd33266, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 1073630831752714355, guid: 8cbc569a82f53d842adf914e22c63a2c, type: 3}
+        - Lane: 2
+          ArrowPrefab: {fileID: 8678063562579361182, guid: 3275ffdd4e3e3ee459d6a7029fa5385a, type: 3}
   _spawnCount: 0
   _test: 1
   _testSequenceIndex: 1

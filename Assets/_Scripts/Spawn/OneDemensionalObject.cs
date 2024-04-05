@@ -80,6 +80,7 @@ public class OneDemensionalObject : MonoBehaviour
             }
         }
     }
+
     public List<T> Swap<T>(List<T> items, int index_1, int index_2)
     {
         T a = items[index_1];
