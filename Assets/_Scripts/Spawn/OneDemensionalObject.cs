@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OneDemensionalObject : MonoBehaviour
 {
     public List<int> originalInts = new();
+    public List<char> originalChars;
     public List<string> permutations = new();
     private List<int> CurrentInts = new();
     private List<int> ints = new();
@@ -20,14 +23,15 @@ public class OneDemensionalObject : MonoBehaviour
                 CurrentInts.Add(0);
             }
         }
-        total = TotalPermutations();
+        HeapsAlgo(originalInts.Count, originalChars);
+        // total = TotalPermutations();
     }
 
     void Update()
     {
-        if (mod == total) return;
+        // if (mod == total) return;
 
-        AltPermute();
+        // AltPermute();
     }
 
     public void AltPermute()
@@ -47,5 +51,36 @@ public class OneDemensionalObject : MonoBehaviour
     public int TotalPermutations()
     {
         return (int)Mathf.Pow(ints.Count, ints.Count);
+    }
+
+    public void HeapsAlgo(int k, List<char> items)
+    {
+        if (k == 1)
+        {
+            permutations.Add(string.Join(", ", items));
+            Debug.Log(string.Join(", ", items));
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < k; i++)
+            {
+                HeapsAlgo(k - 1, items);
+                char a, b;
+
+                if (k % 2 == 0)
+                {
+                    a = items[i]; b = items[k - 1];
+                    items[k - 1] = a;
+                    items[i] = b;
+                }
+                else
+                {
+                    a = items[0]; b = items[k - 1];
+                    items[k - 1] = a;
+                    items[0] = b;
+                }
+            }
+        }
     }
 }

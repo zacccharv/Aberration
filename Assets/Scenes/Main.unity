@@ -3126,8 +3126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba290e4c44e0e6c489dd6b0d0582783c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 1234
-  BaseItems: 
+  originalInts: 01000000020000000300000004000000
+  originalChars: 4100420043004400
+  permutations: []
+  mod: 0
+  total: 0
 --- !u!1 &1396608171
 GameObject:
   m_ObjectHideFlags: 0
