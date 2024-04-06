@@ -10,7 +10,7 @@ public struct SequenceItem
     public GameObject ArrowPrefab;
 }
 [Serializable]
-public struct AltItem
+public struct ArrowStruct
 {
     public Direction Lane;
     public Direction Arrow;
@@ -20,7 +20,7 @@ public struct AltItem
 [Serializable]
 public struct Sequence
 {
-    public List<SequenceItem> SequenceItems;
+    public List<ArrowStruct> SequenceItems;
 }
 
 [Serializable]
@@ -37,7 +37,8 @@ public struct SectionsContainer
 
 public class SpawnSequencing : MonoBehaviour
 {
-    public Queue<SequenceItem> arrowsToSpawn = new(100);
+    // TODO implement arrowstruct sequences
+    public Queue<ArrowStruct> arrowsToSpawn = new(100);
     public Vector2 spawnStart;
     public static int _stage;
 
@@ -76,11 +77,6 @@ public class SpawnSequencing : MonoBehaviour
     //  after this stage repeat 7th stage each time with a chaos stage here and there
     #endregion
 
-    void Start()
-    {
-        FirstSection(new List<int>());
-    }
-
     void Update()
     {
         _spawnTimer += Time.deltaTime;
@@ -105,57 +101,85 @@ public class SpawnSequencing : MonoBehaviour
         }
     }
 
-    public GameObject DequeuePrefab(out float spawnInterval, out Direction lane)
+    public GameObject DequeuePrefab(out float spawnInterval, out Vector2 laneStartPos)
     {
-        SequenceItem result;
+        ArrowStruct arrowStruct;
+        Direction lane;
+        GameObject result;
 
         if (arrowsToSpawn.Count < 1)
         {
             spawnInterval = 0;
-            lane = 0;
+            laneStartPos = default;
+
             return null;
         }
 
-        result = arrowsToSpawn.Dequeue();
-        lane = result.Lane;
+        arrowStruct = arrowsToSpawn.Dequeue();
+        lane = arrowStruct.Lane;
 
-        spawnInterval = result.ArrowPrefab.GetComponent<Arrow>().spawnTime;
+        result = GetArrow(arrowStruct, lane);
 
-        return result.ArrowPrefab;
+        spawnInterval = result.GetComponent<Arrow>().spawnTime;
+        result.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
+
+        // Change position depending on lane index
+        laneStartPos = lane switch
+        {
+            Direction.Up => Vector2.up * spawnStart,
+            Direction.Right => Vector2.right * spawnStart,
+            Direction.Down => Vector2.down * spawnStart,
+            Direction.Left => Vector2.left * spawnStart,
+            _ => default,
+        };
+
+        return result;
     }
 
+    public GameObject GetArrow(ArrowStruct arrowStruct, Direction lane)
+    {
+        ArrowPrefabs arrowPrefabs = default;
+
+        if (arrowStruct.Interaction == InteractionType.Single)
+        {
+            arrowPrefabs = ArrowManager.Instance.arrows.Single;
+        }
+        else if (arrowStruct.Interaction == InteractionType.Double)
+        {
+            arrowPrefabs = ArrowManager.Instance.arrows.Double;
+        }
+        else if (arrowStruct.Interaction == InteractionType.Long)
+        {
+            arrowPrefabs = lane switch
+            {
+                Direction.Right => ArrowManager.Instance.arrows.HoldRightLane,
+                Direction.Down => ArrowManager.Instance.arrows.HoldDownLane,
+                Direction.Left => ArrowManager.Instance.arrows.HoldLeftLane,
+                Direction.Up => ArrowManager.Instance.arrows.HoldUpLane,
+                _ => throw new NotImplementedException(),
+            };
+        }
+
+        GameObject result = arrowStruct.Arrow switch
+        {
+            Direction.Up => arrowPrefabs.UpArrow,
+            Direction.Right => arrowPrefabs.RightArrow,
+            Direction.Down => arrowPrefabs.DownArrow,
+            Direction.Left => arrowPrefabs.LeftArrow,
+            _ => throw new NotImplementedException(),
+        };
+
+        return result;
+    }
     public void SpawnArrow()
     {
         _stage = Mathf.Min(_stage, _sectionContainers.Sections.Count - 1);
-
         if (arrowsToSpawn.Count < 1) AddSequence(_stage);
+
+        GameObject go = DequeuePrefab(out _spawnInterval, out Vector2 laneSpawnPos);
+
+        Instantiate(go, laneSpawnPos, go.transform.localRotation, transform);
         _spawnCount++;
-
-        GameObject go = DequeuePrefab(out _spawnInterval, out Direction lane);
-
-        go.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
-        Vector2 laneDirection = Vector2.zero;
-
-        // Change position depending on lane index
-        switch (lane)
-        {
-            case Direction.Up:
-                laneDirection = Vector2.up * spawnStart;
-                break;
-            case Direction.Right:
-                laneDirection = Vector2.right * spawnStart;
-                break;
-            case Direction.Down:
-                laneDirection = Vector2.down * spawnStart;
-                break;
-            case Direction.Left:
-                laneDirection = Vector2.left * spawnStart;
-                break;
-            default:
-                break;
-        }
-
-        Instantiate(go, laneDirection, go.transform.localRotation, transform);
 
 #pragma warning disable CS8321 // Local function is declared but never used
         static int GetLaneIndex(List<int> previousLanes)
@@ -195,40 +219,5 @@ public class SpawnSequencing : MonoBehaviour
             return nextLane;
         }
 #pragma warning restore CS8321 // Local function is declared but never used
-    }
-
-    public void FirstSection(List<int> ints)
-    {
-        int length = 4;
-        int totalCombinations = 1;
-
-        List<int> combination = new() { 1, 2, 3, 4 };
-        List<List<int>> combos = new();
-
-        for (int i = 0; i < length; i++)
-        {
-            totalCombinations *= i + 1;
-        }
-
-        // void GenerateCombination(List<int> ints)
-        // {
-        //     ints.Add()
-        // }
-
-        // for (int i = 0; i < combination.Count; i++)
-        // {
-        //     combos.Add(combination);
-        //     Debug.Log(string.Join(", ", combination));
-        // }
-
-        // BuildPossibleCombination(0, ints);
-
-        // void BuildPossibleCombination(int level, int current, List<int> output)
-        // {
-
-        //     BuildPossibleCombination(level, output[level], resultList);
-
-
-        // }
     }
 }

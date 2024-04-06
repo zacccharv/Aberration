@@ -20,10 +20,10 @@ public struct Arrows
     public GameObject Empty;
     public ArrowPrefabs Single;
     public ArrowPrefabs Double;
-    public ArrowPrefabs HoldRight;
-    public ArrowPrefabs HoldUp;
-    public ArrowPrefabs HoldLeft;
-    public ArrowPrefabs HoldDown;
+    public ArrowPrefabs HoldRightLane;
+    public ArrowPrefabs HoldUpLane;
+    public ArrowPrefabs HoldLeftLane;
+    public ArrowPrefabs HoldDownLane;
 }
 
 public class ArrowManager : MonoBehaviour
