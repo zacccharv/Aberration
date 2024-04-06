@@ -9,6 +9,13 @@ public struct SequenceItem
     public Direction Lane;
     public GameObject ArrowPrefab;
 }
+[Serializable]
+public struct AltItem
+{
+    public Direction Lane;
+    public Direction Arrow;
+    public InteractionType Interaction;
+}
 
 [Serializable]
 public struct Sequence
