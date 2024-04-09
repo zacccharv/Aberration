@@ -4,12 +4,6 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [Serializable]
-public struct SequenceItem
-{
-    public Direction Lane;
-    public GameObject ArrowPrefab;
-}
-[Serializable]
 public struct ArrowStruct
 {
     public Direction Lane;
@@ -37,7 +31,6 @@ public struct SectionsContainer
 
 public class SpawnSequencing : MonoBehaviour
 {
-    // TODO implement arrowstruct sequences
     public Queue<ArrowStruct> arrowsToSpawn = new(100);
     public Vector2 spawnStart;
     public static int _stage;
@@ -47,10 +40,13 @@ public class SpawnSequencing : MonoBehaviour
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
     [SerializeField] private float _spawnInterval;
+    private int _every_5, _every_3, _swapInt;
 
     private float _spawnTimer;
 
     // TODO different sequences for each stage
+    // TODO aberration Sequences 
+    // TODO Random arrow lane sequences
     // NOTE Randomly rotate sequences each time
 
     #region Section 0
@@ -118,6 +114,26 @@ public class SpawnSequencing : MonoBehaviour
         arrowStruct = arrowsToSpawn.Dequeue();
         lane = arrowStruct.Lane;
 
+        // TODO every 5 then 3 then 5 then 3 etc...
+
+        if (Every_5_3())
+        {
+            if (arrowStruct.Interaction == InteractionType.Long && _stage > 4)
+            {
+                lane = (Direction)UnityEngine.Random.Range(0, 4);
+            }
+
+            if (arrowStruct.Interaction == InteractionType.Double && _stage > 2)
+            {
+                lane = (Direction)UnityEngine.Random.Range(0, 4);
+            }
+
+            if (arrowStruct.Interaction == InteractionType.Single && _stage > 0)
+            {
+                lane = (Direction)UnityEngine.Random.Range(0, 4);
+            }
+        }
+
         result = GetArrow(arrowStruct, lane);
 
         spawnInterval = result.GetComponent<Arrow>().spawnTime;
@@ -170,6 +186,35 @@ public class SpawnSequencing : MonoBehaviour
         };
 
         return result;
+    }
+    public bool Every_5_3()
+    {
+        if (_swapInt == 0)
+        {
+            _every_5++;
+
+            if (_every_5 == 5)
+            {
+                _every_5 = 0;
+                _swapInt = 1;
+
+                return true;
+            }
+        }
+        else if (_swapInt == 1)
+        {
+            _every_3++;
+
+            if (_every_3 == 3)
+            {
+                _every_3 = 0;
+                _swapInt = 0;
+
+                return true;
+            }
+        }
+
+        return false;
     }
     public void SpawnArrow()
     {

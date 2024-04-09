@@ -18,7 +18,6 @@ public class ScoreManager : MonoBehaviour
     public int score = 6, comboCount = 0, comboMultiplier = 1, stage = 0;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
-    public List<GameObject> comboMultiplierPopups = new();
     public GameObject stagePopup;
     public int subtraction;
     private int previousStage = 0;
@@ -60,7 +59,7 @@ public class ScoreManager : MonoBehaviour
         if (previousStage != stage)
         {
             StagePopUp(stage);
-            SpawnSequencing._stage = (int)Mathf.Floor(stage / 2);
+            SpawnSequencing._stage = stage;
         }
 
         previousStage = stage;

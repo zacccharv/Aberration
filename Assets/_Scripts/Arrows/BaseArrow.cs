@@ -54,6 +54,7 @@ public class BaseArrow : MonoBehaviour
     public void SpawnPopUp(ScoreType scoreType, bool success)
     {
         int popUpNum = ScoreManager.Instance.comboMultiplier == 1 ? 0 : ScoreManager.Instance.comboMultiplier / 2;
+        popUpNum = Mathf.Min(popUpNum, ScoreManager.Instance.succesfulNumberPopup.Count - 1);
 
         if (success)
         {
