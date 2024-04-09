@@ -17,7 +17,7 @@ public struct ArrowPrefabs
 [Serializable]
 public struct Arrows
 {
-    public GameObject Empty;
+    public ArrowPrefabs Empty;
     public ArrowPrefabs Single;
     public ArrowPrefabs Double;
     public ArrowPrefabs HoldRightLane;

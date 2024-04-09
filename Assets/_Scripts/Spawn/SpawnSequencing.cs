@@ -100,7 +100,7 @@ public class SpawnSequencing : MonoBehaviour
     public GameObject DequeuePrefab(out float spawnInterval, out Vector2 laneStartPos)
     {
         ArrowStruct arrowStruct;
-        Direction lane;
+        Direction lane = default;
         GameObject result;
 
         if (arrowsToSpawn.Count < 1)
@@ -112,29 +112,52 @@ public class SpawnSequencing : MonoBehaviour
         }
 
         arrowStruct = arrowsToSpawn.Dequeue();
-        lane = arrowStruct.Lane;
 
-        // TODO every 5 then 3 then 5 then 3 etc...
-
+        // Lane randomization
         if (Every_5_3())
         {
-            if (arrowStruct.Interaction == InteractionType.Long && _stage > 4)
+            int rand = UnityEngine.Random.Range(0, 4);
+
+            if (_stage > 4)
             {
-                lane = (Direction)UnityEngine.Random.Range(0, 4);
+                lane = GetDirection(rand);
+            }
+            else if (arrowStruct.Interaction != InteractionType.Long && _stage > 2)
+            {
+                lane = GetDirection(rand);
+            }
+            else if (arrowStruct.Interaction == InteractionType.Single && _stage > 0)
+            {
+                lane = GetDirection(rand);
             }
 
-            if (arrowStruct.Interaction == InteractionType.Double && _stage > 2)
+            // aberration spawn
+            if (_stage > 6 && _swapInt % 5 == 0)
             {
-                lane = (Direction)UnityEngine.Random.Range(0, 4);
+                arrowStruct = new() { Interaction = InteractionType.NoPress, Lane = lane, Arrow = lane };
             }
 
-            if (arrowStruct.Interaction == InteractionType.Single && _stage > 0)
+            result = GetArrow(arrowStruct, lane);
+
+            static Direction GetDirection(int index)
             {
-                lane = (Direction)UnityEngine.Random.Range(0, 4);
+                Direction result = index switch
+                {
+                    0 => Direction.Up,
+                    1 => Direction.Right,
+                    2 => Direction.Down,
+                    3 => Direction.Left,
+                    _ => Direction.None,
+                };
+                return result;
             }
         }
+        else
+        {
+            lane = arrowStruct.Lane;
+            result = GetArrow(arrowStruct, lane);
+        }
 
-        result = GetArrow(arrowStruct, lane);
 
         spawnInterval = result.GetComponent<Arrow>().spawnTime;
         result.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
@@ -156,7 +179,11 @@ public class SpawnSequencing : MonoBehaviour
     {
         ArrowPrefabs arrowPrefabs = default;
 
-        if (arrowStruct.Interaction == InteractionType.Single)
+        if (arrowStruct.Interaction == InteractionType.NoPress)
+        {
+            arrowPrefabs = ArrowManager.Instance.arrows.Empty;
+        }
+        else if (arrowStruct.Interaction == InteractionType.Single)
         {
             arrowPrefabs = ArrowManager.Instance.arrows.Single;
         }
@@ -189,26 +216,26 @@ public class SpawnSequencing : MonoBehaviour
     }
     public bool Every_5_3()
     {
-        if (_swapInt == 0)
+        if (_swapInt % 2 == 0)
         {
             _every_5++;
 
             if (_every_5 == 5)
             {
                 _every_5 = 0;
-                _swapInt = 1;
+                _swapInt++;
 
                 return true;
             }
         }
-        else if (_swapInt == 1)
+        else if (_swapInt % 2 == 1)
         {
             _every_3++;
 
             if (_every_3 == 3)
             {
                 _every_3 = 0;
-                _swapInt = 0;
+                _swapInt++;
 
                 return true;
             }
@@ -218,8 +245,7 @@ public class SpawnSequencing : MonoBehaviour
     }
     public void SpawnArrow()
     {
-        _stage = Mathf.Min(_stage, _sectionContainers.Sections.Count - 1);
-        if (arrowsToSpawn.Count < 1) AddSequence(_stage);
+        if (arrowsToSpawn.Count < 1) AddSequence(Mathf.Min(_stage, _sectionContainers.Sections.Count - 1));
 
         GameObject go = DequeuePrefab(out _spawnInterval, out Vector2 laneSpawnPos);
 

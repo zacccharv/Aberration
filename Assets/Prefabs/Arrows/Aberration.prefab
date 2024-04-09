@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aberration
       objectReference: {fileID: 0}
+    - target: {fileID: 807548525037607785, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 753263197, guid: 183e5937c830dc54f8ab386150ef635b, type: 3}
     - target: {fileID: 1264677298158527782, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -119,7 +123,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 544158960822703125, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
   m_PrefabInstance: {fileID: 4315718492375219587}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8929529783990992300
+--- !u!114 &3056701992290358548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4353220158386678166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e28bef3aa34254fb5a5e3a0894211f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a50c8452aaa1494b9c05fc4a54b89ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 3517449850484041450}
+  m_renderer: {fileID: 3517449850484041450}

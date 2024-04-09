@@ -13,9 +13,10 @@ public enum ScoreType
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance;
     [SerializeField] TextMeshProUGUI _scoreText;
-    public int score = 6, comboCount = 0, comboMultiplier = 1, stage = 0;
+    public static ScoreManager Instance;
+    public int stage;
+    public int score = 6, comboCount = 0, comboMultiplier = 1;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
     public GameObject stagePopup;
