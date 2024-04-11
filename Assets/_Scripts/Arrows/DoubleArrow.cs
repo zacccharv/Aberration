@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -12,6 +11,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
     [SerializeField] private int _pressCount;
     [SerializeField] private float _perfectInputDivider = 1.444f;
     private float _perfectInputTimer;
+    private bool _perfectInputStart;
 
     void OnEnable()
     {
@@ -73,12 +73,12 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.NoPress || interactionType == InteractionType.Long)
         {
-            Tower.TriggerFailedInput(interactionType);
+            Tower.TriggerFailedInput();
         }
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
-            if (_perfectInputTimer > Arrow.moveSpeed / _perfectInputDivider) Debug.Log("PERFECT INPUT DOUBLE");
+            if (_perfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
             else Debug.Log("IMPERFECT INPUT DOUBLE");
 
             Arrow.inputTriggered = true;
@@ -86,12 +86,12 @@ public class DoubleArrow : BaseArrow, IArrowStates
         }
         else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered)
         {
-            Tower.TriggerFailedInput(interactionType);
+            Tower.TriggerFailedInput();
             return;
         }
         else if (interactionType == InteractionType.Single && Arrow.inputTriggered)
         {
-            Tower.TriggerFailedInput(interactionType);
+            Tower.TriggerFailedInput();
             return;
         }
         else if (interactionType == InteractionType.Single && !Arrow.inputTriggered)
@@ -112,8 +112,16 @@ public class DoubleArrow : BaseArrow, IArrowStates
         SpawnPopUp(scoreType, true);
     }
 
-    public void FailState(InteractionType interactionType)
+    public void FailState()
     {
         FailState(Arrow, spriteRenderer, Tweens);
+    }
+
+    public void StartPerfectInput()
+    {
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow
+            || GameManager.Instance.gameState == GameState.Ended) return;
+
+        if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) _perfectInputStart = true;
     }
 }

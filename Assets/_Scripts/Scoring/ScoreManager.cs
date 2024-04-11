@@ -129,7 +129,7 @@ public class ScoreManager : MonoBehaviour
         _scoreText.text = score.ToString();
     }
 
-    void SubtractScore(InteractionType interactionType)
+    void SubtractScore()
     {
         subtraction = 3;
 

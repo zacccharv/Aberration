@@ -6,9 +6,10 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public delegate void SuccessDelegate(ScoreType scoreType, InteractionType interactionType);
-    public delegate void FailDelegate(InteractionType interactionType);
+
     public static event SuccessDelegate SuccessfulInput;
-    public static event FailDelegate FailedInput;
+    public static event Action StartInput;
+    public static event Action FailedInput;
 
     public static Tower Instance;
     public GameObject towerBase;
@@ -19,12 +20,14 @@ public class Tower : MonoBehaviour
     {
         InputManager_Z.GamePadButtonPressed += OnGamePadPressed;
         InputManager_Z.DirectionPressed += OnDirectionPressed;
+        InputManager_Z.InputStart += OnInputStart;
     }
 
     void OnDisable()
     {
         InputManager_Z.GamePadButtonPressed -= OnGamePadPressed;
         InputManager_Z.DirectionPressed -= OnDirectionPressed;
+        InputManager_Z.InputStart -= OnInputStart;
     }
 
     void Awake()
@@ -70,11 +73,11 @@ public class Tower : MonoBehaviour
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke(interactionType);
+            FailedInput?.Invoke();
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke(interactionType);
+            FailedInput?.Invoke();
         }
     }
 
@@ -100,12 +103,17 @@ public class Tower : MonoBehaviour
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke(interactionType);
+            FailedInput?.Invoke();
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke(interactionType);
+            FailedInput?.Invoke();
         }
+    }
+
+    public void OnInputStart(Direction directionPressed, InteractionType interactionType)
+    {
+        StartInput?.Invoke();
     }
 
     public void ChangeTower(Direction direction)
@@ -142,9 +150,9 @@ public class Tower : MonoBehaviour
         tower.ChangeTower(direction);
     }
 
-    public static void TriggerFailedInput(InteractionType interactionType)
+    public static void TriggerFailedInput()
     {
-        FailedInput?.Invoke(interactionType);
+        FailedInput?.Invoke();
     }
 
     public static bool IsInBounds(Vector2 position, Bounds bounds)

@@ -23,12 +23,12 @@ public class InputManager_Z : MonoBehaviour
 
     public static event DirectionPress DirectionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
+    public static event DirectionPress InputStart;
     public static event UIInputPress UIInputPressed;
 
     public void ArrowPressed(InputAction.CallbackContext context)
     {
         Direction direction = Direction.None;
-        InteractionType interactionType = InteractionType.NoPress;
 
         if (context.action.name.Contains("Up"))
         {
@@ -49,6 +49,11 @@ public class InputManager_Z : MonoBehaviour
 
         if (context.interaction is HoldInteraction)
         {
+            if (context.started)
+            {
+                InputStart?.Invoke(direction, InteractionType.Long);
+            }
+
             if (context.performed)
             {
                 DirectionPressed?.Invoke(direction, InteractionType.Long);
@@ -58,6 +63,7 @@ public class InputManager_Z : MonoBehaviour
         {
             if (context.started)
             {
+                InputStart?.Invoke(direction, InteractionType.Long);
                 DirectionPressed?.Invoke(direction, InteractionType.Single);
             }
             else if (context.performed)
@@ -70,7 +76,6 @@ public class InputManager_Z : MonoBehaviour
             if (context.performed)
             {
                 DirectionPressed?.Invoke(direction, InteractionType.Single);
-                Debug.Log(interactionType);
             }
         }
     }

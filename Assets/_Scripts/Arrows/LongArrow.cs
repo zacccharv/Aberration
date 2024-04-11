@@ -9,6 +9,7 @@ public class LongArrow : BaseArrow, IArrowStates
     [SerializeField] private List<SpriteRenderer> renderers = new();
     [SerializeField] private float _perfectInputDivider = 6;
     private float _perfectInputTimer;
+    private bool _perfectInputStart;
 
     void OnEnable()
     {
@@ -80,11 +81,11 @@ public class LongArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Single || interactionType == InteractionType.Double || interactionType == InteractionType.NoPress)
         {
-            Tower.TriggerFailedInput(interactionType);
+            Tower.TriggerFailedInput();
             return;
         }
 
-        if (_perfectInputTimer > ((Arrow.moveSpeed / _perfectInputDivider) + Arrow.moveSpeed)) Debug.Log("PERFECT INPUT LONG");
+        if (_perfectInputStart) Debug.Log("PERFECT INPUT LONG");
         else Debug.Log("IMMPERFECT INPUT LONG");
 
         foreach (var item in renderers)
@@ -103,9 +104,16 @@ public class LongArrow : BaseArrow, IArrowStates
         SpawnPopUp(scoreType, true);
     }
 
-    public void FailState(InteractionType interactionType)
+    public void FailState()
     {
         FailState(Arrow, renderers, Tweens);
     }
 
+    public void StartPerfectInput()
+    {
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow
+            || GameManager.Instance.gameState == GameState.Ended) return;
+
+        if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) _perfectInputStart = true;
+    }
 }

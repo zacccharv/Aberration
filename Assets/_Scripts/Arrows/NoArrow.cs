@@ -68,7 +68,7 @@ public class NoArrow : BaseArrow, IArrowStates
 
         if (interactionType != InteractionType.NoPress)
         {
-            Tower.TriggerFailedInput(interactionType);
+            Tower.TriggerFailedInput();
         }
 
         Arrow.inputTriggered = true;
@@ -76,7 +76,7 @@ public class NoArrow : BaseArrow, IArrowStates
         SpawnPopUp(scoreType, true);
     }
 
-    public void FailState(InteractionType interactionType)
+    public void FailState()
     {
         FailState(Arrow, m_renderer, Tweens);
     }

@@ -106,7 +106,7 @@ public class ArrowStateMachines : BaseArrow
 
             if (_arrow.pressCount == 2 && _inputTimer > _doublePressResetTime)
             {
-                Tower.TriggerFailedInput(interactionType);
+                Tower.TriggerFailedInput();
                 return;
             }
             else if (_arrow.pressCount == 2 && _inputTimer < _doublePressResetTime)
@@ -143,7 +143,7 @@ public class ArrowStateMachines : BaseArrow
         SpawnPopUp(scoreType, true);
 
     }
-    private void Fail(InteractionType interactionType)
+    private void Fail()
     {
         FailState(_arrow, m_renderer, _tweens);
     }

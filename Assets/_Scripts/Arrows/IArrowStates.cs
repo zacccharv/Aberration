@@ -8,5 +8,5 @@ public interface IArrowStates
 
     public void UpdateBounds();
     public void SuccessState(ScoreType scoreType, InteractionType interactionType);
-    public void FailState(InteractionType interactionType);
+    public void FailState();
 }

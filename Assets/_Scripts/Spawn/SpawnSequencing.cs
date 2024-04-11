@@ -51,7 +51,7 @@ public class SpawnSequencing : MonoBehaviour
     // NOTE Randomly rotate sequences each time
 
     #region Section 0
-    // NOTE (Stages) 1st  stage single arrows only
+    //  (Stages) 1st  stage single arrows only
     //  2rd  stage single arrows + mixup direction lanes
     #endregion
 

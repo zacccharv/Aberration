@@ -71,11 +71,11 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Double || interactionType == InteractionType.NoPress)
         {
-            Tower.TriggerFailedInput(interactionType);
+            Tower.TriggerFailedInput();
             return;
         }
 
-        if (_perfectInputTimer > Arrow.moveSpeed / _perfectInputDivider) Debug.Log("PERFECT INPUT SINGLE");
+        if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) Debug.Log("PERFECT INPUT SINGLE");
         else Debug.Log("IMPERFECT INPUT SINGLE");
 
         Arrow.inputTriggered = true;
@@ -92,7 +92,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         SpawnPopUp(scoreType, true);
     }
-    public void FailState(InteractionType interactionType)
+    public void FailState()
     {
         FailState(Arrow, spriteRenderer, Tweens);
     }
