@@ -7,6 +7,8 @@ public class LongArrow : BaseArrow, IArrowStates
     public Arrow Arrow { get; set; }
     [field: SerializeField] public List<Tween> Tweens { get; set; } = new();
     [SerializeField] private List<SpriteRenderer> renderers = new();
+    [SerializeField] private float _perfectInputDivider = 6;
+    private float _perfectInputTimer;
 
     void OnEnable()
     {
@@ -63,6 +65,11 @@ public class LongArrow : BaseArrow, IArrowStates
         {
             Arrow.boundsIndex = 1;
         }
+
+        if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
+        {
+            _perfectInputTimer += Time.deltaTime;
+        }
     }
 
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
@@ -76,6 +83,9 @@ public class LongArrow : BaseArrow, IArrowStates
             Tower.TriggerFailedInput(interactionType);
             return;
         }
+
+        if (_perfectInputTimer > ((Arrow.moveSpeed / _perfectInputDivider) + Arrow.moveSpeed)) Debug.Log("PERFECT INPUT LONG");
+        else Debug.Log("IMMPERFECT INPUT LONG");
 
         foreach (var item in renderers)
         {

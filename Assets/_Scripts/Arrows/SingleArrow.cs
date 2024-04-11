@@ -9,6 +9,8 @@ public class SingleArrow : BaseArrow, IArrowStates
     public List<Tween> Tweens { get; set; } = new();
 
     public SpriteRenderer spriteRenderer, numberRenderer;
+    [SerializeField] private float _perfectInputDivider = 1.7f;
+    private float _perfectInputTimer;
 
     void OnEnable()
     {
@@ -57,6 +59,11 @@ public class SingleArrow : BaseArrow, IArrowStates
         {
             Arrow.boundsIndex = 1;
         }
+
+        if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
+        {
+            _perfectInputTimer += Time.deltaTime;
+        }
     }
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
@@ -67,6 +74,9 @@ public class SingleArrow : BaseArrow, IArrowStates
             Tower.TriggerFailedInput(interactionType);
             return;
         }
+
+        if (_perfectInputTimer > Arrow.moveSpeed / _perfectInputDivider) Debug.Log("PERFECT INPUT SINGLE");
+        else Debug.Log("IMPERFECT INPUT SINGLE");
 
         Arrow.inputTriggered = true;
         SFXCollection.Instance.PlaySound(SFXType.Success);

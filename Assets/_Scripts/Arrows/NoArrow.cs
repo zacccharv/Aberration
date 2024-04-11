@@ -73,6 +73,7 @@ public class NoArrow : BaseArrow, IArrowStates
 
         Arrow.inputTriggered = true;
         SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+        SpawnPopUp(scoreType, true);
     }
 
     public void FailState(InteractionType interactionType)

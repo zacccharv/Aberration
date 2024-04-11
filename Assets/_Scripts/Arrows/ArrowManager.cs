@@ -70,7 +70,6 @@ public class ArrowManager : MonoBehaviour
 
         Instance._moveTimer += Time.deltaTime;
 
-
         if (Instance.interactableArrows.Count > 0 && Instance.interactableArrows[0] == null)
         {
             Instance.interactableArrows.RemoveAt(0);

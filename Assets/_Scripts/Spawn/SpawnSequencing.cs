@@ -36,12 +36,13 @@ public class SpawnSequencing : MonoBehaviour
     public static int _stage;
 
     [SerializeField] private SectionsContainer _sectionContainers;
+    [SerializeField] private int[] _randomLaneSpacings, _randomEmptySpacings;
     [SerializeField] private int _spawnCount;
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
     [SerializeField] private float _spawnInterval;
-    private int _every_5, _every_3, _swapInt;
 
+    private int _every_x, _swapLaneInt, _emptyCount, _swapEmptyInt;
     private float _spawnTimer;
 
     // TODO different sequences for each stage
@@ -114,43 +115,38 @@ public class SpawnSequencing : MonoBehaviour
         arrowStruct = arrowsToSpawn.Dequeue();
 
         // Lane randomization
-        if (Every_5_3())
+        if (Every_X(_randomLaneSpacings))
         {
             int rand = UnityEngine.Random.Range(0, 4);
 
             if (_stage > 4)
             {
-                lane = GetDirection(rand);
+                lane = (Direction)rand;
             }
             else if (arrowStruct.Interaction != InteractionType.Long && _stage > 2)
             {
-                lane = GetDirection(rand);
+                lane = (Direction)rand;
             }
             else if (arrowStruct.Interaction == InteractionType.Single && _stage > 0)
             {
-                lane = GetDirection(rand);
+                lane = (Direction)rand;
+            }
+
+            if (_swapEmptyInt == 0)
+            {
+                _swapEmptyInt = _randomEmptySpacings[UnityEngine.Random.Range(0, _randomEmptySpacings.Length)];
             }
 
             // aberration spawn
-            if (_stage > 6 && _swapInt % 5 == 0)
+            if (_stage > 6 && _emptyCount == _swapEmptyInt)
             {
                 arrowStruct = new() { Interaction = InteractionType.NoPress, Lane = lane, Arrow = lane };
+                _emptyCount = 0;
+                _swapEmptyInt = 0;
             }
 
             result = GetArrow(arrowStruct, lane);
 
-            static Direction GetDirection(int index)
-            {
-                Direction result = index switch
-                {
-                    0 => Direction.Up,
-                    1 => Direction.Right,
-                    2 => Direction.Down,
-                    3 => Direction.Left,
-                    _ => Direction.None,
-                };
-                return result;
-            }
         }
         else
         {
@@ -214,31 +210,21 @@ public class SpawnSequencing : MonoBehaviour
 
         return result;
     }
-    public bool Every_5_3()
+    public bool Every_X(int[] ints)
     {
-        if (_swapInt % 2 == 0)
+        if (_swapLaneInt == 0)
         {
-            _every_5++;
-
-            if (_every_5 == 5)
-            {
-                _every_5 = 0;
-                _swapInt++;
-
-                return true;
-            }
+            _swapLaneInt = ints[UnityEngine.Random.Range(0, ints.Length)];
         }
-        else if (_swapInt % 2 == 1)
+        _every_x++;
+
+        if (_every_x == _swapLaneInt)
         {
-            _every_3++;
+            _every_x = 0;
+            _swapLaneInt = 0;
+            _emptyCount++;
 
-            if (_every_3 == 3)
-            {
-                _every_3 = 0;
-                _swapInt++;
-
-                return true;
-            }
+            return true;
         }
 
         return false;

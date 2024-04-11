@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f24b44165b0fdc4098359b08af761d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perfectInputDivider: 1.4
   spriteRenderer: {fileID: 11650804172258245}
   numberRenderer: {fileID: 6066200747824664292}
   _pressCount: 0

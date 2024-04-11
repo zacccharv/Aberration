@@ -10,6 +10,8 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private int _pressCount;
+    [SerializeField] private float _perfectInputDivider = 1.444f;
+    private float _perfectInputTimer;
 
     void OnEnable()
     {
@@ -58,6 +60,11 @@ public class DoubleArrow : BaseArrow, IArrowStates
         {
             Arrow.boundsIndex = 1;
         }
+
+        if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
+        {
+            _perfectInputTimer += Time.deltaTime;
+        }
     }
 
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
@@ -71,6 +78,9 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
+            if (_perfectInputTimer > Arrow.moveSpeed / _perfectInputDivider) Debug.Log("PERFECT INPUT DOUBLE");
+            else Debug.Log("IMPERFECT INPUT DOUBLE");
+
             Arrow.inputTriggered = true;
             SFXCollection.Instance.PlaySound(SFXType.Success);
         }

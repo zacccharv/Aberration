@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275529396281795741, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 544158960822703125, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: m_Name
       value: Aberration
@@ -102,6 +106,14 @@ PrefabInstance:
     - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: direction
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: moveSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
+      propertyPath: spawnTime
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: interactionType

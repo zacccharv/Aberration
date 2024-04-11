@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
     public int subtraction;
     private int previousStage = 0;
     public List<GameObject> succesfulNumberPopup = new();
+    public bool _test;
 
     void OnEnable()
     {
@@ -45,6 +46,9 @@ public class ScoreManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        SpawnSequencing._stage = stage;
+        if (_test) score = 100000;
     }
 
     void Update()
@@ -52,7 +56,7 @@ public class ScoreManager : MonoBehaviour
         // Stage change popup
         // Blinks onto screen centered in top half of screen before fade out
 
-        stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
+        if (!_test) stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
 
         // LaneManager.Instance.moveThresholdFast = 1 - (.1f * stage);
         // LaneManager.Instance.moveThresholdFast = Mathf.Max(.2f, LaneManager.Instance.moveThresholdFast);

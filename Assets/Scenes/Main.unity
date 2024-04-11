@@ -1208,8 +1208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 560711256}
-  stage: 0
-  score: 1000000
+  stage: 7
+  score: 6
   comboCount: 0
   comboMultiplier: 1
   _secondsPerStage: 30
@@ -1221,6 +1221,7 @@ MonoBehaviour:
   - {fileID: 5358461779933278859, guid: 2a9a0c685c730d247b3fc92951e04e51, type: 3}
   - {fileID: 6303000459816313705, guid: c56c49f777d9cff47a001d9182f16c02, type: 3}
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
+  _test: 1
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
@@ -3330,6 +3331,8 @@ MonoBehaviour:
         - Lane: 3
           Arrow: 3
           Interaction: 0
+  _randomLaneSpacings: 0200000003000000
+  _randomEmptySpacings: 03000000040000000500000006000000
   _spawnCount: 0
   _test: 0
   _testSequenceIndex: 1
@@ -3460,7 +3463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 0
   menu: {fileID: 1755353551}
-  gameTime: 180
+  gameTime: 0
 --- !u!4 &1413673866
 Transform:
   m_ObjectHideFlags: 0

@@ -57,11 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: moveSpeed
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8731613096806539038, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
       propertyPath: spawnTime
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c62b3f472832c46a8f90265fb5ec38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perfectInputDivider: 1.4
   spriteRenderer: {fileID: 7603031117898791061}
   numberRenderer: {fileID: 4433083189952351668}
 --- !u!212 &7603031117898791061 stripped

@@ -17,6 +17,7 @@ public class ScorePopUp : MonoBehaviour
 
         if (_textMesh != null) _textMesh.DOFade(.9f, .3f);
         if (_img != null) _img.DOFade(.9f, .3f);
+
         transform.DOScale(transform.localScale * 2f, .5f);
         transform.DOMoveY(transform.position.y + .5f, .5f).OnComplete(() => Destroy(gameObject));
     }

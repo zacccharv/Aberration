@@ -147,8 +147,8 @@ MonoBehaviour:
   interactionType: 2
   direction: 0
   vectorDirection: {x: 0, y: 0}
-  spawnTime: 1.6
-  moveSpeed: 0.8
+  spawnTime: 2
+  moveSpeed: 1
   boundsIndex: 0
   inputTriggered: 0
   pressCount: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2921025da14822d4e9d8b9c023358929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perfectInputDivider: 1.4
   renderers:
   - {fileID: 1676117078050418326}
   - {fileID: 5530048438204590155}
