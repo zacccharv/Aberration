@@ -62,7 +62,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, InteractionType.NoPress, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && Arrow.boundsIndex == 0)
         {

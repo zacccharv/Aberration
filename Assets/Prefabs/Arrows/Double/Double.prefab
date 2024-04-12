@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f24b44165b0fdc4098359b08af761d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perfectInputDivider: 1.4
   spriteRenderer: {fileID: 11650804172258245}
   numberRenderer: {fileID: 6066200747824664292}
   _pressCount: 0
+  _perfectInputTime: 0.2
 --- !u!212 &6066200747824664292 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6859791688991600200, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}

@@ -9,7 +9,7 @@ public class SingleArrow : BaseArrow, IArrowStates
     public List<Tween> Tweens { get; set; } = new();
 
     public SpriteRenderer spriteRenderer, numberRenderer;
-    [SerializeField] private float _perfectInputDivider = 1.7f;
+    [SerializeField] private float _perfectInputTime = 1.7f;
     private float _perfectInputTimer;
 
     void OnEnable()
@@ -53,7 +53,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && Arrow.boundsIndex == 0)
         {
@@ -75,7 +75,7 @@ public class SingleArrow : BaseArrow, IArrowStates
             return;
         }
 
-        if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) Debug.Log("PERFECT INPUT SINGLE");
+        if (_perfectInputTimer > _perfectInputTime) Debug.Log("PERFECT INPUT SINGLE");
         else Debug.Log("IMPERFECT INPUT SINGLE");
 
         Arrow.inputTriggered = true;

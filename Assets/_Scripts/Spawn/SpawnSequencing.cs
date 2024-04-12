@@ -131,6 +131,10 @@ public class SpawnSequencing : MonoBehaviour
             {
                 lane = (Direction)rand;
             }
+            else if (_stage == 0)
+            {
+                lane = arrowStruct.Lane;
+            }
 
             if (_swapEmptyInt == 0)
             {

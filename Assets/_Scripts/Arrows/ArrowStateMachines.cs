@@ -83,7 +83,7 @@ public class ArrowStateMachines : BaseArrow
 
             _arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(_arrow.direction, Tower.Instance);
+            Tower.TriggerTowerChange(_arrow.direction, _arrow.interactionType, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && _arrow.boundsIndex == 0)
         {

@@ -9,7 +9,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private int _pressCount;
-    [SerializeField] private float _perfectInputDivider = 1.444f;
+    [SerializeField] private float _perfectInputTime;
     private float _perfectInputTimer;
     private bool _perfectInputStart;
 
@@ -51,7 +51,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
             int num = (int)Arrow.direction;
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, Tower.Instance);
 
             Tweens.Add(transform.DOScale(transform.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo));
             Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine));
@@ -123,6 +123,6 @@ public class DoubleArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) _perfectInputStart = true;
+        if (_perfectInputTimer > _perfectInputTime) _perfectInputStart = true;
     }
 }

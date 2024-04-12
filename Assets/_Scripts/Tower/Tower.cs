@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
     public GameObject towerBase;
     public Bounds destroyBounds, animationBounds, successBounds;
     private bool _noPress;
+    [SerializeField] private float _perfectTime;
 
     void OnEnable()
     {
@@ -44,11 +45,9 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        transform.DOScaleX(transform.localScale.x * 1.15f, .45f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
-        transform.DOScaleY(transform.localScale.y * 1.15f, .5f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+        ChangeInteraction(InteractionType.Single);
 
-        towerBase.transform.DOScaleY(towerBase.transform.localScale.y * 1.15f, .5f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
-        towerBase.transform.DOScaleX(towerBase.transform.localScale.x * 1.15f, .45f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+        towerBase.transform.DOScale(towerBase.transform.localScale.x * 1.15f, .5f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
     private void OnGamePadPressed(Direction directionPressed, InteractionType interactionType)
@@ -111,12 +110,12 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void OnInputStart(Direction directionPressed, InteractionType interactionType)
+    public void OnInputStart()
     {
         StartInput?.Invoke();
     }
 
-    public void ChangeTower(Direction direction)
+    private void ChangeTowerColor(Direction direction)
     {
         Color color = ArrowManager.Instance.arrowColors[4];
 
@@ -145,9 +144,39 @@ public class Tower : MonoBehaviour
         towerBase.GetComponent<SpriteRenderer>().DOColor(color, .25f);
     }
 
-    public static void TriggerTowerChange(Direction direction, Tower tower)
+    private void ChangeInteraction(InteractionType interactionType)
     {
-        tower.ChangeTower(direction);
+        DG.Tweening.Sequence sequence = DOTween.Sequence();
+
+        transform.localScale = new Vector3(1, 1);
+
+        if (interactionType == InteractionType.Single)
+        {
+            sequence.Play();
+
+            sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime).SetEase(Ease.InOutQuad));
+            sequence.Join(GetComponent<SpriteRenderer>().DOFade(1, _perfectTime));
+        }
+        else if (interactionType == InteractionType.Double)
+        {
+            sequence.Play();
+
+            sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime / 2).SetEase(Ease.Linear));
+            sequence.Join(GetComponent<SpriteRenderer>().DOFade(1, _perfectTime / 2));
+            sequence.SetLoops(2, LoopType.Restart);
+        }
+        else if (interactionType == InteractionType.Long)
+        {
+            sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime).SetEase(Ease.InOutQuad));
+            sequence.Join(GetComponent<SpriteRenderer>().DOFade(1, _perfectTime));
+            sequence.AppendInterval(1 - _perfectTime);
+        }
+    }
+
+    public static void TriggerTowerChange(Direction direction, InteractionType interactionType, Tower tower)
+    {
+        tower.ChangeTowerColor(direction);
+        tower.ChangeInteraction(interactionType);
     }
 
     public static void TriggerFailedInput()
