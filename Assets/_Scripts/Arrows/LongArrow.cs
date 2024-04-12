@@ -13,11 +13,13 @@ public class LongArrow : BaseArrow, IArrowStates
 
     void OnEnable()
     {
+        Tower.StartInput += OnInputStart;
         Tower.SuccessfulInput += SuccessState;
         Tower.FailedInput += FailState;
     }
     void OnDisable()
     {
+        Tower.StartInput -= OnInputStart;
         Tower.SuccessfulInput -= SuccessState;
         Tower.FailedInput -= FailState;
     }
@@ -109,10 +111,9 @@ public class LongArrow : BaseArrow, IArrowStates
         FailState(Arrow, renderers, Tweens);
     }
 
-    public void StartPerfectInput()
+    public void OnInputStart()
     {
-        if (ArrowManager.Instance.interactableArrows[0] != Arrow
-            || GameManager.Instance.gameState == GameState.Ended) return;
+        if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) _perfectInputStart = true;
     }

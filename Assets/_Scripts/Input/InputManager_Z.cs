@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -23,7 +24,7 @@ public class InputManager_Z : MonoBehaviour
 
     public static event DirectionPress DirectionPressed;
     public static event GamePadButtonPress GamePadButtonPressed;
-    public static event DirectionPress InputStart;
+    public static event Action InputStart;
     public static event UIInputPress UIInputPressed;
 
     public void ArrowPressed(InputAction.CallbackContext context)
@@ -51,7 +52,7 @@ public class InputManager_Z : MonoBehaviour
         {
             if (context.started)
             {
-                InputStart?.Invoke(direction, InteractionType.Long);
+                InputStart?.Invoke();
             }
 
             if (context.performed)
@@ -63,7 +64,7 @@ public class InputManager_Z : MonoBehaviour
         {
             if (context.started)
             {
-                InputStart?.Invoke(direction, InteractionType.Long);
+                InputStart?.Invoke();
                 DirectionPressed?.Invoke(direction, InteractionType.Single);
             }
             else if (context.performed)
@@ -103,6 +104,11 @@ public class InputManager_Z : MonoBehaviour
 
         if (context.interaction is HoldInteraction)
         {
+            if (context.started)
+            {
+                InputStart?.Invoke();
+            }
+
             if (context.performed)
             {
                 GamePadButtonPressed?.Invoke(direction, InteractionType.Long);
@@ -112,6 +118,7 @@ public class InputManager_Z : MonoBehaviour
         {
             if (context.started)
             {
+                InputStart?.Invoke();
                 GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
             }
             else if (context.performed)
