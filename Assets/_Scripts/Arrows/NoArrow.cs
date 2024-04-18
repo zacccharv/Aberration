@@ -6,7 +6,7 @@ public class NoArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
     public List<Tween> Tweens { get; set; } = new();
-    public bool PerfectInputStart { get; set; }
+    public bool PerfectInputStart { get; set; } = true;
 
     public SpriteRenderer m_renderer;
 

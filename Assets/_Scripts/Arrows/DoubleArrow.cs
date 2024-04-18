@@ -12,7 +12,6 @@ public class DoubleArrow : BaseArrow, IArrowStates
     [SerializeField] private int _pressCount;
     [SerializeField] private float _perfectInputTime;
     private float _perfectInputTimer;
-    private bool _perfectInputStart;
 
     void OnEnable()
     {
@@ -81,7 +80,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {// 
-            if (_perfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
+            if (PerfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
             else Debug.Log("IMPERFECT INPUT DOUBLE");
 
             Arrow.inputTriggered = true;
@@ -124,6 +123,6 @@ public class DoubleArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        if (_perfectInputTimer > _perfectInputTime) _perfectInputStart = true;
+        if (_perfectInputTimer > _perfectInputTime) PerfectInputStart = true;
     }
 }
