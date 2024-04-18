@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 560711256}
-  stage: 7
+  stage: 0
   score: 6
   comboCount: 0
   comboMultiplier: 1
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   - {fileID: 5358461779933278859, guid: 2a9a0c685c730d247b3fc92951e04e51, type: 3}
   - {fileID: 6303000459816313705, guid: c56c49f777d9cff47a001d9182f16c02, type: 3}
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
-  _test: 1
+  _test: 0
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
@@ -3613,9 +3613,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: fdbbcd999a9e88247a697616354fbfdd, type: 3}
-  m_Color: {r: 1, g: 0.9756724, b: 0.759434, a: 1}
+  m_Color: {r: 1, g: 0.9756724, b: 0.759434, a: 0.4627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3634,10 +3634,9 @@ Transform:
   m_GameObject: {fileID: 1534009617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1901165182}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3663,6 +3662,7 @@ MonoBehaviour:
   successBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
+  _perfectTime: 0.53
 --- !u!1 &1600339505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4297,7 +4297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1901165181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4338,7 +4338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fdbbcd999a9e88247a697616354fbfdd, type: 3}
   m_Color: {r: 1, g: 0.9756724, b: 0.759434, a: 1}
   m_FlipX: 0
@@ -4359,11 +4359,11 @@ Transform:
   m_GameObject: {fileID: 1901165180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0}
+  m_LocalScale: {x: 1.51, y: 1.51, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1534009619}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1936601930
 GameObject:
@@ -4629,7 +4629,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048819536
 GameObject:

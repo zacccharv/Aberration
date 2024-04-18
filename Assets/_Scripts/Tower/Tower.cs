@@ -66,6 +66,8 @@ public class Tower : MonoBehaviour
             }
             else
             {
+                // Check for perfect input start, if no reset combo
+                if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
                 SuccessfulInput?.Invoke(ScoreType.SinglePress, interactionType);
                 StartCoroutine(PressTimeOut());
             }
@@ -96,6 +98,8 @@ public class Tower : MonoBehaviour
             }
             else
             {
+                // Check for perfect input start, if no reset combo
+                if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
                 SuccessfulInput?.Invoke(ScoreType.SinglePress, interactionType);
                 StartCoroutine(PressTimeOut());
             }
@@ -115,6 +119,10 @@ public class Tower : MonoBehaviour
         StartInput?.Invoke();
     }
 
+    public static void TriggerFailedInput()
+    {
+        FailedInput?.Invoke();
+    }
     private void ChangeTowerColor(Direction direction)
     {
         Color color = ArrowManager.Instance.arrowColors[4];
@@ -177,11 +185,6 @@ public class Tower : MonoBehaviour
     {
         tower.ChangeTowerColor(direction);
         tower.ChangeInteraction(interactionType);
-    }
-
-    public static void TriggerFailedInput()
-    {
-        FailedInput?.Invoke();
     }
 
     public static bool IsInBounds(Vector2 position, Bounds bounds)

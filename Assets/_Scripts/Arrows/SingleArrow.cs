@@ -5,8 +5,8 @@ using UnityEngine;
 public class SingleArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
-
     public List<Tween> Tweens { get; set; } = new();
+    public bool PerfectInputStart { get; set; }
 
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private float _perfectInputTime = 1.7f;

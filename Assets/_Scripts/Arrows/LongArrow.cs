@@ -6,6 +6,7 @@ public class LongArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
     [field: SerializeField] public List<Tween> Tweens { get; set; } = new();
+    public bool PerfectInputStart { get; set; }
     [SerializeField] private List<SpriteRenderer> renderers = new();
     [SerializeField] private float _perfectInputDivider = 6;
     private float _perfectInputTimer;

@@ -6,6 +6,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
     public List<Tween> Tweens { get; set; } = new();
+    public bool PerfectInputStart { get; set; }
 
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private int _pressCount;
@@ -79,7 +80,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
         }
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
-        {
+        {// 
             if (_perfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
             else Debug.Log("IMPERFECT INPUT DOUBLE");
 

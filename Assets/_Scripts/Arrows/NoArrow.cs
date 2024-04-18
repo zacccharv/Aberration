@@ -5,8 +5,8 @@ using UnityEngine;
 public class NoArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
-
     public List<Tween> Tweens { get; set; } = new();
+    public bool PerfectInputStart { get; set; }
 
     public SpriteRenderer m_renderer;
 
