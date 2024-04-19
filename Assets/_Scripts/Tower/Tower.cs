@@ -111,6 +111,7 @@ public class Tower : MonoBehaviour
             {
                 // Check for perfect input start, if no reset combo
                 if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
+
                 InputEvent?.Invoke(ScoreType.Press, interactionType);
                 StartCoroutine(PressTimeOut());
             }
@@ -118,10 +119,12 @@ public class Tower : MonoBehaviour
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             InputEvent?.Invoke(ScoreType.Fail, interactionType);
+            StartCoroutine(PressTimeOut());
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             InputEvent?.Invoke(ScoreType.Fail, interactionType);
+            StartCoroutine(PressTimeOut());
         }
     }
 
@@ -186,9 +189,10 @@ public class Tower : MonoBehaviour
         }
         else if (interactionType == InteractionType.Long)
         {
-            sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime).SetEase(Ease.InOutQuad));
-            sequence.Join(GetComponent<SpriteRenderer>().DOFade(1, _perfectTime));
-            sequence.AppendInterval(1 - _perfectTime);
+            sequence.Play();
+
+            sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime * 1.5f).SetEase(Ease.InOutQuad));
+            sequence.Join(GetComponent<SpriteRenderer>().DOFade(1, _perfectTime * 1.5f));
         }
     }
 

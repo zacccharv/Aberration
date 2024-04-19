@@ -84,11 +84,10 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
-            if (PerfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
-            else Debug.Log("IMPERFECT INPUT DOUBLE");
+            // if (PerfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
+            // else Debug.Log("IMPERFECT INPUT DOUBLE");
 
             Arrow.inputTriggered = true;
-            SFXCollection.Instance.PlaySound(SFXType.Success);
         }
         else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered)
         {

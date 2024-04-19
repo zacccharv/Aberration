@@ -8,7 +8,7 @@ public class LongArrow : BaseArrow, IArrowStates
     [field: SerializeField] public List<Tween> Tweens { get; set; } = new();
     public bool PerfectInputStart { get; set; }
     [SerializeField] private List<SpriteRenderer> renderers = new();
-    [SerializeField] private float _perfectInputDivider = 6;
+    [SerializeField] private float _perfectInputTime;
     private float _perfectInputTimer;
 
     void OnEnable()
@@ -60,7 +60,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, InteractionType.NoPress, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, InteractionType.Long, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && Arrow.boundsIndex == 0)
         {
@@ -91,8 +91,8 @@ public class LongArrow : BaseArrow, IArrowStates
             return;
         }
 
-        if (PerfectInputStart) Debug.Log("PERFECT INPUT LONG");
-        else Debug.Log("IMMPERFECT INPUT LONG");
+        // if (PerfectInputStart) Debug.Log("PERFECT INPUT LONG");
+        // else Debug.Log("IMMPERFECT INPUT LONG");
 
         foreach (var item in renderers)
         {
@@ -106,7 +106,6 @@ public class LongArrow : BaseArrow, IArrowStates
             }
         ));
 
-        SFXCollection.Instance.PlaySound(SFXType.Success);
         SpawnPopUp(scoreType, true);
     }
 
@@ -119,6 +118,6 @@ public class LongArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        if (_perfectInputTimer > (Arrow.moveSpeed / _perfectInputDivider)) PerfectInputStart = true;
+        if (_perfectInputTimer > _perfectInputTime) PerfectInputStart = true;
     }
 }

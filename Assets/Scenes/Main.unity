@@ -1188,6 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 614974770}
   - component: {fileID: 614974769}
+  - component: {fileID: 614974771}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -1208,12 +1209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 560711256}
-  stage: 0
+  stage: 4
   score: 6
   comboCount: 0
   comboMultiplier: 1
-  comboUp: 0
-  comboDown: 0
+  comboType: 0
   _secondsPerStage: 30
   scoreNumberPopup: {fileID: 1752149999255031554, guid: d42deedb7675e8f439420dc91980e5e1, type: 3}
   stagePopup: {fileID: 1752149999255031554, guid: 58eb38f000f5fcd41a3dc4c07348ce13, type: 3}
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   - {fileID: 6303000459816313705, guid: c56c49f777d9cff47a001d9182f16c02, type: 3}
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
   - {fileID: 2326156767393386046, guid: b4816020664c0914e84e5afe7294e6e0, type: 3}
-  _test: 0
+  _test: 1
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,6 +1240,18 @@ Transform:
   m_Father: {fileID: 571945704}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &614974771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614974768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bbd04389a46463408fc8716894fab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643251946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,6 +2609,7 @@ GameObject:
   - component: {fileID: 1094241805}
   - component: {fileID: 1094241806}
   - component: {fileID: 1094241803}
+  - component: {fileID: 1094241807}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -2812,6 +2825,18 @@ MonoBehaviour:
   _inputDelay: 0
   _pressCount: 0
   defaultHoldTime: 1
+--- !u!114 &1094241807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094241802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bbd04389a46463408fc8716894fab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1205363727
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -142,10 +141,16 @@ public class ScoreManager : MonoBehaviour
         if (comboMultiplier != _previousComboMultiplier && _previousComboMultiplier == 1)
         {
             comboType = 1;
+            SFXCollection.Instance.PlaySound(SFXType.ComboUp);
         }
-        if (comboCount == 1 && score > 7)
+        else if (comboCount == 1 && score > 7)
         {
             comboType = 2;
+            SFXCollection.Instance.PlaySound(SFXType.ComboReset);
+        }
+        else
+        {
+            SFXCollection.Instance.PlaySound(SFXType.Success);
         }
 
         _previousComboMultiplier = comboMultiplier;

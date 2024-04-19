@@ -79,11 +79,10 @@ public class SingleArrow : BaseArrow, IArrowStates
             return;
         }
 
-        if (perfectInputTimer > perfectInputTime) Debug.Log("PERFECT INPUT SINGLE");
-        else Debug.Log("IMPERFECT INPUT SINGLE");
+        // if (perfectInputTimer > perfectInputTime) Debug.Log("PERFECT INPUT SINGLE");
+        // else Debug.Log("IMPERFECT INPUT SINGLE");
 
         Arrow.inputTriggered = true;
-        SFXCollection.Instance.PlaySound(SFXType.Success);
 
         Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
         Tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
