@@ -6,10 +6,10 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public delegate void SuccessDelegate(ScoreType scoreType, InteractionType interactionType);
+    public delegate void InputDelegate(ScoreType scoreType, InteractionType interactionType);
 
-    public static event SuccessDelegate SuccessfulInput;
+    public static event InputDelegate InputEvent;
     public static event Action StartInput;
-    public static event Action FailedInput;
 
     public static Tower Instance;
     public GameObject towerBase;
@@ -62,23 +62,29 @@ public class Tower : MonoBehaviour
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
-                SuccessfulInput?.Invoke(ScoreType.Empty, interactionType);
+                InputEvent?.Invoke(ScoreType.Empty, interactionType);
+            }
+            else if (interactionType == InteractionType.Single)
+            {
+                InputEvent?.Invoke(ScoreType.Press, interactionType);
+                StartCoroutine(PressTimeOut());
             }
             else
             {
                 // Check for perfect input start, if no reset combo
                 if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
-                SuccessfulInput?.Invoke(ScoreType.SinglePress, interactionType);
+
+                InputEvent?.Invoke(ScoreType.Press, interactionType);
                 StartCoroutine(PressTimeOut());
             }
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke();
+            InputEvent?.Invoke(ScoreType.Fail, interactionType);
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke();
+            InputEvent?.Invoke(ScoreType.Fail, interactionType);
         }
     }
 
@@ -94,23 +100,28 @@ public class Tower : MonoBehaviour
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
-                SuccessfulInput?.Invoke(ScoreType.Empty, interactionType);
+                InputEvent?.Invoke(ScoreType.Empty, interactionType);
+            }
+            else if (interactionType == InteractionType.Single)
+            {
+                InputEvent?.Invoke(ScoreType.Press, interactionType);
+                StartCoroutine(PressTimeOut());
             }
             else
             {
                 // Check for perfect input start, if no reset combo
                 if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
-                SuccessfulInput?.Invoke(ScoreType.SinglePress, interactionType);
+                InputEvent?.Invoke(ScoreType.Press, interactionType);
                 StartCoroutine(PressTimeOut());
             }
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke();
+            InputEvent?.Invoke(ScoreType.Fail, interactionType);
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            FailedInput?.Invoke();
+            InputEvent?.Invoke(ScoreType.Fail, interactionType);
         }
     }
 
@@ -119,9 +130,9 @@ public class Tower : MonoBehaviour
         StartInput?.Invoke();
     }
 
-    public static void TriggerFailedInput()
+    public static void TriggerFailedInput(InteractionType interactionType)
     {
-        FailedInput?.Invoke();
+        InputEvent?.Invoke(ScoreType.Fail, interactionType);
     }
     private void ChangeTowerColor(Direction direction)
     {

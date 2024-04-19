@@ -174,8 +174,8 @@ TextureImporter:
       name: Popup_example_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 96
+        y: 32
         width: 48
         height: 32
       alignment: 0
@@ -195,7 +195,7 @@ TextureImporter:
       name: Popup_example_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 0
         y: 0
         width: 48
         height: 32
@@ -208,6 +208,27 @@ TextureImporter:
       bones: []
       spriteID: 3bbfc2c8a894686449ff9f2e4c14bdbd
       internalID: 202504909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Popup_example_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee1da7787c1f2d4a826b419895a0ebd
+      internalID: -2092537729
       vertices: []
       indices: 
       edges: []
@@ -227,6 +248,7 @@ TextureImporter:
       Popup_example_1: 869297279
       Popup_example_2: 1741757101
       Popup_example_3: 202504909
+      Popup_example_4: -2092537729
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

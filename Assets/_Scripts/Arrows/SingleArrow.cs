@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -6,21 +7,18 @@ public class SingleArrow : BaseArrow, IArrowStates
 {
     public Arrow Arrow { get; set; }
     public List<Tween> Tweens { get; set; } = new();
-    public bool PerfectInputStart { get; set; } = true;
+    public bool PerfectInputStart { get; set; }
 
     public SpriteRenderer spriteRenderer, numberRenderer;
-    [SerializeField] private float _perfectInputTime = 1.7f;
-    private float _perfectInputTimer;
+    public float perfectInputTime = 1.7f, perfectInputTimer;
 
     void OnEnable()
     {
-        Tower.SuccessfulInput += SuccessState;
-        Tower.FailedInput += FailState;
+        Tower.InputEvent += SetState;
     }
     void OnDisable()
     {
-        Tower.SuccessfulInput -= SuccessState;
-        Tower.FailedInput -= FailState;
+        Tower.InputEvent -= SetState;
     }
 
     void Start()
@@ -28,7 +26,6 @@ public class SingleArrow : BaseArrow, IArrowStates
         Arrow = GetComponent<Arrow>();
         spriteRenderer.color = ArrowManager.Instance.arrowColors[(int)Arrow.direction];
     }
-
     void Update()
     {
         UpdateBounds();
@@ -62,20 +59,27 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
         {
-            _perfectInputTimer += Time.deltaTime;
+            perfectInputTimer += Time.deltaTime;
         }
     }
+
+    public void SetState(ScoreType scoreType, InteractionType interactionType)
+    {
+        if (scoreType == ScoreType.Press) SuccessState(scoreType, interactionType);
+        else if (scoreType != ScoreType.Press) FailState();
+    }
+
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (interactionType == InteractionType.Double || interactionType == InteractionType.NoPress)
         {
-            Tower.TriggerFailedInput();
+            Tower.TriggerFailedInput(interactionType);
             return;
         }
 
-        if (_perfectInputTimer > _perfectInputTime) Debug.Log("PERFECT INPUT SINGLE");
+        if (perfectInputTimer > perfectInputTime) Debug.Log("PERFECT INPUT SINGLE");
         else Debug.Log("IMPERFECT INPUT SINGLE");
 
         Arrow.inputTriggered = true;
@@ -92,6 +96,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         SpawnPopUp(scoreType, true);
     }
+
     public void FailState()
     {
         FailState(Arrow, spriteRenderer, Tweens);

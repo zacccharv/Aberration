@@ -89,7 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7603031117898791061}
   numberRenderer: {fileID: 4433083189952351668}
-  _perfectInputTime: 0.55
+  perfectInputTime: 0.4
+  perfectInputTimer: 0
 --- !u!212 &7603031117898791061 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 807548525037607785, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}

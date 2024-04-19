@@ -1,12 +1,11 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public enum ScoreType
 {
-    SinglePress,
-    DoublePress,
-    LongPress,
+    Press,
     Empty,
     Fail
 }
@@ -17,24 +16,25 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
     public int stage;
     public int score = 6, comboCount = 0, comboMultiplier = 1;
+    [HideInInspector] public int comboType = 0;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
     public GameObject stagePopup;
     public int subtraction;
+    private int _previousComboMultiplier = 1;
     private int previousStage = 0;
     public List<GameObject> succesfulNumberPopup = new();
     public bool _test;
 
     void OnEnable()
     {
-        Tower.SuccessfulInput += AddScore;
-        Tower.FailedInput += SubtractScore;
+        Tower.InputEvent += SetScoreType;
     }
     void OnDisable()
     {
-        Tower.SuccessfulInput -= AddScore;
-        Tower.FailedInput -= SubtractScore;
+        Tower.InputEvent -= SetScoreType;
     }
+
 
     void Awake()
     {
@@ -49,6 +49,12 @@ public class ScoreManager : MonoBehaviour
 
         SpawnSequencing._stage = stage;
         if (_test) score = 100000;
+    }
+
+    private void SetScoreType(ScoreType scoreType, InteractionType interactionType)
+    {
+        if (scoreType == ScoreType.Press) AddScore(interactionType);
+        else if (scoreType == ScoreType.Fail) SubtractScore();
     }
 
     void Update()
@@ -70,14 +76,23 @@ public class ScoreManager : MonoBehaviour
         previousStage = stage;
     }
 
-    void AddScore(ScoreType scoreType, InteractionType _)
+    void AddScore(InteractionType interactionType)
     {
-        if (scoreType == ScoreType.Empty
-            || ArrowManager.Instance.interactableArrows[0].inputTriggered
+        if (ArrowManager.Instance.interactableArrows[0].inputTriggered
             || ArrowManager.Instance.interactableArrows[0].pressCount == 1
             || GameManager.Instance.gameState == GameState.Ended)
         {
             return;
+        }
+
+        if (interactionType == InteractionType.Single && ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow _))
+        {
+            SingleArrow singleArrow = ArrowManager.Instance.interactableArrows[0].GetComponent<SingleArrow>();
+
+            if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime)
+            {
+                comboCount = 0;
+            }
         }
 
         comboCount++;
@@ -124,6 +139,16 @@ public class ScoreManager : MonoBehaviour
             comboMultiplier = 1;
         }
 
+        if (comboMultiplier != _previousComboMultiplier && _previousComboMultiplier == 1)
+        {
+            comboType = 1;
+        }
+        if (comboCount == 1 && score > 7)
+        {
+            comboType = 2;
+        }
+
+        _previousComboMultiplier = comboMultiplier;
         score += 5 * comboMultiplier;
 
         _scoreText.text = score.ToString();

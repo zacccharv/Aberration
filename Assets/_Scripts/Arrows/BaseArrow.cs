@@ -26,6 +26,7 @@ public class BaseArrow : MonoBehaviour
 
         SpawnPopUp(ScoreType.Fail, false);
     }
+
     public void FailState(Arrow arrow, List<SpriteRenderer> spriteRenderers, List<Tween> tweens)
     {
         if (ArrowManager.Instance.interactableArrows[0] != arrow || GameManager.Instance.gameState == GameState.Ended) return;
@@ -63,7 +64,7 @@ public class BaseArrow : MonoBehaviour
                 GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
                 popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"YES");
             }
-            else if (scoreType == ScoreType.SinglePress)
+            else if (scoreType == ScoreType.Press)
             {
                 Instantiate(ScoreManager.Instance.succesfulNumberPopup[popUpNum], transform.position, Quaternion.identity);
                 // popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");

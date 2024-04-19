@@ -7,6 +7,7 @@ public class ScorePopUp : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textMesh;
     [SerializeField] private Image _img;
+    private float _doScaleScale = 2;
 
     void Start()
     {
@@ -16,9 +17,27 @@ public class ScorePopUp : MonoBehaviour
         }
 
         if (_textMesh != null) _textMesh.DOFade(.9f, .3f);
-        if (_img != null) _img.DOFade(.9f, .3f);
+        if (_img != null)
+        {
+            _img.DOFade(.9f, .3f);
 
-        transform.DOScale(transform.localScale * 2f, .5f);
+            if (ScoreManager.Instance.comboType == 1)
+            {
+                Debug.Log("I Am Yellow");
+                _img.color = Color.yellow;
+                _doScaleScale = 3;
+                ScoreManager.Instance.comboType = 0;
+            }
+            else if (ScoreManager.Instance.comboType == 2)
+            {
+                Debug.Log($"I Am Magenta, combo multiplier {ScoreManager.Instance.comboMultiplier}");
+                _img.color = Color.magenta;
+                _doScaleScale = 4;
+                ScoreManager.Instance.comboType = 0;
+            }
+        }
+
+        transform.DOScale(transform.localScale * _doScaleScale, .5f);
         transform.DOMoveY(transform.position.y + .5f, .5f).OnComplete(() => Destroy(gameObject));
     }
 }

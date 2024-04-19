@@ -8,6 +8,7 @@ public interface IArrowStates
     public bool PerfectInputStart { get; set; }
 
     public void UpdateBounds();
+    public void SetState(ScoreType scoreType, InteractionType interactionType);
     public void SuccessState(ScoreType scoreType, InteractionType interactionType);
     public void FailState();
 }

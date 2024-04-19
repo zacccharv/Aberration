@@ -12,13 +12,11 @@ public class NoArrow : BaseArrow, IArrowStates
 
     void OnEnable()
     {
-        Tower.SuccessfulInput += SuccessState;
-        Tower.FailedInput += FailState;
+        Tower.InputEvent += SetState;
     }
     void OnDisable()
     {
-        Tower.SuccessfulInput -= SuccessState;
-        Tower.FailedInput -= FailState;
+        Tower.InputEvent -= SetState;
     }
     void Awake()
     {
@@ -62,13 +60,19 @@ public class NoArrow : BaseArrow, IArrowStates
         }
     }
 
+    public void SetState(ScoreType scoreType, InteractionType interactionType)
+    {
+        if (scoreType == ScoreType.Empty) SuccessState(scoreType, interactionType);
+        else if (scoreType != ScoreType.Empty) FailState();
+    }
+
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
         if (interactionType != InteractionType.NoPress)
         {
-            Tower.TriggerFailedInput();
+            Tower.TriggerFailedInput(interactionType);
         }
 
         Arrow.inputTriggered = true;
@@ -81,4 +85,5 @@ public class NoArrow : BaseArrow, IArrowStates
     {
         FailState(Arrow, m_renderer, Tweens);
     }
+
 }

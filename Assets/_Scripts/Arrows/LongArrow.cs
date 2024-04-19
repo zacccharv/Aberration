@@ -14,14 +14,12 @@ public class LongArrow : BaseArrow, IArrowStates
     void OnEnable()
     {
         Tower.StartInput += OnInputStart;
-        Tower.SuccessfulInput += SuccessState;
-        Tower.FailedInput += FailState;
+        Tower.InputEvent += SetState;
     }
     void OnDisable()
     {
         Tower.StartInput -= OnInputStart;
-        Tower.SuccessfulInput -= SuccessState;
-        Tower.FailedInput -= FailState;
+        Tower.InputEvent -= SetState;
     }
 
     void Start()
@@ -74,6 +72,12 @@ public class LongArrow : BaseArrow, IArrowStates
             _perfectInputTimer += Time.deltaTime;
         }
     }
+    public void SetState(ScoreType scoreType, InteractionType interactionType)
+    {
+        if (scoreType == ScoreType.Press) SuccessState(scoreType, interactionType);
+        else if (scoreType != ScoreType.Press) FailState();
+
+    }
 
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
@@ -83,7 +87,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Single || interactionType == InteractionType.Double || interactionType == InteractionType.NoPress)
         {
-            Tower.TriggerFailedInput();
+            Tower.TriggerFailedInput(interactionType);
             return;
         }
 

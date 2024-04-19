@@ -16,14 +16,12 @@ public class DoubleArrow : BaseArrow, IArrowStates
     void OnEnable()
     {
         Tower.StartInput += OnInputStart;
-        Tower.SuccessfulInput += SuccessState;
-        Tower.FailedInput += FailState;
+        Tower.InputEvent += SetState;
     }
     void OnDisable()
     {
         Tower.StartInput -= OnInputStart;
-        Tower.SuccessfulInput -= SuccessState;
-        Tower.FailedInput -= FailState;
+        Tower.InputEvent -= SetState;
     }
 
     void Start()
@@ -69,17 +67,23 @@ public class DoubleArrow : BaseArrow, IArrowStates
         }
     }
 
+    public void SetState(ScoreType scoreType, InteractionType interactionType)
+    {
+        if (scoreType == ScoreType.Press) SuccessState(scoreType, interactionType);
+        else if (scoreType != ScoreType.Press) FailState();
+    }
+
     public void SuccessState(ScoreType scoreType, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended || scoreType == ScoreType.Empty) return;
 
         if (interactionType == InteractionType.NoPress || interactionType == InteractionType.Long)
         {
-            Tower.TriggerFailedInput();
+            Tower.TriggerFailedInput(interactionType);
         }
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
-        {// 
+        {
             if (PerfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
             else Debug.Log("IMPERFECT INPUT DOUBLE");
 
@@ -88,12 +92,12 @@ public class DoubleArrow : BaseArrow, IArrowStates
         }
         else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered)
         {
-            Tower.TriggerFailedInput();
+            Tower.TriggerFailedInput(interactionType);
             return;
         }
         else if (interactionType == InteractionType.Single && Arrow.inputTriggered)
         {
-            Tower.TriggerFailedInput();
+            Tower.TriggerFailedInput(interactionType);
             return;
         }
         else if (interactionType == InteractionType.Single && !Arrow.inputTriggered)
