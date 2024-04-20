@@ -8,6 +8,8 @@ public class LongArrow : BaseArrow, IArrowStates
     [field: SerializeField] public List<Tween> Tweens { get; set; } = new();
     public bool PerfectInputStart { get; set; }
     [SerializeField] private List<SpriteRenderer> renderers = new();
+
+    // TODO Have animation Single Long Flash instead of single long expand
     [SerializeField] private float _perfectInputTime;
     private float _perfectInputTimer;
 
@@ -72,6 +74,7 @@ public class LongArrow : BaseArrow, IArrowStates
             _perfectInputTimer += Time.deltaTime;
         }
     }
+
     public void SetState(ScoreType scoreType, InteractionType interactionType)
     {
         if (scoreType == ScoreType.Press) SuccessState(scoreType, interactionType);
