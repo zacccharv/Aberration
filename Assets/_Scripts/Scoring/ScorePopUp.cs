@@ -23,14 +23,12 @@ public class ScorePopUp : MonoBehaviour
 
             if (ScoreManager.Instance.comboType == 1)
             {
-                Debug.Log("I Am Yellow");
                 _img.color = Color.yellow;
                 _doScaleScale = 3;
                 ScoreManager.Instance.comboType = 0;
             }
             else if (ScoreManager.Instance.comboType == 2)
             {
-                Debug.Log($"I Am Magenta, combo multiplier {ScoreManager.Instance.comboMultiplier}");
                 _img.color = Color.magenta;
                 _doScaleScale = 4;
                 ScoreManager.Instance.comboType = 0;
