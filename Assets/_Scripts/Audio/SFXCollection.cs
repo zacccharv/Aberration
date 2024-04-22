@@ -8,7 +8,8 @@ public enum SFXType
     Fail,
     QuietSuccess,
     ComboUp,
-    ComboReset
+    ComboReset,
+    PerfectSuccess
 }
 
 [RequireComponent(typeof(DontDestroy))]
@@ -16,6 +17,7 @@ public class SFXCollection : MonoBehaviour
 {
     public static SFXCollection Instance;
     [SerializeField] AudioSource _audioSource;
+    public List<AudioClip> PerfectSounds = new();
     public List<AudioClip> SuccessSounds = new();
     public List<AudioClip> SuccessNoneSounds = new();
     public List<AudioClip> FailSounds = new();
@@ -23,6 +25,7 @@ public class SFXCollection : MonoBehaviour
     public float initialVolume;
     public float lowerVolume;
     private float originalPitch;
+
 
     void Start()
     {
@@ -40,6 +43,10 @@ public class SFXCollection : MonoBehaviour
         if (sound == SFXType.Success)
         {
             clips = SuccessSounds;
+        }
+        else if (sound == SFXType.PerfectSuccess)
+        {
+            clips = PerfectSounds;
         }
         else if (sound == SFXType.SuccessNone)
         {

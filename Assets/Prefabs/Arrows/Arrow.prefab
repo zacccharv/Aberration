@@ -63,6 +63,7 @@ MonoBehaviour:
   direction: 0
   vectorDirection: {x: 0, y: 0}
   spawnTime: 0.6
+  moveSpeed: 0
   boundsIndex: 0
   inputTriggered: 0
   pressCount: 0
@@ -152,8 +153,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1312732559
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 813239109, guid: 4a37ef9c282934a4e913121ffdf309ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -236,8 +237,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1312732559
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: -304428200, guid: efa0d11b2f0dd864d867bc1461cea659, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

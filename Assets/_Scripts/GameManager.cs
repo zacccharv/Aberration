@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         InputManager_Z.UIInputPressed += EscCheck;
     }
 
-    void OnDrawGizmos()
+    void OnDisable()
     {
         InputManager_Z.UIInputPressed -= EscCheck;
     }
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         gameTime += Time.deltaTime;
     }
 
-    public void OnGameStateChange(GameState gameState)
+    public void ChangeGameStateChange(GameState gameState)
     {
         this.gameState = gameState;
         GameStateChange?.Invoke(gameState);

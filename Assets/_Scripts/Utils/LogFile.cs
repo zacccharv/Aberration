@@ -9,7 +9,6 @@ public class LogFile : MonoBehaviour
     void Start()
     {
         _path = Application.dataPath + "/log.txt";
-        Debug.Log(_path);
     }
 
     public void WriteToLog(string message)

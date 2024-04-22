@@ -187,11 +187,11 @@ public class Tower : MonoBehaviour
             sequence.Play();
 
             // sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime / 2).SetEase(Ease.Linear));            sequence.Append(GetComponent<SpriteRenderer>().DOFade(.2f, _perfectTime / 4).SetEase(Ease.InOutQuad));
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 2 / 3).SetEase(Ease.InOutQuad));
-            sequence.Join(transform.DOScale(3.5f, _perfectTime / 2 / 3).SetEase(Ease.InOutQuad));
-            sequence.AppendInterval(_perfectTime / 2 / 3);
-            sequence.Join(transform.DOScale(4, _perfectTime / 2 / 3).SetEase(Ease.InOutQuad));
-            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 2 / 3).SetEase(Ease.InOutQuad));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 2 / 4).SetEase(Ease.InOutQuad));
+            sequence.Join(transform.DOScale(3.5f, _perfectTime / 2 / 4).SetEase(Ease.InOutQuad));
+            sequence.AppendInterval(_perfectTime / 2 / 4);
+            sequence.Join(transform.DOScale(4, _perfectTime / 2 / 4).SetEase(Ease.InOutQuad));
+            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 2 / 4).SetEase(Ease.InOutQuad));
 
             sequence.SetLoops(2, LoopType.Restart);
         }
@@ -199,7 +199,6 @@ public class Tower : MonoBehaviour
         {
             sequence.Play();
 
-            // sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime * 1.5f).SetEase(Ease.InOutQuad));            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 4).SetEase(Ease.InOutQuad));
             sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 2 / 3).SetEase(Ease.InOutSine));
             sequence.Join(transform.DOScale(3.5f, _perfectTime / 8).SetEase(Ease.InOutSine));
             sequence.AppendInterval(_perfectTime * 2 / 4 * 2);

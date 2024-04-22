@@ -184,7 +184,7 @@ MonoBehaviour:
   - {fileID: 1676117078050418326}
   - {fileID: 5530048438204590155}
   - {fileID: 807548525037607785}
-  _perfectInputTime: 0.6
+  _perfectInputTime: 0.7
 --- !u!1 &2397454999976736909
 GameObject:
   m_ObjectHideFlags: 0

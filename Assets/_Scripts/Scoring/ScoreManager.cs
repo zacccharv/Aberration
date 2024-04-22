@@ -14,8 +14,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _scoreText;
     public static ScoreManager Instance;
     public int stage;
-    public int score = 6, comboCount = 0, comboMultiplier = 1;
-    [HideInInspector] public int comboType = 0;
+    public int score = 6, maxScore = 0, comboCount = 0, comboMultiplier = 1;
+    [HideInInspector] public int comboType = -1;
     public int _secondsPerStage;
     public GameObject scoreNumberPopup;
     public GameObject stagePopup;
@@ -143,7 +143,7 @@ public class ScoreManager : MonoBehaviour
             comboType = 1;
             SFXCollection.Instance.PlaySound(SFXType.ComboUp);
         }
-        else if (comboCount == 1 && score > 7)
+        else if (comboCount == 1 && comboType != -1) // if combo started and then reset
         {
             comboType = 2;
             SFXCollection.Instance.PlaySound(SFXType.ComboReset);
@@ -156,12 +156,18 @@ public class ScoreManager : MonoBehaviour
         _previousComboMultiplier = comboMultiplier;
         score += 5 * comboMultiplier;
 
+        if (score > maxScore)
+        {
+            maxScore = score;
+        }
+
         _scoreText.text = score.ToString();
     }
 
     void SubtractScore()
     {
         subtraction = 3;
+        comboType = -1;
 
         subtraction = (int)Mathf.Pow(2, stage + 1);
 
@@ -181,16 +187,12 @@ public class ScoreManager : MonoBehaviour
 
         if (score == 0)
         {
-            GameManager.Instance.OnGameStateChange(GameState.Ended);
+            GameManager.Instance.ChangeGameStateChange(GameState.Ended);
         }
 
         _scoreText.text = score.ToString();
     }
 
-    // private void SpawnMultiplierIndicator(int index)
-    // {
-    //     Instantiate(comboMultiplierPopups[index], new(0, 0, 0), Quaternion.identity);
-    // }
     private void StagePopUp(int stage)
     {
         if (GameManager.Instance.gameState == GameState.Ended)

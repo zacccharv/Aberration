@@ -1189,6 +1189,7 @@ GameObject:
   - component: {fileID: 614974770}
   - component: {fileID: 614974769}
   - component: {fileID: 614974771}
+  - component: {fileID: 614974772}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -1209,8 +1210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 560711256}
-  stage: 4
+  stage: 0
   score: 6
+  maxScore: 0
   comboCount: 0
   comboMultiplier: 1
   comboType: 0
@@ -1224,7 +1226,7 @@ MonoBehaviour:
   - {fileID: 6303000459816313705, guid: c56c49f777d9cff47a001d9182f16c02, type: 3}
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
   - {fileID: 2326156767393386046, guid: b4816020664c0914e84e5afe7294e6e0, type: 3}
-  _test: 1
+  _test: 0
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,6 +1254,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbd04389a46463408fc8716894fab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &614974772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614974768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1210c82ce9e6c814590b499b8a72f94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scores: 
 --- !u!1 &643251946
 GameObject:
   m_ObjectHideFlags: 0
