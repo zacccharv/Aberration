@@ -223,8 +223,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 237065431
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &132235780
 GameObject:
@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 283112773}
+  PerfectSounds: []
   SuccessSounds:
   - {fileID: 8300000, guid: b9a310e9839eb834188fdf3c3ed4acbb, type: 3}
   - {fileID: 8300000, guid: 6cdd937635dfea94a9c5df2caad2176b, type: 3}
@@ -1266,7 +1267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1210c82ce9e6c814590b499b8a72f94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scores: 
+  scores:
+    highScores: 
 --- !u!1 &643251946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,8 +1623,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 91
+  m_SortingLayerID: 237065431
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &665192206
 GameObject:
@@ -2985,6 +2987,7 @@ GameObject:
   - component: {fileID: 1266761053}
   - component: {fileID: 1266761055}
   - component: {fileID: 1266761056}
+  - component: {fileID: 1266761057}
   m_Layer: 0
   m_Name: ArrowManager
   m_TagString: Untagged
@@ -3398,6 +3401,17 @@ MonoBehaviour:
   permutations: []
   mod: 0
   total: 0
+--- !u!210 &1266761057
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266761052}
+  m_Enabled: 1
+  m_SortingLayerID: 237065431
+  m_SortingLayer: 1
+  m_SortingOrder: 1
 --- !u!1 &1396608171
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,6 +4185,7 @@ GameObject:
   - component: {fileID: 1755353552}
   - component: {fileID: 1755353553}
   - component: {fileID: 1755353554}
+  - component: {fileID: 1755353555}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -4242,6 +4257,17 @@ MonoBehaviour:
   _selected: 0
   _sliderFillColor: {r: 0.93725497, g: 0.8980393, b: 0.73333335, a: 1}
   _highlightedFillColor: {r: 0.90099996, g: 0.8322121, b: 0.54330295, a: 1}
+--- !u!210 &1755353555
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755353551}
+  m_Enabled: 1
+  m_SortingLayerID: 237065431
+  m_SortingLayer: 1
+  m_SortingOrder: 3
 --- !u!1 &1882647189
 GameObject:
   m_ObjectHideFlags: 0

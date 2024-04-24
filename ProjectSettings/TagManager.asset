@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 237065431
+    locked: 0
   - name: Arrows
     uniqueID: 2982234737
     locked: 0

@@ -8,7 +8,7 @@ public class ButtonNavigation : MonoBehaviour
     public List<Slider> sliders;
     public List<Image> sliderFills;
     public MainMenu mainMenu;
-    public int _buttonIndex = 0;
+    public int _buttonIndex = 0, _previousIndex;
     public bool _selected;
     [SerializeField] private Color _sliderFillColor, _highlightedFillColor;
 
@@ -31,67 +31,50 @@ public class ButtonNavigation : MonoBehaviour
 
     private void OnDirectionPressed(Direction direction, InteractionType _)
     {
-        if (GameManager.Instance.gameState == GameState.Started) return;
-
-        if (_buttonIndex == 3)
+        if (GameManager.Instance != null)
         {
-            if (direction == Direction.Up || direction == Direction.Down)
-            {
-                ChangeSelected(direction);
-                CheckSlider();
-            }
-        }
-        else if (_buttonIndex == 1 || _buttonIndex == 2)
-        {
-            _selected = true;
-
-            if (direction == Direction.Right || direction == Direction.Left)
-            {
-                if (direction == Direction.Right)
-                {
-                    sliders[_buttonIndex - 1].value += 1f;
-
-                }
-                else if (direction == Direction.Left)
-                {
-                    sliders[_buttonIndex - 1].value -= 1f;
-                }
-
-                if (_buttonIndex - 1 == 1)
-                {
-                    SFXCollection.Instance.PlaySound(SFXType.Success);
-                }
-            }
-            else if ((direction == Direction.Down && _buttonIndex == 1) || (direction == Direction.Up && _buttonIndex == 2))
-            {
-                ChangeSelected(direction);
-                CheckSlider();
-
-            }
-            else if ((direction == Direction.Up && _buttonIndex == 1) || (direction == Direction.Down && _buttonIndex == 2))
-            {
-                mainMenu._audioSelected = false;
-                _selected = false;
-                ChangeSelected(direction);
-                CheckSlider();
-            }
-
-        }
-        else
-        {
-            ChangeSelected(direction);
-            CheckSlider();
+            if (GameManager.Instance.gameState == GameState.Started) return;
         }
 
+        _previousIndex = _buttonIndex;
+
+        if (direction == Direction.Up)
+        {
+            _buttonIndex--;
+            _buttonIndex %= buttons.Count;
+
+            buttons[_buttonIndex].Select();
+            SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+        }
+        else if (direction == Direction.Down)
+        {
+            _buttonIndex++;
+            _buttonIndex %= buttons.Count;
+
+            buttons[_buttonIndex].Select();
+            SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+        }
+        else if (direction == Direction.Right)
+        {
+            if (_buttonIndex == 1 || _buttonIndex == 2)
+                sliders[_buttonIndex - 1].value += 1f;
+        }
+        else if (direction == Direction.Left)
+        {
+            if (_buttonIndex == 1 || _buttonIndex == 2)
+                sliders[_buttonIndex - 1].value -= 1f;
+        }
+
+        ColorSlider();
     }
 
-    private void CheckSlider()
+    private void ColorSlider()
     {
-        if (_buttonIndex != 1)
+        if (_previousIndex != 1 && _buttonIndex != _previousIndex)
         {
             sliderFills[0].color = _sliderFillColor;
         }
-        else if (_buttonIndex != 2)
+        else if (_previousIndex != 2 && _buttonIndex != _previousIndex)
         {
             sliderFills[1].color = _sliderFillColor;
         }
@@ -104,33 +87,7 @@ public class ButtonNavigation : MonoBehaviour
         {
             sliderFills[1].color = _highlightedFillColor;
         }
-        else if (_buttonIndex == 3)
-        {
-            sliderFills[1].color = _sliderFillColor;
-        }
-    }
 
-    private void ChangeSelected(Direction direction)
-    {
-
-        if (direction == Direction.Up)
-        {
-            _buttonIndex--;
-
-            if (_buttonIndex == -1)
-            {
-                _buttonIndex = buttons.Count - 1;
-            }
-        }
-        else if (direction == Direction.Down)
-        {
-            _buttonIndex++;
-        }
-
-        _buttonIndex %= buttons.Count;
-
-        buttons[_buttonIndex].Select();
-        SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
     }
 
     private void TriggerSelected(InputType inputType)
