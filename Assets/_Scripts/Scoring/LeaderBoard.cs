@@ -16,7 +16,7 @@ public class LeaderBoard : MonoBehaviour
     [SerializeField] private string _user;
     public List<double> scores;
     public List<string> names;
-    public List<TextMeshProUGUI> leaderBoardItems;
+    public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames;
 
     string VersionId { get; set; }
     int Offset { get; set; }
@@ -51,7 +51,7 @@ public class LeaderBoard : MonoBehaviour
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        await AuthenticationService.Instance.UpdatePlayerNameAsync(_user);
+        await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", _user));
     }
 
     public async void AddScore()
@@ -70,18 +70,24 @@ public class LeaderBoard : MonoBehaviour
         for (int i = 0; i < scoresResponse.Results.Count; i++)
         {
             scores.Add(scoresResponse.Results[i].Score);
-            names.Add(scoresResponse.Results[i].PlayerName);
+
+            string name = scoresResponse.Results[i].PlayerName;
+            name = name.Remove(name.ToString().Length - 5, 5);
+
+            names.Add(name);
         }
 
-        for (int i = 0; i < leaderBoardItems.Count; i++)
+        for (int i = 0; i < leaderBoardScores.Count; i++)
         {
             if (i < scores.Count)
             {
-                leaderBoardItems[i].text = scores[i].ToString();
+                leaderBoardScores[i].text = scores[i].ToString();
+                leaderBoardNames[i].text = names[i];
             }
             else
             {
-                leaderBoardItems[i].text = "000";
+                leaderBoardScores[i].text = "000";
+                leaderBoardNames[i].text = "Nobody";
             }
         }
     }
