@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class ButtonNavigation : MonoBehaviour
 {
-    public List<Button> buttons;
-    public List<Slider> sliders;
-    public List<Image> sliderFills;
-    public MainMenu mainMenu;
-    public int _buttonIndex = 0, _previousIndex;
-    public bool _selected;
-    [SerializeField] private Color _sliderFillColor, _highlightedFillColor;
+    public List<Button> mainMenuButtons, audioMenuButtons, scoreMenuButtons;
+    public AudioMenu audioMenu;
+    private MenuScreens menuScreens;
+    public static int previousIndex;
+    public static int buttonIndex = 0;
+
 
     void OnEnable()
     {
@@ -26,7 +25,8 @@ public class ButtonNavigation : MonoBehaviour
 
     void Start()
     {
-        buttons[0].Select();
+        menuScreens = GetComponent<MenuScreens>();
+        mainMenuButtons[0].Select();
     }
 
     private void OnDirectionPressed(Direction direction, InteractionType _)
@@ -36,68 +36,62 @@ public class ButtonNavigation : MonoBehaviour
             if (GameManager.Instance.gameState == GameState.Started) return;
         }
 
-        _previousIndex = _buttonIndex;
+        List<Button> buttons = mainMenuButtons;
+
+        switch (menuScreens.menuType)
+        {
+            case MenuType.MainMenu:
+                buttons = mainMenuButtons;
+                break;
+            case MenuType.Audio:
+                buttons = audioMenuButtons;
+                break;
+            case MenuType.HighScores:
+                buttons = scoreMenuButtons;
+                break;
+            default:
+                break;
+        }
 
         if (direction == Direction.Up)
         {
-            _buttonIndex--;
-            _buttonIndex %= buttons.Count;
+            previousIndex = buttonIndex;
 
-            buttons[_buttonIndex].Select();
+            buttonIndex--;
+
+            if (buttonIndex == -1) buttonIndex = buttons.Count - 1;
+
+            buttonIndex %= buttons.Count;
+
+            buttons[buttonIndex].Select();
             SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
         }
         else if (direction == Direction.Down)
         {
-            _buttonIndex++;
-            _buttonIndex %= buttons.Count;
+            previousIndex = buttonIndex;
 
-            buttons[_buttonIndex].Select();
+            buttonIndex++;
+
+            buttonIndex %= buttons.Count;
+
+            buttons[buttonIndex].Select();
             SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
         }
-        else if (direction == Direction.Right)
-        {
-            if (_buttonIndex == 1 || _buttonIndex == 2)
-                sliders[_buttonIndex - 1].value += 1f;
-        }
-        else if (direction == Direction.Left)
-        {
-            if (_buttonIndex == 1 || _buttonIndex == 2)
-                sliders[_buttonIndex - 1].value -= 1f;
-        }
 
-        ColorSlider();
-    }
-
-    private void ColorSlider()
-    {
-        if (_previousIndex != 1 && _buttonIndex != _previousIndex)
+        if (menuScreens.menuType == MenuType.Audio)
         {
-            sliderFills[0].color = _sliderFillColor;
+            if (direction == Direction.Right || direction == Direction.Left)
+            {
+                audioMenu.MoveSliders(direction, buttonIndex);
+            }
         }
-        else if (_previousIndex != 2 && _buttonIndex != _previousIndex)
-        {
-            sliderFills[1].color = _sliderFillColor;
-        }
-
-        if (_buttonIndex == 1)
-        {
-            sliderFills[0].color = _highlightedFillColor;
-        }
-        else if (_buttonIndex == 2)
-        {
-            sliderFills[1].color = _highlightedFillColor;
-        }
-
     }
 
     private void TriggerSelected(InputType inputType)
     {
         if (inputType == InputType.Confirm)
         {
-            if (_buttonIndex != 1 && _buttonIndex != 2)
-            {
-                buttons[_buttonIndex].onClick.Invoke();
-            }
+            mainMenuButtons[buttonIndex].onClick.Invoke();
         }
     }
 }

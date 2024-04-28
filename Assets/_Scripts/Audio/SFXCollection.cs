@@ -36,8 +36,10 @@ public class SFXCollection : MonoBehaviour
     public void PlaySound(SFXType sound)
     {
         List<AudioClip> clips = new();
+
         _audioSource.volume = initialVolume;
         _audioSource.pitch = originalPitch;
+
         float pitch = _audioSource.pitch;
 
         if (sound == SFXType.Success)
@@ -72,6 +74,9 @@ public class SFXCollection : MonoBehaviour
             _audioSource.pitch = pitch - .3f;
         }
 
-        _audioSource.PlayOneShot(clips[Random.Range(0, clips.Count)]);
+        AudioClip clip = clips[Random.Range(0, clips.Count)];
+        //Debug.Log($"{clip}, {_audioSource.gameObject.name}");
+
+        _audioSource.PlayOneShot(clip, initialVolume);
     }
 }

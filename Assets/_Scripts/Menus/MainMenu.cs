@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public bool _audioSelected;
     public List<AudioClip> Songs = new();
+    public MenuScreens menuScreens;
 
     public void PressPlay()
     {
@@ -17,6 +18,26 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Assets/Scenes/Main.unity");
     }
 
+    public void PressAudio()
+    {
+        menuScreens.SwitchMenus(MenuType.Audio);
+    }
+
+    public void PressScores()
+    {
+        menuScreens.SwitchMenus(MenuType.HighScores);
+    }
+
+    public void PressBack()
+    {
+        menuScreens.SwitchMenus(MenuType.MainMenu);
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
     public void PressMainMenu()
     {
         if (SceneManager.GetActiveScene().name != "MainMenu")
@@ -26,10 +47,5 @@ public class MainMenu : MonoBehaviour
         }
 
         SceneManager.LoadScene("Assets/Scenes/MainMenu.unity");
-    }
-
-    public void CloseGame()
-    {
-        Application.Quit();
     }
 }
