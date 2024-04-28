@@ -6,7 +6,12 @@ public class MainMenu : MonoBehaviour
 {
     public bool _audioSelected;
     public List<AudioClip> Songs = new();
-    public MenuScreens menuScreens;
+    private MenuScreens menuScreens;
+
+    void Awake()
+    {
+        menuScreens = GetComponent<MenuScreens>();
+    }
 
     public void PressPlay()
     {

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class ButtonNavigation : MonoBehaviour
 {
     public List<Button> mainMenuButtons, audioMenuButtons, scoreMenuButtons;
-    public AudioMenu audioMenu;
+    private AudioMenu audioMenu;
     private MenuScreens menuScreens;
     public static int previousIndex;
     public static int buttonIndex = 0;
-
+    private List<Button> buttons;
 
     void OnEnable()
     {
@@ -25,6 +25,7 @@ public class ButtonNavigation : MonoBehaviour
 
     void Start()
     {
+        audioMenu = GetComponent<AudioMenu>();
         menuScreens = GetComponent<MenuScreens>();
         mainMenuButtons[0].Select();
     }
@@ -36,7 +37,7 @@ public class ButtonNavigation : MonoBehaviour
             if (GameManager.Instance.gameState == GameState.Started) return;
         }
 
-        List<Button> buttons = mainMenuButtons;
+        buttons = mainMenuButtons;
 
         switch (menuScreens.menuType)
         {
@@ -91,7 +92,7 @@ public class ButtonNavigation : MonoBehaviour
     {
         if (inputType == InputType.Confirm)
         {
-            mainMenuButtons[buttonIndex].onClick.Invoke();
+            buttons[buttonIndex].onClick.Invoke();
         }
     }
 }

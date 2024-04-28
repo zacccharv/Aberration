@@ -7,7 +7,8 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private string _mixerName;
-    void Start()
+
+    void OnEnable()
     {
         if (_mixerName == "Music")
         {
