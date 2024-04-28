@@ -10,10 +10,12 @@ public class AudioMenu : MonoBehaviour
     [SerializeField] private Color _sliderFillColor, _highlightedFillColor;
 
     private MenuScreens menuScreens;
+    private ButtonNavigation buttonNavigation;
 
     void Awake()
     {
         menuScreens = GetComponent<MenuScreens>();
+        buttonNavigation = GetComponent<ButtonNavigation>();
     }
 
     public void MoveSliders(Direction direction, int index)
@@ -22,20 +24,20 @@ public class AudioMenu : MonoBehaviour
 
         if (direction == Direction.Right)
         {
-            if (ButtonNavigation.buttonIndex == 0 || ButtonNavigation.buttonIndex == 1)
+            if (buttonNavigation.buttonIndex == 0 || buttonNavigation.buttonIndex == 1)
             {
-                sliders[ButtonNavigation.buttonIndex].value += 1f;
+                sliders[buttonNavigation.buttonIndex].value += 1f;
 
-                if (ButtonNavigation.buttonIndex == 1) SFXCollection.Instance.PlaySound(SFXType.Success);
+                if (buttonNavigation.buttonIndex == 1) SFXCollection.Instance.PlaySound(SFXType.Success);
             }
         }
         else if (direction == Direction.Left)
         {
-            if (ButtonNavigation.buttonIndex == 0 || ButtonNavigation.buttonIndex == 1)
+            if (buttonNavigation.buttonIndex == 0 || buttonNavigation.buttonIndex == 1)
             {
-                sliders[ButtonNavigation.buttonIndex].value -= 1f;
+                sliders[buttonNavigation.buttonIndex].value -= 1f;
 
-                if (ButtonNavigation.buttonIndex == 1) SFXCollection.Instance.PlaySound(SFXType.Success);
+                if (buttonNavigation.buttonIndex == 1) SFXCollection.Instance.PlaySound(SFXType.Success);
             }
         }
 
@@ -49,20 +51,20 @@ public class AudioMenu : MonoBehaviour
 
     private void ColorSlider(int index)
     {
-        if (ButtonNavigation.previousIndex != 0 && index != ButtonNavigation.previousIndex)
+        if (buttonNavigation.previousIndex != 0 && index != buttonNavigation.previousIndex)
         {
             sliderFills[0].color = _sliderFillColor;
         }
-        else if (ButtonNavigation.previousIndex != 1 && index != ButtonNavigation.previousIndex)
+        else if (buttonNavigation.previousIndex != 1 && index != buttonNavigation.previousIndex)
         {
             sliderFills[1].color = _sliderFillColor;
         }
 
-        if (ButtonNavigation.buttonIndex == 0)
+        if (buttonNavigation.buttonIndex == 0)
         {
             sliderFills[0].color = _highlightedFillColor;
         }
-        else if (ButtonNavigation.buttonIndex == 1)
+        else if (buttonNavigation.buttonIndex == 1)
         {
             sliderFills[1].color = _highlightedFillColor;
         }

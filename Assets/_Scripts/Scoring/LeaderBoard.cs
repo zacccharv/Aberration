@@ -1,22 +1,21 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class LeaderBoard : MonoBehaviour
 {
     // Create a leaderboard with this ID in the Unity Cloud Dashboard
     const string LeaderboardId = "Up_Down_Left_Right";
     [SerializeField] private string _user;
+    [SerializeField] private Scores _personalScores;
     public List<double> scores;
     public List<string> names;
-    public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames;
+    public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames, personalLBScores;
 
     string VersionId { get; set; }
     int Offset { get; set; }
@@ -41,7 +40,7 @@ public class LeaderBoard : MonoBehaviour
     {
         AuthenticationService.Instance.SignedIn += () =>
         {
-            Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
+            // Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
         };
 
         AuthenticationService.Instance.SignInFailed += s =>
@@ -58,14 +57,15 @@ public class LeaderBoard : MonoBehaviour
     {
         var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderboardId, 100);
 
-        Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+        // Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
     public async void GetScores()
     {
-        var scoresResponse =
-            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
-        Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
+        LoadScoreFile();
+
+        // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
 
         for (int i = 0; i < scoresResponse.Results.Count; i++)
         {
@@ -90,12 +90,44 @@ public class LeaderBoard : MonoBehaviour
                 leaderBoardNames[i].text = "Nobody";
             }
         }
+
+        for (int i = 0; i < personalLBScores.Count; i++)
+        {
+            if (i < _personalScores.highScores.Count)
+            {
+                personalLBScores[i].text = _personalScores.highScores[_personalScores.highScores.Count - 1 - i].ToString();
+            }
+            else
+            {
+                personalLBScores[i].text = "000";
+            }
+        }
+
     }
 
     public async void GetPlayerScore()
     {
         var scoreResponse =
             await LeaderboardsService.Instance.GetPlayerScoreAsync(LeaderboardId);
-        Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+        // Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+    }
+
+    public void LoadScoreFile()
+    {
+        string _path = Application.dataPath + "/highScores-score.json";
+
+        if (File.Exists(_path))
+        {
+            string json = File.ReadAllText(_path);
+            _personalScores = JsonUtility.FromJson<Scores>(json);
+
+            if (_personalScores.highScores.Count <= 0) _personalScores.highScores.Add(0);
+        }
+        else
+        {
+            _personalScores.highScores.Add(0);
+
+            File.WriteAllText(_path, JsonUtility.ToJson(_personalScores, true));
+        }
     }
 }

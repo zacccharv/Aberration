@@ -7,8 +7,8 @@ public class ButtonNavigation : MonoBehaviour
     public List<Button> mainMenuButtons, audioMenuButtons, scoreMenuButtons;
     private AudioMenu audioMenu;
     private MenuScreens menuScreens;
-    public static int previousIndex;
-    public static int buttonIndex = 0;
+    public int previousIndex;
+    public int buttonIndex = 0;
     private List<Button> buttons;
 
     void OnEnable()

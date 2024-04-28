@@ -892,6 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuType: 0
+  previousMenuType: 0
   MainMenu: {fileID: 1842836972}
   Audio: {fileID: 1132709918}
   HighScores: {fileID: 1720188723}
@@ -918,6 +919,8 @@ MonoBehaviour:
   - {fileID: 2142296571}
   scoreMenuButtons:
   - {fileID: 1669348331}
+  previousIndex: 0
+  buttonIndex: 0
 --- !u!1 &192508062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,6 +3814,65 @@ Transform:
   m_Father: {fileID: 1372103747}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &804801813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804801816}
+  - component: {fileID: 804801814}
+  - component: {fileID: 804801817}
+  m_Layer: 0
+  m_Name: LocalLeaderBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &804801814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804801813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4105bafbbe2deda408dc981d8430f80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &804801816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804801813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.36735523, y: -0.39311036, z: 230.96121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &804801817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804801813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1210c82ce9e6c814590b499b8a72f94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scores:
+    highScores: 
 --- !u!1 &816346654
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,9 +4284,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 154203479}
-        m_TargetAssemblyTypeName: AudioMenu, Assembly-CSharp
-        m_MethodName: PressBack
+      - m_Target: {fileID: 154203477}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PressPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6243,7 +6305,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1612013496
 Transform:
@@ -6273,6 +6335,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _user: BilgeWater
+  _personalScores:
+    highScores: 
   scores: []
   names: []
   leaderBoardScores:
@@ -6289,6 +6353,13 @@ MonoBehaviour:
   - {fileID: 678271442}
   - {fileID: 2052987409}
   - {fileID: 4867448}
+  personalLBScores:
+  - {fileID: 1654117856}
+  - {fileID: 1176918670}
+  - {fileID: 1617952619}
+  - {fileID: 316740058}
+  - {fileID: 1644755347}
+  - {fileID: 1801520102}
 --- !u!1 &1617952617
 GameObject:
   m_ObjectHideFlags: 0
@@ -7744,7 +7815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1842836973
 Transform:
   m_ObjectHideFlags: 0

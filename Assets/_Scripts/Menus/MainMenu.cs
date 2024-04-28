@@ -15,6 +15,13 @@ public class MainMenu : MonoBehaviour
 
     public void PressPlay()
     {
+        if (menuScreens.previousMenuType != menuScreens.menuType)
+        {
+            // deals with race conditions
+            menuScreens.previousMenuType = menuScreens.menuType;
+            return;
+        }
+
         if (SceneManager.GetActiveScene().name != "Main")
         {
             GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().PlayMusic(1);
@@ -30,12 +37,8 @@ public class MainMenu : MonoBehaviour
 
     public void PressScores()
     {
+        Debug.Log("Score Pressed");
         menuScreens.SwitchMenus(MenuType.HighScores);
-    }
-
-    public void PressBack()
-    {
-        menuScreens.SwitchMenus(MenuType.MainMenu);
     }
 
     public void CloseGame()
