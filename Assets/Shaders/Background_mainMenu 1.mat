@@ -61,11 +61,11 @@ Material:
     - _Intensity: 0.22
     - _Range: 20
     - _X_Range: 30
-    - _X_Speed: 11.99
+    - _X_Speed: 9.25
     - _Y_Range: 30
-    - _Y_Speed: 2.78
+    - _Y_Speed: 2.66
     m_Colors:
-    - _Color: {r: 0.32361382, g: 0.23166609, b: 0.3584906, a: 1}
+    - _Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
