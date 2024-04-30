@@ -23,6 +23,22 @@ public class LeaderBoard : MonoBehaviour
     int RangeLimit { get; set; }
     List<string> FriendIds { get; set; }
 
+    void OnEnable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.GameStateChange += GetScores;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.GameStateChange -= GetScores;
+        }
+    }
+
     private async void Awake()
     {
         await UnityServices.InitializeAsync();
@@ -49,8 +65,11 @@ public class LeaderBoard : MonoBehaviour
             Debug.Log(s);
         };
 
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", _user));
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", _user));
+        }
     }
 
     public async void AddScore()
@@ -58,6 +77,51 @@ public class LeaderBoard : MonoBehaviour
         var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderboardId, 100);
 
         // Debug.Log(JsonConvert.SerializeObject(scoreResponse));
+    }
+
+    public async void GetScores(GameState gameState)
+    {
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
+        LoadScoreFile();
+
+        // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+
+        for (int i = 0; i < scoresResponse.Results.Count; i++)
+        {
+            scores.Add(scoresResponse.Results[i].Score);
+
+            string name = scoresResponse.Results[i].PlayerName;
+            name = name.Remove(name.ToString().Length - 5, 5);
+
+            names.Add(name);
+        }
+
+        for (int i = 0; i < leaderBoardScores.Count; i++)
+        {
+            if (i < scores.Count)
+            {
+                leaderBoardScores[i].text = scores[i].ToString();
+                leaderBoardNames[i].text = names[i];
+            }
+            else
+            {
+                leaderBoardScores[i].text = "000";
+                leaderBoardNames[i].text = "Nobody";
+            }
+        }
+
+        for (int i = 0; i < personalLBScores.Count; i++)
+        {
+            if (i < _personalScores.highScores.Count)
+            {
+                personalLBScores[i].text = _personalScores.highScores[_personalScores.highScores.Count - 1 - i].ToString();
+            }
+            else
+            {
+                personalLBScores[i].text = "000";
+            }
+        }
+
     }
 
     public async void GetScores()
