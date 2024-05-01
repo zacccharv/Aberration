@@ -51,6 +51,12 @@ public class Tower : MonoBehaviour
         towerBase.transform.DOScale(towerBase.transform.localScale.x * 1.15f, .5f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
+
+    /// <summary>
+    /// Direction press handler
+    /// </summary>
+    /// <param name="directionPressed"> Direction Pressed (up, down, left, right, none)</param>
+    /// <param name="interactionType"> Interaction (single press, double press, etc...)</param>
     private void OnGamePadPressed(Direction directionPressed, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] == null || GameManager.Instance.gameState != GameState.Started)
@@ -73,6 +79,7 @@ public class Tower : MonoBehaviour
             else
             {
                 // Check for perfect input start, if no reset combo
+                // doesn't work for single arrow
                 if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
 
                 InputEvent?.Invoke(ScoreType.Press, interactionType);

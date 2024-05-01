@@ -94,9 +94,6 @@ public class LongArrow : BaseArrow, IArrowStates
             return;
         }
 
-        // if (PerfectInputStart) Debug.Log("PERFECT INPUT LONG");
-        // else Debug.Log("IMMPERFECT INPUT LONG");
-
         foreach (var item in renderers)
         {
             Tweens.Add(item.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));

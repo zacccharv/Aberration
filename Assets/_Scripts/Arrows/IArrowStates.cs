@@ -5,6 +5,10 @@ public interface IArrowStates
 {
     public Arrow Arrow { get; set; }
     public List<Tween> Tweens { get; set; }
+
+    /// <summary>
+    /// Check if perfect input can be triggered
+    /// </summary>
     public bool PerfectInputStart { get; set; }
 
     public void UpdateBounds();

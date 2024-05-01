@@ -13,17 +13,17 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _scoreText;
     public static ScoreManager Instance;
-    public int stage;
-    public int score = 6, maxScore = 0, comboCount = 0, comboMultiplier = 1;
-    [HideInInspector] public int comboType = -1;
-    public int _secondsPerStage;
-    public GameObject scoreNumberPopup;
-    public GameObject stagePopup;
-    public int subtraction;
-    private int _previousComboMultiplier = 1;
-    private int previousStage = 0;
+    public int score = 6, maxScore = 0, comboCount = 0, comboMultiplier = 1, secondsPerStage;
+    public GameObject scoreNumberPopup, stagePopup;
     public List<GameObject> succesfulNumberPopup = new();
     public bool _test;
+
+    private int _previousComboMultiplier = 1, _previousStage = 1, _highestMultiplier = 1;
+
+    /// <summary>
+    /// -1 combo not started, 1 started, 2 reset 
+    /// </summary>
+    public int stage = 1, subtraction, comboType = -1;
 
     void OnEnable()
     {
@@ -59,20 +59,15 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         // Stage change popup
-        // Blinks onto screen centered in top half of screen before fade out
+        if (!_test) stage = (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage);
 
-        if (!_test) stage = (int)Mathf.Floor(GameManager.Instance.gameTime / _secondsPerStage);
-
-        // LaneManager.Instance.moveThresholdFast = 1 - (.1f * stage);
-        // LaneManager.Instance.moveThresholdFast = Mathf.Max(.2f, LaneManager.Instance.moveThresholdFast);
-
-        if (previousStage != stage)
+        if (_previousStage != stage)
         {
             StagePopUp(stage);
             SpawnSequencing._stage = stage;
         }
 
-        previousStage = stage;
+        _previousStage = stage;
     }
 
     void AddScore(InteractionType interactionType)
@@ -84,6 +79,7 @@ public class ScoreManager : MonoBehaviour
             return;
         }
 
+        // Combo count reset for single arrow
         if (interactionType == InteractionType.Single && ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow _))
         {
             SingleArrow singleArrow = ArrowManager.Instance.interactableArrows[0].GetComponent<SingleArrow>();
@@ -95,67 +91,58 @@ public class ScoreManager : MonoBehaviour
         }
 
         comboCount++;
-        // Animate scaling from 0 to a bit more than full size in center before fade
+        // TODO Animate scaling from 0 to a bit more than full size in center before fade
 
-        if (comboCount >= 60)
+        // multiplier setter
+        switch (comboCount)
         {
-            comboMultiplier = 8;
-
-            if (comboCount == 60)
-            {
-                //SpawnMultiplierIndicator(3);
-            }
-        }
-        else if (comboCount >= 30)
-        {
-            comboMultiplier = 6;
-
-            if (comboCount == 6)
-            {
-                //SpawnMultiplierIndicator(2);
-            }
-        }
-        else if (comboCount >= 15)
-        {
-            comboMultiplier = 4;
-
-            if (comboCount == 15)
-            {
-                //SpawnMultiplierIndicator(1);
-            }
-        }
-        else if (comboCount >= 5)
-        {
-            comboMultiplier = 2;
-
-            if (comboCount == 5)
-            {
-                //SpawnMultiplierIndicator(0);
-            }
-        }
-        else if (comboCount >= 0)
-        {
-            comboMultiplier = 1;
+            case >= 60:
+                comboMultiplier = 8;
+                break;
+            case >= 30:
+                comboMultiplier = 6;
+                break;
+            case >= 15:
+                comboMultiplier = 4;
+                break;
+            case >= 5:
+                comboMultiplier = 2;
+                break;
+            case >= 0:
+                comboMultiplier = 1;
+                break;
         }
 
-        if (comboMultiplier != _previousComboMultiplier && _previousComboMultiplier == 1)
+        // if combo started combo multiplier went up and perfect input hit then comboup
+        if (comboMultiplier != _previousComboMultiplier && _previousComboMultiplier >= 1)
         {
             comboType = 1;
             SFXCollection.Instance.PlaySound(SFXType.ComboUp);
         }
-        else if (comboCount == 1 && comboType != -1) // if combo started and then reset
+        // if combo started and perfect input missed then reset
+        else if (comboCount == 1 && comboType != -1)
         {
             comboType = 2;
             SFXCollection.Instance.PlaySound(SFXType.ComboReset);
         }
+        // if combo not reset or combo up
         else
         {
             SFXCollection.Instance.PlaySound(SFXType.Success);
         }
 
+        // sets _highestMultiplier for current run
+        if (comboMultiplier > _previousComboMultiplier)
+        {
+            _highestMultiplier = comboMultiplier;
+        }
+
+        // set new _previousComboMultiplier, initializes to combomult
         _previousComboMultiplier = comboMultiplier;
+
         score += 5 * comboMultiplier;
 
+        // check if highest score this playthrough
         if (score > maxScore)
         {
             maxScore = score;
@@ -166,31 +153,22 @@ public class ScoreManager : MonoBehaviour
 
     void SubtractScore()
     {
-        subtraction = 3;
         comboType = -1;
 
-        subtraction = (int)Mathf.Pow(2, stage + 1);
-
-        if (comboCount >= 60)
-        {
-            subtraction += 300;
-        }
-        else if (comboCount >= 30)
-        {
-            subtraction += 100;
-        }
+        // NOTE subtraction algorithm
+        subtraction = 5 * _highestMultiplier * (stage + 1) * 2;
 
         score -= subtraction;
         score = Mathf.Max(0, score);
         comboCount = 0;
         comboMultiplier = 1;
+        _highestMultiplier = 1;
+        _scoreText.text = score.ToString();
 
         if (score == 0)
         {
             GameManager.Instance.ChangeGameStateChange(GameState.Ended);
         }
-
-        _scoreText.text = score.ToString();
     }
 
     private void StagePopUp(int stage)
