@@ -11,8 +11,6 @@ public class DoubleArrow : BaseArrow, IArrowStates
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private int _pressCount;
 
-    // TODO Give a bit more time for perfect input?
-    // TODO Have animation Double Flash instead of double expand
     [SerializeField] private float _perfectInputTime;
     private float _perfectInputTimer;
 

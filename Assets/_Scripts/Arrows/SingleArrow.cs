@@ -11,7 +11,6 @@ public class SingleArrow : BaseArrow, IArrowStates
 
     public SpriteRenderer spriteRenderer, numberRenderer;
 
-    // TODO Have animation Single Flash instead of single expand
     public float perfectInputTime = 1.7f, perfectInputTimer;
 
     void OnEnable()

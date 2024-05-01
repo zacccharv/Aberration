@@ -9,7 +9,7 @@ public class LongArrow : BaseArrow, IArrowStates
     public bool PerfectInputStart { get; set; }
     [SerializeField] private List<SpriteRenderer> renderers = new();
 
-    // TODO Have animation Single Long Flash instead of single long expand
+
     [SerializeField] private float _perfectInputTime;
     private float _perfectInputTimer;
 
@@ -41,7 +41,6 @@ public class LongArrow : BaseArrow, IArrowStates
 
     public void UpdateBounds()
     {
-        // TODO make clear current long arrow when 2 in bounds
         if (Tower.IsInBounds(transform.position, Tower.Instance.destroyBounds))
         {
             Tower.CheckNotPressed(Arrow, Tower.Instance);

@@ -156,7 +156,7 @@ public class ScoreManager : MonoBehaviour
         comboType = -1;
 
         // NOTE subtraction algorithm
-        subtraction = 5 * _highestMultiplier * (stage + 1) * 2;
+        subtraction = maxScore / 4;
 
         score -= subtraction;
         score = Mathf.Max(0, score);
