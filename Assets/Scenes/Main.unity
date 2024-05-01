@@ -1106,16 +1106,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 560711256}
-  stage: 0
   score: 6
   maxScore: 0
   comboCount: 0
   comboMultiplier: 1
-  comboType: 0
-  _secondsPerStage: 30
+  secondsPerStage: 40
   scoreNumberPopup: {fileID: 1752149999255031554, guid: d42deedb7675e8f439420dc91980e5e1, type: 3}
   stagePopup: {fileID: 1752149999255031554, guid: 58eb38f000f5fcd41a3dc4c07348ce13, type: 3}
-  subtraction: 0
   succesfulNumberPopup:
   - {fileID: 1752149999255031554, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
   - {fileID: 5358461779933278859, guid: 2a9a0c685c730d247b3fc92951e04e51, type: 3}
@@ -1123,6 +1120,9 @@ MonoBehaviour:
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
   - {fileID: 2326156767393386046, guid: b4816020664c0914e84e5afe7294e6e0, type: 3}
   _test: 0
+  stage: 1
+  subtraction: 0
+  comboType: 0
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
