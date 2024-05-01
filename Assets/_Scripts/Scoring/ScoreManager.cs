@@ -18,12 +18,14 @@ public class ScoreManager : MonoBehaviour
     public List<GameObject> succesfulNumberPopup = new();
     public bool _test;
 
-    private int _previousComboMultiplier = 1, _previousStage = 1, _highestMultiplier = 1;
+    private int _previousComboMultiplier = 1, _previousStage = 1;
+
+    public int stage = 1, subtraction;
 
     /// <summary>
-    /// -1 combo not started, 1 started, 2 reset 
+    /// -1 combo not started, 0 started, 1 comboup, 2 reset
     /// </summary>
-    public int stage = 1, subtraction, comboType = -1;
+    [HideInInspector] public int comboType = -1;
 
     void OnEnable()
     {
@@ -114,7 +116,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         // if combo started combo multiplier went up and perfect input hit then comboup
-        if (comboMultiplier != _previousComboMultiplier && _previousComboMultiplier >= 1)
+        if (comboMultiplier != _previousComboMultiplier && comboMultiplier > 1)
         {
             comboType = 1;
             SFXCollection.Instance.PlaySound(SFXType.ComboUp);
@@ -129,12 +131,6 @@ public class ScoreManager : MonoBehaviour
         else
         {
             SFXCollection.Instance.PlaySound(SFXType.Success);
-        }
-
-        // sets _highestMultiplier for current run
-        if (comboMultiplier > _previousComboMultiplier)
-        {
-            _highestMultiplier = comboMultiplier;
         }
 
         // set new _previousComboMultiplier, initializes to combomult
@@ -153,16 +149,20 @@ public class ScoreManager : MonoBehaviour
 
     void SubtractScore()
     {
-        comboType = -1;
 
+        // TODO subtraction amount indicator
         // NOTE subtraction algorithm
-        subtraction = maxScore / 4;
+        subtraction = Mathf.FloorToInt(maxScore / 4);
 
         score -= subtraction;
         score = Mathf.Max(0, score);
+
+        // Reset all necessary vars
+        comboType = -1;
         comboCount = 0;
         comboMultiplier = 1;
-        _highestMultiplier = 1;
+        _previousComboMultiplier = 1;
+
         _scoreText.text = score.ToString();
 
         if (score == 0)
