@@ -6,13 +6,19 @@ using Unity.Services.Leaderboards;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using Newtonsoft.Json;
+using System;
 
 public class LeaderBoard : MonoBehaviour
 {
     // Create a leaderboard with this ID in the Unity Cloud Dashboard
+    public delegate Task LeaderboardSigninCallbackAsync(string name);
+    public delegate void LeaderboardSigninCallback(string name);
+    public static event LeaderboardSigninCallbackAsync SignInAsync;
+    public static event LeaderboardSigninCallback SignIn;
+
     const string LeaderboardId = "Up_Down_Left_Right";
-    [SerializeField] private string _user;
-    [SerializeField] private Scores _personalScores;
+    public Scores personalScores;
     public List<double> scores;
     public List<string> names;
     public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames, personalLBScores;
@@ -29,6 +35,8 @@ public class LeaderBoard : MonoBehaviour
         {
             GameManager.GameStateChange += GetScores;
         }
+
+        SignInAsync += SignInAnonymouslyAsync;
     }
 
     void OnDisable()
@@ -37,26 +45,30 @@ public class LeaderBoard : MonoBehaviour
         {
             GameManager.GameStateChange -= GetScores;
         }
+
+        SignInAsync -= SignInAnonymouslyAsync;
     }
 
     private async void Awake()
     {
-        await UnityServices.InitializeAsync();
-        await SignInAnonymouslyAsync();
+        LoadScoreFile();
+
+        if (UnityServices.State != ServicesInitializationState.Initialized)
+        {
+            await UnityServices.InitializeAsync();
+        }
     }
 
-    void Start()
-    {
-        Invoke("AddScore", 2.0f);
-        Invoke("GetScores", 3.0f);
-        Invoke("GetPlayerScore", 4.0f);
-    }
-
-    private async Task SignInAnonymouslyAsync()
+    /// <summary>
+    /// Signs in on pressing play or pressing scores (if username exists)
+    /// </summary>
+    /// <param name="input">Username</param>
+    /// <returns></returns>
+    public async Task SignInAnonymouslyAsync(string input)
     {
         AuthenticationService.Instance.SignedIn += () =>
         {
-            // Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
+            Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
         };
 
         AuthenticationService.Instance.SignInFailed += s =>
@@ -68,23 +80,25 @@ public class LeaderBoard : MonoBehaviour
         if (!AuthenticationService.Instance.IsSignedIn)
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", _user));
+
+            if (string.IsNullOrEmpty(personalScores.username))
+            {
+                // NOTE set new name
+                await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", input));
+
+                Debug.Log($"Created Sign In {AuthenticationService.Instance.PlayerName}");
+            }
         }
-    }
-
-    public async void AddScore()
-    {
-        var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderboardId, 100);
-
-        // Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
     public async void GetScores(GameState gameState)
     {
+        await SignInAnonymouslyAsync("");
+
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
         LoadScoreFile();
 
-        // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+        Debug.Log(JsonConvert.SerializeObject(scoresResponse));
 
         for (int i = 0; i < scoresResponse.Results.Count; i++)
         {
@@ -112,9 +126,9 @@ public class LeaderBoard : MonoBehaviour
 
         for (int i = 0; i < personalLBScores.Count; i++)
         {
-            if (i < _personalScores.highScores.Count)
+            if (i < personalScores.highScores.Count)
             {
-                personalLBScores[i].text = _personalScores.highScores[_personalScores.highScores.Count - 1 - i].ToString();
+                personalLBScores[i].text = personalScores.highScores[personalScores.highScores.Count - 1 - i].ToString();
             }
             else
             {
@@ -157,9 +171,9 @@ public class LeaderBoard : MonoBehaviour
 
         for (int i = 0; i < personalLBScores.Count; i++)
         {
-            if (i < _personalScores.highScores.Count)
+            if (i < personalScores.highScores.Count)
             {
-                personalLBScores[i].text = _personalScores.highScores[_personalScores.highScores.Count - 1 - i].ToString();
+                personalLBScores[i].text = personalScores.highScores[personalScores.highScores.Count - 1 - i].ToString();
             }
             else
             {
@@ -183,15 +197,23 @@ public class LeaderBoard : MonoBehaviour
         if (File.Exists(_path))
         {
             string json = File.ReadAllText(_path);
-            _personalScores = JsonUtility.FromJson<Scores>(json);
+            personalScores = JsonUtility.FromJson<Scores>(json);
 
-            if (_personalScores.highScores.Count <= 0) _personalScores.highScores.Add(0);
+            if (personalScores.highScores.Count <= 0) personalScores.highScores.Add(0);
         }
         else
         {
-            _personalScores.highScores.Add(0);
+            personalScores.highScores.Add(0);
 
-            File.WriteAllText(_path, JsonUtility.ToJson(_personalScores, true));
+            File.WriteAllText(_path, JsonUtility.ToJson(personalScores, true));
         }
+    }
+
+    public static void OnSignIn(string input)
+    {
+        // NOTE signs and adds username if not added yet
+
+        SignInAsync?.Invoke(input);
+        SignIn?.Invoke(input);
     }
 }

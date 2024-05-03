@@ -1169,6 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scores:
     highScores: 
+    username: 
 --- !u!1 &648276225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,6 +3385,7 @@ MonoBehaviour:
   Songs:
   - {fileID: 8300000, guid: 3379e3a5248d3b047912a3d7b28a7c64, type: 3}
   - {fileID: 8300000, guid: 5b6f6a405d71a7b47ae8f9c21583e8f2, type: 3}
+  _leaderBoard: {fileID: 2095811624}
 --- !u!114 &2095811622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3401,6 +3403,7 @@ MonoBehaviour:
   MainMenu: {fileID: 1682879712445618778}
   Audio: {fileID: 1682879712014952360}
   HighScores: {fileID: 1682879712635441285}
+  Username: {fileID: 0}
 --- !u!114 &2095811623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3424,6 +3427,8 @@ MonoBehaviour:
   - {fileID: 1682879712754398797}
   scoreMenuButtons:
   - {fileID: 1682879712551965789}
+  userName: {fileID: 0}
+  _username: {fileID: 0}
   previousIndex: 0
   buttonIndex: 0
 --- !u!114 &2095811624
@@ -3438,9 +3443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3702b3542275642b64c24a6a96ec81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _user: Pingus
-  _personalScores:
+  personalScores:
     highScores: 
+    username: 
   scores: []
   names: []
   leaderBoardScores:

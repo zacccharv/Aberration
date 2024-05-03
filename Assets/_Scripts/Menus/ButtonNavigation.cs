@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonNavigation : MonoBehaviour
 {
     public List<Button> mainMenuButtons, audioMenuButtons, scoreMenuButtons;
+    public TMP_InputField userName;
     private AudioMenu audioMenu;
+    [SerializeField] private GameObject _username;
     private MenuScreens menuScreens;
     public int previousIndex;
     public int buttonIndex = 0;
@@ -35,6 +38,11 @@ public class ButtonNavigation : MonoBehaviour
         if (GameManager.Instance != null)
         {
             if (GameManager.Instance.gameState == GameState.Started) return;
+        }
+
+        if (_username != null)
+        {
+            if (_username.activeInHierarchy) return;
         }
 
         buttons = mainMenuButtons;
@@ -90,6 +98,11 @@ public class ButtonNavigation : MonoBehaviour
 
     private void TriggerSelected(InputType inputType)
     {
+        if (_username != null)
+        {
+            if (_username.activeInHierarchy) return;
+        }
+
         if (inputType == InputType.Confirm)
         {
             buttons[buttonIndex].onClick.Invoke();
