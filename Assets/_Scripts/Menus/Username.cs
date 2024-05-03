@@ -8,14 +8,16 @@ using UnityEngine.SceneManagement;
 public class Username : MonoBehaviour
 {
     [SerializeField] private LeaderBoard _leaderBoard;
+    [SerializeField] private HighScores _highScores;
 
     public void CreateUsername(string input)
     {
         // NOTE Sign In
 
-        LeaderBoard.OnSignIn(input);
+        LeaderBoard.OnSignInAsync(input);
+        _highScores.AddName(input);
 
-        Invoke(nameof(Play), .2f);
+        Invoke(nameof(Play), 1f);
     }
 
     public void Play()

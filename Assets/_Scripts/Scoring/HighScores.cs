@@ -69,17 +69,15 @@ public class HighScores : MonoBehaviour
         }
 
         await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderboardId, score);
-
     }
 
     public void AddName(string name)
     {
-        if (string.IsNullOrEmpty(name)) return;
+        if (scores.username != "") return;
 
         scores.username = name;
 
         WriteScoreFile();
-        Debug.Log("Written to file" + name);
     }
 
     private void OnGameStateChange(GameState gameState)

@@ -56,7 +56,13 @@ public class LeaderBoard : MonoBehaviour
         if (UnityServices.State != ServicesInitializationState.Initialized)
         {
             await UnityServices.InitializeAsync();
+            await SignInAnonymouslyAsync("");
         }
+
+    }
+    void Start()
+    {
+        Invoke(nameof(GetScores), .5f);
     }
 
     /// <summary>
@@ -81,7 +87,7 @@ public class LeaderBoard : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-            if (string.IsNullOrEmpty(personalScores.username))
+            if (string.IsNullOrEmpty(personalScores.username) && input != "")
             {
                 // NOTE set new name
                 await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", input));
@@ -93,8 +99,6 @@ public class LeaderBoard : MonoBehaviour
 
     public async void GetScores(GameState gameState)
     {
-        await SignInAnonymouslyAsync("");
-
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
         LoadScoreFile();
 
@@ -209,11 +213,10 @@ public class LeaderBoard : MonoBehaviour
         }
     }
 
-    public static void OnSignIn(string input)
+    public static void OnSignInAsync(string input)
     {
-        // NOTE signs and adds username if not added yet
+        // NOTE signs and creates online username if not added yet
 
         SignInAsync?.Invoke(input);
-        SignIn?.Invoke(input);
     }
 }

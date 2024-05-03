@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
             Debug.Log($"{_leaderBoard.personalScores.username}");
 
             // NOTE Sign In
-            LeaderBoard.OnSignIn(_leaderBoard.personalScores.username);
+            LeaderBoard.OnSignInAsync(_leaderBoard.personalScores.username);
         }
 
         if (SceneManager.GetActiveScene().name != "Main")
@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
         // NOTE scores only if username exists 
         if (_leaderBoard.personalScores.username != "")
         {
-            LeaderBoard.OnSignIn("");
+            LeaderBoard.OnSignInAsync("");
         }
         else
         {
