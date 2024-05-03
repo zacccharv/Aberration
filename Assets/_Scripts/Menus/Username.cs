@@ -9,14 +9,16 @@ public class Username : MonoBehaviour
 {
     [SerializeField] private LeaderBoard _leaderBoard;
     [SerializeField] private HighScores _highScores;
+    private string _name;
 
     public void CreateUsername(string input)
     {
         // NOTE Sign In
 
-        LeaderBoard.OnSignInAsync(input);
         _highScores.AddName(input);
+        _name = input;
 
+        Invoke(nameof(SignInInvoke), .5f);
         Invoke(nameof(Play), 1f);
     }
 
@@ -30,4 +32,8 @@ public class Username : MonoBehaviour
         SceneManager.LoadScene("Assets/Scenes/Main.unity");
     }
 
+    public void SignInInvoke()
+    {
+        LeaderBoard.OnSignInAsync(_name);
+    }
 }

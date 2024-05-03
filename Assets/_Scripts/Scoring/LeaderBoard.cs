@@ -56,13 +56,13 @@ public class LeaderBoard : MonoBehaviour
         if (UnityServices.State != ServicesInitializationState.Initialized)
         {
             await UnityServices.InitializeAsync();
-            await SignInAnonymouslyAsync("");
+            await SignInAnonymouslyAsync("default");
         }
 
     }
     void Start()
     {
-        Invoke(nameof(GetScores), .5f);
+        Invoke(nameof(GetScores), 1f);
     }
 
     /// <summary>
@@ -72,6 +72,7 @@ public class LeaderBoard : MonoBehaviour
     /// <returns></returns>
     public async Task SignInAnonymouslyAsync(string input)
     {
+        LoadScoreFile();
         AuthenticationService.Instance.SignedIn += () =>
         {
             Debug.Log("Signed in as: " + AuthenticationService.Instance.PlayerId);
@@ -86,17 +87,17 @@ public class LeaderBoard : MonoBehaviour
         if (!AuthenticationService.Instance.IsSignedIn)
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
 
-            if (string.IsNullOrEmpty(personalScores.username) && input != "")
-            {
-                // NOTE set new name
-                await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", input));
+        Debug.Log(personalScores.username);
 
-                Debug.Log($"Created Sign In {AuthenticationService.Instance.PlayerName}");
-            }
+        // NOTE set new name
+        if (!string.IsNullOrEmpty(personalScores.username) && input != "default")
+        {
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", personalScores.username));
+            Debug.Log($"Created Sign In {AuthenticationService.Instance.PlayerName}");
         }
     }
-
     public async void GetScores(GameState gameState)
     {
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);

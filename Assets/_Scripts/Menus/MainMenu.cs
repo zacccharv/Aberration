@@ -30,8 +30,6 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log($"{_leaderBoard.personalScores.username}");
-
             // NOTE Sign In
             LeaderBoard.OnSignInAsync(_leaderBoard.personalScores.username);
         }

@@ -2661,7 +2661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 592704565}
-  ComboUpSounds: []
+  ComboUpSounds:
+  - {fileID: 8300000, guid: b7725d4b5328ab94c8e048726255cfda, type: 3}
+  - {fileID: 8300000, guid: 8e542f0dad2166344a50acc16ba91ac4, type: 3}
+  - {fileID: 8300000, guid: 2e73670081794e34c88b05b031394aaf, type: 3}
   SuccessSounds:
   - {fileID: 8300000, guid: b9a310e9839eb834188fdf3c3ed4acbb, type: 3}
   - {fileID: 8300000, guid: 6cdd937635dfea94a9c5df2caad2176b, type: 3}
@@ -2678,7 +2681,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5af3995504b633145ac04a220e33a0ac, type: 3}
   - {fileID: 8300000, guid: a29484a1f281c97468d437de6226c9bb, type: 3}
   Noise: {fileID: 0}
-  ComboResetSound: {fileID: 0}
+  ComboResetSound: {fileID: 8300000, guid: 750ee8f4b4b41394e949018a70db6b2b, type: 3}
   initialVolume: 0.488
   lowerVolume: 0
 --- !u!114 &592704567
