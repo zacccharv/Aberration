@@ -131,6 +131,8 @@ public class ScoreManager : MonoBehaviour
         else
         {
             SFXCollection.Instance.PlaySound(SFXType.Success);
+            // if combo started combotype set to 0 right away
+            if (comboCount == 1) comboType = 0;
         }
 
         // set new _previousComboMultiplier, initializes to combomult
@@ -149,7 +151,6 @@ public class ScoreManager : MonoBehaviour
 
     void SubtractScore()
     {
-
         // TODO subtraction amount indicator
         // NOTE subtraction algorithm
         subtraction = Mathf.FloorToInt(maxScore / 4);

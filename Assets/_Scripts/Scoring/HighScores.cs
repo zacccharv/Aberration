@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Unity.Services.Leaderboards;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -12,23 +13,36 @@ public class Scores
     public string username;
 }
 
+[RequireComponent(typeof(DontDestroy))]
 public class HighScores : MonoBehaviour
 {
+    public static HighScores Instance;
     private string _path;
-    [SerializeField] private Scores scores;
+    public Scores scores;
     const string LeaderboardId = "Up_Down_Left_Right";
 
 
     void OnEnable()
     {
         GameManager.GameStateChange += OnGameStateChange;
-        LeaderBoard.SignIn += AddName;
     }
     void OnDisable()
     {
         GameManager.GameStateChange -= OnGameStateChange;
-        LeaderBoard.SignIn -= AddName;
     }
+
+    void Awake()
+    {
+        if (Instance != this && Instance != null)
+        {
+            Destroy(Instance);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
 
     void Start()
     {
