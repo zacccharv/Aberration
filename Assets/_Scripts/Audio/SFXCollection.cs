@@ -12,7 +12,7 @@ public enum SFXType
     PerfectSuccess
 }
 
-[RequireComponent(typeof(DontDestroy))]
+[RequireComponent(typeof(DontDestroyInstanced))]
 public class SFXCollection : MonoBehaviour
 {
     public static SFXCollection Instance;

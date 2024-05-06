@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DontDestroy))]
+[RequireComponent(typeof(DontDestroyInstanced))]
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;

@@ -98,14 +98,12 @@ public class ButtonNavigation : MonoBehaviour
 
     private void TriggerSelected(InputType inputType)
     {
-        if (_username != null)
-        {
-            if (_username.activeInHierarchy) return;
-        }
-
         if (inputType == InputType.Confirm)
         {
-            buttons[buttonIndex].onClick.Invoke();
+            if (buttonIndex <= buttons.Count - 1)
+            {
+                buttons[buttonIndex].onClick.Invoke();
+            }
         }
     }
 }

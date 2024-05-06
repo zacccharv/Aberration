@@ -43,7 +43,6 @@ public class HighScores : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         LoadScoreFile();
@@ -56,21 +55,21 @@ public class HighScores : MonoBehaviour
         if (File.Exists(_path))
         {
             string json = File.ReadAllText(_path);
-            scores = JsonUtility.FromJson<Scores>(json);
+            Instance.scores = JsonUtility.FromJson<Scores>(json);
 
-            if (scores.highScores.Count <= 0) scores.highScores.Add(0);
+            if (Instance.scores.highScores.Count <= 0) Instance.scores.highScores.Add(0);
         }
         else
         {
-            scores.highScores.Add(0);
+            Instance.scores.highScores.Add(0);
 
-            File.WriteAllText(_path, JsonUtility.ToJson(scores, true));
+            File.WriteAllText(_path, JsonUtility.ToJson(Instance.scores, true));
         }
     }
 
     public void WriteScoreFile()
     {
-        string result = JsonUtility.ToJson(scores, true);
+        string result = JsonUtility.ToJson(Instance.scores, true);
 
         File.WriteAllText(_path, result);
     }
@@ -79,7 +78,7 @@ public class HighScores : MonoBehaviour
     {
         if (score > scores.highScores[^1])
         {
-            scores.highScores.Add(score);
+            Instance.scores.highScores.Add(score);
         }
 
         await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderboardId, score);
@@ -89,7 +88,7 @@ public class HighScores : MonoBehaviour
     {
         if (scores.username != "") return;
 
-        scores.username = name;
+        Instance.scores.username = name;
 
         WriteScoreFile();
     }

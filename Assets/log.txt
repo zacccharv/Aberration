@@ -287,3 +287,47 @@
 4/19/2024 3:20:17 PM: Fail, Points: 32, InteractionType NoPress
 4/19/2024 3:20:17 PM: Fail, Points: 32, InteractionType Single
 4/19/2024 3:20:19 PM: Fail, Points: 32, InteractionType NoPress
+5/5/2024 8:35:42 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:35:42 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:38:12 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:38:12 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:39:01 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:39:01 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:40:00 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:40:00 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:41:50 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:41:50 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:43:45 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:43:45 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:44:25 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Ford#3253","rank":0,"score":196.0}]}
+5/5/2024 8:45:28 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:45:28 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:47:03 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:47:03 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:47:37 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:47:37 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:48:03 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:48:03 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:50:43 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:50:43 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:52:41 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:52:41 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:58:37 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:58:37 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:58:53 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:58:53 PM [INFO] -- Playername is Ford#3253
+5/5/2024 8:59:37 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 8:59:37 PM [INFO] -- Playername is Ford#3253
+5/5/2024 9:00:04 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Ford#3253","rank":0,"score":196.0}]}
+5/5/2024 9:00:45 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 9:00:45 PM [INFO] -- Playername is Ford#3253
+5/5/2024 9:01:47 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Ford#3253","rank":0,"score":196.0}]}
+5/5/2024 9:03:34 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 9:03:34 PM [INFO] -- Playername is Ford#3253
+5/5/2024 9:04:33 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 9:04:33 PM [INFO] -- Playername is Ford#3253
+5/5/2024 9:04:53 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/5/2024 9:04:53 PM [INFO] -- Playername is Ford#3253
+5/5/2024 9:05:03 PM [INFO] -- Created Sign In Folgers#3013
+5/5/2024 9:05:03 PM [INFO] -- Playername is Folgers#3013
+5/5/2024 9:05:45 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Folgers#3013","rank":0,"score":196.0}]}

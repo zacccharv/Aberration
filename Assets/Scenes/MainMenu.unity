@@ -847,7 +847,6 @@ MonoBehaviour:
   Songs:
   - {fileID: 8300000, guid: 3379e3a5248d3b047912a3d7b28a7c64, type: 3}
   - {fileID: 8300000, guid: 5b6f6a405d71a7b47ae8f9c21583e8f2, type: 3}
-  _leaderBoard: {fileID: 1612013497}
 --- !u!114 &154203478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2528,8 +2527,8 @@ GameObject:
   m_Component:
   - component: {fileID: 592704564}
   - component: {fileID: 592704566}
-  - component: {fileID: 592704567}
   - component: {fileID: 592704565}
+  - component: {fileID: 592704567}
   m_Layer: 0
   m_Name: SFX
   m_TagString: SFX
@@ -2693,7 +2692,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 592704563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4105bafbbe2deda408dc981d8430f80c, type: 3}
+  m_Script: {fileID: 11500000, guid: 386d4a9befbbde841beb5c8860f84a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &595436909
@@ -3863,9 +3862,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 804801816}
+  - component: {fileID: 804801818}
   - component: {fileID: 804801817}
   m_Layer: 0
-  m_Name: LocalLeaderBoard
+  m_Name: HighScores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3901,6 +3901,18 @@ MonoBehaviour:
   scores:
     highScores: 
     username: 
+--- !u!114 &804801818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804801813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4105bafbbe2deda408dc981d8430f80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &816346654
 GameObject:
   m_ObjectHideFlags: 0
@@ -6977,6 +6989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612013496}
   - component: {fileID: 1612013497}
+  - component: {fileID: 1612013498}
   m_Layer: 0
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -7011,9 +7024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3702b3542275642b64c24a6a96ec81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personalScores:
-    highScores: 
-    username: 
   scores: []
   names: []
   leaderBoardScores:
@@ -7037,6 +7047,18 @@ MonoBehaviour:
   - {fileID: 316740058}
   - {fileID: 1644755347}
   - {fileID: 1801520102}
+--- !u!114 &1612013498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612013495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bbd04389a46463408fc8716894fab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1617952617
 GameObject:
   m_ObjectHideFlags: 0
@@ -9444,8 +9466,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2002863175}
-  - component: {fileID: 2002863177}
   - component: {fileID: 2002863178}
+  - component: {fileID: 2002863177}
   - component: {fileID: 2002863176}
   m_Layer: 0
   m_Name: Music
@@ -9591,7 +9613,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2002863174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4105bafbbe2deda408dc981d8430f80c, type: 3}
+  m_Script: {fileID: 11500000, guid: 386d4a9befbbde841beb5c8860f84a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2013166862

@@ -7,7 +7,6 @@ public class MainMenu : MonoBehaviour
     public bool _audioSelected;
     public List<AudioClip> Songs = new();
     private MenuScreens menuScreens;
-    [SerializeField] private LeaderBoard _leaderBoard;
 
     void Awake()
     {
@@ -23,7 +22,7 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        if (_leaderBoard.personalScores.username == "" || _leaderBoard.personalScores.username == null)
+        if (HighScores.Instance.scores.username == "" || HighScores.Instance.scores.username == null)
         {
             menuScreens.SwitchMenus(MenuType.Username);
             return;
@@ -31,7 +30,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             // NOTE Sign In
-            LeaderBoard.OnSignInAsync(_leaderBoard.personalScores.username);
+            LeaderBoard.OnSignInAsync(HighScores.Instance.scores.username);
         }
 
         if (SceneManager.GetActiveScene().name != "Main")
@@ -52,7 +51,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Score Pressed");
 
         // NOTE scores only if username exists 
-        if (_leaderBoard.personalScores.username != "")
+        if (HighScores.Instance.scores.username != "")
         {
             LeaderBoard.OnSignInAsync("");
         }
