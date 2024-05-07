@@ -37,6 +37,7 @@ public class Tower : MonoBehaviour
         if (Instance != this && Instance != null)
         {
             Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {

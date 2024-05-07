@@ -89,7 +89,7 @@ public class SpawnSequencing : MonoBehaviour
     {
         SequencesContainer sequence = _sectionContainers.Sections[section];
 
-        int seqInd = _test ? _testSequenceIndex : UnityEngine.Random.Range(0, sequence.Sequences.Count);
+        int seqInd = UnityEngine.Random.Range(0, sequence.Sequences.Count);
         int count = sequence.Sequences[seqInd].SequenceItems.Count;
 
         for (int i = 0; i < count; i++)
@@ -234,6 +234,7 @@ public class SpawnSequencing : MonoBehaviour
 
         return false;
     }
+
     public void SpawnArrow()
     {
         if (arrowsToSpawn.Count < 1) AddSequence(Mathf.Min(_stage, _sectionContainers.Sections.Count - 1));
@@ -251,44 +252,5 @@ public class SpawnSequencing : MonoBehaviour
 
         Instantiate(go, laneSpawnPos, go.transform.localRotation, transform);
         _spawnCount++;
-
-#pragma warning disable CS8321 // Local function is declared but never used
-        static int GetLaneIndex(List<int> previousLanes)
-        {
-            int nextLane = UnityEngine.Random.Range(0, 4);
-
-            if (previousLanes.Count > 0)
-            {
-                if (previousLanes.Count >= 5)
-                {
-                    bool has_0 = previousLanes.Contains(0);
-                    bool has_1 = previousLanes.Contains(1);
-                    bool has_2 = previousLanes.Contains(2);
-                    bool has_3 = previousLanes.Contains(3);
-
-                    if (!has_0 && has_1 && has_2 && has_3)
-                    {
-                        nextLane = 0;
-                    }
-                    else if (has_0 && !has_1 && has_2 && has_3)
-                    {
-                        nextLane = 1;
-                    }
-                    else if (has_0 && has_1 && !has_2 && has_3)
-                    {
-                        nextLane = 2;
-                    }
-                    else if (has_0 && has_1 && has_2 && !has_3)
-                    {
-                        nextLane = 3;
-                    }
-
-                    previousLanes.Clear();
-                }
-            }
-
-            return nextLane;
-        }
-#pragma warning restore CS8321 // Local function is declared but never used
     }
 }

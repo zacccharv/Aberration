@@ -12,7 +12,7 @@ public enum SFXType
     PerfectSuccess
 }
 
-[RequireComponent(typeof(DontDestroyInstanced))]
+[RequireComponent(typeof(DontDestroy))]
 public class SFXCollection : MonoBehaviour
 {
     public static SFXCollection Instance;
@@ -25,10 +25,17 @@ public class SFXCollection : MonoBehaviour
     public float initialVolume;
     public float lowerVolume;
 
-
-    void Start()
+    void Awake()
     {
-        Instance = this;
+        if (Instance != this && Instance != null)
+        {
+            Destroy(Instance);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     public void PlaySound(SFXType sound)

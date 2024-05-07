@@ -4,45 +4,28 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
-using TMPro;
 using Newtonsoft.Json;
 
-[RequireComponent(typeof(LogFile))]
+[RequireComponent(typeof(LogFile), typeof(DontDestroy))]
 public class LeaderBoard : MonoBehaviour
 {
     // Create a leaderboard with this ID in the Unity Cloud Dashboard
     public delegate Task LeaderboardSigninCallbackAsync(string name);
     public static event LeaderboardSigninCallbackAsync SignInAsync;
 
-    const string LeaderboardId = "Up_Down_Left_Right";
+    public static LeaderBoard Instance;
+    public string LeaderboardId = "Up_Down_Left_Right";
     public List<double> scores;
     public List<string> names;
-    public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames, personalLBScores;
     private LogFile logFile;
-
-    string VersionId { get; set; }
-    int Offset { get; set; }
-    int Limit { get; set; }
-    int RangeLimit { get; set; }
-    List<string> FriendIds { get; set; }
 
     void OnEnable()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.GameStateChange += GetScores;
-        }
-
         SignInAsync += SignInAnonymouslyAsync;
     }
 
     void OnDisable()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.GameStateChange -= GetScores;
-        }
-
         SignInAsync -= SignInAnonymouslyAsync;
     }
 
@@ -56,11 +39,6 @@ public class LeaderBoard : MonoBehaviour
             await UnityServices.InitializeAsync();
             await SignInAnonymouslyAsync("default");
         }
-
-    }
-    void Start()
-    {
-        Invoke(nameof(GetScores), 1f);
     }
 
     /// <summary>
@@ -97,96 +75,16 @@ public class LeaderBoard : MonoBehaviour
         }
 
         logFile.WriteToLog($"Playername is {AuthenticationService.Instance.PlayerName}", LogLevel.Info);
-    }
-    public async void GetScores(GameState gameState)
-    {
-        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
 
-        HighScores.Instance.LoadScoreFile();
-
-        logFile.WriteToLog(JsonConvert.SerializeObject(scoresResponse), LogLevel.Info);
-
-        for (int i = 0; i < scoresResponse.Results.Count; i++)
+        if (Instance != this && Instance != null)
         {
-            scores.Add(scoresResponse.Results[i].Score);
-
-            string name = scoresResponse.Results[i].PlayerName;
-            name = name.Remove(name.ToString().Length - 5, 5);
-
-            names.Add(name);
+            Destroy(Instance);
+            Destroy(gameObject);
         }
-
-        for (int i = 0; i < leaderBoardScores.Count; i++)
+        else
         {
-            if (i < scores.Count)
-            {
-                leaderBoardScores[i].text = scores[i].ToString();
-                leaderBoardNames[i].text = names[i];
-            }
-            else
-            {
-                leaderBoardScores[i].text = "000";
-                leaderBoardNames[i].text = "Nobody";
-            }
+            Instance = this;
         }
-
-        for (int i = 0; i < personalLBScores.Count; i++)
-        {
-            if (i < HighScores.Instance.scores.highScores.Count)
-            {
-                personalLBScores[i].text = HighScores.Instance.scores.highScores[HighScores.Instance.scores.highScores.Count - 1 - i].ToString();
-            }
-            else
-            {
-                personalLBScores[i].text = "000";
-            }
-        }
-    }
-
-    public async void GetScores()
-    {
-        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
-
-        HighScores.Instance.LoadScoreFile();
-
-        // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
-
-        for (int i = 0; i < scoresResponse.Results.Count; i++)
-        {
-            scores.Add(scoresResponse.Results[i].Score);
-
-            string name = scoresResponse.Results[i].PlayerName;
-            name = name.Remove(name.ToString().Length - 5, 5);
-
-            names.Add(name);
-        }
-
-        for (int i = 0; i < leaderBoardScores.Count; i++)
-        {
-            if (i < scores.Count)
-            {
-                leaderBoardScores[i].text = scores[i].ToString();
-                leaderBoardNames[i].text = names[i];
-            }
-            else
-            {
-                leaderBoardScores[i].text = "000";
-                leaderBoardNames[i].text = "Nobody";
-            }
-        }
-
-        for (int i = 0; i < personalLBScores.Count; i++)
-        {
-            if (i < HighScores.Instance.scores.highScores.Count)
-            {
-                personalLBScores[i].text = HighScores.Instance.scores.highScores[HighScores.Instance.scores.highScores.Count - 1 - i].ToString();
-            }
-            else
-            {
-                personalLBScores[i].text = "000";
-            }
-        }
-
     }
 
     public async void GetPlayerScore()

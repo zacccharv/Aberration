@@ -52,6 +52,7 @@ public class ArrowManager : MonoBehaviour
         if (Instance != this && Instance != null)
         {
             Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {
@@ -63,7 +64,7 @@ public class ArrowManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.gameState == GameState.Ended || Instance.interactableArrows.Count < 1)
+        if (Instance.interactableArrows.Count < 1)
         {
             return;
         }

@@ -34,6 +34,7 @@ public class HighScores : MonoBehaviour
         if (Instance != this && Instance != null)
         {
             Destroy(Instance);
+            Destroy(Instance.gameObject);
         }
         else
         {

@@ -61,7 +61,7 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         // Stage change popup
-        if (!_test) stage = (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage);
+        stage = _test ? stage + (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage) : (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage);
 
         if (_previousStage != stage)
         {

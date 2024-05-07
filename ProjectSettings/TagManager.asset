@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Music
   - SFX
+  - HighScores
   layers:
   - Default
   - TransparentFX

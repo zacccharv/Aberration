@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         if (Instance != this && Instance != null)
         {
             Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {
@@ -73,7 +75,12 @@ public class GameManager : MonoBehaviour
         this.gameState = gameState;
         GameStateChange?.Invoke(gameState);
 
-        if (gameState == GameState.Ended || gameState == GameState.Paused)
+        if (gameState == GameState.Ended)
+        {
+            timeScale = 0;
+            DOTween.KillAll();
+        }
+        else if (gameState == GameState.Paused)
             timeScale = 0;
         else
             timeScale = 1;
