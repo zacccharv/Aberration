@@ -64,7 +64,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
         {
-            _perfectInputTimer += Time.deltaTime;
+            _perfectInputTimer += GameManager.deltaTime;
         }
     }
 
@@ -85,15 +85,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (interactionType == InteractionType.Double && !Arrow.inputTriggered)
         {
-            // if (PerfectInputStart) Debug.Log("PERFECT INPUT DOUBLE");
-            // else Debug.Log("IMPERFECT INPUT DOUBLE");
-
             Arrow.inputTriggered = true;
-        }
-        else if (interactionType == InteractionType.FailedDouble && !Arrow.inputTriggered)
-        {
-            Tower.TriggerFailedInput(interactionType);
-            return;
         }
         else if (interactionType == InteractionType.Single && Arrow.inputTriggered)
         {

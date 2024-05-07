@@ -60,7 +60,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
         {
-            perfectInputTimer += Time.deltaTime;
+            perfectInputTimer += GameManager.deltaTime;
         }
     }
 

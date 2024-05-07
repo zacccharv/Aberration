@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public GameObject menu;
     public float gameTime = 0;
+    public static float deltaTime;
+    public static float timeScale;
 
     void OnEnable()
     {
@@ -54,16 +56,27 @@ public class GameManager : MonoBehaviour
         }
 
         gameState = GameState.Started;
+        timeScale = 1;
     }
     void Update()
     {
-        gameTime += Time.deltaTime;
+        float previousGameTime = gameTime;
+
+        gameTime += Time.deltaTime * timeScale;
+
+        deltaTime = gameTime - previousGameTime;
     }
 
+    // TODO implement custom time scale
     public void ChangeGameStateChange(GameState gameState)
     {
         this.gameState = gameState;
         GameStateChange?.Invoke(gameState);
+
+        if (gameState == GameState.Ended || gameState == GameState.Paused)
+            timeScale = 0;
+        else
+            timeScale = 1;
 
         menu.SetActive(true);
     }

@@ -70,7 +70,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
         {
-            _perfectInputTimer += Time.deltaTime;
+            _perfectInputTimer += GameManager.deltaTime;
         }
     }
 

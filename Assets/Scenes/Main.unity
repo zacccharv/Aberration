@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 283112775}
   - component: {fileID: 283112774}
   - component: {fileID: 283112773}
-  - component: {fileID: 283112772}
+  - component: {fileID: 283112776}
   m_Layer: 0
   m_Name: SFX
   m_TagString: SFX
@@ -463,18 +463,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &283112772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283112771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4105bafbbe2deda408dc981d8430f80c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &283112773
 AudioSource:
   m_ObjectHideFlags: 0
@@ -623,6 +611,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &283112776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283112771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386d4a9befbbde841beb5c8860f84a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &476389244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,8 +1124,8 @@ MonoBehaviour:
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
   - {fileID: 2326156767393386046, guid: b4816020664c0914e84e5afe7294e6e0, type: 3}
   _test: 0
-  stage: 1
-  subtraction: 0
+  stage: 2
+  subtraction: 6
   comboType: -1
 --- !u!4 &614974770
 Transform:
@@ -2252,7 +2252,7 @@ MonoBehaviour:
   _randomLaneSpacings: 0200000003000000
   _randomEmptySpacings: 03000000040000000500000006000000
   _spawnCount: 0
-  _test: 0
+  _test: 1
   _testSequenceIndex: 1
   _spawnInterval: 0.8
 --- !u!114 &1266761056
@@ -2613,6 +2613,7 @@ GameObject:
   - component: {fileID: 1631064380}
   - component: {fileID: 1631064379}
   - component: {fileID: 1631064378}
+  - component: {fileID: 1631064382}
   m_Layer: 0
   m_Name: Music
   m_TagString: Music
@@ -2760,6 +2761,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1631064382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631064377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386d4a9befbbde841beb5c8860f84a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1882647189
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,7 +68,7 @@ public class ArrowManager : MonoBehaviour
             return;
         }
 
-        Instance._moveTimer += Time.deltaTime;
+        Instance._moveTimer += GameManager.deltaTime;
 
         if (Instance.interactableArrows.Count > 0 && Instance.interactableArrows[0] == null)
         {

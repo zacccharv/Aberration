@@ -9,7 +9,8 @@ public enum InteractionType
     Double,
     Long,
     NoPress,
-    FailedDouble
+    FailedDouble,
+    Nil
 }
 
 public delegate void DirectionPress(Direction direction, InteractionType interactionType);
@@ -79,6 +80,10 @@ public class InputManager_Z : MonoBehaviour
                 DirectionPressed?.Invoke(direction, InteractionType.Single);
             }
         }
+        else
+        {
+            DirectionPressed?.Invoke(direction, InteractionType.Nil);
+        }
     }
 
     public void GamePadPressed(InputAction.CallbackContext context)
@@ -132,6 +137,10 @@ public class InputManager_Z : MonoBehaviour
             {
                 GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
             }
+        }
+        else
+        {
+            GamePadButtonPressed?.Invoke(direction, InteractionType.Nil);
         }
     }
 

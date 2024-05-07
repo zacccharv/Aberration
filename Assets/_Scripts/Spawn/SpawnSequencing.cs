@@ -76,7 +76,7 @@ public class SpawnSequencing : MonoBehaviour
 
     void Update()
     {
-        _spawnTimer += Time.deltaTime;
+        _spawnTimer += GameManager.deltaTime;
 
         if (_spawnTimer > _spawnInterval)
         {
@@ -101,6 +101,7 @@ public class SpawnSequencing : MonoBehaviour
     public GameObject DequeuePrefab(out float spawnInterval, out Vector2 laneStartPos)
     {
         ArrowStruct arrowStruct;
+        // Arrow previousArrow;
         Direction lane = default;
         GameObject result;
 
@@ -113,6 +114,7 @@ public class SpawnSequencing : MonoBehaviour
         }
 
         arrowStruct = arrowsToSpawn.Dequeue();
+        // Debug.Log($"Current Arrow Interaction: {arrowStruct.Interaction}, Time: {Time.time}");
 
         // Lane randomization
         if (Every_X(_randomLaneSpacings))
@@ -157,7 +159,6 @@ public class SpawnSequencing : MonoBehaviour
             lane = arrowStruct.Lane;
             result = GetArrow(arrowStruct, lane);
         }
-
 
         spawnInterval = result.GetComponent<Arrow>().spawnTime;
         result.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
@@ -238,6 +239,15 @@ public class SpawnSequencing : MonoBehaviour
         if (arrowsToSpawn.Count < 1) AddSequence(Mathf.Min(_stage, _sectionContainers.Sections.Count - 1));
 
         GameObject go = DequeuePrefab(out _spawnInterval, out Vector2 laneSpawnPos);
+
+        if (ArrowManager.Instance.interactableArrows.Count > 0)
+        {
+            if (transform.position == ArrowManager.Instance.interactableArrows[0].transform.position)
+            {
+                Debug.Log("Doubled up spawn.");
+                return;
+            }
+        }
 
         Instantiate(go, laneSpawnPos, go.transform.localRotation, transform);
         _spawnCount++;

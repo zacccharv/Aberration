@@ -331,3 +331,45 @@
 5/5/2024 9:05:03 PM [INFO] -- Created Sign In Folgers#3013
 5/5/2024 9:05:03 PM [INFO] -- Playername is Folgers#3013
 5/5/2024 9:05:45 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Folgers#3013","rank":0,"score":196.0}]}
+5/6/2024 10:02:35 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:02:35 PM [INFO] -- Playername is Folgers#3727
+5/6/2024 10:02:36 PM [INFO] -- Created Sign In Folgers#4603
+5/6/2024 10:02:36 PM [INFO] -- Playername is Folgers#4603
+5/6/2024 10:04:22 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:04:22 PM [INFO] -- Playername is Folgers#4603
+5/6/2024 10:04:23 PM [INFO] -- Created Sign In Folgers#5832
+5/6/2024 10:04:23 PM [INFO] -- Playername is Folgers#5832
+5/6/2024 10:04:40 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Folgers#5832","rank":0,"score":196.0}]}
+5/6/2024 10:14:20 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:14:20 PM [INFO] -- Playername is Folgers#5832
+5/6/2024 10:14:21 PM [INFO] -- Created Sign In Folgers#3191
+5/6/2024 10:14:21 PM [INFO] -- Playername is Folgers#3191
+5/6/2024 10:14:33 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Folgers#3191","rank":0,"score":196.0}]}
+5/6/2024 10:16:11 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:16:11 PM [INFO] -- Playername is Folgers#3191
+5/6/2024 10:16:26 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:16:26 PM [INFO] -- Playername is Folgers#3191
+5/6/2024 10:16:29 PM [INFO] -- Created Sign In Folgers#6498
+5/6/2024 10:16:29 PM [INFO] -- Playername is Folgers#6498
+5/6/2024 10:16:29 PM [INFO] -- Created Sign In Folgers#2159
+5/6/2024 10:16:29 PM [INFO] -- Playername is Folgers#2159
+5/6/2024 10:17:06 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:17:06 PM [INFO] -- Playername is Folgers#2159
+5/6/2024 10:17:09 PM [INFO] -- Created Sign In Folgers#8626
+5/6/2024 10:17:09 PM [INFO] -- Playername is Folgers#8626
+5/6/2024 10:17:26 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Folgers#8626","rank":0,"score":196.0}]}
+5/6/2024 10:21:51 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:21:51 PM [INFO] -- Playername is Folgers#8626
+5/6/2024 10:21:53 PM [INFO] -- Created Sign In Folgers#4502
+5/6/2024 10:21:53 PM [INFO] -- Playername is Folgers#4502
+5/6/2024 10:21:53 PM [INFO] -- Created Sign In Folgers#8786
+5/6/2024 10:21:53 PM [INFO] -- Playername is Folgers#8786
+5/6/2024 10:40:30 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:40:30 PM [INFO] -- Playername is Folgers#8786
+5/6/2024 10:40:30 PM [INFO] -- Created Sign In Folgers#8204
+5/6/2024 10:40:30 PM [INFO] -- Playername is Folgers#8204
+5/6/2024 10:43:48 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/6/2024 10:43:48 PM [INFO] -- Playername is Folgers#8204
+5/6/2024 10:43:49 PM [INFO] -- Created Sign In Folgers#9912
+5/6/2024 10:43:49 PM [INFO] -- Playername is Folgers#9912
+5/6/2024 10:44:01 PM [INFO] -- {"limit":10,"total":1,"results":[{"playerId":"1NEMQbRfl1DmfvucJPxzka7laBKv","playerName":"Folgers#9912","rank":0,"score":196.0}]}
