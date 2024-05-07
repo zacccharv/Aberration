@@ -4,7 +4,6 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
-using Newtonsoft.Json;
 
 [RequireComponent(typeof(LogFile), typeof(DontDestroy))]
 public class LeaderBoard : MonoBehaviour
