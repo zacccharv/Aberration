@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Username : MonoBehaviour
 {
@@ -15,8 +13,34 @@ public class Username : MonoBehaviour
     {
         // NOTE Sign In
 
-        _highScores.AddName(input);
-        _name = input;
+        if (input == "")
+        {
+            GetComponent<TMP_InputField>().text = "";
+
+            ColorUtility.TryParseHtmlString("#FF5F6B", out Color color);
+            (GetComponent<TMP_InputField>().placeholder as TextMeshProUGUI).color = color;
+            (GetComponent<TMP_InputField>().placeholder as TextMeshProUGUI).text = "Nothing entered, Try Again!";
+
+            GetComponent<TMP_InputField>().ActivateInputField();
+            _highScores.AddName(input);
+            _name = input;
+        }
+        else if (ProfanityFilter.Instance.ContainsProfanity(input))
+        {
+            GetComponent<TMP_InputField>().text = "";
+
+            ColorUtility.TryParseHtmlString("#FF5F6B", out Color color);
+            (GetComponent<TMP_InputField>().placeholder as TextMeshProUGUI).color = color;
+            (GetComponent<TMP_InputField>().placeholder as TextMeshProUGUI).text = "Inappropriate username, Try Again!";
+
+            GetComponent<TMP_InputField>().ActivateInputField();
+            return;
+        }
+        else
+        {
+            _highScores.AddName(input);
+            _name = input;
+        }
 
         Invoke(nameof(SignInInvoke), .5f);
         Invoke(nameof(Play), 1f);

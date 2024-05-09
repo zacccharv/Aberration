@@ -105,5 +105,10 @@ public class ButtonNavigation : MonoBehaviour
                 buttons[buttonIndex].onClick.Invoke();
             }
         }
+        else if (inputType == InputType.Esc && GameManager.Instance.gameState != GameState.Paused && GameManager.Instance.gameState != GameState.Ended)
+        {
+            GameManager.Instance.ChangeGameStateChange(GameState.Paused);
+            menuScreens.SwitchMenus(MenuType.PauseMenu);
+        }
     }
 }

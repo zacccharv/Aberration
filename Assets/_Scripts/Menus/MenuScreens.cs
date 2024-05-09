@@ -7,20 +7,24 @@ public enum MenuType
     MainMenu,
     Audio,
     HighScores,
-    Username
+    Username,
+    PauseMenu
 }
 
 public class MenuScreens : MonoBehaviour
 {
     public MenuType menuType, previousMenuType;
-    [SerializeField] private GameObject MainMenu, Audio, HighScores, Username;
+    [SerializeField] private GameObject _mainMenu, _audio, _highScores, _username;
+
+    // TODO add play images
+    [SerializeField] private Sprite[] _playImages;
     private ButtonNavigation buttonNavigation;
     private Selectable _selectable;
 
     void Awake()
     {
         buttonNavigation = GetComponent<ButtonNavigation>();
-        MainMenu.SetActive(true);
+        _mainMenu.SetActive(true);
     }
 
     public void SwitchMenus(MenuType menu)
@@ -30,20 +34,33 @@ public class MenuScreens : MonoBehaviour
 
         if (menu == MenuType.MainMenu)
         {
-            MainMenu.SetActive(true);
-            Audio.SetActive(false);
-            HighScores.SetActive(false);
+            _mainMenu.SetActive(true);
+            _audio.SetActive(false);
+            _highScores.SetActive(false);
             menuType = MenuType.MainMenu;
 
             _selectable = buttonNavigation.mainMenuButtons[0];
+            _selectable.image.sprite = _playImages[0];
+
+            Invoke(nameof(DelayedSelection), .15f);
+        }
+        else if (menu == MenuType.PauseMenu)
+        {
+            _mainMenu.SetActive(true);
+            _audio.SetActive(false);
+            _highScores.SetActive(false);
+            menuType = MenuType.MainMenu;
+
+            _selectable = buttonNavigation.mainMenuButtons[0];
+            _selectable.image.sprite = _playImages[1];
 
             Invoke(nameof(DelayedSelection), .15f);
         }
         else if (menu == MenuType.Audio)
         {
-            MainMenu.SetActive(false);
-            Audio.SetActive(true);
-            HighScores.SetActive(false);
+            _mainMenu.SetActive(false);
+            _audio.SetActive(true);
+            _highScores.SetActive(false);
             menuType = MenuType.Audio;
 
             _selectable = buttonNavigation.audioMenuButtons[0];
@@ -52,21 +69,21 @@ public class MenuScreens : MonoBehaviour
         }
         else if (menu == MenuType.HighScores)
         {
-            HighScores.SetActive(true);
-            MainMenu.SetActive(false);
-            Audio.SetActive(false);
+            _highScores.SetActive(true);
+            _mainMenu.SetActive(false);
+            _audio.SetActive(false);
             menuType = MenuType.HighScores;
 
             _selectable = buttonNavigation.scoreMenuButtons[0];
 
             Invoke(nameof(DelayedSelection), .15f);
         }
-        else if (menu == MenuType.Username && Username != null)
+        else if (menu == MenuType.Username && _username != null)
         {
-            HighScores.SetActive(false);
-            MainMenu.SetActive(false);
-            Audio.SetActive(false);
-            Username.SetActive(true);
+            _highScores.SetActive(false);
+            _mainMenu.SetActive(false);
+            _audio.SetActive(false);
+            _username.SetActive(true);
 
             _selectable = buttonNavigation.userName;
 

@@ -484,3 +484,74 @@
 5/7/2024 2:53:21 PM [INFO] -- Playername is Folgers#8510
 5/7/2024 2:54:30 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
 5/7/2024 2:54:30 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:41:28 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:41:28 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:42:29 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:42:29 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:46:21 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:46:21 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:47:10 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:47:10 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:52:14 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:52:14 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:52:35 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:52:35 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:53:50 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:53:50 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:54:53 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:54:53 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:55:48 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:55:48 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:56:30 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:56:30 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:56:52 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:56:52 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:57:48 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:57:48 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:58:06 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:58:06 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:58:30 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:58:31 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 12:59:08 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 12:59:08 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:05:40 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:05:40 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:06:48 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:06:48 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:08:04 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:08:04 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:13:20 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:13:20 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:16:21 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:16:21 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:24:00 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:24:00 PM [INFO] -- Playername is Folgers#8510
+5/8/2024 1:24:00 PM [INFO] -- Created Sign In Hello#6114
+5/8/2024 1:24:00 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:24:32 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:24:32 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:26:20 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:26:20 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:29:27 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:29:27 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:31:28 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:31:28 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:32:45 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:32:45 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:33:00 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:33:20 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:33:20 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:35:11 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:35:11 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:35:33 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:35:33 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:35:36 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:36:22 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:36:22 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:36:24 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:37:13 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:37:13 PM [INFO] -- Playername is Hello#6114
+5/8/2024 1:42:30 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 1:42:30 PM [INFO] -- Playername is Hello#6114
+5/8/2024 7:04:44 PM [INFO] -- PlayerId: 1NEMQbRfl1DmfvucJPxzka7laBKv
+5/8/2024 7:04:44 PM [INFO] -- Playername is Hello#6114

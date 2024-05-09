@@ -3543,10 +3543,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuType: 0
   previousMenuType: 0
-  MainMenu: {fileID: 1682879712445618778}
-  Audio: {fileID: 1682879712014952360}
-  HighScores: {fileID: 1682879712635441285}
-  Username: {fileID: 0}
+  _mainMenu: {fileID: 1682879712445618778}
+  _audio: {fileID: 1682879712014952360}
+  _highScores: {fileID: 1682879712635441285}
+  _username: {fileID: 0}
+  _playImages:
+  - {fileID: 21300000, guid: 81f5cfd0b638ac1489e3e6301b6792a6, type: 3}
+  - {fileID: 21300000, guid: e08790ea1da8f5048a0741af4c13f46a, type: 3}
 --- !u!114 &2095811623
 MonoBehaviour:
   m_ObjectHideFlags: 0
