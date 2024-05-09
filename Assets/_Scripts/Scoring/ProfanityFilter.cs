@@ -50,7 +50,6 @@ public class ProfanityFilter : MonoBehaviour
 
     private void LoadProfanityWords(string filePath)
     {
-        Debug.Log(string.Join("\n", File.ReadAllText(filePath).Split(",")));
         profanityWords = new HashSet<string>(File.ReadAllText(filePath).Split(","));
     }
 
