@@ -16,7 +16,7 @@ public class LogFile : MonoBehaviour
 
     void Start()
     {
-        _path = Application.dataPath + "/log.txt";
+        _path = Application.persistentDataPath + "/log.txt";
     }
 
     public void WriteToLog(string message, LogLevel severity)

@@ -11,14 +11,13 @@ public class Scores
     public string username;
 }
 
-[RequireComponent(typeof(DontDestroy))]
 public class HighScores : MonoBehaviour
 {
+    public static event Action ScoresLoaded;
     public static HighScores Instance;
     private string _path;
     public Scores scores;
     const string LeaderboardId = "Up_Down_Left_Right";
-
 
     void OnEnable()
     {
@@ -49,7 +48,7 @@ public class HighScores : MonoBehaviour
 
     public void LoadScoreFile()
     {
-        _path = Application.dataPath + "/highScores-score.json";
+        _path = Application.persistentDataPath + "/highScores-score.json";
 
         if (File.Exists(_path))
         {
@@ -75,7 +74,11 @@ public class HighScores : MonoBehaviour
 
     public async void AddScore(int score)
     {
-        if (score > scores.highScores[^1])
+        if (scores.highScores.Count == 0)
+        {
+            Instance.scores.highScores.Add(score);
+        }
+        else if (score > scores.highScores[^1])
         {
             Instance.scores.highScores.Add(score);
         }
@@ -100,5 +103,9 @@ public class HighScores : MonoBehaviour
 
             WriteScoreFile();
         }
+
+        LoadScoreFile();
+
+        ScoresLoaded?.Invoke();
     }
 }

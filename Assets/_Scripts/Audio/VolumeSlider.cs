@@ -8,9 +8,13 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private string _mixerName;
 
-    void OnEnable()
+    void Start()
     {
-        if (_mixerName == "Music")
+        if (_mixerName == "Master")
+        {
+            _slider.value = MusicManager.Instance.masterVolume;
+        }
+        else if (_mixerName == "Music")
         {
             _slider.value = MusicManager.Instance.musicVolume;
         }
@@ -20,17 +24,21 @@ public class VolumeSlider : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void SetVolume(float value)
     {
-        _mixer.SetFloat(_mixerName, _slider.value);
+        _mixer.SetFloat(_mixerName, value);
 
-        if (_mixerName == "Music")
+        if (_mixerName == "Master")
         {
-            MusicManager.Instance.musicVolume = _slider.value;
+            MusicManager.Instance.masterVolume = value;
+        }
+        else if (_mixerName == "Music")
+        {
+            MusicManager.Instance.musicVolume = value;
         }
         else if (_mixerName == "SFX")
         {
-            MusicManager.Instance.SFXVolume = _slider.value;
+            MusicManager.Instance.SFXVolume = value;
         }
     }
 }

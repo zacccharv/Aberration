@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,46 +17,57 @@ public class AudioMenu : MonoBehaviour
         buttonNavigation = GetComponent<ButtonNavigation>();
     }
 
+    void Start()
+    {
+        sliders[0].value = MusicManager.Instance.masterVolume;
+        sliders[1].value = MusicManager.Instance.musicVolume;
+        sliders[2].value = MusicManager.Instance.SFXVolume;
+    }
+
     public void MoveSliders(Direction direction, int index)
     {
-        if (index == 2) return;
+        if (index == 3) return;
 
         if (direction == Direction.Right)
         {
-            if (buttonNavigation.buttonIndex == 0 || buttonNavigation.buttonIndex == 1)
+            if (buttonNavigation.buttonIndex != 3)
             {
                 sliders[buttonNavigation.buttonIndex].value += 1f;
 
-                if (buttonNavigation.buttonIndex == 1) SFXCollection.Instance.PlaySound(SFXType.Success);
+                // if SFX make sound
+                if (buttonNavigation.buttonIndex == 2 || buttonNavigation.buttonIndex == 0) SFXCollection.Instance.PlaySound(SFXType.Success);
             }
         }
         else if (direction == Direction.Left)
         {
-            if (buttonNavigation.buttonIndex == 0 || buttonNavigation.buttonIndex == 1)
+            if (buttonNavigation.buttonIndex != 3)
             {
                 sliders[buttonNavigation.buttonIndex].value -= 1f;
 
-                if (buttonNavigation.buttonIndex == 1) SFXCollection.Instance.PlaySound(SFXType.Success);
+                // if SFX make sound
+                if (buttonNavigation.buttonIndex == 2 || buttonNavigation.buttonIndex == 0) SFXCollection.Instance.PlaySound(SFXType.Success);
             }
         }
-
-        ColorSlider(index);
     }
 
     public void PressBack()
     {
-        menuScreens.SwitchMenus(MenuType.MainMenu);
+        GetComponent<MenuScreens>().SwitchMenus(MenuType.MainMenu);
     }
 
-    private void ColorSlider(int index)
+    public void ColorSlider(int index)
     {
-        if (buttonNavigation.previousIndex != 0 && index != buttonNavigation.previousIndex)
+        if (buttonNavigation.previousIndex == 0 && index != buttonNavigation.previousIndex)
         {
             sliderFills[0].color = _sliderFillColor;
         }
-        else if (buttonNavigation.previousIndex != 1 && index != buttonNavigation.previousIndex)
+        else if (buttonNavigation.previousIndex == 1 && index != buttonNavigation.previousIndex)
         {
             sliderFills[1].color = _sliderFillColor;
+        }
+        else if (buttonNavigation.previousIndex == 2 && index != buttonNavigation.previousIndex)
+        {
+            sliderFills[2].color = _sliderFillColor;
         }
 
         if (buttonNavigation.buttonIndex == 0)
@@ -67,6 +77,10 @@ public class AudioMenu : MonoBehaviour
         else if (buttonNavigation.buttonIndex == 1)
         {
             sliderFills[1].color = _highlightedFillColor;
+        }
+        else if (buttonNavigation.buttonIndex == 2)
+        {
+            sliderFills[2].color = _highlightedFillColor;
         }
     }
 }

@@ -15,35 +15,12 @@ public class GameManager : MonoBehaviour
 {
     public static event GameStateChange GameStateChange;
     public static GameManager Instance;
+    [SerializeField] private MenuScreens menuScreens;
     public GameState gameState;
-    public GameObject menu;
+    public GameObject menu, gameOverTitle, pauseTitle;
     public float gameTime = 0;
     public static float deltaTime;
     public static float timeScale;
-
-    void OnEnable()
-    {
-        InputManager_Z.UIInputPressed += EscCheck;
-    }
-
-    void OnDisable()
-    {
-        InputManager_Z.UIInputPressed -= EscCheck;
-    }
-
-    private void EscCheck(InputType inputType)
-    {
-        if (inputType == InputType.Esc)
-        {
-            if (SceneManager.GetActiveScene().name != "MainMenu")
-            {
-                GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().StopMusic();
-                GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().PlayMusic(0);
-            }
-
-            SceneManager.LoadScene("Assets/Scenes/MainMenu.unity");
-        }
-    }
 
     void Awake()
     {
@@ -79,13 +56,30 @@ public class GameManager : MonoBehaviour
         {
             timeScale = 0;
             DOTween.KillAll();
+            menu.SetActive(true);
+            menuScreens.SwitchMenus(MenuType.MainMenu);
+
+            pauseTitle.SetActive(false);
+            gameOverTitle.SetActive(true);
+
         }
         else if (gameState == GameState.Paused)
+        {
             timeScale = 0;
-        else
-            timeScale = 1;
+            menu.SetActive(true);
 
-        menu.SetActive(true);
+            pauseTitle.SetActive(true);
+            gameOverTitle.SetActive(false);
+        }
+        else
+        {
+            timeScale = 1;
+            menu.SetActive(false);
+
+            pauseTitle.SetActive(false);
+            gameOverTitle.SetActive(false);
+        }
+
     }
 
 }

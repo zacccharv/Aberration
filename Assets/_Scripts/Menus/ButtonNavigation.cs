@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,22 +13,25 @@ public class ButtonNavigation : MonoBehaviour
     private MenuScreens menuScreens;
     public int previousIndex;
     public int buttonIndex = 0;
-    private List<Button> buttons;
+    public List<Button> buttons;
+    private bool canPress;
 
     void OnEnable()
     {
         InputManager_Z.DirectionPressed += OnDirectionPressed;
-        InputManager_Z.UIInputPressed += TriggerSelected;
+        InputManager_Z.UIInputPressed += TriggerSelectedInMenu;
     }
 
     void OnDisable()
     {
         InputManager_Z.DirectionPressed -= OnDirectionPressed;
-        InputManager_Z.UIInputPressed -= TriggerSelected;
+        InputManager_Z.UIInputPressed -= TriggerSelectedInMenu;
     }
 
     void Start()
     {
+        canPress = true;
+
         audioMenu = GetComponent<AudioMenu>();
         menuScreens = GetComponent<MenuScreens>();
         mainMenuButtons[0].Select();
@@ -74,6 +78,9 @@ public class ButtonNavigation : MonoBehaviour
 
             buttons[buttonIndex].Select();
             SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
+
+            if (menuScreens.menuType == MenuType.Audio)
+                audioMenu.ColorSlider(buttonIndex);
         }
         else if (direction == Direction.Down)
         {
@@ -85,30 +92,69 @@ public class ButtonNavigation : MonoBehaviour
 
             buttons[buttonIndex].Select();
             SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
-        }
 
-        if (menuScreens.menuType == MenuType.Audio)
+            if (menuScreens.menuType == MenuType.Audio)
+                audioMenu.ColorSlider(buttonIndex);
+        }
+        else if (direction == Direction.Right || direction == Direction.Left)
         {
-            if (direction == Direction.Right || direction == Direction.Left)
-            {
+            if (menuScreens.menuType == MenuType.Audio)
                 audioMenu.MoveSliders(direction, buttonIndex);
-            }
         }
     }
 
-    private void TriggerSelected(InputType inputType)
+    private void TriggerSelectedInMenu(InputType inputType)
     {
         if (inputType == InputType.Confirm)
         {
-            if (buttonIndex <= buttons.Count - 1)
-            {
-                buttons[buttonIndex].onClick.Invoke();
-            }
+            TriggerConfirm();
         }
-        else if (inputType == InputType.Esc && GameManager.Instance.gameState != GameState.Paused && GameManager.Instance.gameState != GameState.Ended)
+        else if (inputType == InputType.Esc)
         {
+            StartCoroutine(TriggerEscape());
+        }
+    }
+
+    public IEnumerator TriggerEscape()
+    {
+        if (menuScreens.menuType == MenuType.None && canPress != false)
+        {
+            Debug.Log("Paused");
+
             GameManager.Instance.ChangeGameStateChange(GameState.Paused);
             menuScreens.SwitchMenus(MenuType.PauseMenu);
+
+            buttons = mainMenuButtons;
+            canPress = false;
+
+            yield return new WaitForSeconds(.25f);
         }
+        if (menuScreens.menuType != MenuType.None && canPress)
+        {
+            if (menuScreens.menuType != MenuType.MainMenu)
+            // Go back if any menu but MainMenu
+            {
+                Debug.Log("Back " + menuScreens.menuType);
+                buttons[^1].onClick.Invoke();
+            }
+            else if (menuScreens.menuType == MenuType.MainMenu && GameManager.Instance != null)
+            // Press play if MainMenu
+            {
+                Debug.Log("Resumed " + buttons[0].name);
+
+                buttons[0].onClick.Invoke();
+            }
+
+            yield return new WaitForSeconds(.25f);
+        }
+
+        canPress = true;
+        yield return null;
+    }
+
+    private void TriggerConfirm()
+    {
+        if (buttonIndex <= buttons.Count - 1)
+            buttons[buttonIndex].onClick.Invoke();
     }
 }

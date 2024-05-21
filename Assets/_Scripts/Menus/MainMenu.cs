@@ -15,11 +15,21 @@ public class MainMenu : MonoBehaviour
 
     public void PressPlay()
     {
+
         if (menuScreens.previousMenuType != menuScreens.menuType)
         {
             // deals with race conditions
             menuScreens.previousMenuType = menuScreens.menuType;
-            return;
+        }
+
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.gameState == GameState.Paused)
+            {
+                GameManager.Instance.ChangeGameStateChange(GameState.Started);
+                menuScreens.menuType = MenuType.None;
+                return;
+            }
         }
 
         if (HighScores.Instance.scores.username == "" || HighScores.Instance.scores.username == null)
@@ -38,6 +48,7 @@ public class MainMenu : MonoBehaviour
             GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().PlayMusic(1);
         }
 
+        GetComponent<ButtonNavigation>().StopAllCoroutines();
         SceneManager.LoadScene("Assets/Scenes/Main.unity");
     }
 
@@ -48,8 +59,6 @@ public class MainMenu : MonoBehaviour
 
     public void PressScores()
     {
-        Debug.Log("Score Pressed");
-
         // NOTE scores only if username exists 
         if (HighScores.Instance.scores.username != "")
         {
@@ -57,7 +66,6 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log("Play the game first");
             return;
         }
 

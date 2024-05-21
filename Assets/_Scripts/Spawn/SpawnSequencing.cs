@@ -245,7 +245,6 @@ public class SpawnSequencing : MonoBehaviour
         {
             if (transform.position == ArrowManager.Instance.interactableArrows[0].transform.position)
             {
-                Debug.Log("Doubled up spawn.");
                 return;
             }
         }

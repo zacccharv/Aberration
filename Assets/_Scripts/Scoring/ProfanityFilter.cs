@@ -5,7 +5,6 @@ using System.IO;
 public class ProfanityFilter : MonoBehaviour
 {
     public static ProfanityFilter Instance;
-    public string originalFilePath;
     private HashSet<string> profanityWords;
 
     void Awake()
@@ -23,8 +22,7 @@ public class ProfanityFilter : MonoBehaviour
 
     void Start()
     {
-        // GenerateListFile(originalFilePath);
-        LoadProfanityWords(originalFilePath);
+        LoadProfanityWords(Resources.Load<TextAsset>("profane"));
     }
 
     // private void GenerateList(string filePath)
@@ -48,16 +46,16 @@ public class ProfanityFilter : MonoBehaviour
     //     File.WriteAllLines(newPath, words);
     // }
 
-    private void LoadProfanityWords(string filePath)
+    private void LoadProfanityWords(TextAsset asset)
     {
-        profanityWords = new HashSet<string>(File.ReadAllText(filePath).Split(","));
+        Instance.profanityWords = new HashSet<string>(asset.text.Split(","));
     }
 
     public bool ContainsProfanity(string text)
     {
         foreach (string word in text.Split(' '))
         {
-            if (profanityWords.Contains(word.ToLower()))
+            if (Instance.profanityWords.Contains(word.ToLower()))
             {
                 return true;
             }
@@ -69,7 +67,7 @@ public class ProfanityFilter : MonoBehaviour
     {
         foreach (string word in text.Split(' '))
         {
-            if (profanityWords.Contains(word.ToLower()))
+            if (Instance.profanityWords.Contains(word.ToLower()))
             {
                 text = text.Replace(word, new string('*', word.Length));
             }

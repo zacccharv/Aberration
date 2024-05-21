@@ -5,7 +5,7 @@ using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 
-[RequireComponent(typeof(LogFile), typeof(DontDestroy))]
+[RequireComponent(typeof(LogFile))]
 public class LeaderBoard : MonoBehaviour
 {
     // Create a leaderboard with this ID in the Unity Cloud Dashboard
@@ -30,6 +30,16 @@ public class LeaderBoard : MonoBehaviour
 
     private async void Awake()
     {
+        if (Instance != this && Instance != null)
+        {
+            Destroy(Instance);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         logFile = GetComponent<LogFile>();
         HighScores.Instance.LoadScoreFile();
 
