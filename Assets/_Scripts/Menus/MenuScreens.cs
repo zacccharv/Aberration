@@ -15,7 +15,7 @@ public enum MenuType
 
 public class MenuScreens : MonoBehaviour
 {
-    public MenuType menuType, previousMenuType;
+    public MenuType menuType;
     [SerializeField] private GameObject _mainMenu, _audio, _highScores, _username;
 
     // TODO add play images
@@ -23,7 +23,7 @@ public class MenuScreens : MonoBehaviour
     private ButtonNavigation buttonNavigation;
     private Selectable _selectable;
 
-    void Awake()
+    void Start()
     {
         buttonNavigation = GetComponent<ButtonNavigation>();
 
@@ -38,11 +38,10 @@ public class MenuScreens : MonoBehaviour
 
     public void SwitchMenus(MenuType menu)
     {
-        previousMenuType = menuType;
         buttonNavigation.buttonIndex = 0;
         buttonNavigation.previousIndex = 0;
 
-        if (menu == MenuType.MainMenu && GameManager.Instance.gameState == GameState.Ended)
+        if (menu == MenuType.MainMenu && (GameManager.Instance.gameState == GameState.Ended || GameManager.Instance.gameState == GameState.PreStart))
         {
             _mainMenu.SetActive(true);
             _audio.SetActive(false);
@@ -59,6 +58,7 @@ public class MenuScreens : MonoBehaviour
         }
         else if ((menu == MenuType.MainMenu || menu == MenuType.PauseMenu) && GameManager.Instance.gameState == GameState.Paused)
         {
+            Debug.Log(menu);
             _mainMenu.SetActive(true);
             _audio.SetActive(false);
             _highScores.SetActive(false);

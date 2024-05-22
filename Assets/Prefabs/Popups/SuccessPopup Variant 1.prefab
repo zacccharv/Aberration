@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752149999255031556, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1752149999255031558, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
       propertyPath: m_Pivot.x
@@ -102,6 +102,10 @@ PrefabInstance:
     - target: {fileID: 1752149999255031558, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752149999255031559, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9146961075315444800, guid: fa3f21a0974db464196c3f9f4765b918, type: 3}
       propertyPath: m_Sprite

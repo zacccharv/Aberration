@@ -15,19 +15,11 @@ public class MainMenu : MonoBehaviour
 
     public void PressPlay()
     {
-
-        if (menuScreens.previousMenuType != menuScreens.menuType)
-        {
-            // deals with race conditions
-            menuScreens.previousMenuType = menuScreens.menuType;
-        }
-
         if (GameManager.Instance != null)
         {
             if (GameManager.Instance.gameState == GameState.Paused)
             {
-                GameManager.Instance.ChangeGameStateChange(GameState.Started);
-                menuScreens.menuType = MenuType.None;
+                GameManager.Instance.ChangeGameState(GameState.Started);
                 return;
             }
         }

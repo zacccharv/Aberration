@@ -34,15 +34,13 @@ public class ButtonNavigation : MonoBehaviour
 
         audioMenu = GetComponent<AudioMenu>();
         menuScreens = GetComponent<MenuScreens>();
+
         mainMenuButtons[0].Select();
     }
 
     private void OnDirectionPressed(Direction direction, InteractionType _)
     {
-        if (GameManager.Instance != null)
-        {
-            if (GameManager.Instance.gameState == GameState.Started) return;
-        }
+        if (GameManager.Instance.gameState == GameState.Started) return;
 
         if (_username != null)
         {
@@ -119,9 +117,7 @@ public class ButtonNavigation : MonoBehaviour
     {
         if (menuScreens.menuType == MenuType.None && canPress != false)
         {
-            Debug.Log("Paused");
-
-            GameManager.Instance.ChangeGameStateChange(GameState.Paused);
+            GameManager.Instance.ChangeGameState(GameState.Paused);
             menuScreens.SwitchMenus(MenuType.PauseMenu);
 
             buttons = mainMenuButtons;
@@ -134,10 +130,11 @@ public class ButtonNavigation : MonoBehaviour
             if (menuScreens.menuType != MenuType.MainMenu)
             // Go back if any menu but MainMenu
             {
-                Debug.Log("Back " + menuScreens.menuType);
+                Debug.Log(buttons[^1].name);
+
                 buttons[^1].onClick.Invoke();
             }
-            else if (menuScreens.menuType == MenuType.MainMenu && GameManager.Instance != null)
+            else if (menuScreens.menuType == MenuType.MainMenu && GameManager.Instance.gameState != GameState.PreStart)
             // Press play if MainMenu
             {
                 Debug.Log("Resumed " + buttons[0].name);

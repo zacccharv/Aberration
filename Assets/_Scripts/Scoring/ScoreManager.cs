@@ -168,7 +168,7 @@ public class ScoreManager : MonoBehaviour
 
         if (score == 0)
         {
-            GameManager.Instance.ChangeGameStateChange(GameState.Ended);
+            GameManager.Instance.ChangeGameState(GameState.Ended);
         }
     }
 
