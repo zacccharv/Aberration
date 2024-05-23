@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private MenuScreens menuScreens;
     public GameState gameState;
-    private GameObject _menu, _gameOverTitle, _pauseTitle;
+
+    [HideInInspector] public GameObject menu, gameOverTitle, pauseTitle;
+    [HideInInspector] public GameObject title;
+
     public float gameTime = 0;
     public static float deltaTime;
     public static float timeScale;
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        title = FindAnyObjectByType<CPauseTitle>(FindObjectsInactive.Include).gameObject;
         gameState = GameState.PreStart;
         timeScale = 0;
     }
@@ -79,29 +83,32 @@ public class GameManager : MonoBehaviour
 
             timeScale = 0;
 
-            _menu.SetActive(true);
-            _pauseTitle.SetActive(false);
-            _gameOverTitle.SetActive(true);
+            menu.SetActive(true);
+            pauseTitle.SetActive(false);
+            gameOverTitle.SetActive(true);
 
+            title = gameOverTitle;
         }
-        // FIXME Pause title staying in Scores menu
         else if (gameState == GameState.Paused)
         {
             timeScale = 0;
-            _menu.SetActive(true);
 
-            _menu.SetActive(true);
-            _pauseTitle.SetActive(true);
-            _gameOverTitle.SetActive(false);
+            menu.SetActive(true);
+            pauseTitle.SetActive(true);
+            gameOverTitle.SetActive(false);
+
+            title = pauseTitle;
         }
         else
         {
             timeScale = 1;
             menuScreens.menuType = MenuType.None;
 
-            _menu.SetActive(false);
-            _pauseTitle.SetActive(false);
-            _gameOverTitle.SetActive(false);
+            menu.SetActive(false);
+            pauseTitle.SetActive(false);
+            gameOverTitle.SetActive(false);
+
+            title = pauseTitle;
         }
 
     }
@@ -112,12 +119,14 @@ public class GameManager : MonoBehaviour
 
         if (scene.name == "Main")
         {
-            _menu = FindAnyObjectByType<CMenu>(FindObjectsInactive.Include).gameObject;
-            _gameOverTitle = FindAnyObjectByType<CGameOverTitle>(FindObjectsInactive.Include).gameObject;
-            _pauseTitle = FindAnyObjectByType<CPauseTitle>(FindObjectsInactive.Include).gameObject;
-
             menuScreens = FindFirstObjectByType<MenuScreens>();
+
+            menu = FindAnyObjectByType<CMenu>(FindObjectsInactive.Include).gameObject;
+            gameOverTitle = FindAnyObjectByType<CGameOverTitle>(FindObjectsInactive.Include).gameObject;
+            pauseTitle = FindAnyObjectByType<CPauseTitle>(FindObjectsInactive.Include).gameObject;
+
             ChangeGameState(GameState.Started);
+
             gameTime = 0;
         }
 

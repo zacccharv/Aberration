@@ -55,10 +55,11 @@ public class MenuScreens : MonoBehaviour
             _selectable.image.SetNativeSize();
 
             Invoke(nameof(DelayedSelection), .15f);
+
+            GameManager.Instance.title.SetActive(true);
         }
         else if ((menu == MenuType.MainMenu || menu == MenuType.PauseMenu) && GameManager.Instance.gameState == GameState.Paused)
         {
-            Debug.Log(menu);
             _mainMenu.SetActive(true);
             _audio.SetActive(false);
             _highScores.SetActive(false);
@@ -71,6 +72,8 @@ public class MenuScreens : MonoBehaviour
             _selectable.image.SetNativeSize();
 
             Invoke(nameof(DelayedSelection), .15f);
+
+            GameManager.Instance.title.SetActive(true);
         }
         else if (menu == MenuType.Audio)
         {
@@ -78,15 +81,18 @@ public class MenuScreens : MonoBehaviour
             _audio.SetActive(true);
             _highScores.SetActive(false);
             menuType = MenuType.Audio;
+
             _selectable = buttonNavigation.audioMenuButtons[0];
             buttonNavigation.buttons = buttonNavigation.audioMenuButtons;
 
             Invoke(nameof(DelayedSelection), .15f);
+
+            GameManager.Instance.title.SetActive(true);
         }
         else if (menu == MenuType.HighScores)
         {
-            _highScores.SetActive(true);
             _mainMenu.SetActive(false);
+            _highScores.SetActive(true);
             _audio.SetActive(false);
             menuType = MenuType.HighScores;
 
@@ -94,6 +100,8 @@ public class MenuScreens : MonoBehaviour
             buttonNavigation.buttons = buttonNavigation.scoreMenuButtons;
 
             Invoke(nameof(DelayedSelection), .15f);
+
+            GameManager.Instance.title.SetActive(false);
         }
         else if (menu == MenuType.Username && _username != null)
         {
@@ -105,6 +113,8 @@ public class MenuScreens : MonoBehaviour
             _selectable = buttonNavigation.userName;
 
             Invoke(nameof(DelayedSelection), .15f);
+
+            GameManager.Instance.title.SetActive(false);
         }
         else if (menu == MenuType.None)
         {

@@ -14,13 +14,10 @@ public class LogFile : MonoBehaviour
 {
     private string _path;
 
-    void Start()
-    {
-        _path = Application.persistentDataPath + "/log.txt";
-    }
-
     public void WriteToLog(string message, LogLevel severity)
     {
+        _path = Application.persistentDataPath + "/log.txt";
+
         try
         {
             using StreamWriter sw = File.AppendText(_path);

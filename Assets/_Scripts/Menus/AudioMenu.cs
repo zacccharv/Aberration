@@ -48,7 +48,18 @@ public class AudioMenu : MonoBehaviour
 
     public void PressBack()
     {
-        _menuScreens.SwitchMenus(MenuType.MainMenu);
+        MenuType menuType;
+
+        if (GameManager.Instance.gameState == GameState.Paused)
+        {
+            menuType = MenuType.PauseMenu;
+        }
+        else
+        {
+            menuType = MenuType.MainMenu;
+        }
+
+        _menuScreens.SwitchMenus(menuType);
     }
 
     public void ColorSlider(int index)

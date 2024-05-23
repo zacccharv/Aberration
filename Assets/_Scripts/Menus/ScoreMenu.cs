@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreMenu : MonoBehaviour
 {
-    private MenuScreens menuScreens;
+    private MenuScreens _menuScreens;
 
     void Awake()
     {
-        menuScreens = GetComponent<MenuScreens>();
+        _menuScreens = GetComponent<MenuScreens>();
     }
 
     public void PressBack()
     {
-        menuScreens.SwitchMenus(MenuType.MainMenu);
+        MenuType menuType;
+
+        if (GameManager.Instance.gameState == GameState.Paused)
+        {
+            menuType = MenuType.PauseMenu;
+        }
+        else
+        {
+            menuType = MenuType.MainMenu;
+        }
+
+        _menuScreens.SwitchMenus(menuType);
     }
 }

@@ -99,7 +99,7 @@ public class Tower : MonoBehaviour
 
     public void OnDirectionPressed(Direction directionPressed, InteractionType interactionType)
     {
-        if (ArrowManager.Instance.interactableArrows[0] == null || GameManager.Instance.gameState != GameState.Started)
+        if (ArrowManager.Instance.interactableArrows.Count == 0 || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }

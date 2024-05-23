@@ -128,19 +128,8 @@ public class ButtonNavigation : MonoBehaviour
         if (menuScreens.menuType != MenuType.None && canPress)
         {
             if (menuScreens.menuType != MenuType.MainMenu)
-            // Go back if any menu but MainMenu
-            {
-                Debug.Log(buttons[^1].name);
-
+                // Go back if any menu but MainMenu
                 buttons[^1].onClick.Invoke();
-            }
-            else if (menuScreens.menuType == MenuType.MainMenu && GameManager.Instance.gameState != GameState.PreStart)
-            // Press play if MainMenu
-            {
-                Debug.Log("Resumed " + buttons[0].name);
-
-                buttons[0].onClick.Invoke();
-            }
 
             yield return new WaitForSeconds(.25f);
         }
