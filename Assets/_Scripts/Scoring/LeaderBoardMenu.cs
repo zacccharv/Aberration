@@ -1,12 +1,16 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.Services.Leaderboards;
+using Unity.Services.Leaderboards.Models;
 using UnityEngine;
 
 public class LeaderBoardMenu : MonoBehaviour
 {
 
+    public LeaderboardScoresPage scoresResponse;
     public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames, personalLBScores;
+
     void OnEnable()
     {
         HighScores.ScoresLoaded += GetScores;
@@ -24,13 +28,15 @@ public class LeaderBoardMenu : MonoBehaviour
 
     public async void GetScores()
     {
-        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderBoard.Instance.LeaderboardId);
+        scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderBoard.Instance.LeaderboardId);
 
+        Invoke(nameof(HurryUpAndWait), .15f);
+    }
+    void HurryUpAndWait()
+    {
         HighScores.Instance.LoadScoreFile();
         LeaderBoard.Instance.scores.Clear();
         LeaderBoard.Instance.names.Clear();
-
-        // Debug.Log(JsonConvert.SerializeObject(scoresResponse));
 
         for (int i = 0; i < scoresResponse.Results.Count; i++)
         {

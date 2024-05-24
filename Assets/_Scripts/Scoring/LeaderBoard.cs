@@ -61,14 +61,13 @@ public class LeaderBoard : MonoBehaviour
 
         AuthenticationService.Instance.SignedIn += () =>
         {
-            logFile.WriteToLog("PlayerId: " + AuthenticationService.Instance.PlayerId, LogLevel.Info);
+            // logFile.WriteToLog("PlayerId: " + AuthenticationService.Instance.PlayerId, LogLevel.Info);
         };
 
         AuthenticationService.Instance.SignInFailed += s =>
         {
             // Take some action here...
-            Debug.Log(s);
-            logFile.WriteToLog(s.ToString(), LogLevel.Error);
+            // logFile.WriteToLog(s.ToString(), LogLevel.Error);
         };
 
         if (!AuthenticationService.Instance.IsSignedIn)
@@ -80,10 +79,10 @@ public class LeaderBoard : MonoBehaviour
         if (!string.IsNullOrEmpty(HighScores.Instance.scores.username) && input != "default")
         {
             await AuthenticationService.Instance.UpdatePlayerNameAsync(string.Join("_", HighScores.Instance.scores.username));
-            logFile.WriteToLog($"Created Sign In {AuthenticationService.Instance.PlayerName}", LogLevel.Info);
+            // logFile.WriteToLog($"Created Sign In {AuthenticationService.Instance.PlayerName}", LogLevel.Info);
         }
 
-        logFile.WriteToLog($"Playername is {AuthenticationService.Instance.PlayerName}", LogLevel.Info);
+        // logFile.WriteToLog($"Playername is {AuthenticationService.Instance.PlayerName}", LogLevel.Info);
 
         if (Instance != this && Instance != null)
         {

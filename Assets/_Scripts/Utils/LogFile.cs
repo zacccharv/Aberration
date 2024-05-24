@@ -38,4 +38,9 @@ public class LogFile : MonoBehaviour
             throw;
         }
     }
+
+    public void WriteToInputLog()
+    {
+
+    }
 }

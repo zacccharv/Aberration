@@ -116,6 +116,10 @@ public class InputManager_Z : MonoBehaviour
 
             if (context.performed)
             {
+                HoldInteraction holdInteraction = context.interaction as HoldInteraction;
+
+                float duration = holdInteraction.duration;
+
                 GamePadButtonPressed?.Invoke(direction, InteractionType.Long);
             }
         }

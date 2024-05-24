@@ -115,8 +115,6 @@ public class GameManager : MonoBehaviour
 
     public void FindObjects(Scene scene, LoadSceneMode sceneMode)
     {
-        GetComponent<LogFile>().WriteToLog(scene + " Loaded", LogLevel.Debug);
-
         if (scene.name == "Main")
         {
             menuScreens = FindFirstObjectByType<MenuScreens>();

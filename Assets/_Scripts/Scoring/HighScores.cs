@@ -44,6 +44,8 @@ public class HighScores : MonoBehaviour
     void Start()
     {
         LoadScoreFile();
+
+        ScoresLoaded?.Invoke();
     }
 
     public void LoadScoreFile()
