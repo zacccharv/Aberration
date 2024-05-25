@@ -10,6 +10,7 @@ using UnityEngine.InputSystem.Interactions;
 public struct LogEntry
 {
     // Unity specific
+    // TODO create subobject for input
     public string InputPhase;
     public float ExpectedHoldTime;
     public float ActualHoldTime;
@@ -17,13 +18,16 @@ public struct LogEntry
     public float ActualPressWindow;
 
     // Game specific
+    // TODO create subobject for arrow
     public string InteractionType;
-    public string Direction;
+    public string ArrowInteraction;
+    public string ButtonDirection;
     public string ScoreType;
     public bool PerfectInput;
     public LogEntry(InputActionPhase inputActionPhase,
                     InteractionType interactionType,
-                    Direction direction,
+                    Direction buttonDirection,
+                    InteractionType arrowInteraction,
                     ScoreType scoreType,
                     float expectedHoldTime,
                     float actualHoldTime,
@@ -33,7 +37,8 @@ public struct LogEntry
     {
         InputPhase = inputActionPhase.ToString();
         InteractionType = interactionType.ToString();
-        Direction = direction.ToString();
+        ButtonDirection = buttonDirection.ToString();
+        ArrowInteraction = arrowInteraction.ToString();
         ScoreType = scoreType.ToString();
         ExpectedHoldTime = expectedHoldTime;
         ActualHoldTime = actualHoldTime;
@@ -71,6 +76,7 @@ public class InputLog : MonoBehaviour
 
     public void LoadLog()
     {
+        File.Delete(Application.persistentDataPath + "/input-log.json");
         _path = Application.persistentDataPath + "/input-log.json";
 
         if (File.Exists(_path) && File.ReadAllText(_path) != "")
@@ -101,7 +107,12 @@ public class InputLog : MonoBehaviour
         }
     }
 
-    public void AddToLog(InputAction.CallbackContext callbackContext, InteractionType interactionType, Direction direction, ScoreType scoreType, bool perfectInput)
+    public void AddToLog(InputAction.CallbackContext callbackContext,
+                         InteractionType btnInteractionType,
+                         Direction btnDirection,
+                         InteractionType arrowInteractionType,
+                         ScoreType scoreType,
+                         bool perfectInput)
     {
         float expectedHold = -1, actualHold = -1, doublePressWindow = -1, actualPressWindow = -1;
 
@@ -116,7 +127,7 @@ public class InputLog : MonoBehaviour
             actualPressWindow = Time.realtimeSinceStartup - (float)callbackContext.time;
         }
 
-        LogEntry logEntry = new(callbackContext.phase, interactionType, direction, scoreType, expectedHold, actualHold, doublePressWindow, actualPressWindow, perfectInput);
+        LogEntry logEntry = new(callbackContext.phase, btnInteractionType, btnDirection, arrowInteractionType, scoreType, expectedHold, actualHold, doublePressWindow, actualPressWindow, perfectInput);
 
         _logEntries.LogEntries.Add(logEntry);
     }

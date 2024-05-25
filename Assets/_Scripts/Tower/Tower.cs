@@ -137,7 +137,7 @@ public class Tower : MonoBehaviour
             InputEvent?.Invoke(scoreType, interactionType);
         }
 
-        _inputLog.AddToLog(callbackContext, interactionType, directionPressed, scoreType, perfect);
+        _inputLog.AddToLog(callbackContext, interactionType, directionPressed, ArrowManager.Instance.interactableArrows[0].interactionType, scoreType, perfect);
     }
 
     public void OnDirectionPressed(InputAction.CallbackContext callbackContext, Direction directionPressed, InteractionType interactionType)
@@ -213,7 +213,7 @@ public class Tower : MonoBehaviour
             InputEvent?.Invoke(scoreType, interactionType);
         }
 
-        _inputLog.AddToLog(callbackContext, interactionType, directionPressed, scoreType, perfect);
+        _inputLog.AddToLog(callbackContext, interactionType, directionPressed, ArrowManager.Instance.interactableArrows[0].interactionType, scoreType, perfect);
     }
 
     public void OnInputStart()
