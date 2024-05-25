@@ -7,26 +7,35 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 [Serializable]
-public struct LogEntry
+public struct InputData
 {
-    // Unity specific
-    // TODO create subobject for input
     public string InputPhase;
+    public string InteractionType;
+    public string ButtonDirection;
     public float ExpectedHoldTime;
     public float ActualHoldTime;
     public float DoublePressWindow;
     public float ActualPressWindow;
+}
 
-    // Game specific
-    // TODO create subobject for arrow
-    public string InteractionType;
+[Serializable]
+public struct ArrowData
+{
     public string ArrowInteraction;
-    public string ButtonDirection;
+    public string ArrowDirection;
     public string ScoreType;
     public bool PerfectInput;
+}
+
+[Serializable]
+public struct LogEntry
+{
+    public InputData InputData;
+    public ArrowData ArrowData;
     public LogEntry(InputActionPhase inputActionPhase,
                     InteractionType interactionType,
                     Direction buttonDirection,
+                    Direction arrowDirection,
                     InteractionType arrowInteraction,
                     ScoreType scoreType,
                     float expectedHoldTime,
@@ -35,16 +44,18 @@ public struct LogEntry
                     float actualPressWindow,
                     bool perfectInput)
     {
-        InputPhase = inputActionPhase.ToString();
-        InteractionType = interactionType.ToString();
-        ButtonDirection = buttonDirection.ToString();
-        ArrowInteraction = arrowInteraction.ToString();
-        ScoreType = scoreType.ToString();
-        ExpectedHoldTime = expectedHoldTime;
-        ActualHoldTime = actualHoldTime;
-        DoublePressWindow = doublePressWindow;
-        ActualPressWindow = actualPressWindow;
-        PerfectInput = perfectInput;
+        InputData.InputPhase = inputActionPhase.ToString();
+        InputData.InteractionType = interactionType.ToString();
+        InputData.ButtonDirection = buttonDirection.ToString();
+        InputData.ExpectedHoldTime = expectedHoldTime;
+        InputData.ActualHoldTime = actualHoldTime;
+        InputData.DoublePressWindow = doublePressWindow;
+        InputData.ActualPressWindow = actualPressWindow;
+
+        ArrowData.ScoreType = scoreType.ToString();
+        ArrowData.ArrowDirection = arrowDirection.ToString();
+        ArrowData.ArrowInteraction = arrowInteraction.ToString();
+        ArrowData.PerfectInput = perfectInput;
     }
 
 }
@@ -110,6 +121,7 @@ public class InputLog : MonoBehaviour
     public void AddToLog(InputAction.CallbackContext callbackContext,
                          InteractionType btnInteractionType,
                          Direction btnDirection,
+                         Direction arrowDirection,
                          InteractionType arrowInteractionType,
                          ScoreType scoreType,
                          bool perfectInput)
@@ -123,11 +135,21 @@ public class InputLog : MonoBehaviour
         }
         else if (callbackContext.interaction is MultiTapInteraction)
         {
-            doublePressWindow = (callbackContext.interaction as MultiTapInteraction).tapDelay;
+            doublePressWindow = .666f;
             actualPressWindow = Time.realtimeSinceStartup - (float)callbackContext.time;
         }
 
-        LogEntry logEntry = new(callbackContext.phase, btnInteractionType, btnDirection, arrowInteractionType, scoreType, expectedHold, actualHold, doublePressWindow, actualPressWindow, perfectInput);
+        LogEntry logEntry = new(callbackContext.phase,
+                                btnInteractionType,
+                                btnDirection,
+                                arrowDirection,
+                                arrowInteractionType,
+                                scoreType,
+                                expectedHold,
+                                actualHold,
+                                doublePressWindow,
+                                actualPressWindow,
+                                perfectInput);
 
         _logEntries.LogEntries.Add(logEntry);
     }
