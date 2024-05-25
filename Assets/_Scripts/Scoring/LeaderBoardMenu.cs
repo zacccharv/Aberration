@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using TMPro;
+using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
 using Unity.Services.Leaderboards.Models;
 using UnityEngine;
@@ -28,6 +28,9 @@ public class LeaderBoardMenu : MonoBehaviour
 
     public async void GetScores()
     {
+        if (AuthenticationService.Instance.AccessToken == null)
+            return;
+
         scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderBoard.Instance.LeaderboardId);
 
         Invoke(nameof(HurryUpAndWait), .15f);

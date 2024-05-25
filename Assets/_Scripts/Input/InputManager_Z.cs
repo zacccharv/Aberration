@@ -13,8 +13,8 @@ public enum InteractionType
     Nil
 }
 
-public delegate void DirectionPress(Direction direction, InteractionType interactionType);
-public delegate void GamePadButtonPress(Direction direction, InteractionType interactionType);
+public delegate void DirectionPress(InputAction.CallbackContext callbackContext, Direction direction, InteractionType interactionType);
+public delegate void GamePadButtonPress(InputAction.CallbackContext callbackContext, Direction direction, InteractionType interactionType);
 public delegate void UIInputPress(InputType inputType);
 
 public class InputManager_Z : MonoBehaviour
@@ -58,7 +58,7 @@ public class InputManager_Z : MonoBehaviour
 
             if (context.performed)
             {
-                DirectionPressed?.Invoke(direction, InteractionType.Long);
+                DirectionPressed?.Invoke(context, direction, InteractionType.Long);
             }
         }
         else if (context.interaction is MultiTapInteraction)
@@ -66,23 +66,23 @@ public class InputManager_Z : MonoBehaviour
             if (context.started)
             {
                 InputStart?.Invoke();
-                DirectionPressed?.Invoke(direction, InteractionType.Single);
+                DirectionPressed?.Invoke(context, direction, InteractionType.Single);
             }
             else if (context.performed)
             {
-                DirectionPressed?.Invoke(direction, InteractionType.Double);
+                DirectionPressed?.Invoke(context, direction, InteractionType.Double);
             }
         }
         else if (context.interaction is PressInteraction)
         {
             if (context.performed)
             {
-                DirectionPressed?.Invoke(direction, InteractionType.Single);
+                DirectionPressed?.Invoke(context, direction, InteractionType.Single);
             }
         }
         else
         {
-            DirectionPressed?.Invoke(direction, InteractionType.Nil);
+            DirectionPressed?.Invoke(context, direction, InteractionType.Nil);
         }
     }
 
@@ -116,11 +116,7 @@ public class InputManager_Z : MonoBehaviour
 
             if (context.performed)
             {
-                HoldInteraction holdInteraction = context.interaction as HoldInteraction;
-
-                float duration = holdInteraction.duration;
-
-                GamePadButtonPressed?.Invoke(direction, InteractionType.Long);
+                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Long);
             }
         }
         else if (context.interaction is MultiTapInteraction)
@@ -128,23 +124,23 @@ public class InputManager_Z : MonoBehaviour
             if (context.started)
             {
                 InputStart?.Invoke();
-                GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
+                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Single);
             }
             else if (context.performed)
             {
-                GamePadButtonPressed?.Invoke(direction, InteractionType.Double);
+                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Double);
             }
         }
         else if (context.interaction is PressInteraction)
         {
             if (context.performed)
             {
-                GamePadButtonPressed?.Invoke(direction, InteractionType.Single);
+                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Single);
             }
         }
         else
         {
-            GamePadButtonPressed?.Invoke(direction, InteractionType.Nil);
+            GamePadButtonPressed?.Invoke(context, direction, InteractionType.Nil);
         }
     }
 

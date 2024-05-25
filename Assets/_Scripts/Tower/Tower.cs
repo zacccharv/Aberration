@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(InputLog))]
 public class Tower : MonoBehaviour
 {
     public delegate void SuccessDelegate(ScoreType scoreType, InteractionType interactionType);
@@ -14,9 +16,11 @@ public class Tower : MonoBehaviour
     public static Tower Instance;
     public GameObject towerBase;
     public Bounds destroyBounds, animationBounds, successBounds;
-    private bool _noPress;
     [SerializeField] private float _perfectTime;
     [SerializeField] private Color _white;
+
+    private InputLog _inputLog;
+    private bool _noPress;
 
     void OnEnable()
     {
@@ -43,6 +47,8 @@ public class Tower : MonoBehaviour
         {
             Instance = this;
         }
+
+        _inputLog = GetComponent<InputLog>();
     }
 
     void Start()
@@ -58,83 +64,156 @@ public class Tower : MonoBehaviour
     /// </summary>
     /// <param name="directionPressed"> Direction Pressed (up, down, left, right, none)</param>
     /// <param name="interactionType"> Interaction (single press, double press, etc...)</param>
-    private void OnGamePadPressed(Direction directionPressed, InteractionType interactionType)
+    private void OnGamePadPressed(InputAction.CallbackContext callbackContext, Direction directionPressed, InteractionType interactionType)
     {
         if (ArrowManager.Instance.interactableArrows[0] == null || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
 
+        ScoreType scoreType = ScoreType.Empty;
+        IArrowStates arrowStates = ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>();
+        bool perfect = false;
+
         if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
-                InputEvent?.Invoke(ScoreType.Empty, interactionType);
+                scoreType = ScoreType.Empty;
+                perfect = false;
+
+                InputEvent?.Invoke(scoreType, interactionType);
             }
             else if (interactionType == InteractionType.Single)
             {
-                InputEvent?.Invoke(ScoreType.Press, interactionType);
+                scoreType = ScoreType.Success;
+
+                if (arrowStates is SingleArrow)
+                {
+                    if ((arrowStates as SingleArrow).perfectInputTimer < (arrowStates as SingleArrow).perfectInputTime)
+                        perfect = true;
+                    else
+                    {
+                        ScoreManager.Instance.comboCount = 0;
+                        perfect = false;
+                    }
+                }
+
+                InputEvent?.Invoke(scoreType, interactionType);
+
                 StartCoroutine(PressTimeOut());
             }
             else
             {
                 // Check for perfect input start, if no reset combo
                 // doesn't work for single arrow
-                if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
 
-                InputEvent?.Invoke(ScoreType.Press, interactionType);
+                if (!arrowStates.PerfectInputStart)
+                {
+                    ScoreManager.Instance.comboCount = 0;
+                    perfect = false;
+                }
+                else
+                    perfect = true;
+
+                scoreType = ScoreType.Success;
+                InputEvent?.Invoke(scoreType, interactionType);
                 StartCoroutine(PressTimeOut());
             }
+
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            InputEvent?.Invoke(ScoreType.Fail, interactionType);
+            scoreType = ScoreType.Fail;
+            perfect = false;
+            InputEvent?.Invoke(scoreType, interactionType);
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            InputEvent?.Invoke(ScoreType.Fail, interactionType);
+            scoreType = ScoreType.Fail;
+            perfect = false;
+
+            InputEvent?.Invoke(scoreType, interactionType);
         }
+
+        _inputLog.AddToLog(callbackContext, interactionType, directionPressed, scoreType, perfect);
     }
 
-    public void OnDirectionPressed(Direction directionPressed, InteractionType interactionType)
+    public void OnDirectionPressed(InputAction.CallbackContext callbackContext, Direction directionPressed, InteractionType interactionType)
     {
-        if (ArrowManager.Instance.interactableArrows.Count == 0 || GameManager.Instance.gameState != GameState.Started)
+        if (ArrowManager.Instance.interactableArrows[0] == null || GameManager.Instance.gameState != GameState.Started)
         {
             return;
         }
+
+        ScoreType scoreType = ScoreType.Empty;
+        IArrowStates arrowStates = ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>();
+        bool perfect = false;
 
         if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
             // Success if not pressed and correct direction
             if (directionPressed == Direction.None)
             {
-                InputEvent?.Invoke(ScoreType.Empty, interactionType);
+                scoreType = ScoreType.Empty;
+                perfect = false;
+
+                InputEvent?.Invoke(scoreType, interactionType);
             }
             else if (interactionType == InteractionType.Single)
             {
-                InputEvent?.Invoke(ScoreType.Press, interactionType);
+                scoreType = ScoreType.Success;
+
+                if (ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow singleArrow))
+                {
+                    if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime)
+                    {
+                        ScoreManager.Instance.comboCount = 0;
+                        perfect = false;
+                    }
+                    else
+                        perfect = true;
+                }
+
+                InputEvent?.Invoke(scoreType, interactionType);
+
                 StartCoroutine(PressTimeOut());
             }
             else
             {
                 // Check for perfect input start, if no reset combo
-                if (!ArrowManager.Instance.interactableArrows[0].GetComponent<IArrowStates>().PerfectInputStart) ScoreManager.Instance.comboCount = 0;
+                // doesn't work for single arrow
 
-                InputEvent?.Invoke(ScoreType.Press, interactionType);
+                if (!arrowStates.PerfectInputStart)
+                {
+                    ScoreManager.Instance.comboCount = 0;
+                    perfect = false;
+                }
+                else
+                    perfect = true;
+
+                scoreType = ScoreType.Success;
+                InputEvent?.Invoke(scoreType, interactionType);
                 StartCoroutine(PressTimeOut());
             }
+
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction == directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            InputEvent?.Invoke(ScoreType.Fail, interactionType);
-            StartCoroutine(PressTimeOut());
+            scoreType = ScoreType.Fail;
+            perfect = false;
+            InputEvent?.Invoke(scoreType, interactionType);
         }
         else if (ArrowManager.Instance.interactableArrows[0].direction != directionPressed && ArrowManager.Instance.interactableArrows[0].boundsIndex == 2 && !ArrowManager.Instance.interactableArrows[0].inputTriggered && !_noPress)
         {
-            InputEvent?.Invoke(ScoreType.Fail, interactionType);
-            StartCoroutine(PressTimeOut());
+            scoreType = ScoreType.Fail;
+            perfect = false;
+
+            InputEvent?.Invoke(scoreType, interactionType);
         }
+
+        _inputLog.AddToLog(callbackContext, interactionType, directionPressed, scoreType, perfect);
     }
 
     public void OnInputStart()
@@ -145,6 +224,7 @@ public class Tower : MonoBehaviour
     public static void TriggerFailedInput(InteractionType interactionType)
     {
         InputEvent?.Invoke(ScoreType.Fail, interactionType);
+
     }
     private Color ChangeTowerColor(Direction direction)
     {
@@ -188,7 +268,6 @@ public class Tower : MonoBehaviour
             sequence.AppendInterval(_perfectTime / 4 * 2);
             sequence.Join(transform.DOScale(4, _perfectTime / 4).SetEase(Ease.Flash));
             sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 4).SetEase(Ease.Flash));
-
         }
         else if (interactionType == InteractionType.Double)
         {
@@ -238,7 +317,7 @@ public class Tower : MonoBehaviour
     {
         if (arrow.boundsIndex != 2 || arrow.inputTriggered || ArrowManager.Instance.interactableArrows[0] != arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        tower.OnDirectionPressed(Direction.None, InteractionType.NoPress);
+        tower.OnDirectionPressed(default, Direction.None, InteractionType.NoPress);
     }
     public IEnumerator PressTimeOut()
     {

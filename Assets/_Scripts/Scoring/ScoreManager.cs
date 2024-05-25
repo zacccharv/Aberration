@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ScoreType
 {
-    Press,
+    Success,
     Empty,
     Fail
 }
@@ -54,7 +54,7 @@ public class ScoreManager : MonoBehaviour
 
     private void SetScoreType(ScoreType scoreType, InteractionType interactionType)
     {
-        if (scoreType == ScoreType.Press) AddScore(interactionType);
+        if (scoreType == ScoreType.Success) AddScore(interactionType);
         else if (scoreType == ScoreType.Fail) SubtractScore();
     }
 
@@ -82,15 +82,15 @@ public class ScoreManager : MonoBehaviour
         }
 
         // Combo count reset for single arrow
-        if (interactionType == InteractionType.Single && ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow _))
-        {
-            SingleArrow singleArrow = ArrowManager.Instance.interactableArrows[0].GetComponent<SingleArrow>();
+        // if (interactionType == InteractionType.Single && ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow _))
+        // {
+        //     SingleArrow singleArrow = ArrowManager.Instance.interactableArrows[0].GetComponent<SingleArrow>();
 
-            if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime)
-            {
-                comboCount = 0;
-            }
-        }
+        //     if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime)
+        //     {
+        //         comboCount = 0;
+        //     }
+        // }
 
         comboCount++;
         // TODO Animate scaling from 0 to a bit more than full size in center before fade

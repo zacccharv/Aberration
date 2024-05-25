@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ButtonNavigation : MonoBehaviour
@@ -38,7 +39,7 @@ public class ButtonNavigation : MonoBehaviour
         mainMenuButtons[0].Select();
     }
 
-    private void OnDirectionPressed(Direction direction, InteractionType _)
+    private void OnDirectionPressed(InputAction.CallbackContext callbackContext, Direction direction, InteractionType _)
     {
         if (GameManager.Instance.gameState == GameState.Started) return;
 

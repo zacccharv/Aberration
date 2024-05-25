@@ -76,8 +76,8 @@ public class LongArrow : BaseArrow, IArrowStates
 
     public void SetState(ScoreType scoreType, InteractionType interactionType)
     {
-        if (scoreType == ScoreType.Press) SuccessState(scoreType, interactionType);
-        else if (scoreType != ScoreType.Press) FailState();
+        if (scoreType == ScoreType.Success) SuccessState(scoreType, interactionType);
+        else if (scoreType != ScoreType.Success) FailState();
 
     }
 

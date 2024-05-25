@@ -64,7 +64,7 @@ public class BaseArrow : MonoBehaviour
                 GameObject popup = Instantiate(ScoreManager.Instance.scoreNumberPopup, transform.position, Quaternion.identity);
                 popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"YES");
             }
-            else if (scoreType == ScoreType.Press)
+            else if (scoreType == ScoreType.Success)
             {
                 Instantiate(ScoreManager.Instance.succesfulNumberPopup[popUpNum], transform.position, Quaternion.identity);
                 // popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
