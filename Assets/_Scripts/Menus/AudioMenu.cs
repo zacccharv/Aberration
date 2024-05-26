@@ -15,9 +15,9 @@ public class AudioMenu : MonoBehaviour
         _buttonNavigation = GetComponent<ButtonNavigation>();
         _menuScreens = GetComponent<MenuScreens>();
 
-        sliders[0].value = MusicManager.Instance.masterVolume;
-        sliders[1].value = MusicManager.Instance.musicVolume;
-        sliders[2].value = MusicManager.Instance.SFXVolume;
+        sliders[0].value = MusicManager.Instance.volumeSliders.MasterVolume;
+        sliders[1].value = MusicManager.Instance.volumeSliders.MusicVolume;
+        sliders[2].value = MusicManager.Instance.volumeSliders.SFXVolume;
     }
 
     public void MoveSliders(Direction direction, int index)

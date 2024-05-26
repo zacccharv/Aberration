@@ -12,15 +12,15 @@ public class VolumeSlider : MonoBehaviour
     {
         if (_mixerName == "Master")
         {
-            _slider.value = MusicManager.Instance.masterVolume;
+            _slider.value = MusicManager.Instance.volumeSliders.MasterVolume;
         }
         else if (_mixerName == "Music")
         {
-            _slider.value = MusicManager.Instance.musicVolume;
+            _slider.value = MusicManager.Instance.volumeSliders.MusicVolume;
         }
         else if (_mixerName == "SFX")
         {
-            _slider.value = MusicManager.Instance.SFXVolume;
+            _slider.value = MusicManager.Instance.volumeSliders.SFXVolume;
         }
     }
 
@@ -30,15 +30,15 @@ public class VolumeSlider : MonoBehaviour
 
         if (_mixerName == "Master")
         {
-            MusicManager.Instance.masterVolume = value;
+            MusicManager.Instance.volumeSliders.MasterVolume = value;
         }
         else if (_mixerName == "Music")
         {
-            MusicManager.Instance.musicVolume = value;
+            MusicManager.Instance.volumeSliders.MusicVolume = value;
         }
         else if (_mixerName == "SFX")
         {
-            MusicManager.Instance.SFXVolume = value;
+            MusicManager.Instance.volumeSliders.SFXVolume = value;
         }
     }
 }

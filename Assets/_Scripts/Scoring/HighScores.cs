@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class Scores
 {
-    public List<int> highScores = new();
+    public List<int> highScores = new() { 0 };
     public string username;
 }
 
@@ -43,6 +43,8 @@ public class HighScores : MonoBehaviour
 
     void Start()
     {
+        _path = Application.persistentDataPath + "/highScores-score.json";
+
         LoadScoreFile();
 
         ScoresLoaded?.Invoke();
@@ -52,19 +54,7 @@ public class HighScores : MonoBehaviour
     {
         _path = Application.persistentDataPath + "/highScores-score.json";
 
-        if (File.Exists(_path))
-        {
-            string json = File.ReadAllText(_path);
-            Instance.scores = JsonUtility.FromJson<Scores>(json);
-
-            if (Instance.scores.highScores.Count <= 0) Instance.scores.highScores.Add(0);
-        }
-        else
-        {
-            Instance.scores.highScores.Add(0);
-
-            File.WriteAllText(_path, JsonUtility.ToJson(Instance.scores, true));
-        }
+        UnityFileManipulation.LoadJsonFile(_path, out scores);
     }
 
     public void WriteScoreFile()

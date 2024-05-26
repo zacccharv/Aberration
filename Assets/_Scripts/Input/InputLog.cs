@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -73,49 +72,26 @@ public class InputLog : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.GameStateChange += WriteScoreFile;
+        Application.quitting += WriteScoreFile;
     }
     void OnDisable()
     {
-        GameManager.GameStateChange -= WriteScoreFile;
+        Application.quitting -= WriteScoreFile;
     }
 
     void Awake()
     {
-        LoadLog();
+        _path = Application.persistentDataPath + "/input-log.json";
+        File.Delete(Application.persistentDataPath + "/input-log.json");
+
+        UnityFileManipulation.LoadJsonFile(_path, out _logEntries);
     }
 
-    public void LoadLog()
+    public void WriteScoreFile()
     {
-        File.Delete(Application.persistentDataPath + "/input-log.json");
         _path = Application.persistentDataPath + "/input-log.json";
 
-        if (File.Exists(_path) && File.ReadAllText(_path) != "")
-        {
-            string json = File.ReadAllText(_path);
-
-            _logEntries = JsonUtility.FromJson<LogList>(json);
-
-            if (_logEntries.LogEntries.Count <= 0) _logEntries.LogEntries.Add(default);
-        }
-        else
-        {
-            _logEntries.LogEntries = new List<LogEntry>();
-
-            File.WriteAllText(_path, JsonUtility.ToJson(_logEntries, true));
-        }
-    }
-
-    public void WriteScoreFile(GameState _)
-    {
-        if (_ == GameState.Ended || _ == GameState.Paused)
-        {
-            _path = Application.persistentDataPath + "/input-log.json";
-
-            string result = JsonUtility.ToJson(_logEntries, true);
-
-            File.WriteAllText(_path, result);
-        }
+        UnityFileManipulation.WriteJsonFile(_path, _logEntries);
     }
 
     public void AddToLog(InputAction.CallbackContext callbackContext,
@@ -153,4 +129,5 @@ public class InputLog : MonoBehaviour
 
         _logEntries.LogEntries.Add(logEntry);
     }
+
 }
