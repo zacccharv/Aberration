@@ -57,12 +57,6 @@ public class HighScores : MonoBehaviour
         UnityFileManipulation.LoadJsonFile(_path, out scores);
     }
 
-    public void WriteScoreFile()
-    {
-        string result = JsonUtility.ToJson(Instance.scores, true);
-
-        File.WriteAllText(_path, result);
-    }
 
     public async void AddScore(int score)
     {
@@ -84,7 +78,9 @@ public class HighScores : MonoBehaviour
 
         Instance.scores.username = name;
 
-        WriteScoreFile();
+
+        UnityFileManipulation.WriteJsonFile(_path, scores);
+
     }
 
     private void OnGameStateChange(GameState gameState)
@@ -93,7 +89,7 @@ public class HighScores : MonoBehaviour
         {
             AddScore(ScoreManager.Instance.maxScore);
 
-            WriteScoreFile();
+            UnityFileManipulation.WriteJsonFile(_path, scores);
         }
 
         LoadScoreFile();
