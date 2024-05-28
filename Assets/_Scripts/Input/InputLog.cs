@@ -31,6 +31,7 @@ public struct LogEntry
 {
     public InputData InputData;
     public ArrowData ArrowData;
+    public float TimeInSecs;
     public LogEntry(InputActionPhase inputActionPhase,
                     InteractionType interactionType,
                     Direction buttonDirection,
@@ -41,6 +42,7 @@ public struct LogEntry
                     float actualHoldTime,
                     float doublePressWindow,
                     float actualPressWindow,
+                    float timeInSecs,
                     bool perfectInput)
     {
         InputData.InputPhase = inputActionPhase.ToString();
@@ -55,6 +57,8 @@ public struct LogEntry
         ArrowData.ArrowDirection = arrowDirection.ToString();
         ArrowData.ArrowInteraction = arrowInteraction.ToString();
         ArrowData.PerfectInput = perfectInput;
+
+        TimeInSecs = timeInSecs;
     }
 
 }
@@ -125,6 +129,7 @@ public class InputLog : MonoBehaviour
                                 actualHold,
                                 doublePressWindow,
                                 actualPressWindow,
+                                Time.realtimeSinceStartup,
                                 perfectInput);
 
         _logEntries.LogEntries.Add(logEntry);

@@ -117,6 +117,6 @@ public class LongArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        if (_perfectInputTimer > _perfectInputTime) PerfectInputStart = true;
+        if (_perfectInputTimer > (_perfectInputTime - GameManager.Instance.speedShrink)) PerfectInputStart = true;
     }
 }

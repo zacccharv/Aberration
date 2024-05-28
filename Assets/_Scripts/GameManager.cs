@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public float gameTime = 0;
     public static float deltaTime;
     public static float timeScale;
+    public float speedShrink;
 
     void OnEnable()
     {
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeScale = 1;
+            timeScale = 1 + speedShrink;
             menuScreens.menuType = MenuType.None;
 
             menu.SetActive(false);
@@ -111,6 +112,22 @@ public class GameManager : MonoBehaviour
             title = pauseTitle;
         }
 
+    }
+    public void SetSpeed(float maxScore)
+    {
+        int scoreCalc = Mathf.FloorToInt(maxScore / 600);
+        int timeCalc = Mathf.FloorToInt(Time.realtimeSinceStartup / 60);
+
+        //int result = Mathf.Max(scoreCalc, timeCalc);
+        int result = scoreCalc + timeCalc;
+
+        // NOTE: speed up at 700 point interval or every 90 seconds whatever happens first
+
+        speedShrink = result * .0333f;
+        Mathf.Clamp(speedShrink, .5f, speedShrink);
+
+        timeScale = 1 - speedShrink;
+        Debug.Log(timeScale);
     }
 
     public void FindObjects(Scene scene, LoadSceneMode sceneMode)

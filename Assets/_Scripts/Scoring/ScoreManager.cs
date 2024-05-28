@@ -54,7 +54,7 @@ public class ScoreManager : MonoBehaviour
 
     private void SetScoreType(ScoreType scoreType, InteractionType interactionType)
     {
-        if (scoreType == ScoreType.Success) AddScore(interactionType);
+        if (scoreType == ScoreType.Success) AddScore();
         else if (scoreType == ScoreType.Fail) SubtractScore();
     }
 
@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
         _previousStage = stage;
     }
 
-    void AddScore(InteractionType interactionType)
+    void AddScore()
     {
         if (ArrowManager.Instance.interactableArrows[0].inputTriggered
             || ArrowManager.Instance.interactableArrows[0].pressCount == 1
@@ -80,17 +80,6 @@ public class ScoreManager : MonoBehaviour
         {
             return;
         }
-
-        // Combo count reset for single arrow
-        // if (interactionType == InteractionType.Single && ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow _))
-        // {
-        //     SingleArrow singleArrow = ArrowManager.Instance.interactableArrows[0].GetComponent<SingleArrow>();
-
-        //     if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime)
-        //     {
-        //         comboCount = 0;
-        //     }
-        // }
 
         comboCount++;
         // TODO Animate scaling from 0 to a bit more than full size in center before fade
@@ -146,6 +135,7 @@ public class ScoreManager : MonoBehaviour
             maxScore = score;
         }
 
+        GameManager.Instance.SetSpeed(maxScore);
         _scoreText.text = score.ToString();
     }
 

@@ -16,6 +16,7 @@ public class ButtonNavigation : MonoBehaviour
     public int buttonIndex = 0;
     public List<Button> buttons;
     private bool canPress;
+    private bool timeOut = false;
 
     void OnEnable()
     {
@@ -47,6 +48,8 @@ public class ButtonNavigation : MonoBehaviour
         {
             if (_username.activeInHierarchy) return;
         }
+
+        if (timeOut == true) return;
 
         buttons = mainMenuButtons;
 
@@ -100,6 +103,9 @@ public class ButtonNavigation : MonoBehaviour
             if (menuScreens.menuType == MenuType.Audio)
                 audioMenu.MoveSliders(direction, buttonIndex);
         }
+
+        timeOut = true;
+        Invoke(nameof(TimeOut), .05f);
     }
 
     private void TriggerSelectedInMenu(InputType inputType)
@@ -143,5 +149,10 @@ public class ButtonNavigation : MonoBehaviour
     {
         if (buttonIndex <= buttons.Count - 1)
             buttons[buttonIndex].onClick.Invoke();
+    }
+
+    public void TimeOut()
+    {
+        timeOut = false;
     }
 }

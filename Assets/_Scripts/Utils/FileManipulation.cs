@@ -22,7 +22,7 @@ public static class UnityFileManipulation
 
     public static void WriteJsonFile<T>(string path, T data)
     {
-        string result = JsonUtility.ToJson(data);
+        string result = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(path, result);
     }

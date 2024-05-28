@@ -24,16 +24,16 @@ public class Tower : MonoBehaviour
 
     void OnEnable()
     {
+        InputManager_Z.InputStart += OnInputStart;
         InputManager_Z.GamePadButtonPressed += OnGamePadPressed;
         InputManager_Z.DirectionPressed += OnDirectionPressed;
-        InputManager_Z.InputStart += OnInputStart;
     }
 
     void OnDisable()
     {
+        InputManager_Z.InputStart -= OnInputStart;
         InputManager_Z.GamePadButtonPressed -= OnGamePadPressed;
         InputManager_Z.DirectionPressed -= OnDirectionPressed;
-        InputManager_Z.InputStart -= OnInputStart;
     }
 
     void Awake()
@@ -91,7 +91,7 @@ public class Tower : MonoBehaviour
 
                 if (arrowStates is SingleArrow)
                 {
-                    if ((arrowStates as SingleArrow).perfectInputTimer < (arrowStates as SingleArrow).perfectInputTime)
+                    if ((arrowStates as SingleArrow).perfectInputTimer < ((arrowStates as SingleArrow).perfectInputTime - GameManager.Instance.speedShrink))
                         perfect = true;
                     else
                     {
@@ -262,7 +262,6 @@ public class Tower : MonoBehaviour
         {
             sequence.Play();
 
-            // sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime).SetEase(Ease.InOutQuad));
             sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 4).SetEase(Ease.InOutQuad));
             sequence.Join(transform.DOScale(3.5f, _perfectTime / 4).SetEase(Ease.Flash));
             sequence.AppendInterval(_perfectTime / 4 * 2);
@@ -273,7 +272,6 @@ public class Tower : MonoBehaviour
         {
             sequence.Play();
 
-            // sequence.Append(transform.DOScale(transform.localScale.x * 4, _perfectTime / 2).SetEase(Ease.Linear));            sequence.Append(GetComponent<SpriteRenderer>().DOFade(.2f, _perfectTime / 4).SetEase(Ease.InOutQuad));
             sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 2 / 4).SetEase(Ease.InOutQuad));
             sequence.Join(transform.DOScale(3.5f, _perfectTime / 2 / 4).SetEase(Ease.InOutQuad));
             sequence.AppendInterval(_perfectTime / 2 / 4);

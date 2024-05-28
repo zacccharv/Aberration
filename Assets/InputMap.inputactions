@@ -42,42 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GamePad North",
-                    "type": "Button",
-                    "id": "4612dfa6-422e-453b-8e17-6fb09d2059ce",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GamePad East",
-                    "type": "Button",
-                    "id": "5fe5c29a-c554-4944-b22d-1ca671fbc5b3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GamePad South",
-                    "type": "Button",
-                    "id": "5ed9b6a4-7565-4910-923e-3ed8e0640a92",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GamePad West",
-                    "type": "Button",
-                    "id": "62368a20-322f-4d71-a6a6-a21a6a35d723",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.7),MultiTap(pressPoint=0.7),Press(pressPoint=0.7)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Escape",
                     "type": "Button",
                     "id": "70bc0c83-ae01-4a12-91fc-3caa40317945",
@@ -134,6 +98,17 @@
                 },
                 {
                     "name": "",
+                    "id": "df9f23d4-bb2e-4029-9e65-8eba3aa22bc0",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4ef60a98-1072-442f-ba08-8224620d805f",
                     "path": "<DualShockGamepad>/dpad/down",
                     "interactions": "",
@@ -172,6 +147,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "FixedScheme",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02f5c50f-4677-42d7-8d2a-920cb4f7cd7d",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -222,89 +208,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f7d3ea8d-30b0-4406-a1df-ef09a0c4993a",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad North",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "49060248-33e6-4a35-a6df-0ae44e50d73f",
-                    "path": "<DualShockGamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad North",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04588f92-afe1-4f89-86a6-0af5a8addea6",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad East",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "12d2e6d9-178f-43e2-b9c4-279eeb2111a7",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad South",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "18b3fdb2-d147-4ed0-87bf-afbb3e594a43",
-                    "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad South",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e3d1b24-42af-412e-96f7-dc289b38b5f9",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad West",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ccbca9c5-1eb7-4213-ae6f-3e20a1c8fbfd",
+                    "id": "727f2760-5ca9-41ec-8c6f-c49bf589ff15",
                     "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad West",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a8d7625e-9edf-4acd-8da5-276f7a5dad87",
-                    "path": "<DualShockGamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "FixedScheme",
-                    "action": "GamePad East",
+                    "groups": "",
+                    "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -381,6 +290,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "FixedScheme",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6ca4266-5b1d-4b11-b663-5342201b205e",
+                    "path": "<DualShockGamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false

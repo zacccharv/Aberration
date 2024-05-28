@@ -87,7 +87,7 @@ public class ArrowManager : MonoBehaviour
 
     private float MoveSpeed(Arrow arrow)
     {
-        float value = arrow.moveSpeed;
+        float value = arrow.moveSpeed * GameManager.timeScale;
 
         return value;
     }

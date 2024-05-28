@@ -79,9 +79,6 @@ public class SingleArrow : BaseArrow, IArrowStates
             return;
         }
 
-        // if (perfectInputTimer > perfectInputTime) Debug.Log("PERFECT INPUT SINGLE");
-        // else Debug.Log("IMPERFECT INPUT SINGLE");
-
         Arrow.inputTriggered = true;
 
         Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
