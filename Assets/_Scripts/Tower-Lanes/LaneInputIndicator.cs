@@ -4,6 +4,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LaneInputIndicator : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class LaneInputIndicator : MonoBehaviour
         public Color color_0;
         public Color color_1;
     }
+    public SpriteRenderer interactionIndicator;
     public List<ColorDuo> colorDuos;
+
+    [SerializeField] private Sprite[] _interactionSprites;
+    [SerializeField] Color _interactionColor;
     private Material _material;
 
     void OnEnable()
@@ -30,17 +35,20 @@ public class LaneInputIndicator : MonoBehaviour
         _material = GetComponent<SpriteRenderer>().material;
     }
 
-    public void NewLoopAnimation(Direction direction)
+    public void NewLoopAnimation(Direction direction, InteractionType interactionType)
     {
-        int index = GetIndex(direction);
+        int directionIndex = GetDirectionIndex(direction);
+        int interactionIndex = GetInteractionIndex(interactionType);
 
-        _material.DOColor(colorDuos[index].color_0, "_Color01", .2f).SetEase(Ease.InOutSine).SetDelay(.2f);
-        _material.DOColor(colorDuos[index].color_1, "_Color02", .2f).SetEase(Ease.InOutSine).SetDelay(.2f);
+        _material.DOColor(colorDuos[directionIndex].color_0, "_Color01", .2f).SetEase(Ease.InOutSine).SetDelay(.2f);
+        _material.DOColor(colorDuos[directionIndex].color_1, "_Color02", .2f).SetEase(Ease.InOutSine).SetDelay(.2f);
 
         transform.DOScale(2.55f, .1f).OnComplete(() => transform.DOScale(2.5f, .2f)).SetDelay(.2f);
 
+        interactionIndicator.sprite = _interactionSprites[interactionIndex];
+        interactionIndicator.color = _interactionColor;
 
-        static int GetIndex(Direction direction)
+        static int GetDirectionIndex(Direction direction)
         {
             int result = direction switch
             {
@@ -50,6 +58,19 @@ public class LaneInputIndicator : MonoBehaviour
                 Direction.Left => 3,
                 Direction.None => 4,
                 Direction.Null => 4,
+                _ => default,
+            };
+
+            return result;
+        }
+
+        static int GetInteractionIndex(InteractionType interactionType)
+        {
+            int result = interactionType switch
+            {
+                InteractionType.Single => 0,
+                InteractionType.Double => 1,
+                InteractionType.Long => 2,
                 _ => default,
             };
 

@@ -9,20 +9,18 @@ using UnityEngine.InputSystem;
 public class Tower : MonoBehaviour
 {
     public delegate void InputDelegate(ScoreType scoreType, InteractionType interactionType);
-    public delegate void TowerChangeDelegate(Direction direction);
+    public delegate void TowerChangeDelegate(Direction direction, InteractionType interactionType);
 
     public static event InputDelegate InputEvent;
     public static event TowerChangeDelegate TowerChangeEvent;
     public static event Action StartInput;
 
     public static Tower Instance;
-    public GameObject towerBase;
     public Bounds destroyBounds, animationBounds, successBounds;
     [SerializeField] private float _perfectTime;
-    [SerializeField] private Color _white;
+    [SerializeField] private Color _tooEarly, _justRight;
 
     [SerializeField] private float _bounceMin, _bounceMax;
-    [SerializeField] private List<Color> _shapeColors = new();
     private InputLog _inputLog;
     private bool _noPress;
 
@@ -56,8 +54,6 @@ public class Tower : MonoBehaviour
     void Start()
     {
         ChangeInteraction(InteractionType.Single, Direction.Null);
-
-        towerBase.transform.DOScale(towerBase.transform.localScale.x * 1.15f, .5f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
     /// <summary>
@@ -177,8 +173,6 @@ public class Tower : MonoBehaviour
             color = ArrowManager.Instance.SuccessColor;
         }
 
-        TowerChangeEvent?.Invoke(direction);
-
         return color;
     }
 
@@ -191,31 +185,37 @@ public class Tower : MonoBehaviour
         {
             sequence.Play();
 
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_tooEarly, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.AppendInterval(_perfectTime / 8 * 5);
             sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.Flash));
-            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Join(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.Flash));
+
+            TowerChangeEvent?.Invoke(direction, interactionType);
         }
         else if (interactionType == InteractionType.Double)
         {
             sequence.Play();
 
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_tooEarly, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.AppendInterval(_perfectTime / 8 * 2);
             sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.Flash));
-            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Join(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.Flash));
+
+            TowerChangeEvent?.Invoke(direction, interactionType);
         }
         else if (interactionType == InteractionType.Long)
         {
             sequence.Play();
 
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_tooEarly, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.InOutSine));
             sequence.AppendInterval(_perfectTime + _perfectTime / 8);
             sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.InOutSine));
-            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 8).SetEase(Ease.InOutSine));
+            sequence.Join(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.InOutSine));
+
+            TowerChangeEvent?.Invoke(direction, interactionType);
         }
     }
 

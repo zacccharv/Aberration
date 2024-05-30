@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public static float deltaTime;
     public static float timeScale;
     public float speedShrink;
+    public float actualGameTime;
 
     void OnEnable()
     {
@@ -63,8 +64,8 @@ public class GameManager : MonoBehaviour
 
         float previousGameTime = gameTime;
 
-        gameTime += Time.deltaTime * timeScale;
 
+        gameTime += Time.deltaTime * timeScale;
         deltaTime = gameTime - previousGameTime;
     }
 

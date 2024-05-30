@@ -101,7 +101,6 @@ public class SpawnSequencing : MonoBehaviour
     public GameObject DequeuePrefab(out float spawnInterval, out Vector2 laneStartPos)
     {
         ArrowStruct arrowStruct;
-        // Arrow previousArrow;
         Direction lane = default;
         GameObject result;
 
@@ -161,6 +160,7 @@ public class SpawnSequencing : MonoBehaviour
         }
 
         spawnInterval = result.GetComponent<Arrow>().spawnTime;
+        // Debug.Log(spawnInterval * (1 - GameManager.Instance.speedShrink));
         result.GetComponent<SortingGroup>().sortingOrder = _spawnCount;
 
         // Change position depending on lane index
@@ -245,6 +245,7 @@ public class SpawnSequencing : MonoBehaviour
         {
             if (transform.position == ArrowManager.Instance.interactableArrows[0].transform.position)
             {
+                Debug.Log("Overlapping Arrows");
                 return;
             }
         }
