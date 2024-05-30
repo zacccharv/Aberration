@@ -115,13 +115,12 @@ public class GameManager : MonoBehaviour
     }
     public void SetSpeed(float maxScore)
     {
+        // NOTE: speed up at 600 point interval and every 60 seconds, add together
+
         int scoreCalc = Mathf.FloorToInt(maxScore / 600);
         int timeCalc = Mathf.FloorToInt(Time.realtimeSinceStartup / 60);
 
-        //int result = Mathf.Max(scoreCalc, timeCalc);
         int result = scoreCalc + timeCalc;
-
-        // NOTE: speed up at 700 point interval or every 90 seconds whatever happens first
 
         speedShrink = result * .0333f;
         Mathf.Clamp(speedShrink, .5f, speedShrink);

@@ -35,7 +35,8 @@ public class ArrowManager : MonoBehaviour
     public static event Action InstanceAwake;
 
     // private int _moveCount = 0;
-    private float _moveSpeed, _moveTimer;
+    private float _moveTimer;
+    public float moveSpeed;
 
     public Arrows arrows;
     public List<Arrow> interactableArrows = new();
@@ -76,11 +77,11 @@ public class ArrowManager : MonoBehaviour
             Instance.interactableArrows.RemoveAt(0);
         }
 
-        if (Instance._moveTimer > _moveSpeed)
+        if (Instance._moveTimer > moveSpeed)
         {
-            _moveSpeed = MoveSpeed(interactableArrows[0]);
+            moveSpeed = MoveSpeed(interactableArrows[0]);
 
-            MoveArrows?.Invoke(_moveSpeed);
+            MoveArrows?.Invoke(moveSpeed);
             Instance._moveTimer = 0;
         }
     }

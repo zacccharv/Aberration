@@ -14,7 +14,6 @@ public enum InteractionType
 }
 
 public delegate void DirectionPress(InputAction.CallbackContext callbackContext, Direction direction, InteractionType interactionType);
-public delegate void GamePadButtonPress(InputAction.CallbackContext callbackContext, Direction direction, InteractionType interactionType);
 public delegate void UIInputPress(InputType inputType);
 
 public class InputManager_Z : MonoBehaviour
@@ -24,7 +23,6 @@ public class InputManager_Z : MonoBehaviour
     [SerializeField] private float defaultHoldTime;
 
     public static event DirectionPress DirectionPressed;
-    public static event GamePadButtonPress GamePadButtonPressed;
     public static event Action InputStart;
     public static event UIInputPress UIInputPressed;
 
@@ -85,65 +83,6 @@ public class InputManager_Z : MonoBehaviour
             DirectionPressed?.Invoke(context, direction, InteractionType.Nil);
         }
     }
-
-    public void GamePadPressed(InputAction.CallbackContext context)
-    {
-        Direction direction = Direction.None;
-
-        if (context.action.name.Contains("North"))
-        {
-            direction = Direction.Up;
-        }
-        else if (context.action.name.Contains("East"))
-        {
-            direction = Direction.Right;
-        }
-        else if (context.action.name.Contains("South"))
-        {
-            direction = Direction.Down;
-        }
-        else if (context.action.name.Contains("West"))
-        {
-            direction = Direction.Left;
-        }
-
-        if (context.interaction is HoldInteraction)
-        {
-            if (context.started)
-            {
-                InputStart?.Invoke();
-            }
-
-            if (context.performed)
-            {
-                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Long);
-            }
-        }
-        else if (context.interaction is MultiTapInteraction)
-        {
-            if (context.started)
-            {
-                InputStart?.Invoke();
-                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Single);
-            }
-            else if (context.performed)
-            {
-                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Double);
-            }
-        }
-        else if (context.interaction is PressInteraction)
-        {
-            if (context.performed)
-            {
-                GamePadButtonPressed?.Invoke(context, direction, InteractionType.Single);
-            }
-        }
-        else
-        {
-            GamePadButtonPressed?.Invoke(context, direction, InteractionType.Nil);
-        }
-    }
-
     public void ConfirmPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
