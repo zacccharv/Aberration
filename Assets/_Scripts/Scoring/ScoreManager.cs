@@ -49,7 +49,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         SpawnSequencing._stage = stage;
-        if (_test) score = 100000;
     }
 
     private void SetScoreType(ScoreType scoreType, InteractionType interactionType)
@@ -63,7 +62,7 @@ public class ScoreManager : MonoBehaviour
         // Stage change popup
         stage = _test ? stage + (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage) : (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage);
 
-        if (_previousStage != stage)
+        if (_previousStage != stage && !_test)
         {
             StagePopUp(stage);
             SpawnSequencing._stage = stage;

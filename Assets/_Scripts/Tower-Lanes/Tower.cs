@@ -191,31 +191,31 @@ public class Tower : MonoBehaviour
         {
             sequence.Play();
 
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 4).SetEase(Ease.InOutQuad));
-            sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 4).SetEase(Ease.Flash));
-            sequence.AppendInterval(_perfectTime / 2.5f);
-            sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 4).SetEase(Ease.Flash));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.AppendInterval(_perfectTime / 8 * 5);
+            sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 8).SetEase(Ease.Flash));
         }
         else if (interactionType == InteractionType.Double)
         {
             sequence.Play();
 
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 4).SetEase(Ease.InOutQuad));
-            sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 4).SetEase(Ease.Flash));
-            sequence.AppendInterval(_perfectTime / 4);
-            sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 4).SetEase(Ease.Flash));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.AppendInterval(_perfectTime / 8 * 2);
+            sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 8).SetEase(Ease.Flash));
         }
         else if (interactionType == InteractionType.Long)
         {
             sequence.Play();
 
-            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 2 / 3).SetEase(Ease.InOutSine));
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_white, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.InOutSine));
-            sequence.AppendInterval(_perfectTime / 1.5f);
-            sequence.Append(transform.DOScale(_bounceMax, _perfectTime * 2 / 8).SetEase(Ease.InOutSine));
-            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime * 2 / 8).SetEase(Ease.InOutSine));
+            sequence.AppendInterval(_perfectTime + _perfectTime / 8);
+            sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.InOutSine));
+            sequence.Join(GetComponent<SpriteRenderer>().DOColor(ChangeTowerColor(direction), _perfectTime / 8).SetEase(Ease.InOutSine));
         }
     }
 

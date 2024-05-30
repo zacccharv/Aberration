@@ -15,9 +15,6 @@ public class LaneInputIndicator : MonoBehaviour
     }
     public List<ColorDuo> colorDuos;
     private Material _material;
-    [SerializeField] private GameObject _center;
-    private DG.Tweening.Sequence _sequence;
-    private int _previousIndex;
 
     void OnEnable()
     {
@@ -31,8 +28,6 @@ public class LaneInputIndicator : MonoBehaviour
     void Awake()
     {
         _material = GetComponent<SpriteRenderer>().material;
-
-        _previousIndex = 4;
     }
 
     public void NewLoopAnimation(Direction direction)
@@ -53,8 +48,8 @@ public class LaneInputIndicator : MonoBehaviour
                 Direction.Right => 1,
                 Direction.Down => 2,
                 Direction.Left => 3,
-                Direction.None => -1,
-                Direction.Null => -1,
+                Direction.None => 4,
+                Direction.Null => 4,
                 _ => default,
             };
 
