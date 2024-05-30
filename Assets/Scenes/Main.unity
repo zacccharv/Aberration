@@ -1901,7 +1901,7 @@ MonoBehaviour:
   - {fileID: 7926877669330162234, guid: 3c776be4f5059204ab9b818f0e474f1d, type: 3}
   - {fileID: 2326156767393386046, guid: b4816020664c0914e84e5afe7294e6e0, type: 3}
   _test: 0
-  stage: 1
+  stage: 3
   subtraction: 6
   comboType: -1
 --- !u!4 &614974770
@@ -3071,6 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0bb8ee0ecad345a1a834827a5bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
   arrows:
     Empty:
       UpArrow: {fileID: 4353220158386678166, guid: 94cd57d6ec469d24eb4b32cc8a03554d, type: 3}
@@ -3126,8 +3127,8 @@ MonoBehaviour:
   - {r: 0.965, g: 0.97900003, b: 1, a: 1}
   - {r: 1, g: 0.94295746, b: 0.8820755, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
-  SuccessColor: {r: 0.514151, g: 1, b: 0.52079016, a: 0}
-  FailColor: {r: 1, g: 0.17699999, b: 0.17699999, a: 0}
+  SuccessColor: {r: 0.514151, g: 1, b: 0.52079016, a: 1}
+  FailColor: {r: 1, g: 0.17699999, b: 0.17699999, a: 1}
   FailNumberColor: {r: 1, g: 0.28975743, b: 0.2783019, a: 1}
   moveThresholdFast: 1
   moveThresholdLong: 3
@@ -3782,7 +3783,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
   _perfectTime: 0.53
-  _white: {r: 0.5411765, g: 0.52156866, b: 0.7725491, a: 1}
+  _white: {r: 1, g: 0.4009434, b: 0.44875276, a: 1}
   _bounceMin: 1.6
   _bounceMax: 2
   _shapeColors:
