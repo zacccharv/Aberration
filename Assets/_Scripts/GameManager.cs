@@ -80,16 +80,9 @@ public class GameManager : MonoBehaviour
 
         if (gameState == GameState.Ended)
         {
-            menuScreens.SwitchMenus(MenuType.MainMenu);
-            DOTween.KillAll();
 
             timeScale = 0;
 
-            menu.SetActive(true);
-            pauseTitle.SetActive(false);
-            gameOverTitle.SetActive(true);
-
-            title = gameOverTitle;
         }
         else if (gameState == GameState.Paused)
         {
@@ -145,5 +138,17 @@ public class GameManager : MonoBehaviour
             gameTime = 0;
         }
 
+    }
+
+    public void EndMe()
+    {
+        DOTween.KillAll();
+        menuScreens.SwitchMenus(MenuType.HighScores);
+
+        menu.SetActive(true);
+        pauseTitle.SetActive(false);
+        gameOverTitle.SetActive(false);
+
+        title = gameOverTitle;
     }
 }

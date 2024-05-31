@@ -108,6 +108,7 @@ public class SpawnSequencing : MonoBehaviour
         {
             spawnInterval = 0;
             laneStartPos = default;
+
             Debug.Log("Spawn Interval 0");
 
             return null;
