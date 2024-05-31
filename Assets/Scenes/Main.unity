@@ -2262,7 +2262,7 @@ MonoBehaviour:
   - {fileID: -1652214368, guid: ba60379f6168e4f47a21df05c48c08e2, type: 3}
   - {fileID: -1398575584, guid: ba60379f6168e4f47a21df05c48c08e2, type: 3}
   - {fileID: -542981829, guid: ba60379f6168e4f47a21df05c48c08e2, type: 3}
-  _interactionColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  _interactionColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0.7019608}
 --- !u!1 &729230706
 GameObject:
   m_ObjectHideFlags: 0
