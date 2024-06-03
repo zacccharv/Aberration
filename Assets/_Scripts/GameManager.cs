@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
 
         if (gameState == GameState.Ended)
         {
-
             timeScale = 0;
 
         }
@@ -120,7 +119,6 @@ public class GameManager : MonoBehaviour
         Mathf.Clamp(speedShrink, .5f, speedShrink);
 
         timeScale = 1 - speedShrink;
-        Debug.Log(timeScale);
     }
 
     public void FindObjects(Scene scene, LoadSceneMode sceneMode)

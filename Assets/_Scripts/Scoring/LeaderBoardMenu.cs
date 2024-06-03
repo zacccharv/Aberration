@@ -10,6 +10,7 @@ public class LeaderBoardMenu : MonoBehaviour
 
     public LeaderboardScoresPage scoresResponse;
     public List<TextMeshProUGUI> leaderBoardScores, leaderBoardNames, personalLBScores;
+    public TextMeshProUGUI playerScoreName;
 
     void OnEnable()
     {
@@ -76,5 +77,7 @@ public class LeaderBoardMenu : MonoBehaviour
                 personalLBScores[i].text = "000";
             }
         }
+
+        playerScoreName.text = HighScores.Instance.scores.username;
     }
 }

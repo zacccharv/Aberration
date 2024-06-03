@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ public enum MenuType
 
 public class MenuScreens : MonoBehaviour
 {
+    public static event Action ScreenSwitch;
     public MenuType menuType;
     [SerializeField] private GameObject _mainMenu, _audio, _highScores, _username;
 
@@ -123,7 +125,10 @@ public class MenuScreens : MonoBehaviour
             _audio.SetActive(false);
 
             menuType = MenuType.None;
+            return;
         }
+
+        ScreenSwitch?.Invoke();
     }
 
     public void DelayedSelection()

@@ -1865,7 +1865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -37, y: 154}
+  m_AnchoredPosition: {x: -46, y: 156.24988}
   m_SizeDelta: {x: 382.40002, y: -1024.7001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560711256
@@ -1915,8 +1915,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45.2
+  m_fontSizeBase: 45.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2305,7 +2305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -154.69998, y: 154.75012}
+  m_AnchoredPosition: {x: -177, y: 157}
   m_SizeDelta: {x: 428, y: -1024.2002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665192208
@@ -2355,8 +2355,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45.2
+  m_fontSizeBase: 45.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6040,6 +6040,7 @@ MonoBehaviour:
   - {fileID: 1682879713371897452}
   - {fileID: 1682879712576656933}
   - {fileID: 1682879712423980112}
+  playerScoreName: {fileID: 1682879712722741727}
 --- !u!114 &2095811627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7096,7 +7097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1682879712245287925
 Transform:
   m_ObjectHideFlags: 0
@@ -11444,7 +11445,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1682879713454240842}
   m_OnClick:
     m_PersistentCalls:
@@ -11473,6 +11474,7 @@ GameObject:
   - component: {fileID: 1682879713454240843}
   - component: {fileID: 1682879713454240842}
   - component: {fileID: 1682879713454240845}
+  - component: {fileID: 1682879713454240848}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -11480,6 +11482,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1682879713454240848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682879713454240847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a717fdc716539d4fb7f7ff955f6497a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1682879713469825612
 GameObject:
   m_ObjectHideFlags: 0
@@ -11663,7 +11677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682879713545403783}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

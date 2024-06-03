@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class Scores
 {
-    public List<int> highScores = new() { 0 };
+    public List<int> highScores = new() { };
     public string username;
 }
 
@@ -43,7 +43,7 @@ public class HighScores : MonoBehaviour
 
     void Start()
     {
-        _path = Application.persistentDataPath + "/highScores-score.json";
+        _path = Application.persistentDataPath + "/highScores.json";
 
         LoadScoreFile();
 
@@ -52,11 +52,10 @@ public class HighScores : MonoBehaviour
 
     public void LoadScoreFile()
     {
-        _path = Application.persistentDataPath + "/highScores-score.json";
+        _path = Application.persistentDataPath + "/highScores.json";
 
-        UnityFileManipulation.LoadJsonFile(_path, out scores);
+        UnityFileManipulation.LoadJsonFile(_path, out Instance.scores);
     }
-
 
     public async void AddScore(int score)
     {
@@ -74,12 +73,11 @@ public class HighScores : MonoBehaviour
 
     public void AddName(string name)
     {
-        if (scores.username != "") return;
+        if (Instance.scores.username != "" && Instance.scores.username != null) return;
 
         Instance.scores.username = name;
 
-
-        UnityFileManipulation.WriteJsonFile(_path, scores);
+        UnityFileManipulation.WriteJsonFile(_path, Instance.scores);
 
     }
 
@@ -89,11 +87,22 @@ public class HighScores : MonoBehaviour
         {
             AddScore(ScoreManager.Instance.maxScore);
 
-            UnityFileManipulation.WriteJsonFile(_path, scores);
+            UnityFileManipulation.WriteJsonFile(_path, Instance.scores);
+
+            LoadScoreFile();
+
+            Invoke(nameof(HurryUpAndWait), .15f);
+
+            return;
         }
 
         LoadScoreFile();
 
+        ScoresLoaded?.Invoke();
+    }
+
+    public void HurryUpAndWait()
+    {
         ScoresLoaded?.Invoke();
     }
 }

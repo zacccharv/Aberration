@@ -9,16 +9,18 @@ public class ScoreButton : MonoBehaviour
     void OnEnable()
     {
         HighScores.ScoresLoaded += OnScoresLoaded;
+        MenuScreens.ScreenSwitch += OnScoresLoaded;
     }
 
     void OnDisable()
     {
         HighScores.ScoresLoaded -= OnScoresLoaded;
+        MenuScreens.ScreenSwitch -= OnScoresLoaded;
     }
 
     private void OnScoresLoaded()
     {
-        if (HighScores.Instance.scores.username == "")
+        if (HighScores.Instance.scores.username == "" || HighScores.Instance.scores.username == null)
         {
             GetComponent<Button>().interactable = false;
         }

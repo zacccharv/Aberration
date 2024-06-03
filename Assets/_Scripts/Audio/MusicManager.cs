@@ -21,10 +21,16 @@ public class MusicManager : MonoBehaviour
     void OnEnable()
     {
         Application.quitting += WriteVolumeSliders;
+#if UNITY_WEBGL
+        GameManager.GameStateChange += WriteVolumeSliders;
+#endif
     }
     void OnDisable()
     {
         Application.quitting -= WriteVolumeSliders;
+#if UNITY_WEBGL
+        GameManager.GameStateChange -= WriteVolumeSliders;
+#endif
     }
 
     void Awake()
@@ -80,6 +86,12 @@ public class MusicManager : MonoBehaviour
     }
 
     public void WriteVolumeSliders()
+    {
+        _path = Application.persistentDataPath + "/volume-sliders.json";
+
+        UnityFileManipulation.WriteJsonFile(_path, volumeSliders);
+    }
+    public void WriteVolumeSliders(GameState _)
     {
         _path = Application.persistentDataPath + "/volume-sliders.json";
 
