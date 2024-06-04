@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1752149999255031557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +116,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textMesh: {fileID: 1752150000553887665}
   _imgs: []
-  colors: []
+  colors:
+  - {r: 1, g: 0.376, b: 0.54270154, a: 1}
+  - {r: 1, g: 0.89019614, b: 0.043137256, a: 1}
+  - {r: 0.5613208, g: 0.9462445, b: 1, a: 1}
+  - {r: 0.557404, g: 1, b: 0.4669811, a: 1}
+  - {r: 0.8468226, g: 0.495283, b: 1, a: 1}
 --- !u!1 &1752150000553887679
 GameObject:
   m_ObjectHideFlags: 0

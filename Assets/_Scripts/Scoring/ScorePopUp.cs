@@ -23,7 +23,7 @@ public class ScorePopUp : MonoBehaviour
         }
 
         if (_textMesh != null) _textMesh.DOFade(.9f, .3f);
-        if (_imgs != null)
+        if (_imgs.Count > 0)
         {
             if (ScoreManager.Instance.comboType == 1)
             {

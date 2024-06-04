@@ -109,11 +109,20 @@ public class ScoreManager : MonoBehaviour
             comboType = 1;
             SFXCollection.Instance.PlaySound(SFXType.ComboUp);
         }
+        // TODO: if you break combo after speed shrink at max -> subtract score
         // if combo started and perfect input missed then reset
         else if (comboCount == 1 && comboType != -1)
         {
-            comboType = 2;
-            SFXCollection.Instance.PlaySound(SFXType.ComboReset);
+            if (GameManager.Instance.speedShrink >= .4)
+            {
+                SetScoreType(ScoreType.Fail, InteractionType.NoPress);
+                return;
+            }
+            else
+            {
+                comboType = 2;
+                SFXCollection.Instance.PlaySound(SFXType.ComboReset);
+            }
         }
         // if combo not reset or combo up
         else

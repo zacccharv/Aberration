@@ -3,7 +3,7 @@ using System.IO;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-class EditorScrips : EditorWindow
+class EditorScripts : EditorWindow
 {
     [MenuItem("Play/PlayMe _%h")]
 
@@ -25,26 +25,26 @@ class EditorScrips : EditorWindow
         }
     }
 
-    void OnGUI()
-    {
-        // Or set the start Scene from code
-        var scenePath = "Assets/Scenes/MainMenu.unity";
-        if (GUILayout.Button("Set start Scene: " + scenePath))
-            SetPlayModeStartScene(scenePath);
-    }
+    // void OnGUI()
+    // {
+    //     // Or set the start Scene from code
+    //     var scenePath = "Assets/Scenes/MainMenu.unity";
+    //     if (GUILayout.Button("Set start Scene: " + scenePath))
+    //         SetPlayModeStartScene(scenePath);
+    // }
 
-    void SetPlayModeStartScene(string scenePath)
-    {
-        SceneAsset myWantedStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
-        if (myWantedStartScene != null)
-            EditorSceneManager.playModeStartScene = myWantedStartScene;
-        else
-            Debug.Log("Could not find Scene " + scenePath);
-    }
+    // void SetPlayModeStartScene(string scenePath)
+    // {
+    //     SceneAsset myWantedStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
+    //     if (myWantedStartScene != null)
+    //         EditorSceneManager.playModeStartScene = myWantedStartScene;
+    //     else
+    //         Debug.Log("Could not find Scene " + scenePath);
+    // }
 
-    [MenuItem("Test/Open")]
-    static void Open()
-    {
-        GetWindow<EditorScrips>();
-    }
+    // [MenuItem("Test/Open")]
+    // static void Open()
+    // {
+    //     GetWindow<EditorScripts>();
+    // }
 }

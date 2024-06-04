@@ -57,6 +57,11 @@ public class BaseArrow : MonoBehaviour
         int popUpNum = ScoreManager.Instance.comboMultiplier == 1 ? 0 : ScoreManager.Instance.comboMultiplier / 2;
         popUpNum = Mathf.Min(popUpNum, ScoreManager.Instance.succesfulNumberPopup.Count - 1);
 
+        if (ScoreManager.Instance.comboCount == 1 && ScoreManager.Instance.comboType != -1 && GameManager.Instance.speedShrink >= .4)
+        {
+            success = false;
+        }
+
         if (success)
         {
             if (scoreType == ScoreType.Empty)
@@ -67,7 +72,6 @@ public class BaseArrow : MonoBehaviour
             else if (scoreType == ScoreType.Success)
             {
                 Instantiate(ScoreManager.Instance.succesfulNumberPopup[popUpNum], transform.position, Quaternion.identity);
-                // popup.GetComponentInChildren<TextMeshProUGUI>().SetText($"+{5 * ScoreManager.Instance.comboMultiplier}");
             }
         }
         else if (!success)

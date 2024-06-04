@@ -30,6 +30,16 @@ public class ButtonNavigation : MonoBehaviour
         InputManager_Z.UIInputPressed -= TriggerSelectedInMenu;
     }
 
+    void Awake()
+    {
+#if UNITY_WEBGL
+        Button btn = mainMenuButtons[^1];
+        mainMenuButtons.RemoveAt(mainMenuButtons.Count - 1);
+
+        Destroy(btn.gameObject);
+#endif
+    }
+
     void Start()
     {
         canPress = true;
@@ -78,6 +88,12 @@ public class ButtonNavigation : MonoBehaviour
 
             buttonIndex %= buttons.Count;
 
+            if (menuScreens.menuType == MenuType.MainMenu)
+                if ((HighScores.Instance.scores.username == "" || HighScores.Instance.scores.username == null) && buttonIndex == 2)
+                {
+                    buttonIndex = 1;
+                }
+
             buttons[buttonIndex].Select();
             SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
 
@@ -91,6 +107,13 @@ public class ButtonNavigation : MonoBehaviour
             buttonIndex++;
 
             buttonIndex %= buttons.Count;
+
+            if (menuScreens.menuType == MenuType.MainMenu)
+                if ((HighScores.Instance.scores.username == "" || HighScores.Instance.scores.username == null) && buttonIndex == 2)
+                {
+                    buttonIndex = 3;
+                    buttonIndex %= buttons.Count;
+                }
 
             buttons[buttonIndex].Select();
             SFXCollection.Instance.PlaySound(SFXType.SuccessNone);
