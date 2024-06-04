@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeScale = 1 + speedShrink;
+            timeScale = 1 - speedShrink;
             menuScreens.menuType = MenuType.None;
 
             menu.SetActive(false);
@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
 
         speedShrink = result * .0333f;
         Mathf.Clamp(speedShrink, .4f, speedShrink);
+        speedShrink = .4f;
 
         timeScale = 1 - speedShrink;
     }

@@ -10,7 +10,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 
     public SpriteRenderer spriteRenderer, numberRenderer;
 
-    public float perfectInputTime = 1.7f, perfectInputTimer;
+    public float perfectInputTime, perfectInputTimer;
 
     void OnEnable()
     {

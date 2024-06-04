@@ -88,7 +88,7 @@ public class Tower : MonoBehaviour
 
                 if (ArrowManager.Instance.interactableArrows[0].TryGetComponent(out SingleArrow singleArrow))
                 {
-                    if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime)
+                    if (singleArrow.perfectInputTimer < singleArrow.perfectInputTime - GameManager.Instance.speedShrink)
                     {
                         ScoreManager.Instance.comboCount = 0;
                         perfect = false;
@@ -185,18 +185,11 @@ public class Tower : MonoBehaviour
         {
             sequence.Play();
 
-            if (GameManager.Instance.speedShrink < .4f)
-            {
-                sequence.Append(GetComponent<SpriteRenderer>().DOColor(_tooEarly, _perfectTime / 8).SetEase(Ease.Flash));
-                sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.Flash));
-                sequence.AppendInterval(_perfectTime / 8 * 5);
-                sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.Flash));
-                sequence.Join(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.Flash));
-            }
-            else
-            {
-                sequence.Append(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.Flash));
-            }
+            sequence.Append(GetComponent<SpriteRenderer>().DOColor(_tooEarly, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.AppendInterval(.4f - GameManager.Instance.speedShrink);
+            sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.Flash));
+            sequence.Join(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.Flash));
 
             TowerChangeEvent?.Invoke(direction, interactionType);
         }
