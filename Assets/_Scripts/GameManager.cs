@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         int result = scoreCalc + timeCalc;
 
         speedShrink = result * .0333f;
-        Mathf.Clamp(speedShrink, .4f, speedShrink);
+        Mathf.Clamp(speedShrink, .5f, speedShrink);
 
         timeScale = 1 - speedShrink;
     }
