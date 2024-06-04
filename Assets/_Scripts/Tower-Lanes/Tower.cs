@@ -218,7 +218,7 @@ public class Tower : MonoBehaviour
 
             sequence.Append(GetComponent<SpriteRenderer>().DOColor(_tooEarly, _perfectTime / 8).SetEase(Ease.Flash));
             sequence.Join(transform.DOScale(_bounceMin, _perfectTime / 8).SetEase(Ease.InOutSine));
-            _ = sequence.AppendInterval(.7f - GameManager.Instance.speedShrink - (_perfectTime / 8));
+            sequence.AppendInterval((2 / GameManager.timeScale) - 1.35f - (_perfectTime / 8));
             sequence.Append(transform.DOScale(_bounceMax, _perfectTime / 8).SetEase(Ease.InOutSine));
             sequence.Join(GetComponent<SpriteRenderer>().DOColor(_justRight, _perfectTime / 8).SetEase(Ease.InOutSine));
 
