@@ -26,8 +26,6 @@ public class Arrow : MonoBehaviour
     /// </summary>
     public bool inputTriggered;
 
-    public int pressCount;
-
     public SpriteRenderer arrowSpriteRenderer, numberSpriteRenderer;
 
     void Awake()

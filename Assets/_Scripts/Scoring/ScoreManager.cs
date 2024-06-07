@@ -74,8 +74,12 @@ public class ScoreManager : MonoBehaviour
     void AddScore()
     {
         if (ArrowManager.Instance.interactableArrows[0].inputTriggered
-            || ArrowManager.Instance.interactableArrows[0].pressCount == 1
             || GameManager.Instance.gameState == GameState.Ended)
+        {
+            return;
+        }
+
+        if (ArrowManager.Instance.interactableArrows[0].interactionType == InteractionType.Double && !ArrowManager.Instance.interactableArrows[0].inputTriggered)
         {
             return;
         }
@@ -113,7 +117,7 @@ public class ScoreManager : MonoBehaviour
         // if combo started and perfect input missed then reset
         else if (comboCount == 1 && comboType != -1)
         {
-            if (GameManager.Instance.speedShrink >= .4)
+            if (GameManager.Instance.speedExpand >= .4)
             {
                 SetScoreType(ScoreType.Fail, InteractionType.NoPress);
                 return;
@@ -143,7 +147,7 @@ public class ScoreManager : MonoBehaviour
             maxScore = score;
         }
 
-        GameManager.Instance.SetSpeed(maxScore);
+        GameManager.Instance.SetTimeScale(maxScore);
         _scoreText.text = score.ToString();
     }
 

@@ -10,8 +10,8 @@ public class LongArrow : BaseArrow, IArrowStates
     [SerializeField] private List<SpriteRenderer> renderers = new();
 
 
-    [SerializeField] private float _perfectInputTime;
-    private float _perfectInputTimer;
+    [Range(0, .8f)] public float perfectInputTime = .7f;
+    public float perfectInputTimer;
 
     void OnEnable()
     {
@@ -61,7 +61,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, InteractionType.Long, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, InteractionType.Long, perfectInputTime, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && Arrow.boundsIndex == 0)
         {
@@ -70,7 +70,7 @@ public class LongArrow : BaseArrow, IArrowStates
 
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
         {
-            _perfectInputTimer += GameManager.deltaTime;
+            perfectInputTimer += GameManager.deltaTime;
         }
     }
 
@@ -95,10 +95,10 @@ public class LongArrow : BaseArrow, IArrowStates
 
         foreach (var item in renderers)
         {
-            Tweens.Add(item.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
+            Tweens.Add(item.DOColor(ArrowManager.Instance.SuccessColor, .7f).SetEase(Ease.OutSine));
         }
 
-        Tweens.Add(transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
+        Tweens.Add(transform.DOScale(transform.localScale * 4, .7f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillAllTweens(Tweens);
                 Destroy(gameObject);
@@ -117,8 +117,8 @@ public class LongArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        float updatedTiming = (2 / GameManager.timeScale) - 1.4f;
+        float updatedTiming = Mathf.Min(perfectInputTime * GameManager.timeScale, 2 * GameManager.timeScale - perfectInputTime);
 
-        if (_perfectInputTimer > updatedTiming) PerfectInputStart = true;
+        if (perfectInputTimer > updatedTiming) PerfectInputStart = true;
     }
 }

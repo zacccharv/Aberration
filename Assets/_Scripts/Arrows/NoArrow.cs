@@ -52,7 +52,7 @@ public class NoArrow : BaseArrow, IArrowStates
 
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, 0, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && Arrow.boundsIndex == 0)
         {

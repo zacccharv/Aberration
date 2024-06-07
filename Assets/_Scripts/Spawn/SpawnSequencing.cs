@@ -40,7 +40,7 @@ public class SpawnSequencing : MonoBehaviour
     [SerializeField] private int _spawnCount;
     [SerializeField] private bool _test;
     [SerializeField] private int _testSequenceIndex;
-    [SerializeField] private float _spawnInterval;
+    private float _spawnInterval = 1;
 
     private int _every_x, _swapLaneInt, _emptyCount, _swapEmptyInt;
     private float _spawnTimer;

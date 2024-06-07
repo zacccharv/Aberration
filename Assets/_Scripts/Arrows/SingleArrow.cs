@@ -10,7 +10,8 @@ public class SingleArrow : BaseArrow, IArrowStates
 
     public SpriteRenderer spriteRenderer, numberRenderer;
 
-    public float perfectInputTime, perfectInputTimer;
+    [Range(0, .8f)] public float perfectInputTime = .4f;
+    public float perfectInputTimer;
 
     void OnEnable()
     {
@@ -50,7 +51,7 @@ public class SingleArrow : BaseArrow, IArrowStates
 
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, perfectInputTime, Tower.Instance);
         }
         else if (Tower.IsInBounds(transform.position, Tower.Instance.animationBounds) && Arrow.boundsIndex == 0)
         {
@@ -81,9 +82,9 @@ public class SingleArrow : BaseArrow, IArrowStates
 
         Arrow.inputTriggered = true;
 
-        Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
-        Tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
-        Tweens.Add(transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
+        Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.SuccessColor, .7f).SetEase(Ease.OutSine));
+        Tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, .7f).SetEase(Ease.OutSine));
+        Tweens.Add(transform.DOScale(transform.localScale * 4, .7f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillAllTweens(Tweens);
                 Destroy(gameObject);

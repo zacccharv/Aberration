@@ -77,7 +77,7 @@ public class ArrowManager : MonoBehaviour
             Instance.interactableArrows.RemoveAt(0);
         }
 
-        if (Instance._moveTimer > moveSpeed)
+        if (Instance._moveTimer > 1)
         {
             moveSpeed = MoveSpeed(interactableArrows[0]);
 
@@ -88,7 +88,7 @@ public class ArrowManager : MonoBehaviour
 
     private float MoveSpeed(Arrow arrow)
     {
-        float value = arrow.moveSpeed * GameManager.timeScale;
+        float value = arrow.moveSpeed / GameManager.timeScale;
 
         return value;
     }

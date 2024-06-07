@@ -131,7 +131,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 11650804172258245}
   numberRenderer: {fileID: 6066200747824664292}
   _pressCount: 0
-  _perfectInputTime: 0.2
+  perfectInputTime: 0.2
+  perfectInputTimer: 0
 --- !u!212 &6066200747824664292 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6859791688991600200, guid: b9e7dab477548994fb95be17d6b47dac, type: 3}

@@ -11,8 +11,8 @@ public class DoubleArrow : BaseArrow, IArrowStates
     public SpriteRenderer spriteRenderer, numberRenderer;
     [SerializeField] private int _pressCount;
 
-    [SerializeField] private float _perfectInputTime;
-    private float _perfectInputTimer;
+    [Range(0, .8f)] public float perfectInputTime = .2f;
+    public float perfectInputTimer;
 
     void OnEnable()
     {
@@ -50,7 +50,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
             int num = (int)Arrow.direction;
             Arrow.boundsIndex = 2;
 
-            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, Tower.Instance);
+            Tower.TriggerTowerChange(Arrow.direction, Arrow.interactionType, perfectInputTime, Tower.Instance);
 
             Tweens.Add(transform.DOScale(transform.localScale * 1.5f, .2f).SetLoops(-1, LoopType.Yoyo));
             Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.arrowHighlightColor[num], .15f).SetEase(Ease.InSine));
@@ -64,7 +64,7 @@ public class DoubleArrow : BaseArrow, IArrowStates
 
         if (Tower.IsInBounds(transform.position, Tower.Instance.successBounds))
         {
-            _perfectInputTimer += GameManager.deltaTime;
+            perfectInputTimer += GameManager.deltaTime;
         }
     }
 
@@ -98,9 +98,9 @@ public class DoubleArrow : BaseArrow, IArrowStates
             return;
         }
 
-        Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
-        Tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, 1).SetEase(Ease.OutSine));
-        Tweens.Add(transform.DOScale(transform.localScale * 5, 1.5f).SetEase(Ease.OutSine).OnComplete(() =>
+        Tweens.Add(spriteRenderer.DOColor(ArrowManager.Instance.SuccessColor, .7f).SetEase(Ease.OutSine));
+        Tweens.Add(numberRenderer.DOColor(ArrowManager.Instance.SuccessColor, .7f).SetEase(Ease.OutSine));
+        Tweens.Add(transform.DOScale(transform.localScale * 4, .7f).SetEase(Ease.OutSine).OnComplete(() =>
             {
                 KillAllTweens(Tweens);
                 Destroy(gameObject);
@@ -119,6 +119,6 @@ public class DoubleArrow : BaseArrow, IArrowStates
     {
         if (ArrowManager.Instance.interactableArrows[0] != Arrow || GameManager.Instance.gameState == GameState.Ended) return;
 
-        if (_perfectInputTimer > (_perfectInputTime - GameManager.Instance.speedShrink)) PerfectInputStart = true;
+        if (perfectInputTimer > perfectInputTime) PerfectInputStart = true;
     }
 }

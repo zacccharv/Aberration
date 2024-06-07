@@ -7789,9 +7789,10 @@ MonoBehaviour:
   gameOverTitle: {fileID: 0}
   pauseTitle: {fileID: 0}
   title: {fileID: 0}
-  gameTime: 60
-  speedShrink: 0
+  gameTime: 0
+  speedExpand: 0
   actualGameTime: 0
+  _timeScaleOffset: 0.25
 --- !u!4 &1623904855
 Transform:
   m_ObjectHideFlags: 0
