@@ -27,6 +27,8 @@ public class VolumeSlider : MonoBehaviour
 
     public void SetVolume(float value)
     {
+        if (value == -15) value = -80;
+
         _mixer.SetFloat(_mixerName, value);
 
         if (_mixerName == "Master")
