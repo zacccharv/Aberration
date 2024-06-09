@@ -1850,12 +1850,12 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 0
   m_Looping: 1
-  m_WaitForFirstFrame: 1
+  m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
 --- !u!1 &537971206
@@ -2368,6 +2368,7 @@ MonoBehaviour:
   stage: 3
   subtraction: 6
   comboType: -1
+  startStages: 0
 --- !u!4 &614974770
 Transform:
   m_ObjectHideFlags: 0
@@ -6481,13 +6482,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _videoClips:
   - {fileID: 102900000, guid: dcf958d70d69dda48b8e423150fac573, type: 3}
-  - {fileID: 102900000, guid: 564efa0043e9f8647935ac9462402978, type: 3}
+  - {fileID: 102900000, guid: 57d1bfb609498f24e936e210b01e2782, type: 3}
   - {fileID: 102900000, guid: 6c6e3cfccc62dc340914b599de1d6749, type: 3}
   - {fileID: 102900000, guid: a2a473883d088cb4389619ec4d68ff0e, type: 3}
   _videoPlayer: {fileID: 520004245}
   _videoPlayerContainer: {fileID: 1358450305}
   _press: {fileID: 432350162}
   _enterIcon: {fileID: 1242135580}
+  tutorialsTriggered:
+    stage_1: 0
+    stage_2: 0
+    stage_3: 0
+    esc: 0
 --- !u!1 &2141419073
 GameObject:
   m_ObjectHideFlags: 0

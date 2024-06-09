@@ -29,6 +29,7 @@ public class ScoreManager : MonoBehaviour
     /// -1 combo not started, 0 started, 1 comboup, 2 reset
     /// </summary>
     [HideInInspector] public int comboType = -1;
+    public bool startStages;
 
     void OnEnable()
     {
@@ -65,10 +66,15 @@ public class ScoreManager : MonoBehaviour
         // Stage change popup
         stage = _test ? stage + (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage) : (int)Mathf.Floor(GameManager.Instance.gameTime / secondsPerStage);
 
-        if (_previousStage != stage && !_test)
+        if (_previousStage != stage && !_test && startStages)
         {
             StagePopUp(stage);
             SpawnSequencing._stage = stage;
+        }
+        else if (!startStages)
+        {
+            SpawnSequencing._stage = stage;
+            return;
         }
 
         _previousStage = stage;

@@ -8,7 +8,8 @@ using UnityEngine.Video;
 [Serializable]
 public class TutorialsTriggered
 {
-    public bool stage_1, stage_2, stage_3;
+    public bool stage_1, stage_2, stage_3, esc;
+
 }
 
 public class TutorialTrigger : MonoBehaviour
@@ -36,9 +37,14 @@ public class TutorialTrigger : MonoBehaviour
         string path = Application.persistentDataPath + "/tutorials.json";
         UnityFileManipulation.LoadJsonFile(path, out tutorialsTriggered);
 
-        Invoke(nameof(InvokeMe), GameManager.timeScale * 5);
+        Invoke(nameof(InvokeEsc), .25f);
     }
-    public void InvokeMe()
+
+    public void InvokeEsc()
+    {
+        PlayVideo("Esc Tutorial");
+    }
+    public void InvokeStage_1()
     {
         PlayVideo("Single Tutorial");
     }
@@ -51,6 +57,18 @@ public class TutorialTrigger : MonoBehaviour
             return;
         else if (name.Contains("Long") && tutorialsTriggered.stage_3 == true)
             return;
+        else if (name.Contains("Esc") && tutorialsTriggered.esc)
+        {
+            if (tutorialsTriggered!.stage_1)
+            {
+                name = "Single Tutorial";
+            }
+            else
+            {
+                ScoreManager.Instance.startStages = true;
+                return;
+            }
+        }
 
         GameManager.timeScale = 0;
 
@@ -83,11 +101,19 @@ public class TutorialTrigger : MonoBehaviour
         if (inputType == InputType.Confirm && _videoPlayer.isPlaying)
         {
             if (_videoPlayer.url.Contains("Single"))
+            {
                 tutorialsTriggered.stage_1 = true;
+                ScoreManager.Instance.startStages = true;
+            }
             else if (_videoPlayer.url.Contains("Double"))
                 tutorialsTriggered.stage_2 = true;
             else if (_videoPlayer.url.Contains("Long"))
                 tutorialsTriggered.stage_3 = true;
+            else if (_videoPlayer.url.Contains("Esc"))
+            {
+                tutorialsTriggered.esc = true;
+                Invoke(nameof(InvokeStage_1), .25f);
+            }
 
             GameManager.timeScale = GameManager.Instance.GetTimeScale();
             _videoPlayer.Stop();
