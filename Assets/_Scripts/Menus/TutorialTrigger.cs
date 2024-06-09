@@ -14,7 +14,7 @@ public class TutorialsTriggered
 
 public class TutorialTrigger : MonoBehaviour
 {
-    [SerializeField] private List<UnityEngine.Object> _videoClips = new List<UnityEngine.Object>();
+    [SerializeField] private List<UnityEngine.Object> _videoClips = new();
     [SerializeField] private VideoPlayer _videoPlayer;
     [SerializeField] private GameObject _videoPlayerContainer;
     [SerializeField] private TextMeshProUGUI _press;
@@ -95,7 +95,6 @@ public class TutorialTrigger : MonoBehaviour
         _press.DOFade(1, .3f).SetEase(Ease.OutSine);
         _enterIcon.DOFade(1, .3f).SetEase(Ease.OutSine);
     }
-
     public void StopVideo(InputType inputType)
     {
         if (inputType == InputType.Confirm && _videoPlayer.isPlaying)

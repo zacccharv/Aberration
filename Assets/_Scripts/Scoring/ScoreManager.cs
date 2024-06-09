@@ -195,11 +195,11 @@ public class ScoreManager : MonoBehaviour
 
         if (stage + 1 == 2)
         {
-            Invoke(nameof(InvokeStage_2), GameManager.timeScale * 5);
+            Invoke(nameof(InvokeStage_2), GameManager.Instance.GetTimeScale() * 5);
         }
         else if (stage + 1 == 3)
         {
-            Invoke(nameof(InvokeStage_3), GameManager.timeScale * 5);
+            Invoke(nameof(InvokeStage_3), GameManager.Instance.GetTimeScale() * 5);
         }
 
     }
