@@ -45,7 +45,6 @@ public class MusicManager : MonoBehaviour
             Instance = this;
         }
 
-        // LoadVolumeSliders(out volumeSliders);
         _path = Application.persistentDataPath + "/volume-sliders.json";
 
         UnityFileManipulation.LoadJsonFile(_path, out volumeSliders);

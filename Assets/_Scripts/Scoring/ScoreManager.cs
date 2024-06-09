@@ -11,6 +11,9 @@ public enum ScoreType
 
 public class ScoreManager : MonoBehaviour
 {
+    public delegate void StageDelegate(string videoName);
+    public static event StageDelegate StageEvent;
+
     [SerializeField] TextMeshProUGUI _scoreText;
     public static ScoreManager Instance;
     public int score = 6, maxScore = 0, comboCount = 0, comboMultiplier = 1, secondsPerStage;
@@ -183,5 +186,25 @@ public class ScoreManager : MonoBehaviour
 
         GameObject obj = Instantiate(stagePopup, new(0, 3.5f, 0), Quaternion.identity);
         obj.GetComponentInChildren<TextMeshProUGUI>().text = $"Stage {stage + 1}";
+
+        if (stage + 1 == 2)
+        {
+            Invoke(nameof(InvokeStage_2), GameManager.timeScale * 5);
+        }
+        else if (stage + 1 == 3)
+        {
+            Invoke(nameof(InvokeStage_3), GameManager.timeScale * 5);
+        }
+
     }
+
+    public void InvokeStage_2()
+    {
+        StageEvent?.Invoke("Double Tutorial");
+    }
+    public void InvokeStage_3()
+    {
+        StageEvent?.Invoke("Long Tutorial");
+    }
+
 }

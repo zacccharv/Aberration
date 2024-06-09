@@ -2,6 +2,7 @@ using UnityEditor;
 using System.IO;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class EditorScripts : EditorWindow
 {
@@ -11,7 +12,7 @@ class EditorScripts : EditorWindow
     {
         if (!EditorApplication.isPlaying)
         {
-            string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            string currentSceneName = SceneManager.GetActiveScene().name;
             File.WriteAllText(".lastScene", currentSceneName);
 
             EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
@@ -21,7 +22,7 @@ class EditorScripts : EditorWindow
         {
             string lastScene = File.ReadAllText(".lastScene");
             EditorApplication.isPlaying = false;
-            EditorSceneManager.OpenScene(lastScene);
+            SceneManager.LoadScene(lastScene);
         }
     }
 
