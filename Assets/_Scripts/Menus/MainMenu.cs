@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            if (menuScreens.menuType == MenuType.None || menuScreens.menuType == MenuType.Tutorial)
+            if (menuScreens.menuType == MenuType.None)
             {
                 return;
             }

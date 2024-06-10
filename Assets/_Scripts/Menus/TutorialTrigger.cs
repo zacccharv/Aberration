@@ -21,6 +21,7 @@ public class TutorialTrigger : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image _enterIcon, _escIcon;
     public TutorialsTriggered tutorialsTriggered;
     public MenuScreens menuScreens;
+    private string _currentClipName;
 
     public void OnEnable()
     {
@@ -52,11 +53,6 @@ public class TutorialTrigger : MonoBehaviour
 
     public void PlayVideo(string m_name)
     {
-        GameManager.timeScale = 0;
-        menuScreens.menuType = MenuType.Tutorial;
-
-        _videoPlayerContainer.SetActive(true);
-
         if (m_name.Contains("Single") && tutorialsTriggered.stage_1)
             return;
         else if (m_name.Contains("Double") && tutorialsTriggered.stage_2)
@@ -68,6 +64,9 @@ public class TutorialTrigger : MonoBehaviour
             ScoreManager.Instance.startStages = true;
             return;
         }
+        _currentClipName = m_name;
+        _videoPlayerContainer.SetActive(true);
+
         string videoPath = "https://zacccharv.github.io/AberrationBuild/StreamingAssets/" + m_name + ".mp4";
 
         if (m_name == "")
@@ -103,46 +102,59 @@ public class TutorialTrigger : MonoBehaviour
 
         _press.DOFade(1, .3f).SetEase(Ease.OutSine);
 
+        GameManager.Instance.ChangeGameState(GameState.Tutorial);
     }
+
     public void StopVideo(InputType inputType)
     {
-        if (_videoPlayer.isPlaying)
+        if (!_videoPlayer.isPlaying || inputType != InputType.Confirm && inputType != InputType.Esc)
+            return;
+
+        GameManager.Instance.ChangeGameState(GameState.Started);
+
+        if (inputType == InputType.Confirm)
         {
-            if (inputType != InputType.Esc)
+            if (_currentClipName.Contains("Single"))
             {
-                if (_videoPlayer.url.Contains("Single"))
-                {
-                    tutorialsTriggered.stage_1 = true;
-                    ScoreManager.Instance.startStages = true;
-                }
-                else if (_videoPlayer.url.Contains("Double"))
-                {
-                    tutorialsTriggered.stage_2 = true;
-                }
-                else if (_videoPlayer.url.Contains("Long"))
-                {
-                    tutorialsTriggered.stage_3 = true;
-                }
+                tutorialsTriggered.stage_1 = true;
+                ScoreManager.Instance.startStages = true;
             }
-            else if (_videoPlayer.url.Contains("Esc") && inputType == InputType.Esc)
+            else if (_currentClipName.Contains("Double"))
+            {
+                tutorialsTriggered.stage_2 = true;
+            }
+            else if (_currentClipName.Contains("Long"))
+            {
+                tutorialsTriggered.stage_3 = true;
+            }
+        }
+        else if (inputType == InputType.Esc)
+        {
+            if (_currentClipName.Contains("Esc"))
             {
                 tutorialsTriggered.esc = true;
                 Invoke(nameof(InvokeStage_1), .25f);
             }
-
-            GameManager.timeScale = GameManager.Instance.GetTimeScale();
-            _videoPlayer.Stop();
-
-            _videoPlayer.gameObject.GetComponent<RectTransform>().localScale = new(1, 1);
-            _videoPlayerContainer.GetComponent<UnityEngine.UI.Image>().DOFade(0, 0);
-
-            _press.DOFade(.80f, 0);
-            _enterIcon.DOFade(.80f, 0);
-
-            UnityFileManipulation.WriteJsonFile(Application.persistentDataPath + "/tutorials.json", tutorialsTriggered);
-
-            _videoPlayerContainer.SetActive(false);
+            else
+            {
+                return;
+            }
         }
+
+        GameManager.timeScale = GameManager.Instance.GetTimeScale();
+        _videoPlayer.Stop();
+
+        _videoPlayer.gameObject.GetComponent<RectTransform>().localScale = new(1, 1);
+        _videoPlayerContainer.GetComponent<UnityEngine.UI.Image>().DOFade(0, 0);
+
+        _press.DOFade(.80f, 0);
+        _enterIcon.DOFade(.80f, 0);
+
+        UnityFileManipulation.WriteJsonFile(Application.persistentDataPath + "/tutorials.json", tutorialsTriggered);
+
+        _videoPlayerContainer.SetActive(false);
+
+        _currentClipName = "";
     }
 
 }

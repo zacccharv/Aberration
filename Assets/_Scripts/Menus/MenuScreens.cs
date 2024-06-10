@@ -11,8 +11,7 @@ public enum MenuType
     HighScores,
     Username,
     PauseMenu,
-    None,
-    Tutorial
+    None
 }
 
 public class MenuScreens : MonoBehaviour
@@ -119,11 +118,15 @@ public class MenuScreens : MonoBehaviour
 
             GameManager.Instance.title.SetActive(false);
         }
-        else if (menu == MenuType.Tutorial)
-        {
-            menuType = MenuType.None;
-            return;
-        }
+        // else if (menu == MenuType.Tutorial)
+        // {
+        //     _highScores.SetActive(false);
+        //     _mainMenu.SetActive(false);
+        //     _audio.SetActive(false);
+
+        //     menuType = MenuType.None;
+        //     return;
+        // }
         else if (menu == MenuType.None)
         {
             _highScores.SetActive(false);

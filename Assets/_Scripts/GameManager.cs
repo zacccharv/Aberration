@@ -8,7 +8,8 @@ public enum GameState
     PreStart,
     Started,
     Paused,
-    Ended
+    Ended,
+    Tutorial
 }
 
 public delegate void GameStateChange(GameState gameState);
@@ -92,6 +93,10 @@ public class GameManager : MonoBehaviour
             gameOverTitle.SetActive(false);
 
             title = pauseTitle;
+        }
+        else if (gameState == GameState.Tutorial)
+        {
+            timeScale = 0;
         }
         else
         {
