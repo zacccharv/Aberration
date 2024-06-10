@@ -122,6 +122,7 @@ public class MenuScreens : MonoBehaviour
         else if (menu == MenuType.Tutorial)
         {
             menuType = MenuType.None;
+            return;
         }
         else if (menu == MenuType.None)
         {

@@ -146,6 +146,11 @@ public class ButtonNavigation : MonoBehaviour
 
     public IEnumerator TriggerEscape()
     {
+        if (menuScreens.menuType == MenuType.Tutorial)
+        {
+            menuScreens.SwitchMenus(MenuType.Tutorial);
+        }
+
         if (menuScreens.menuType == MenuType.None && canPress != false && menuScreens.menuType != MenuType.Tutorial)
         {
             GameManager.Instance.ChangeGameState(GameState.Paused);
@@ -156,6 +161,7 @@ public class ButtonNavigation : MonoBehaviour
 
             yield return new WaitForSeconds(.25f);
         }
+
         if (menuScreens.menuType != MenuType.None && canPress && menuScreens.menuType != MenuType.Tutorial)
         {
             if (menuScreens.menuType != MenuType.MainMenu)
@@ -163,11 +169,6 @@ public class ButtonNavigation : MonoBehaviour
                 buttons[^1].onClick.Invoke();
 
             yield return new WaitForSeconds(.25f);
-        }
-
-        if (menuScreens.menuType == MenuType.Tutorial)
-        {
-            menuScreens.SwitchMenus(MenuType.None);
         }
 
         canPress = true;

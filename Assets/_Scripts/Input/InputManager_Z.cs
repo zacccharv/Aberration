@@ -18,10 +18,6 @@ public delegate void UIInputPress(InputType inputType);
 
 public class InputManager_Z : MonoBehaviour
 {
-    [SerializeField] private float _inputDelay;
-    [SerializeField] private int _pressCount;
-    [SerializeField] private float defaultHoldTime;
-
     public static event DirectionPress DirectionPressed;
     public static event Action InputStart;
     public static event UIInputPress UIInputPressed;

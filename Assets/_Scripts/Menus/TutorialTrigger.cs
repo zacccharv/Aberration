@@ -52,8 +52,8 @@ public class TutorialTrigger : MonoBehaviour
 
     public void PlayVideo(string m_name)
     {
-        menuScreens.menuType = MenuType.Tutorial;
         GameManager.timeScale = 0;
+        menuScreens.menuType = MenuType.Tutorial;
 
         _videoPlayerContainer.SetActive(true);
 
