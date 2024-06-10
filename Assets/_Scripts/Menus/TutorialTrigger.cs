@@ -14,12 +14,13 @@ public class TutorialsTriggered
 
 public class TutorialTrigger : MonoBehaviour
 {
-    [SerializeField] private List<UnityEngine.Object> _videoClips = new();
+    [SerializeField] private List<string> _videoClips = new();
     [SerializeField] private VideoPlayer _videoPlayer;
     [SerializeField] private GameObject _videoPlayerContainer;
     [SerializeField] private TextMeshProUGUI _press;
-    [SerializeField] private UnityEngine.UI.Image _enterIcon;
+    [SerializeField] private UnityEngine.UI.Image _enterIcon, _escIcon;
     public TutorialsTriggered tutorialsTriggered;
+    public MenuScreens menuScreens;
 
     public void OnEnable()
     {
@@ -42,47 +43,55 @@ public class TutorialTrigger : MonoBehaviour
 
     public void InvokeEsc()
     {
-        PlayVideo("Esc Tutorial");
+        PlayVideo("EscTutorial");
     }
     public void InvokeStage_1()
     {
-        PlayVideo("Single Tutorial");
+        PlayVideo("SingleTutorial");
     }
 
-    public void PlayVideo(string name)
+    public void PlayVideo(string m_name)
     {
-        if (name.Contains("Single") && tutorialsTriggered.stage_1 == true)
-            return;
-        else if (name.Contains("Double") && tutorialsTriggered.stage_2 == true)
-            return;
-        else if (name.Contains("Long") && tutorialsTriggered.stage_3 == true)
-            return;
-        else if (name.Contains("Esc") && tutorialsTriggered.esc)
-        {
-            if (tutorialsTriggered!.stage_1)
-            {
-                name = "Single Tutorial";
-            }
-            else
-            {
-                ScoreManager.Instance.startStages = true;
-                return;
-            }
-        }
-
+        menuScreens.menuType = MenuType.Tutorial;
         GameManager.timeScale = 0;
 
         _videoPlayerContainer.SetActive(true);
 
-        string videoPath = Application.streamingAssetsPath + "/" + name + ".mp4";
+        if (m_name.Contains("Single") && tutorialsTriggered.stage_1)
+            return;
+        else if (m_name.Contains("Double") && tutorialsTriggered.stage_2)
+            return;
+        else if (m_name.Contains("Long") && tutorialsTriggered.stage_3)
+            return;
+        else if (m_name.Contains("Esc") && tutorialsTriggered.esc)
+        {
+            ScoreManager.Instance.startStages = true;
+            return;
+        }
+        string videoPath = "https://zacccharv.github.io/AberrationBuild/StreamingAssets/" + m_name + ".mp4";
 
-        if (name == "")
+        if (m_name == "")
             throw new Exception($"VideoClip name is empty!");
 
-        if (_videoClips.Exists((x) => x.name == name))
+        if (_videoClips.Exists((x) => x == m_name))
             _videoPlayer.url = videoPath;
         else
-            throw new Exception($"{name} is not in list!");
+            throw new Exception($"{m_name} is not in list!");
+
+        if (!m_name.Contains("Esc"))
+        {
+            _escIcon.gameObject.SetActive(false);
+            _enterIcon.gameObject.SetActive(true);
+
+            _enterIcon.DOFade(1, .3f).SetEase(Ease.OutSine);
+        }
+        else if (m_name.Contains("Esc"))
+        {
+            _escIcon.gameObject.SetActive(true);
+            _enterIcon.gameObject.SetActive(false);
+
+            _escIcon.DOFade(1, .3f).SetEase(Ease.OutSine);
+        }
 
         if (!_videoPlayer.isLooping)
             _videoPlayer.isLooping = true;
@@ -93,22 +102,29 @@ public class TutorialTrigger : MonoBehaviour
         _videoPlayerContainer.GetComponent<UnityEngine.UI.Image>().DOFade(.40f, .3f).SetEase(Ease.OutSine);
 
         _press.DOFade(1, .3f).SetEase(Ease.OutSine);
-        _enterIcon.DOFade(1, .3f).SetEase(Ease.OutSine);
+
     }
     public void StopVideo(InputType inputType)
     {
-        if (inputType == InputType.Confirm && _videoPlayer.isPlaying)
+        if ((inputType == InputType.Confirm && _videoPlayer.isPlaying) || (inputType == InputType.Esc && _videoPlayer.isPlaying))
         {
-            if (_videoPlayer.url.Contains("Single"))
+            if (inputType != InputType.Esc)
             {
-                tutorialsTriggered.stage_1 = true;
-                ScoreManager.Instance.startStages = true;
+                if (_videoPlayer.url.Contains("Single"))
+                {
+                    tutorialsTriggered.stage_1 = true;
+                    ScoreManager.Instance.startStages = true;
+                }
+                else if (_videoPlayer.url.Contains("Double"))
+                {
+                    tutorialsTriggered.stage_2 = true;
+                }
+                else if (_videoPlayer.url.Contains("Long"))
+                {
+                    tutorialsTriggered.stage_3 = true;
+                }
             }
-            else if (_videoPlayer.url.Contains("Double"))
-                tutorialsTriggered.stage_2 = true;
-            else if (_videoPlayer.url.Contains("Long"))
-                tutorialsTriggered.stage_3 = true;
-            else if (_videoPlayer.url.Contains("Esc"))
+            else if (_videoPlayer.url.Contains("Esc") && inputType == InputType.Esc)
             {
                 tutorialsTriggered.esc = true;
                 Invoke(nameof(InvokeStage_1), .25f);

@@ -206,11 +206,11 @@ public class ScoreManager : MonoBehaviour
 
     public void InvokeStage_2()
     {
-        StageEvent?.Invoke("Double Tutorial");
+        StageEvent?.Invoke("DoubleTutorial");
     }
     public void InvokeStage_3()
     {
-        StageEvent?.Invoke("Long Tutorial");
+        StageEvent?.Invoke("LongTutorial");
     }
 
 }

@@ -11,7 +11,8 @@ public enum MenuType
     HighScores,
     Username,
     PauseMenu,
-    None
+    None,
+    Tutorial
 }
 
 public class MenuScreens : MonoBehaviour
@@ -117,6 +118,10 @@ public class MenuScreens : MonoBehaviour
             Invoke(nameof(DelayedSelection), .15f);
 
             GameManager.Instance.title.SetActive(false);
+        }
+        else if (menu == MenuType.Tutorial)
+        {
+            menuType = MenuType.None;
         }
         else if (menu == MenuType.None)
         {

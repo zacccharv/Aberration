@@ -17,7 +17,11 @@ public class MainMenu : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            if (GameManager.Instance.gameState == GameState.Paused)
+            if (menuScreens.menuType == MenuType.None || menuScreens.menuType == MenuType.Tutorial)
+            {
+                return;
+            }
+            else if (GameManager.Instance.gameState == GameState.Paused)
             {
                 GameManager.Instance.ChangeGameState(GameState.Started);
                 return;

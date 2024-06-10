@@ -9,6 +9,7 @@ public class ButtonNavigation : MonoBehaviour
 {
     public List<Button> mainMenuButtons, audioMenuButtons, scoreMenuButtons;
     public TMP_InputField userName;
+    public TutorialTrigger tutorialTrigger;
     private AudioMenu audioMenu;
     [SerializeField] private GameObject _username;
     private MenuScreens menuScreens;
@@ -145,7 +146,7 @@ public class ButtonNavigation : MonoBehaviour
 
     public IEnumerator TriggerEscape()
     {
-        if (menuScreens.menuType == MenuType.None && canPress != false)
+        if (menuScreens.menuType == MenuType.None && canPress != false && menuScreens.menuType != MenuType.Tutorial)
         {
             GameManager.Instance.ChangeGameState(GameState.Paused);
             menuScreens.SwitchMenus(MenuType.PauseMenu);
@@ -155,13 +156,18 @@ public class ButtonNavigation : MonoBehaviour
 
             yield return new WaitForSeconds(.25f);
         }
-        if (menuScreens.menuType != MenuType.None && canPress)
+        if (menuScreens.menuType != MenuType.None && canPress && menuScreens.menuType != MenuType.Tutorial)
         {
             if (menuScreens.menuType != MenuType.MainMenu)
                 // Go back if any menu but MainMenu
                 buttons[^1].onClick.Invoke();
 
             yield return new WaitForSeconds(.25f);
+        }
+
+        if (menuScreens.menuType == MenuType.Tutorial)
+        {
+            menuScreens.SwitchMenus(MenuType.None);
         }
 
         canPress = true;
