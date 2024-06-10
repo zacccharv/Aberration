@@ -106,7 +106,7 @@ public class TutorialTrigger : MonoBehaviour
     }
     public void StopVideo(InputType inputType)
     {
-        if ((inputType == InputType.Confirm && _videoPlayer.isPlaying) || (inputType == InputType.Esc && _videoPlayer.isPlaying))
+        if (_videoPlayer.isPlaying)
         {
             if (inputType != InputType.Esc)
             {
