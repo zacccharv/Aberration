@@ -34,7 +34,7 @@ public class LeaderBoardMenu : MonoBehaviour
 
         scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderBoard.Instance.LeaderboardId);
 
-        Invoke(nameof(HurryUpAndWait), .15f);
+        Invoke(nameof(HurryUpAndWait), .2f);
     }
     void HurryUpAndWait()
     {

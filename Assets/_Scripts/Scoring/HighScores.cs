@@ -78,31 +78,33 @@ public class HighScores : MonoBehaviour
         Instance.scores.username = name;
 
         UnityFileManipulation.WriteJsonFile(_path, Instance.scores);
-
     }
 
     private void OnGameStateChange(GameState gameState)
     {
+        // NOTE only adds score on end -- changed 6/12/24
+        // NOTE loads score on start and end -- changed 6/12/24
         if (gameState == GameState.Ended)
         {
             AddScore(ScoreManager.Instance.maxScore);
 
-            UnityFileManipulation.WriteJsonFile(_path, Instance.scores);
-
-            LoadScoreFile();
-
-            Invoke(nameof(HurryUpAndWait), .15f);
+            // NOTE waits until highscore is online -- changed 6/12/24
+            Invoke(nameof(HurryUpAndWait), .2f);
 
             return;
         }
-
-        LoadScoreFile();
-
-        ScoresLoaded?.Invoke();
+        else if (gameState == GameState.Started)
+        {
+            LoadScoreFile();
+            ScoresLoaded?.Invoke();
+        }
     }
 
     public void HurryUpAndWait()
     {
+        UnityFileManipulation.WriteJsonFile(_path, Instance.scores);
+        LoadScoreFile();
+
         ScoresLoaded?.Invoke();
     }
 }
