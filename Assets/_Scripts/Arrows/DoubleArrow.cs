@@ -107,6 +107,8 @@ public class DoubleArrow : BaseArrow, IArrowStates
             }
         ));
 
+        SFXCollection.Instance.PlaySound(SFXType.Success);
+
         SpawnPopUp(scoreType, true);
     }
 

@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.Ended)
         {
             timeScale = 0;
-
         }
         else if (gameState == GameState.Paused)
         {
