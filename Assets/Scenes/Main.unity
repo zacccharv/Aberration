@@ -9434,19 +9434,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaderBoardScores:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1986913154}
+  - {fileID: 961566720}
+  - {fileID: 1906246035}
+  - {fileID: 85512346}
+  - {fileID: 1218917314}
+  - {fileID: 339107153}
   leaderBoardNames:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 369039759}
+  - {fileID: 1853140602}
+  - {fileID: 1097495031}
+  - {fileID: 1952828379}
+  - {fileID: 98848565}
+  - {fileID: 819187088}
   personalLBScores:
   - {fileID: 1682879712567294550}
   - {fileID: 1682879712109098296}

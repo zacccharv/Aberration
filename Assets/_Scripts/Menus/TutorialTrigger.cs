@@ -38,6 +38,7 @@ public class TutorialTrigger : MonoBehaviour
     {
         string path = Application.persistentDataPath + "/tutorials.json";
         UnityFileManipulation.LoadJsonFile(path, out tutorialsTriggered);
+        _videoPlayer.EnableAudioTrack(0, false);
 
         Invoke(nameof(InvokeEsc), .25f);
     }
@@ -51,6 +52,7 @@ public class TutorialTrigger : MonoBehaviour
         PlayVideo("SingleTutorial");
     }
 
+    // TODO fix double arrow tutorial
     public void PlayVideo(string m_name)
     {
         if (m_name.Contains("Single") && tutorialsTriggered.stage_1)

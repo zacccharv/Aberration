@@ -93,7 +93,7 @@ public class HighScores : MonoBehaviour
 
             return;
         }
-        else if (gameState == GameState.Started)
+        else if (gameState != GameState.Started || gameState != GameState.Paused || gameState != GameState.Tutorial)
         {
             LoadScoreFile();
             ScoresLoaded?.Invoke();
